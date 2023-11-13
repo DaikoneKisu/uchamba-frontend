@@ -21,13 +21,13 @@
 	<div class="flex flex-col justify-center items-center">
 		<div class="flex flex-col gap-3">
 			{#if $page.url.pathname === '/sign-up'}
-				<h1 class="text-center font-bold text-5xl">¡Bienvenido!</h1>
-				<h2 class="text-center font-semibolf text-xl text-zinc-400">
-					A nuestro catálogo de egresados en línea.
+				<h1 class="text-center">¡Bienvenido!</h1>
+				<h2 class="text-center text-zinc-400">
+					A nuestro catálogo de egresados en línea
 				</h2>
 			{:else if $page.url.pathname === '/login'}
-				<h1>Bienvenido de regreso</h1>
-				<h2>A nuestro catálogo de egresados en línea</h2>
+				<h1 class="text-center">Bienvenido de regreso</h1>
+				<h2 class="text-center text-zinc-400">A nuestro catálogo de egresados en línea</h2>
 			{/if}
 		</div>
 
