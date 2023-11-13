@@ -15,7 +15,7 @@
 	}
 </script>
 
-<main class="min-h-screen flex flex-col items-center justify-between pb-24 pt-10">
+<main class="min-h-screen flex flex-col items-center justify-start gap-10 pb-24 pt-10">
 	<img src={ucabLogo} alt="logo de la ucab" class="max-w-[497px] aspect-[497/75] overflow-hidden" />
 
 	<div class="flex flex-col justify-center items-center">
