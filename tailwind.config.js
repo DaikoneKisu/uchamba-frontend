@@ -13,8 +13,12 @@ export default {
 				'brand-h1-black': '#343434',
 				'brand-h2-black': '#4D4D4D',
 				'brand-white': '#FFFFFF'
-			}
-		}
+			},
+      fontFamily: {
+        'open-sans': ['Open Sans', 'sans-serif'],
+        'poppins': ['Poppins', 'sans-serif']
+      }
+    }
 	},
 	plugins: []
 }
