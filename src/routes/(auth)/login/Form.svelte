@@ -11,8 +11,10 @@
 <form 
   aria-label="form" 
   class="flex flex-col gap-5 min-w-[400px]"
+  method="POST"
 >
 	<InputWithIcon
+    name="email"
 		type="email"
 		placeholder="johndalton@est.ucab.edu.ve"
 		label="Correo electrónico"
@@ -20,6 +22,7 @@
 		src={emailIcon}
 	/>
 	<InputWithIcon
+    name="password"
 		type="password"
 		placeholder=""
 		label="Contraseña"
