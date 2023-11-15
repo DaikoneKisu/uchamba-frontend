@@ -2,8 +2,8 @@
 	import eye from '$lib/icons/eye.svg'
 	import eyeInvisible from '$lib/icons/eye-invisible.svg'
 	import key from '$lib/icons/key.svg'
-	export let label: string
-	export let className: string
+	export let label: string = "password"
+	export let className: string = ""
 	let showPassword = false
 	let value = ''
 </script>
