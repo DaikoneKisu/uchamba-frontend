@@ -2,9 +2,10 @@
 	import eye from '$lib/icons/eye.svg'
 	import eyeInvisible from '$lib/icons/eye-invisible.svg'
 	import key from '$lib/icons/key.svg'
-	export let label: string = "password"
-	export let className: string = ""
+	export let label: string = 'password'
+	export let className: string = ''
 	export let value: string
+	export let placeholder = ''
 	let showPassword = false
 </script>
 
@@ -20,12 +21,14 @@
 			<input
 				type="text"
 				bind:value
+				{placeholder}
 				class="text-sm focus:outline-none focus:border-0 focus:shadow-none"
 			/>
 		{:else}
 			<input
 				type="password"
 				bind:value
+				{placeholder}
 				class="text-sm focus:outline-none focus:border-0 focus:shadow-none"
 			/>
 		{/if}
