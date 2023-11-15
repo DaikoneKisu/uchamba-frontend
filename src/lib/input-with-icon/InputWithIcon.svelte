@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { HTMLInputTypeAttribute } from '../../types/html-input-type-attribute.type'
 
+  export let name: string
 	export let label: string = "Default label"
 	export let placeholder = 'Default placeholder'
 	export let type: HTMLInputTypeAttribute
@@ -18,15 +19,15 @@
 	<div class="flex flex-col p-4 w-full">
 		<span class="text-xs">{label}</span>
 		{#if type === 'text'}
-			<input type="text" {placeholder} bind:value class="text-sm" />
+			<input {name} type="text" {placeholder} bind:value class="text-sm" />
 		{:else if type === 'number'}
-			<input type="number" {placeholder} bind:value class="text-sm" />
+			<input {name} type="number" {placeholder} bind:value class="text-sm" />
 		{:else if type === 'email'}
-			<input type="email" {placeholder} bind:value class="text-sm" />
+			<input {name} type="email" {placeholder} bind:value class="text-sm" />
 		{:else if type === 'password'}
-			<input type="password" {placeholder} bind:value class="text-sm" />
+			<input {name} type="password" {placeholder} bind:value class="text-sm" />
 		{:else if type === 'tel'}
-			<input type="tel" {placeholder} bind:value class="text-sm" />
+			<input {name} type="tel" {placeholder} bind:value class="text-sm" />
 		{/if}
 	</div>
 </label>
