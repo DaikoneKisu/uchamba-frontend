@@ -4,8 +4,8 @@
 	import emailIcon from '$lib/icons/email.svg'
 	import keyIcon from '$lib/icons/key.svg'
 
-	export let email: string
-	export let password: string
+	let email: string
+	let password: string
 </script>
 
 <form 
