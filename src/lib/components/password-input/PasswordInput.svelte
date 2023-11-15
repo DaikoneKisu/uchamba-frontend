@@ -4,8 +4,8 @@
 	import key from '$lib/icons/key.svg'
 	export let label: string = "password"
 	export let className: string = ""
+	export let value: string
 	let showPassword = false
-	let value = ''
 </script>
 
 <label class={'flex border-4 border-gray-300 rounded-xl bg-brand-white pr-4 ' + className}>
