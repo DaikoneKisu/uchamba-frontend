@@ -9,7 +9,6 @@
 
 	<div class="flex flex-col p-4 w-full">
 		<span class="text-xs">{label}</span>
-
 		<input
 			type="text"
 			bind:value
