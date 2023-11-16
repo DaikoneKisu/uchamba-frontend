@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { HTMLInputTypeAttribute } from '../../types/html-input-type-attribute.type'
+	import type { HTMLInputTypeAttribute } from '../../../types/html-input-type-attribute.type'
 
 	export let label: string = 'Default label'
 	export let placeholder = 'Default placeholder'
