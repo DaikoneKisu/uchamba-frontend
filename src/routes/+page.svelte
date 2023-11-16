@@ -2,7 +2,7 @@
 	import Input from '$lib/components/input/Input.svelte'
 </script>
 
-<Input />
+<Input label="Email address" className="max-w-sm"/>
 
 
 
