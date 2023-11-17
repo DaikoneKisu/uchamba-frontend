@@ -7,7 +7,7 @@
 	export let className: string = ''
 	export let value: string
 	export let placeholder = ''
-  
+
 	let showPassword = false
 </script>
 
@@ -37,9 +37,9 @@
 	</div>
 	<button type="button" on:click={() => (showPassword = !showPassword)}>
 		{#if !showPassword}
-			<img src={eye} alt="" />
+			<img src={eye} alt="Mostrar contraseña" />
 		{:else}
-			<img src={eyeInvisible} alt="" />
+			<img src={eyeInvisible} alt="Ocultar contraseña" />
 		{/if}
 	</button>
 </label>
