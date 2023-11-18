@@ -1,8 +1,8 @@
 <script lang="ts">
 	import InputWithIcon from '$lib/components/input-with-icon/InputWithIcon.svelte'
+  import PasswordInput from '$lib/components/password-input/PasswordInput.svelte';
 
 	import emailIcon from '$lib/icons/email.svg'
-	import keyIcon from '$lib/icons/key.svg'
 
 	let email: string
 	let password: string
@@ -21,17 +21,14 @@
 		bind:value={email}
 		src={emailIcon}
 	/>
-	<InputWithIcon
+	<PasswordInput
     name="password"
-		type="password"
 		placeholder=""
 		label="Contraseña"
 		bind:value={password}
-		src={keyIcon}
 	/>
 	<button
 		type="submit"
-		aria-label="button"
 		class="mt-5 bg-ucab-green text-brand-white rounded-[10px] w-[330px] h-[64px] m-auto"
 	>
     Continuar

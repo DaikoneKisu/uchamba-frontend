@@ -13,10 +13,10 @@ describe('Login Form Component', () => {
 		expect(form).toBeInTheDocument()
 	})
 
-	test('it should render a submit button', () => {
+	test('it should render a submit button with inner text "Continuar"', () => {
 		render(Form__SvelteComponent_)
 
-		const button = screen.getByRole('button')
+		const button = screen.getByRole('button', { name: 'Continuar' })
 
 		expect(button).toBeInTheDocument()
 	})
