@@ -4,7 +4,7 @@
 	import ucabLogo from '$lib/images/logo-ucab.webp'
 	import firstLoginImage from '$lib/images/login-image-one.png'
 	import secondLoginImage from '$lib/images/login-image-two.png'
-	import SignInLogInSwitchButton from '$lib/sign-in-log-in-switch-button/SignInLogInSwitchButton.svelte'
+	import SignUpLogInSwitchButton from '$lib/components/sign-up-log-in-switch-button/SignUpLogInSwitchButton.svelte'
 
 	let chosen: 'Iniciar sesión' | 'Registrarse' = 'Iniciar sesión'
 
@@ -32,7 +32,7 @@
 		</div>
 
 		<div class="py-10">
-			<SignInLogInSwitchButton {chosen} logInUrl="/login" signInUrl="/sign-up" />
+			<SignUpLogInSwitchButton {chosen} logInUrl="/login" signInUrl="/sign-up" />
 		</div>
 
 		<div class="invisible xl:visible -z-10">

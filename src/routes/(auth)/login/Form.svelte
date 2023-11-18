@@ -1,5 +1,5 @@
 <script lang="ts">
-	import InputWithIcon from '$lib/input-with-icon/InputWithIcon.svelte'
+	import InputWithIcon from '$lib/components/input-with-icon/InputWithIcon.svelte'
 
 	import emailIcon from '$lib/icons/email.svg'
 	import keyIcon from '$lib/icons/key.svg'
