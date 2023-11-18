@@ -3,7 +3,7 @@ import 'vitest-dom/extend-expect'
 import { render, screen } from '@testing-library/svelte'
 import { describe, expect, test } from 'vitest'
 
-import SignInLogInSwitchButton__SvelteComponent_ from './SignInLogInSwitchButton.svelte'
+import SignInLogInSwitchButton__SvelteComponent_ from './SignUpLogInSwitchButton.svelte'
 
 describe('Sign In and Log In Button Component', () => {
 	test('it should render', () => {
