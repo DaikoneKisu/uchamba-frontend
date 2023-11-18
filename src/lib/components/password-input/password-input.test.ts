@@ -7,7 +7,7 @@ import PasswordInput__SvelteComponent_ from './PasswordInput.svelte'
 describe('Password Input Component', () => {
 	test('it should render', () => {
     const value = ''
-		render(PasswordInput__SvelteComponent_, { label: 'password', value })
+		render(PasswordInput__SvelteComponent_, { label: 'password', value, name: 'password' })
 
 		const input = screen.getByLabelText('password')
     

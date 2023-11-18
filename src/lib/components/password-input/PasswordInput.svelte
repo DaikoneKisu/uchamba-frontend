@@ -3,6 +3,7 @@
 	import eyeInvisible from '$lib/icons/eye-invisible.svg'
 	import key from '$lib/icons/key.svg'
 
+  export let name: string
 	export let label: string = 'password'
 	export let className: string = ''
 	export let value: string
@@ -21,6 +22,7 @@
 		<span class="text-xs">{label}</span>
 		{#if showPassword}
 			<input
+        {name}
 				type="text"
 				bind:value
 				{placeholder}
@@ -28,6 +30,7 @@
 			/>
 		{:else}
 			<input
+        {name}
 				type="password"
 				bind:value
 				{placeholder}
