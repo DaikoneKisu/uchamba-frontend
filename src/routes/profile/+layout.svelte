@@ -1,49 +1,81 @@
 <script lang="ts">
+	import userIcon from '$lib/icons/male-user.svg'
+	import addIcon from '$lib/icons/add.svg'
+	import pencilIcon from '$lib/icons/pencil.svg'
+	import deleteIcon from '$lib/icons/delete.svg'
+
 	export let data
 </script>
 
-<main class="flex gap-6 min-h-screen p-4">
-	<div class="flex flex-col gap-3 justify-center max-w-md h-full">
-		<section class="flex flex-col gap-7 justify-center items-center bg-gray-100 px-6 pt-4 pb-8">
-			<figure>
+<main class="flex gap-6 min-h-screen p-4 bg-[#f0f0f0]">
+	<div class="flex flex-col gap-12 justify-center items-center h-full w-full max-w-[465px]">
+		<section
+			class="flex flex-col gap-7 justify-center items-center bg-brand-white w-full pb-12 rounded-[20px]"
+		>
+			<div
+				class="w-full h-full flex flex-col justify-center items-center gap-2 text-brand-white pt-10 pb-28 bg-ucab-green rounded-[10px] rounded-bl-[150px]"
+			>
 				<img
-					src={data.personalInformation.img}
+					src={userIcon}
 					alt="Foto de perfil"
-					class="aspect-square object-cover rounded-full w-44"
+					class="aspect-square object-cover rounded-full w-[116px] mb-3"
 				/>
-				<figcaption class="text-center">{data.personalInformation.name}</figcaption>
-			</figure>
-			<p>{data.personalInformation.aboutMe}</p>
-			<figure class="flex flex-col w-full gap-2">
-				<figcaption class="text-center">Información Personal</figcaption>
-				<ul class="w-full list-disc px-5">
-					<li>
-						{data.personalInformation.email}
-					</li>
-					<li>
-						{data.personalInformation.phone}
-					</li>
-					<li>
-						{data.personalInformation.residenceAddress}
-					</li>
-				</ul>
+				<h2 class="text-center text-2xl font-poppins">{data.personalInformation.name}</h2>
+				<p class="text-lg w-[360px] font-open-sans">{data.personalInformation.aboutMe}</p>
+			</div>
+			<figure class="flex flex-col w-full gap-2 max-w-[420px]">
+				<figcaption class="text-left w-full text-2xl font-poppins border-b-4 border-ucab-blue pb-1">
+					Información Personal
+				</figcaption>
+				<div class="flex justify-between">
+					<ul class="flex flex-col gap-4">
+						<li>Correo electrónico:</li>
+						<li>Número de contacto:</li>
+						<li>Dirección de residencia:</li>
+					</ul>
+					<ul class="flex flex-col gap-4">
+						<li>
+							{data.personalInformation.email}
+						</li>
+						<li>
+							{data.personalInformation.phone}
+						</li>
+						<li>
+							{data.personalInformation.residenceAddress}
+						</li>
+					</ul>
+				</div>
 			</figure>
 		</section>
 
-		<section class="bg-gray-100 px-6 pt-2 pb-4">
-			<figure class="flex flex-col gap-2">
-				<figcaption class="text-center">Enlaces de Interés</figcaption>
-				<ul class="w-full list-disc px-5">
+		<section class="bg-brand-white w-full px-6 pt-4 pb-12 rounded-[20px]">
+			<div class="flex flex-col gap-2">
+				<div
+					class="text-left w-full flex justify-between text-2xl font-poppins border-b-4 border-ucab-blue pb-1"
+				>
+					<h2>Enlaces de Interés</h2>
+					<button class="flex gap-1">
+						<img src={addIcon} alt="Añadir enlace de interés" />
+						<p class="text-xl font-semibold font-poppins">Añadir</p>
+					</button>
+				</div>
+				<ul class="w-full flex flex-col gap-3">
 					{#each data.linksOfInterest as link}
-						<li>
+						<li class="flex justify-between">
 							<a href={link.url}>{link.name}</a>
+							<div class="flex gap-3">
+								<img src={pencilIcon} alt="Editar enlace" />
+								<img src={deleteIcon} alt="Eliminar enlace" />
+							</div>
 						</li>
 					{/each}
 				</ul>
-			</figure>
+			</div>
 		</section>
 
-		<button class="mt-5 bg-ucab-green text-brand-white rounded-[10px] w-[330px] h-[64px] m-auto">Descargar CV</button>
+		<button class="bg-ucab-green text-brand-white rounded-[10px] w-full h-[61px] m-auto"
+			>Exportar mi CV</button
+		>
 	</div>
 
 	<section class="w-full flex flex-col items-center justify-between">
