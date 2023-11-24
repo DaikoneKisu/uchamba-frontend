@@ -1,3 +1,5 @@
+import { StatusCodes } from "$lib/utils/http-status-codes"
+
 interface SessionData {
 	id: number
 	name: string
@@ -7,9 +9,9 @@ interface SessionData {
 }
 
 export async function getSessionData(session: Response): Promise<SessionData> {
-	if (session.status === 401) {
+	if (session.status as StatusCodes === StatusCodes.UNAUTHORIZED) {
 		// TODO: Throw unauthorized because this means that the user email or password is wrong
-		throw new Error('Wrong email or password')
+		throw new Error('Wrong email or password', { cause: session.status })
 	}
 
 	const sessionData = (await session.json()) as unknown
