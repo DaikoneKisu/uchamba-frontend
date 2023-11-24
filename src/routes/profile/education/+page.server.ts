@@ -1,5 +1,6 @@
 import type { Education } from '../../../types/education.type'
 
+//TODO: solicitar los datos desde el backend
 export function load() {
 	const educationData: Education = {
 		academicTraining: [

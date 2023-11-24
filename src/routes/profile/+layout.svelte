@@ -1,9 +1,9 @@
 <script lang="ts">
 	import userIcon from '$lib/icons/male-user.svg'
-	import addIcon from '$lib/icons/add.svg'
 	import pencilIcon from '$lib/icons/pencil.svg'
 	import deleteIcon from '$lib/icons/delete.svg'
 	import Header from './Header.svelte'
+	import Add from '$lib/components/profile/Add.svelte'
 
 	export let data
 </script>
@@ -25,10 +25,10 @@
 				<p class="text-lg w-[360px] font-open-sans">{data.personalInformation.aboutMe}</p>
 			</div>
 			<figure class="flex flex-col w-full gap-2 max-w-[420px]">
-				<figcaption class="text-left w-full text-2xl font-poppins border-b-4 border-ucab-blue pb-1">
+				<figcaption class="text-left w-full text-2xl font-poppins border-b-4 border-ucab-blue pb-2">
 					Información Personal
 				</figcaption>
-				<div class="flex justify-between">
+				<div class="flex justify-between mt-3">
 					<ul class="flex flex-col gap-4">
 						<li>Correo electrónico:</li>
 						<li>Número de contacto:</li>
@@ -52,15 +52,12 @@
 		<section class="bg-brand-white w-full px-6 pt-4 pb-12 rounded-[20px]">
 			<div class="flex flex-col gap-2">
 				<div
-					class="text-left w-full flex justify-between text-2xl font-poppins border-b-4 border-ucab-blue pb-1"
+					class="text-left w-full flex justify-between text-2xl font-poppins border-b-4 border-ucab-blue pb-2"
 				>
 					<h2>Enlaces de Interés</h2>
-					<button class="flex gap-1">
-						<img src={addIcon} alt="Añadir enlace de interés" />
-						<p class="text-xl font-semibold font-poppins">Añadir</p>
-					</button>
+					<Add clickHandler={() => {}} />
 				</div>
-				<ul class="w-full flex flex-col gap-3">
+				<ul class="w-full flex flex-col gap-3 mt-3">
 					{#each data.linksOfInterest as link}
 						<li class="flex justify-between">
 							<a href={link.url}>{link.name}</a>
