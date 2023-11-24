@@ -3,11 +3,12 @@
 	import addIcon from '$lib/icons/add.svg'
 	import pencilIcon from '$lib/icons/pencil.svg'
 	import deleteIcon from '$lib/icons/delete.svg'
+	import Header from './Header.svelte'
 
 	export let data
 </script>
 
-<main class="flex gap-6 min-h-screen p-4 bg-[#f0f0f0]">
+<main class="flex gap-10 min-h-screen p-10 pt-12 bg-[#f0f0f0]">
 	<div class="flex flex-col gap-12 justify-center items-center h-full w-full max-w-[465px]">
 		<section
 			class="flex flex-col gap-7 justify-center items-center bg-brand-white w-full pb-12 rounded-[20px]"
@@ -78,24 +79,8 @@
 		>
 	</div>
 
-	<section class="w-full flex flex-col items-center justify-between">
-		<header class="w-full">
-			<nav class="w-full flex items-center justify-center px-5">
-				<ul
-					class="w-full max-w-3xl flex justify-evenly [&>li]:min-w-[150px] [&>li>a]:py-5 [&>li>a]:text-center"
-				>
-					<li>
-						<a href="/profile/education" class="block w-full h-full">Educación</a>
-					</li>
-					<li>
-						<a href="/profile/experience" class="block w-full h-full">Experiencia</a>
-					</li>
-					<li>
-						<a href="/profile/portfolio" class="block w-full h-full">Portfolio</a>
-					</li>
-				</ul>
-			</nav>
-		</header>
+	<section class="w-full flex flex-col items-center justify-between bg-brand-white rounded-[10px]">
+		<Header />
 
 		<slot />
 	</section>
