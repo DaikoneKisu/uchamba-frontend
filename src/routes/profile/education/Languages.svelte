@@ -3,12 +3,10 @@
 	import pencilIcon from '$lib/icons/pencil.svg'
 	import deleteIcon from '$lib/icons/delete.svg'
 
-	export let studies: {
-		studyId: number
+	export let languages: {
+		languageId: number
 		name: string
-		universityName: string
-		degree: string
-		graduationDate: string | null
+		proficientLevel: string
 		createdAt: string
 		updatedAt: string
 	}[]
@@ -17,17 +15,17 @@
 <article class="bg-brand-white flex-col w-full">
 	<header>
 		<div class="flex justify-between w-full">
-			<h2>Formación Académica</h2>
+			<h2>Idiomas</h2>
 			<Add clickHandler={() => {}} />
 		</div>
 		<div class="h-1 bg-ucab-blue w-full mt-2" />
 	</header>
 
 	<ul class="flex flex-col gap-8 mt-6">
-		{#each studies as study}
+		{#each languages as lang}
 			<li class="flex flex-col gap-2">
 				<div class="flex justify-between">
-					<h3 class="text-2xl font-poppins">{study.universityName}</h3>
+					<h3 class="text-2xl font-poppins">{lang.name}</h3>
 
 					<div class="flex gap-6">
 						<button>
@@ -39,17 +37,8 @@
 					</div>
 				</div>
 				<p class="text-brand-p-black">
-					{study.name} - {study.degree
-						.split('')
-						.map((c, i) => (i === 0 ? c.toUpperCase() : c))
-						.join('')}
+					Nivel {lang.proficientLevel}
 				</p>
-
-				{#if study.graduationDate}
-					<p>Graduación: {study.graduationDate}</p>
-				{:else}
-					<p>En curso</p>
-				{/if}
 			</li>
 		{/each}
 	</ul>

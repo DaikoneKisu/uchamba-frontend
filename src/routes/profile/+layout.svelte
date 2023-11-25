@@ -76,7 +76,7 @@
 		>
 	</div>
 
-	<section class="w-full flex flex-col items-center justify-between bg-brand-white rounded-[10px]">
+	<section class="w-full flex flex-col items-center bg-brand-white rounded-[10px]">
 		<Header />
 
 		<slot />
