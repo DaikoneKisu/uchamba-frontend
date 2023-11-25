@@ -1,7 +1,8 @@
 <script lang="ts">
 	export let label: string
-	export let className: string
-	let value = ''
+	export let className = ''
+	export let placeholder = ''
+	export let value = ''
 </script>
 
 <label class={'flex border-4 border-gray-300 rounded-xl bg-brand-white pr-4 ' + className}>
@@ -12,6 +13,7 @@
 		<input
 			type="text"
 			bind:value
+			{placeholder}
 			class="text-sm focus:outline-none focus:border-0 focus:shadow-none"
 		/>
 	</div>
