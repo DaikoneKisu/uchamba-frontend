@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Add from '$lib/components/profile/Add.svelte'
+	import Add from '$lib/components/profile/add/Add.svelte'
 	import pencilIcon from '$lib/icons/pencil.svg'
 	import deleteIcon from '$lib/icons/delete.svg'
 

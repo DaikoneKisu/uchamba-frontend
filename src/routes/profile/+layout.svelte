@@ -3,7 +3,7 @@
 	import pencilIcon from '$lib/icons/pencil.svg'
 	import deleteIcon from '$lib/icons/delete.svg'
 	import Header from './Header.svelte'
-	import Add from '$lib/components/profile/Add.svelte'
+	import Add from '$lib/components/profile/add/Add.svelte'
 
 	export let data
 </script>

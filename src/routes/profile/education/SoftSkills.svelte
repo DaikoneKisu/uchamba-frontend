@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Add from '$lib/components/profile/Add.svelte'
-	import Chip from '$lib/components/profile/Chip.svelte'
+	import Add from '$lib/components/profile/add/Add.svelte'
+	import Chip from '$lib/components/profile/chip/Chip.svelte'
 
 	export let softSkills: {
 		skillId: number
