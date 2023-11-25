@@ -5,16 +5,14 @@
 	export let value = ''
 </script>
 
-<label class={'flex border-4 border-gray-300 rounded-xl bg-brand-white pr-4 ' + className}>
-	<div class="flex items-center justify-center border-r-2 px-0 pr-2 border-gray-300 h-full" />
-
-	<div class="flex flex-col p-4 w-full">
-		<span class="text-xs">{label}</span>
+<label class={'flex border-4 border-[#f0f0f0] h-[64px] w-full max-w-[330px] rounded-xl bg-brand-white pr-4 ' + className}>
+	<div class="flex flex-col pl-5 h-full justify-center w-full text-[15px]">
+		<span class="text-brand-p-black">{label}</span>
 		<input
 			type="text"
 			bind:value
 			{placeholder}
-			class="text-sm focus:outline-none focus:border-0 focus:shadow-none"
+			class="text-sm focus:outline-none focus:border-0 focus:shadow-none placeholder:text-brand-p-black"
 		/>
 	</div>
 </label>
