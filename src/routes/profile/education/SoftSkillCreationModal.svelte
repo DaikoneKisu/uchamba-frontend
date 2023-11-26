@@ -4,6 +4,8 @@
 	import SaveModalFooter from './SaveModalFooter.svelte'
 	import { invalidateAll } from '$app/navigation'
 	import Chip from '$lib/components/profile/chip/Chip.svelte'
+	import { flip } from 'svelte/animate'
+	import { fade } from 'svelte/transition'
 
 	export let softSkillsList: string[] = []
 
@@ -78,15 +80,17 @@
 		</form>
 
 		<div class="min-h-[200px]">
-			<ul class="flex flex-wrap justify-center items-start px-8 gap-4 pb-12">
-				{#each skills as skill}
-					<Chip
-						key={skill}
-						text={skill}
-						deleteHandler={() => {
-							deleteSkill(skill)
-						}}
-					/>
+			<ul class="flex flex-wrap justify-center items-start px-12 gap-8 pb-12">
+				{#each skills as skill (skill)}
+					<div animate:flip in:fade class="flex justify-center">
+						<Chip
+							key={skill}
+							text={skill}
+							deleteHandler={() => {
+								deleteSkill(skill)
+							}}
+						/>
+					</div>
 				{/each}
 			</ul>
 		</div>

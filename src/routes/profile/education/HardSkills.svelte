@@ -1,7 +1,9 @@
 <script lang="ts">
 	import Add from '$lib/components/profile/add/Add.svelte'
 	import Chip from '$lib/components/profile/chip/Chip.svelte'
+	import { flip } from 'svelte/animate'
 	import HardSkillCreationModal from './HardSkillCreationModal.svelte'
+	import { fade } from 'svelte/transition'
 
 	export let hardSkills: {
 		skillId: number
@@ -29,14 +31,16 @@
 	</header>
 
 	<ul class="flex gap-8 mt-6 flex-wrap">
-		{#each hardSkills as skill}
-			<Chip
-				key={skill.name}
-				text={skill.name}
-				deleteHandler={() => {
-					alert('intentaste borrar un chip')
-				}}
-			/>
+		{#each hardSkills as skill (skill)}
+			<div animate:flip in:fade class="flex justify-center">
+				<Chip
+					key={skill.name}
+					text={skill.name}
+					deleteHandler={() => {
+						alert('intentaste borrar un chip')
+					}}
+				/>
+			</div>
 		{/each}
 	</ul>
 </article>
