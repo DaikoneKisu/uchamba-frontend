@@ -30,6 +30,20 @@ describe('Input Component', () => {
 		expect(input.value).toBe('test-input')
 	})
 
+  test('it should be required if specified to be so', () => {
+    render(InputWithIcon__SvelteComponent_, {
+      type: 'text',
+      required: true,
+      src: email,
+      name: 'test-name',
+      label: 'test-label'
+    })
+
+    const input: HTMLInputElement = screen.getByLabelText('test-label')
+
+    expect(input.required).toBe(true)
+  })
+
 	test('it should render an icon', () => {
 		render(InputWithIcon__SvelteComponent_, {
 			type: 'text',
