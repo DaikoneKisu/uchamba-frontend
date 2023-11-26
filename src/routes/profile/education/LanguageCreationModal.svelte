@@ -32,8 +32,14 @@
 >
 	<form slot="body" class="w-full flex pl-6 py-12 justify-between">
 		<div class="flex w-full gap-12">
-			<Input label="Idioma" placeholder="Ingrese el idioma" bind:value={formData.universityName} />
 			<Input
+				type="text"
+				label="Idioma"
+				placeholder="Ingrese el idioma"
+				bind:value={formData.universityName}
+			/>
+			<Input
+				type="text"
 				label="Nivel del idioma"
 				placeholder="Ingrese su nivel con el idioma"
 				bind:value={formData.graduationDate}

@@ -33,19 +33,31 @@
 	<form slot="body" class="w-full flex pl-6 py-12 justify-between">
 		<div class="flex flex-col w-full gap-12">
 			<Input
+				type="text"
 				label="Instituto o Universidad"
 				placeholder="Ingrese el instituto o universidad"
 				bind:value={formData.universityName}
 			/>
 			<Input
+				type="text"
 				label="Fecha de Graduación"
 				placeholder="dd/mm/aaaa"
 				bind:value={formData.graduationDate}
 			/>
 		</div>
 		<div class="flex flex-col w-full items-center gap-12">
-			<Input label="Carrera" placeholder="Ingrese la carrera" bind:value={formData.name} />
-			<Input label="Grado" placeholder="Ingrese el grado obtenido" bind:value={formData.degree} />
+			<Input
+				type="text"
+				label="Carrera"
+				placeholder="Ingrese la carrera"
+				bind:value={formData.name}
+			/>
+			<Input
+				type="text"
+				label="Grado"
+				placeholder="Ingrese el grado obtenido"
+				bind:value={formData.degree}
+			/>
 		</div>
 	</form>
 
