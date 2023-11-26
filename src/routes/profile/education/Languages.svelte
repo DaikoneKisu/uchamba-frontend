@@ -2,6 +2,7 @@
 	import Add from '$lib/components/profile/add/Add.svelte'
 	import pencilIcon from '$lib/icons/pencil.svg'
 	import deleteIcon from '$lib/icons/delete.svg'
+	import LanguageCreationModal from './LanguageCreationModal.svelte'
 
 	export let languages: {
 		languageId: number
@@ -10,13 +11,19 @@
 		createdAt: string
 		updatedAt: string
 	}[]
+
+	let openedModal = false
+
+	function openModal() {
+		openedModal = true
+	}
 </script>
 
 <article class="bg-brand-white flex-col w-full">
 	<header>
 		<div class="flex justify-between w-full">
 			<h2>Idiomas</h2>
-			<Add clickHandler={() => {}} />
+			<Add clickHandler={openModal} />
 		</div>
 		<div class="h-1 bg-ucab-blue w-full mt-2" />
 	</header>
@@ -43,3 +50,5 @@
 		{/each}
 	</ul>
 </article>
+
+<LanguageCreationModal bind:openedModal />

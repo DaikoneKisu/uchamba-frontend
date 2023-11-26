@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Add from '$lib/components/profile/add/Add.svelte'
 	import Chip from '$lib/components/profile/chip/Chip.svelte'
+	import SoftSkillCreationModal from './SoftSkillCreationModal.svelte'
 
 	export let softSkills: {
 		skillId: number
@@ -8,13 +9,21 @@
 		createdAt: string
 		updatedAt: string
 	}[]
+
+	export let softSkillsList: string[]
+
+	let openedModal = false
+
+	function openModal() {
+		openedModal = true
+	}
 </script>
 
 <article class="bg-brand-white flex-col w-full mb-5">
 	<header>
 		<div class="flex justify-between w-full">
 			<h2>Habilidades Blandas</h2>
-			<Add clickHandler={() => {}} />
+			<Add clickHandler={openModal} />
 		</div>
 		<div class="h-1 bg-ucab-blue w-full mt-2" />
 	</header>
@@ -22,6 +31,7 @@
 	<ul class="flex gap-8 mt-6 flex-wrap">
 		{#each softSkills as skill}
 			<Chip
+				key={skill.name}
 				text={skill.name}
 				deleteHandler={() => {
 					alert('intentaste borrar un chip')
@@ -30,3 +40,5 @@
 		{/each}
 	</ul>
 </article>
+
+<SoftSkillCreationModal bind:openedModal {softSkillsList} />

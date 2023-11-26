@@ -79,7 +79,7 @@ export function load() {
 					name: 'Comunicación Asertiva',
 					createdAt: '25/11/2023 - 09:30 AM',
 					updatedAt: '25/11/2023 - 09:30 AM'
-				},
+				}
 			]
 		},
 		hardSkills: {
@@ -103,7 +103,8 @@ export function load() {
 					name: 'Conocimiento en Paradigmas de Programación',
 					createdAt: '25/11/2023 - 09:25 AM',
 					updatedAt: '25/11/2023 - 09:25 AM'
-				},{
+				},
+				{
 					skillId: 1,
 					name: 'Manejo de Base de Datos',
 					createdAt: '25/11/2023 - 09:20 AM',
@@ -114,7 +115,8 @@ export function load() {
 					name: 'Conocimiento en Paradigmas de Programación',
 					createdAt: '25/11/2023 - 09:25 AM',
 					updatedAt: '25/11/2023 - 09:25 AM'
-				},{
+				},
+				{
 					skillId: 1,
 					name: 'Manejo de Base de Datos',
 					createdAt: '25/11/2023 - 09:20 AM',
@@ -127,7 +129,9 @@ export function load() {
 					updatedAt: '25/11/2023 - 09:25 AM'
 				}
 			]
-		}
+		},
+		hardSkillsList: ['React', 'Angular', 'Vue'],
+		softSkillsList: ['Comprension Lectora', 'Inteligencia Emocional']
 	}
 
 	return educationData
