@@ -53,7 +53,7 @@
 				</p>
 
 				{#if study.graduationDate}
-					<p>Graduación: {study.graduationDate}</p>
+					<p>Fecha de graduación {study.graduationDate}</p>
 				{:else}
 					<p>En curso</p>
 				{/if}

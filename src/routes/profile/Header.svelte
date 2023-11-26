@@ -14,18 +14,18 @@
 <header class="w-full my-10 font-poppins font-semibold">
 	<nav class="w-full flex items-center justify-center px-5">
 		<ul
-			class="w-full max-w-md flex justify-evenly [&>li]:min-w-[150px] [&>li>a]:py-5 [&>li>a]:text-center"
+			class="w-full text-lg text-center max-w-xl flex justify-evenly [&>li]:min-w-[150px] [&>li>a]:py-5 [&>li>a]:text-center"
 		>
 			<li>
 				<a
 					href="/profile/education"
 					class="flex flex-col justify-center items-center w-full h-full gap-2"
-					>Educación
+					>EDUCACIÓN
 					{#if currentRoute === 'education'}
 						<div
 							in:receive={{ key: 'line' }}
 							out:send={{ key: 'line' }}
-							class="h-[2px] w-10 bg-ucab-yellow"
+							class="h-[2px] w-10 bg-ucab-yellow absolute translate-y-4"
 						/>
 					{/if}
 				</a>
@@ -34,12 +34,12 @@
 				<a
 					href="/profile/experience"
 					class="flex flex-col justify-center items-center w-full h-full gap-2"
-					>Experiencia
+					>EXPERIENCIA
 					{#if currentRoute === 'experience'}
 						<div
 							in:receive={{ key: 'line' }}
 							out:send={{ key: 'line' }}
-							class="h-[2px] w-10 bg-ucab-yellow"
+							class="h-[2px] w-10 bg-ucab-yellow absolute translate-y-4"
 						/>
 					{/if}
 				</a>
@@ -48,12 +48,12 @@
 				<a
 					href="/profile/portfolio"
 					class="flex flex-col justify-center items-center w-full h-full gap-2"
-					>Portfolio
+					>PORTAFOLIO
 					{#if currentRoute === 'portfolio'}
 						<div
 							in:receive={{ key: 'line' }}
 							out:send={{ key: 'line' }}
-							class="h-[2px] w-10 bg-ucab-yellow"
+							class="h-[2px] w-10 bg-ucab-yellow absolute translate-y-4"
 						/>
 					{/if}
 				</a>
