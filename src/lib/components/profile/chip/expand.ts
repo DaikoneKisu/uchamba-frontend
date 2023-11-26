@@ -28,6 +28,7 @@ export function expand(node: HTMLElement, isExpanded: boolean) {
 	}
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function shrink(node: HTMLElement, isExpanded: boolean) {
 	const initialWidth = node.offsetWidth
 	node.style.overflow = 'hidden'
