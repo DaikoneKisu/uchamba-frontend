@@ -15,7 +15,7 @@
 <article
 	id={key}
 	bind:this={chip}
-	class="flex items-center gap-3 whitespace-nowrap bg-ucab-green px-4 py-2 max-h-[40px] text-brand-white rounded-full shadow-xl transition-all hover:shadow-lg hover:shadow-green-200 hover:bg-green-500"
+	class="flex items-center gap-3 whitespace-nowrap bg-ucab-green px-4 py-2 max-h-[40px] text-brand-white rounded-full shadow-xl transition-all hover:shadow-lg hover:shadow-green-200 hover:bg-green-600"
 	on:mouseenter={() => (hovered = true)}
 	on:mouseleave={() => (hovered = false)}
 	use:expand={hovered}

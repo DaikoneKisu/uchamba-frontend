@@ -80,7 +80,7 @@
 		</form>
 
 		<div class="min-h-[200px]">
-			<ul class="flex flex-wrap justify-center items-start px-12 gap-8 pb-12">
+			<ul class="flex flex-wrap justify-center items-start px-12 gap-4 pb-12">
 				{#each skills as skill (skill)}
 					<div animate:flip in:fade class="flex justify-center">
 						<Chip
