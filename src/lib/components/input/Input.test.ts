@@ -3,30 +3,54 @@ import 'vitest-dom/extend-expect'
 import { render, screen, fireEvent } from '@testing-library/svelte'
 import { describe, expect, test } from 'vitest'
 
-import InputWithIcon__SvelteComponent_ from './InputWithIcon.svelte'
-import email from '$lib/icons/email.svg'
+import Input__SvelteComponent_ from './Input.svelte'
 
 describe('Input Component', () => {
 	test('it should render', () => {
-		render(InputWithIcon__SvelteComponent_, { type: 'text', label: 'test-label', src: email })
-		const label = screen.getByLabelText('test-label')
-
-		expect(label).toBeInTheDocument()
+		render(Input__SvelteComponent_, { type: 'text', label: 'test-label' })
+		const input = screen.getByRole('textbox', { name: 'test-label' })
+		expect(input).toBeInTheDocument()
 	})
 
 	test('it should store value when typing in input', async () => {
 		const initialValue = 'test-'
 
-		render(InputWithIcon__SvelteComponent_, {
+		render(Input__SvelteComponent_, {
 			type: 'text',
 			value: initialValue,
 			placeholder: 'test-placeholder',
-			src: email
+      label: 'test-label'
 		})
 		const input: HTMLInputElement = screen.getByPlaceholderText('test-placeholder')
 		await fireEvent.change(input, { target: { value: input.value + 'input' } })
 
 		expect(input.value).toBe('test-input')
 	})
+
+  test('it should be required if specified', () => {
+    render(Input__SvelteComponent_, {
+      type: 'text',
+      required: true,
+      name: 'test-name',
+      label: 'test-label'
+    })
+
+    const input: HTMLInputElement = screen.getByLabelText('test-label')
+
+    expect(input.required).toBe(true)
+  })
+
+  test('it should not be required if specified', () => {
+    render(Input__SvelteComponent_, {
+      type: 'text',
+      required: false,
+      name: 'test-name',
+      label: 'test-label'
+    })
+
+    const input: HTMLInputElement = screen.getByLabelText('test-label')
+
+    expect(input.required).toBe(false)
+  })
 
 })
