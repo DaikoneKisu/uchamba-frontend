@@ -62,7 +62,6 @@
 						<li class="flex justify-between">
 							<a href={link.url}>{link.name}</a>
 							<div class="flex gap-3">
-								<img src={pencilIcon} alt="Editar enlace" />
 								<img src={deleteIcon} alt="Eliminar enlace" />
 							</div>
 						</li>
