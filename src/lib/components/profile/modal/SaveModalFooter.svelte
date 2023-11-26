@@ -11,5 +11,4 @@
 	>
 		<img src={saveIcon} alt="" />
 		<span>Guardar</span>
-	</button>
 </footer>

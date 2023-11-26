@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Modal from '$lib/components/profile/modal/Modal.svelte'
 	import learningIcon from '$lib/icons/learning.svg'
-	import SaveModalFooter from './SaveModalFooter.svelte'
+	import SaveModalFooter from '../../../lib/components/profile/modal/SaveModalFooter.svelte'
 	import { invalidateAll } from '$app/navigation'
 	import Chip from '$lib/components/profile/chip/Chip.svelte'
 	import { flip } from 'svelte/animate'

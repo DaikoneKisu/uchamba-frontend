@@ -2,7 +2,7 @@
 	import Modal from '$lib/components/profile/modal/Modal.svelte'
 	import Input from '$lib/components/input/Input.svelte'
 	import languageIcon from '$lib/icons/language.svg'
-	import SaveModalFooter from './SaveModalFooter.svelte'
+	import SaveModalFooter from '../../../lib/components/profile/modal/SaveModalFooter.svelte'
 	import { invalidateAll } from '$app/navigation'
 
 	export let openedModal = false
