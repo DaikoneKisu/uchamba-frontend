@@ -2,12 +2,13 @@
 	import type { HTMLInputTypeAttribute } from '../../../types/html-input-type-attribute.type'
 
 	export let label: string
-  export let name: string | undefined = undefined
+	export let name: string | undefined = undefined
 	export let placeholder = ''
 	export let type: HTMLInputTypeAttribute
 	export let value: string | number = ''
 	export let className = ''
-  export let required = false
+	export let required = false
+	export let disabled = false
 </script>
 
 <label
@@ -18,39 +19,43 @@
 		<span class="text-brand-p-black">{label}</span>
 		{#if type === 'text'}
 			<input
-        {name}
+				{name}
 				type="text"
 				{placeholder}
 				bind:value
 				class="text-sm focus:outline-none focus:border-0 focus:shadow-none"
-        {required}
+				{required}
+				{disabled}
 			/>
 		{:else if type === 'number'}
 			<input
-        {name}
+				{name}
 				type="number"
 				{placeholder}
 				bind:value
 				class="text-sm focus:outline-none focus:border-0 focus:shadow-none"
-        {required}
+				{required}
+				{disabled}
 			/>
 		{:else if type === 'email'}
 			<input
-        {name}
+				{name}
 				type="email"
 				{placeholder}
 				bind:value
 				class="text-sm focus:outline-none focus:border-0 focus:shadow-none"
-        {required}
+				{required}
+				{disabled}
 			/>
 		{:else if type === 'tel'}
 			<input
-        {name}
+				{name}
 				type="tel"
 				{placeholder}
 				bind:value
 				class="text-sm focus:outline-none focus:border-0 focus:shadow-none"
-        {required}
+				{required}
+				{disabled}
 			/>
 		{/if}
 	</div>
