@@ -4,15 +4,23 @@
 	import deleteIcon from '$lib/icons/delete.svg'
 	import AcademicTrainingCreationModal from './AcademicTrainingCreationModal.svelte'
 
-	export let studies: {
-		studyId: number
-		name: string
-		universityName: string
-		degree: string
-		graduationDate: string | null
-		createdAt: string
-		updatedAt: string
-	}[]
+	export let studiesData: {
+		featured: {
+			ucareerId: number
+			name: string
+			degree: string
+			graduationDate: string
+			createdAt: string
+		}[]
+		personal: {
+			studyId: number
+			name: string
+			universityName: string
+			degree: string
+			graduationDate: string
+			createdAt: string
+		}[]
+	}
 
 	let openedModal = false
 
@@ -31,10 +39,26 @@
 	</header>
 
 	<ul class="flex flex-col gap-8 mt-6">
-		{#each studies as study}
+		{#each studiesData.featured as featStudy}
 			<li class="flex flex-col gap-2">
 				<div class="flex justify-between">
-					<h3 class="text-2xl font-poppins">{study.universityName}</h3>
+					<h3 class="text-2xl font-poppins">Universidad Católica Andrés Bello</h3>
+
+					<div class="flex gap-6" />
+				</div>
+				<p class="text-brand-p-black">
+					{featStudy.name} - {featStudy.degree
+						.split('')
+						.map((c, i) => (i === 0 ? c.toUpperCase() : c))
+						.join('')}
+				</p>
+				<p>Fecha de graduación: {featStudy.graduationDate}</p>
+			</li>
+		{/each}
+		{#each studiesData.personal as personalStudy}
+			<li class="flex flex-col gap-2">
+				<div class="flex justify-between">
+					<h3 class="text-2xl font-poppins">{personalStudy.universityName}</h3>
 
 					<div class="flex gap-6">
 						<button>
@@ -46,17 +70,12 @@
 					</div>
 				</div>
 				<p class="text-brand-p-black">
-					{study.name} - {study.degree
+					{personalStudy.name} - {personalStudy.degree
 						.split('')
 						.map((c, i) => (i === 0 ? c.toUpperCase() : c))
 						.join('')}
 				</p>
-
-				{#if study.graduationDate}
-					<p>Fecha de graduación {study.graduationDate}</p>
-				{:else}
-					<p>En curso</p>
-				{/if}
+				<p>Fecha de graduación: {personalStudy.graduationDate}</p>
 			</li>
 		{/each}
 	</ul>
