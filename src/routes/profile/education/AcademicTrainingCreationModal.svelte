@@ -4,12 +4,10 @@
 	import graduationCapIcon from '$lib/icons/graduation-cap.svg'
 	import SaveModalFooter from '../../../lib/components/profile/modal/SaveModalFooter.svelte'
 	import { invalidateAll } from '$app/navigation'
-	import type { AcademicTrainingCreationPayload } from './+server'
-	import { page } from '$app/stores'
 
 	export let openedModal = false
 
-	let formData: AcademicTrainingCreationPayload = {
+	let formData = {
 		name: '',
 		degree: '',
 		universityName: '',
@@ -19,7 +17,7 @@
 	async function save() {
 		try {
 			console.log(formData)
-			const res = await fetch($page.url.pathname, {
+			const res = await fetch('/api/profile/education/academic-training/create', {
 				method: 'POST',
 				body: JSON.stringify(formData)
 			})
@@ -66,12 +64,17 @@
 				placeholder="Ingrese la carrera"
 				bind:value={formData.name}
 			/>
-			<Input
-				type="text"
-				label="Grado"
-				placeholder="Ingrese el grado obtenido"
+			<select
+				class="flex border-4 border-[#f0f0f0] h-[64px] w-full max-w-[330px] rounded-xl bg-brand-white px-4"
 				bind:value={formData.degree}
-			/>
+			>
+				<option value="">Seleccione el nivel de estudios</option>
+				<option value="pregrado"> Pregrado </option>
+				<option value="postgrado"> Postgrado </option>
+				<option value="especializacion"> Especialización </option>
+				<option value="maestria"> Maestría </option>
+				<option value="doctorado"> Doctorado </option>
+			</select>
 		</div>
 	</form>
 
