@@ -35,45 +35,27 @@ export interface PersonalLink {
 }
 
 export interface HardSkills {
-	featured: Featured[]
-	personal: Personal[]
-}
-
-export interface Featured {
-	skillId: number
-	name: string
-	createdAt: string
-}
-
-export interface Personal {
-	skillId: number
-	name: string
-	createdAt: string
+	featured: Skill[]
+	personal: Skill[]
 }
 
 export interface SoftSkills {
-	featured: Featured2[]
-	personal: Personal2[]
+	featured: Skill[]
+	personal: Skill[]
 }
 
-export interface Featured2 {
-	skillId: number
-	name: string
-	createdAt: string
-}
-
-export interface Personal2 {
+export interface Skill {
 	skillId: number
 	name: string
 	createdAt: string
 }
 
 export interface Education {
-	featured: Featured3[]
-	personal: Personal3[]
+	featured: FeaturedStudy[]
+	personal: PersonalStudy[]
 }
 
-export interface Featured3 {
+export interface FeaturedStudy {
 	ucareerId: number
 	name: string
 	degree: string
@@ -81,7 +63,7 @@ export interface Featured3 {
 	createdAt: string
 }
 
-export interface Personal3 {
+export interface PersonalStudy {
 	studyId: number
 	name: string
 	universityName: string

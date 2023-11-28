@@ -4,19 +4,33 @@
 	import graduationCapIcon from '$lib/icons/graduation-cap.svg'
 	import SaveModalFooter from '../../../lib/components/profile/modal/SaveModalFooter.svelte'
 	import { invalidateAll } from '$app/navigation'
+	import type { AcademicTrainingCreationPayload } from './+server'
+	import { page } from '$app/stores'
 
 	export let openedModal = false
 
-	let formData = {
-		universityName: '',
+	let formData: AcademicTrainingCreationPayload = {
 		name: '',
 		degree: '',
+		universityName: '',
 		graduationDate: ''
 	}
 
-	function save() {
-		invalidateAll()
-		closeModal()
+	async function save() {
+		try {
+			console.log(formData)
+			const res = await fetch($page.url.pathname, {
+				method: 'POST',
+				body: JSON.stringify(formData)
+			})
+
+			if (!res.ok) throw new Error('Error al crear la formación académica')
+
+			invalidateAll()
+			closeModal()
+		} catch (error) {
+			alert(error)
+		}
 	}
 
 	function closeModal() {
