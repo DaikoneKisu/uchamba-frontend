@@ -9,7 +9,7 @@
 
 <div class="w-full flex flex-col justify-between pb-28 items-center pt-8 gap-16 px-16">
 	<AcademicTraining studiesData={data.education} />
-	<Languages languages={data.languages} />
+	<Languages languages={data.languages} langsList={data.langsList} />
 	<SoftSkills
 		softSkills={data.softSkills.featured.concat(data.softSkills.personal)}
 		softSkillsList={[]}

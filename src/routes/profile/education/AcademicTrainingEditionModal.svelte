@@ -17,7 +17,7 @@
 		createdAt: ''
 	}
 
-	async function handleUpdate() {
+	async function updateAcademicTraining() {
 		try {
 			const res = await fetch('/api/profile/education/academic-training/update', {
 				method: 'POST',
@@ -78,5 +78,5 @@
 		</div>
 	</form>
 
-	<SaveModalFooter slot="footer" handleSave={handleUpdate} />
+	<SaveModalFooter slot="footer" handleSave={updateAcademicTraining} />
 </Modal>
