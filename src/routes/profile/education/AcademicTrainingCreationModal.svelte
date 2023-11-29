@@ -14,9 +14,11 @@
 		graduationDate: ''
 	}
 
+	let isLoading = false
+
 	async function save() {
 		try {
-			console.log(formData)
+			isLoading = true
 			const res = await fetch('/api/profile/education/academic-training/create', {
 				method: 'POST',
 				body: JSON.stringify(formData)
@@ -28,6 +30,8 @@
 			closeModal()
 		} catch (error) {
 			alert(error)
+		} finally {
+			isLoading = false
 		}
 	}
 
@@ -78,5 +82,5 @@
 		</div>
 	</form>
 
-	<SaveModalFooter slot="footer" handleSave={save} />
+	<SaveModalFooter slot="footer" handleSave={save} {isLoading} />
 </Modal>

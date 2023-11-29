@@ -14,16 +14,23 @@
 		proficientLevel: ''
 	}
 
+	let isLoading = false
+
 	async function save() {
 		try {
-			await fetch('/api/profile/education/languages/create', {
+			isLoading = true
+			const res = await fetch('/api/profile/education/languages/create', {
 				method: 'POST',
 				body: JSON.stringify(formData)
 			})
+			if (!res.ok) throw new Error('Error creando el lenguaje')
+
 			invalidateAll()
 			closeModal()
 		} catch (error) {
 			alert(error)
+		} finally {
+			isLoading = false
 		}
 	}
 
@@ -64,5 +71,5 @@
 		</div>
 	</form>
 
-	<SaveModalFooter slot="footer" handleSave={save} />
+	<SaveModalFooter slot="footer" handleSave={save} {isLoading} />
 </Modal>

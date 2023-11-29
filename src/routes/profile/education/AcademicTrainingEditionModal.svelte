@@ -17,8 +17,11 @@
 		createdAt: ''
 	}
 
+	export let isLoading = false
+
 	async function updateAcademicTraining() {
 		try {
+			isLoading = true
 			const res = await fetch('/api/profile/education/academic-training/update', {
 				method: 'POST',
 				body: JSON.stringify(studyData)
@@ -28,6 +31,8 @@
 			closeModal()
 		} catch (error) {
 			alert(error)
+		} finally {
+			isLoading = false
 		}
 	}
 
@@ -78,5 +83,5 @@
 		</div>
 	</form>
 
-	<SaveModalFooter slot="footer" handleSave={updateAcademicTraining} />
+	<SaveModalFooter slot="footer" handleSave={updateAcademicTraining} {isLoading} />
 </Modal>
