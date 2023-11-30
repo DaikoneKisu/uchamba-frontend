@@ -97,7 +97,7 @@ describe('isSessionData function', () => {
 })
 
 describe('getSessionData function', () => {
-	test('it should return a session data object for valid session data', async () => {
+	test('it should return a session data object for a valid session data response', async () => {
 		const response = new Response(
 			JSON.stringify({
 				id: 1,
@@ -112,7 +112,7 @@ describe('getSessionData function', () => {
 
 		expect(isSessionData(sessionData)).toBe(true)
 	}),
-		test('it should throw an error for invalid session data', async () => {
+		test('it should throw an error for an invalid session data response', async () => {
 			expect.assertions(1)
 
 			const response = new Response(
