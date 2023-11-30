@@ -1,8 +1,9 @@
 import type { Cookies } from '@sveltejs/kit'
-import { error } from '@sveltejs/kit'
-import { StatusCodes } from '$lib/utils/http-status-codes.js'
+import { fail, redirect } from '@sveltejs/kit'
 
+import { StatusCodes } from '$lib/utils/http-status-codes.js'
 import { getSessionData } from '$lib/server/login/get-session-data'
+import type { LoginFailData } from './login-fail-data.type.js'
 
 export const actions = {
 	default: async ({ cookies, request }: { cookies: Cookies; request: Request }) => {
@@ -21,15 +22,20 @@ export const actions = {
       })
 
 			const sessionData = await getSessionData(session)
+      
 			cookies.set('session', sessionData.token, { path: '/' })
 		} catch (e) {
 			if (!(e instanceof Error))
-				throw new Error('Error inesperado. Por favor, intente de nuevo más tarde.')
+        return fail<LoginFailData>(StatusCodes.INTERNAL_SERVER_ERROR, { reason: 'Error del servidor.', solution: 'Por favor, intente de nuevo más tarde.' })
 
 			if (e.cause === StatusCodes.UNAUTHORIZED)
-				throw error(e.cause, 'Email o contraseña equivocados. Por favor, intente de nuevo.')
+				return fail<LoginFailData>(e.cause, { reason: 'Email o contraseña incorrectos.', solution: 'Por favor, cámbielos y vuelva a intentarlo' })
 
-			throw error(StatusCodes.INTERNAL_SERVER_ERROR, 'Error del servidor. Por favor, intente de nuevo más tarde.')
-		}
+			return fail<LoginFailData>(StatusCodes.INTERNAL_SERVER_ERROR, { reason: 'Error del servidor.', solution: 'Por favor, intente de nuevo más tarde.' })
+		} 
+    
+    if (cookies.get('session')) {
+      throw redirect(StatusCodes.SEE_OTHER, '/')
+    }
 	}
 }
