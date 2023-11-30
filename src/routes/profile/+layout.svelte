@@ -1,6 +1,5 @@
 <script lang="ts">
 	import userIcon from '$lib/icons/male-user.svg'
-	import pencilIcon from '$lib/icons/pencil.svg'
 	import deleteIcon from '$lib/icons/delete.svg'
 	import Header from './Header.svelte'
 	import Add from '$lib/components/profile/add/Add.svelte'
@@ -61,9 +60,9 @@
 					{#each data.personalLinks as link}
 						<li class="flex justify-between">
 							<a href={link.url}>{link.name}</a>
-							<div class="flex gap-3">
+							<button>
 								<img src={deleteIcon} alt="Eliminar enlace" />
-							</div>
+							</button>
 						</li>
 					{/each}
 				</ul>
