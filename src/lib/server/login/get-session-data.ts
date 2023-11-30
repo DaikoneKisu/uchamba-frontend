@@ -1,4 +1,6 @@
-import { StatusCodes } from "$lib/utils/http-status-codes"
+import { string, object, number, ObjectSchema } from 'yup'
+
+import { StatusCodes } from '$lib/utils/http-status-codes'
 
 interface SessionData {
 	id: number
@@ -8,34 +10,28 @@ interface SessionData {
 	token: string
 }
 
+const sessionDataSchema: ObjectSchema<SessionData> = object({
+	id: number().required(),
+	name: string().required(),
+	email: string().required(),
+	role: string().required(),
+	token: string().required()
+})
+
 export async function getSessionData(session: Response): Promise<SessionData> {
-	if (session.status as StatusCodes === StatusCodes.UNAUTHORIZED) {
-		// TODO: Throw unauthorized because this means that the user email or password is wrong
+	if ((session.status as StatusCodes) === StatusCodes.UNAUTHORIZED) {
 		throw new Error('Wrong email or password', { cause: session.status })
 	}
 
 	const sessionData = (await session.json()) as unknown
 
 	if (!isSessionData(sessionData)) {
-		// TODO: Throw server error because this means that the server is not responding what it should (the interface SessionData)
-		throw new Error('Server error')
+		// Throw server error because this means that the server is not responding what it should (the interface SessionData)
+		throw new Error('Internal server error', { cause: StatusCodes.INTERNAL_SERVER_ERROR })
 	}
 
 	return sessionData
 }
 
-export function isSessionData(data: unknown): data is SessionData {
-	const possiblySessionData = data as SessionData
-
-	return (
-		typeof possiblySessionData === 'object' &&
-		possiblySessionData !== null &&
-		typeof possiblySessionData.id === 'number' &&
-		typeof possiblySessionData.name === 'string' &&
-		typeof possiblySessionData.email === 'string' &&
-		typeof possiblySessionData.role === 'string' &&
-		typeof possiblySessionData.token === 'string' &&
-		Object.keys(possiblySessionData).length === 5 &&
-		Object.values(possiblySessionData).every((value) => value !== '' && !Number.isNaN(value))
-	)
-}
+export const isSessionData = (data: unknown): data is SessionData =>
+	typeof data !== 'bigint' && sessionDataSchema.isValidSync(data) && Object.keys(data).length === 5
