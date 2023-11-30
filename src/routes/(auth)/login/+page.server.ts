@@ -6,7 +6,7 @@ import { getSessionData } from '$lib/server/login/get-session-data'
 import type { LoginFailData } from './login-fail-data.type.js'
 
 export const actions = {
-	default: async ({ cookies, request }: { cookies: Cookies; request: Request }) => {
+	default: async ({ cookies, request, url }: { cookies: Cookies; request: Request; url: URL }) => {
 		const formData = await request.formData()
     
 		try {
@@ -35,6 +35,9 @@ export const actions = {
 		} 
     
     if (cookies.get('session')) {
+      const redirectTo = url.searchParams.get('redirectTo')
+      if (redirectTo && redirectTo !== '/')
+        throw redirect(StatusCodes.SEE_OTHER, `/${redirectTo}`)
       throw redirect(StatusCodes.SEE_OTHER, '/')
     }
 	}
