@@ -17,10 +17,19 @@
 
 	let input: HTMLInputElement
 
+	let isLoading = false
+
 	function save() {
-		skills = []
-		invalidateAll()
-		closeModal()
+		try {
+			isLoading = true
+			skills = []
+			invalidateAll()
+			closeModal()
+		} catch (e) {
+			alert(e)
+		} finally {
+			isLoading = false
+		}
 	}
 
 	function insertSkill() {
@@ -96,5 +105,5 @@
 		</div>
 	</svelte:fragment>
 
-	<SaveModalFooter slot="footer" handleSave={save} />
+	<SaveModalFooter slot="footer" handleSave={save} {isLoading} />
 </Modal>
