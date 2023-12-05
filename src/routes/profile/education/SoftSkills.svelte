@@ -29,7 +29,7 @@
 		<div class="h-1 bg-ucab-blue w-full mt-2" />
 	</header>
 
-	<ul class="flex gap-8 mt-6 flex-wrap">
+	<ul class="flex gap-2 mt-6 flex-wrap">
 		{#each softSkills as skill (skill)}
 			<div animate:flip in:fade class="flex justify-center">
 				<Chip
