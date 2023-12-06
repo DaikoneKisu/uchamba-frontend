@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { fade, fly } from 'svelte/transition'
 	import type { HTMLInputTypeAttribute } from '../../../types/html-input-type-attribute.type'
 
 	export let label: string
@@ -9,54 +10,72 @@
 	export let className = ''
 	export let required = false
 	export let disabled = false
+	export let error = ''
+
+	let isPristine = true
 </script>
 
-<label
-	class={'flex border-4 border-[#f0f0f0] h-[64px] w-full max-w-[330px] rounded-xl bg-brand-white pr-4 ' +
-		className}
->
-	<div class="flex flex-col pl-5 h-full justify-center w-full text-[15px]">
-		<span class="text-brand-p-black">{label}</span>
-		{#if type === 'text'}
-			<input
-				{name}
-				type="text"
-				{placeholder}
-				bind:value
-				class="text-sm focus:outline-none focus:border-0 focus:shadow-none"
-				{required}
-				{disabled}
-			/>
-		{:else if type === 'number'}
-			<input
-				{name}
-				type="number"
-				{placeholder}
-				bind:value
-				class="text-sm focus:outline-none focus:border-0 focus:shadow-none"
-				{required}
-				{disabled}
-			/>
-		{:else if type === 'email'}
-			<input
-				{name}
-				type="email"
-				{placeholder}
-				bind:value
-				class="text-sm focus:outline-none focus:border-0 focus:shadow-none"
-				{required}
-				{disabled}
-			/>
-		{:else if type === 'tel'}
-			<input
-				{name}
-				type="tel"
-				{placeholder}
-				bind:value
-				class="text-sm focus:outline-none focus:border-0 focus:shadow-none"
-				{required}
-				{disabled}
-			/>
-		{/if}
-	</div>
-</label>
+<div class="flex flex-col w-full">
+	<label
+		class={'flex border-4 border-[#f0f0f0] h-[64px] w-full max-w-[330px] rounded-xl bg-brand-white pr-4 transition-all ' +
+			className +
+			' ' +
+			(error && !isPristine ? ' border-[#D14F4F]' : '')}
+	>
+		<div class="flex flex-col pl-5 h-full justify-center w-full text-[15px]">
+			<span class="text-brand-p-black">{label}</span>
+			{#if type === 'text'}
+				<input
+					on:input|once={() => (isPristine = false)}
+					{name}
+					type="text"
+					{placeholder}
+					bind:value
+					class="text-sm focus:outline-none focus:border-0 focus:shadow-none"
+					{required}
+					{disabled}
+				/>
+			{:else if type === 'number'}
+				<input
+					on:input|once={() => (isPristine = false)}
+					{name}
+					type="number"
+					{placeholder}
+					bind:value
+					class="text-sm focus:outline-none focus:border-0 focus:shadow-none"
+					{required}
+					{disabled}
+				/>
+			{:else if type === 'email'}
+				<input
+					on:input|once={() => (isPristine = false)}
+					{name}
+					type="email"
+					{placeholder}
+					bind:value
+					class="text-sm focus:outline-none focus:border-0 focus:shadow-none"
+					{required}
+					{disabled}
+				/>
+			{:else if type === 'tel'}
+				<input
+					on:input|once={() => (isPristine = false)}
+					{name}
+					type="tel"
+					{placeholder}
+					bind:value
+					class="text-sm focus:outline-none focus:border-0 focus:shadow-none"
+					{required}
+					{disabled}
+				/>
+			{/if}
+		</div>
+	</label>
+	{#if error && !isPristine}
+		<span
+			in:fly={{ x: -12 }}
+			out:fly={{ x: 12 }}
+			class="text-red-600 text-[12px] ml-3 absolute translate-y-16">{error}</span
+		>
+	{/if}
+</div>
