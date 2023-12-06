@@ -2,18 +2,18 @@
 	import Modal from '$lib/components/profile/modal/Modal.svelte'
 	import Input from '$lib/components/input/Input.svelte'
 	import graduationCapIcon from '$lib/icons/business.svg'
-    import SaveModalFooter from './SaveModalFooters.svelte'	
-    import { invalidateAll } from '$app/navigation'
+	import SaveModalFooter from './SaveModalFooters.svelte'
+	import { invalidateAll } from '$app/navigation'
 
 	export let openedModal = false
 
 	let formData = {
-				"organizationName":'',
-				"jobTitle":'',
-				"description": '',
-				"address": '',
-				"entryDate":'',
-				"departureDate": '',
+		organizationName: '',
+		jobTitle: '',
+		description: '',
+		address: '',
+		entryDate: '',
+		departureDate: ''
 	}
 
 	function save() {
@@ -39,17 +39,9 @@
 				placeholder="Ingrese el instituto o universidad"
 				bind:value={formData.organizationName}
 			/>
+			<Input label="Fecha de entrada" placeholder="dd/mm/aaaa" bind:value={formData.entryDate} />
+			<Input label="Rol" placeholder="Ingrese el rol" bind:value={formData.jobTitle} />
 			<Input
-				label="Fecha de entrada"
-				placeholder="dd/mm/aaaa"
-				bind:value={formData.entryDate}
-			/>
-            <Input
-				label="Rol"
-				placeholder="Ingrese el rol"
-				bind:value={formData.jobTitle}
-			/>
-            <Input
 				label="Descripcion"
 				placeholder="Ingrese una breve descripcion"
 				bind:value={formData.description}
@@ -57,7 +49,11 @@
 		</div>
 		<div class="flex flex-col w-full items-center gap-12">
 			<Input label="Direccion" placeholder="Ingrese la direccion" bind:value={formData.address} />
-			<Input label="Fecha de salida (opcional)" placeholder="dd/mm/aaaa" bind:value={formData.departureDate} />
+			<Input
+				label="Fecha de salida (opcional)"
+				placeholder="dd/mm/aaaa"
+				bind:value={formData.departureDate}
+			/>
 		</div>
 	</form>
 
