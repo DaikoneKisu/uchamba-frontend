@@ -57,7 +57,7 @@
 			<Input
 				type="text"
 				label="Fecha de Graduación"
-				placeholder="dd/mm/aaaa"
+				placeholder="aaaa-mm-dd"
 				bind:value={formData.graduationDate}
 			/>
 		</div>
