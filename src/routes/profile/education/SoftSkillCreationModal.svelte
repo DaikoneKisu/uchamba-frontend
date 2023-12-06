@@ -17,18 +17,18 @@
 
 	let input: HTMLInputElement
 
-	let isLoading = false
+	let disabled = false
 
 	function save() {
 		try {
-			isLoading = true
+			disabled = true
 			skills = []
 			invalidateAll()
 			closeModal()
 		} catch (e) {
 			alert(e)
 		} finally {
-			isLoading = false
+			disabled = false
 		}
 	}
 
@@ -105,5 +105,5 @@
 		</div>
 	</svelte:fragment>
 
-	<SaveModalFooter slot="footer" handleSave={save} {isLoading} />
+	<SaveModalFooter slot="footer" handleSave={save} {disabled} />
 </Modal>

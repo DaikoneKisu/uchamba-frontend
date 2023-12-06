@@ -1,5 +1,4 @@
 <script lang="ts">
-	import userIcon from '$lib/icons/male-user.svg'
 	import deleteIcon from '$lib/icons/delete.svg'
 	import Header from './Header.svelte'
 	import Add from '$lib/components/profile/add/Add.svelte'
@@ -15,11 +14,6 @@
 			<div
 				class="w-full h-full flex flex-col justify-center items-center gap-2 text-brand-white pt-10 pb-28 bg-ucab-green rounded-[10px] rounded-bl-[150px]"
 			>
-				<img
-					src={userIcon}
-					alt="Foto de perfil"
-					class="aspect-square object-cover rounded-full w-[116px] mb-3"
-				/>
 				<h2 class="text-center text-2xl font-poppins">{data.name}</h2>
 				<p class="text-lg w-[360px] font-open-sans">{data.aboutMe}</p>
 			</div>

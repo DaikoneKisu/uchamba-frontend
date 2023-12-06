@@ -20,7 +20,7 @@
 
 	export let langsList: { languageId: number; name: string }[]
 
-	export let isLoading = false
+	export let disabled = false
 
 	function goToEditMode() {
 		mode = 'edit'
@@ -32,7 +32,7 @@
 
 	async function updateLanguage() {
 		try {
-			isLoading = true
+			disabled = true
 			const res = await fetch('/api/profile/education/languages/update', {
 				method: 'POST',
 				body: JSON.stringify(langData)
@@ -43,7 +43,7 @@
 		} catch (error) {
 			alert(error)
 		} finally {
-			isLoading = false
+			disabled = false
 		}
 	}
 </script>
@@ -111,6 +111,6 @@
 			</div>
 		</form>
 
-		<SaveModalFooter slot="footer" handleSave={updateLanguage} {isLoading} />
+		<SaveModalFooter slot="footer" handleSave={updateLanguage} {disabled} />
 	</Modal>
 {/if}

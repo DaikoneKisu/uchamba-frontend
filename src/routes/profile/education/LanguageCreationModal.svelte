@@ -14,11 +14,11 @@
 		proficientLevel: ''
 	}
 
-	let isLoading = false
+	let disabled = false
 
 	async function save() {
 		try {
-			isLoading = true
+			disabled = true
 			const res = await fetch('/api/profile/education/languages/create', {
 				method: 'POST',
 				body: JSON.stringify(formData)
@@ -30,7 +30,7 @@
 		} catch (error) {
 			alert(error)
 		} finally {
-			isLoading = false
+			disabled = false
 		}
 	}
 
@@ -71,5 +71,5 @@
 		</div>
 	</form>
 
-	<SaveModalFooter slot="footer" handleSave={save} {isLoading} />
+	<SaveModalFooter slot="footer" handleSave={save} {disabled} />
 </Modal>
