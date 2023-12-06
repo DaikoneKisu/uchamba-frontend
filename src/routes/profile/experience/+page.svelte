@@ -1,5 +1,6 @@
 <script lang="ts">
 	import AcademicExperience from './AcademicExperience.svelte'
+	import deleteIcon from '$lib/icons/delete.svg'
 
 	export let data
 </script>
@@ -9,3 +10,4 @@
 		business={data.workExperience1.concat(data.workExperience2).concat(data.workExperience3)}
 	/>
 </div>
+

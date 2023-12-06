@@ -15,7 +15,7 @@ export function load() {
 		],
 		workExperience2: [
 			{
-				"workExpId": 1,
+				"workExpId": 2,
 				"organizationName": "Offside CA",
 				"jobTitle": "Armador / Organizador de Comandas",
 				"description": "Lider del equipo de UX/UI en la sección de mercado de la plataforma,además lideré la célula del team WebApp con 5 integrantes bajo la metodología de Scrum",
@@ -27,7 +27,7 @@ export function load() {
 		],
 		workExperience3: [
 			{
-				"workExpId": 1,
+				"workExpId": 3,
 				"organizationName": "Offside CA",
 				"jobTitle": "Armador / Organizador de Comandas",
 				"description": "Lider del equipo de UX/UI en la sección de mercado de la plataforma,además lideré la célula del team WebApp con 5 integrantes bajo la metodología de Scrum",

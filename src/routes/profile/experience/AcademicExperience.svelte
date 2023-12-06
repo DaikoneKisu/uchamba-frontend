@@ -2,6 +2,8 @@
     import Add from "$lib/components/profile/add/Add.svelte"
     import pencilIcon from '$lib/icons/pencil.svg'
     import deleteIcon from '$lib/icons/delete.svg'
+	import ExperienceCreationModal from "./ExperienceCreationModal.svelte"
+	import ExperienceDetailsModal from "./ExperienceDetailsModal.svelte"
     
     export let business: {
           "workExpId": number,
@@ -14,13 +16,25 @@
           "createdAt": string,
           "showInformation": boolean
         }[]
+
+        let openedcreationModal = false
+        let openedDetailsModal = false
+
+	function opencreationModal() {
+		openedcreationModal = true
+	}
+    function openDetailsModal() {
+		openedDetailsModal = true
+	}
+
+
 </script>
 
 <article class="bg-brand-white flex-col w-full">
     <header>
         <div class="flex justify-between w-full">
             <h2>Experiencia Laboral</h2>
-            <Add clickHandler={() => {}} />
+            <Add clickHandler={opencreationModal} />
         </div>
         <div class="h-1 bg-ucab-blue w-full mt-2" />
     </header>
@@ -50,7 +64,9 @@
             {/if}
             
             <div class="flex justify-start items-center mt-2">
-                <button class="bg-white text-ucab-green p-2 rounded">
+                <button 
+                on:click={openDetailsModal}
+                class="text-left text-ucab-green underline underline-offset-2 ">
                     Ver Información
                 </button>
             </div>
@@ -58,3 +74,6 @@
         {/each}
     </ul>
 </article>
+
+<ExperienceDetailsModal bind:openedModal={openedDetailsModal}/>
+<ExperienceCreationModal bind:openedModal={openedcreationModal}/>
