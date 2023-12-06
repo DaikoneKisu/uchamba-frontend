@@ -105,7 +105,9 @@
 				placeholder="aaaa-mm-dd"
 				bind:value={formData.graduationDate}
 				error={formErrors.graduationDate}
+			/>
 		</div>
+		<div class="flex flex-col w-full gap-12">
 			<Input
 				type="text"
 				label="Carrera"
