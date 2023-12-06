@@ -1,19 +1,22 @@
 <script lang="ts">
+	import graduationCapIcon from '$lib/icons/graduation-cap.svg'
 	import Modal from '$lib/components/profile/modal/Modal.svelte'
 	import Input from '$lib/components/input/Input.svelte'
-	import graduationCapIcon from '$lib/icons/graduation-cap.svg'
-	import SaveModalFooter from '../../../lib/components/profile/modal/SaveModalFooter.svelte'
+	import SaveModalFooter from '$lib/components/profile/modal/SaveModalFooter.svelte'
+	import type { PersonalStudy } from '../../../types/profile-data.type'
 	import { invalidateAll } from '$app/navigation'
 	import { validateAcademicTraining } from '$lib/profile/education/validate-academic-training'
 	import { ValidationError } from 'yup'
 
-	export let openedModal = false
+	export let isOpen: boolean
 
-	let formData = {
+	export let studyData: PersonalStudy = {
+		studyId: 0,
 		name: '',
 		degree: '',
 		universityName: '',
-		graduationDate: ''
+		graduationDate: '',
+		createdAt: ''
 	}
 
 	let formErrors = {
@@ -23,18 +26,16 @@
 		graduationDate: ''
 	}
 
-	let disabled = false
+	export let disabled = false
 
-	async function save() {
+	async function updateAcademicTraining() {
 		try {
 			disabled = true
-			const res = await fetch('/api/profile/education/academic-training/create', {
+			const res = await fetch('/api/profile/education/academic-training/update', {
 				method: 'POST',
-				body: JSON.stringify(formData)
+				body: JSON.stringify(studyData)
 			})
-
-			if (!res.ok) throw new Error('Error al crear la formación académica')
-
+			if (!res.ok) throw new Error('Error al actualizar la formación académica')
 			invalidateAll()
 			closeModal()
 		} catch (error) {
@@ -45,12 +46,12 @@
 	}
 
 	function closeModal() {
-		openedModal = false
+		isOpen = false
 	}
 
-	$: if (openedModal) {
+	$: if (isOpen) {
 		try {
-			validateAcademicTraining(formData)
+			validateAcademicTraining(studyData)
 			disabled = false
 
 			formErrors = {
@@ -73,21 +74,12 @@
 			}
 		}
 	}
-
-	$: if (!openedModal) {
-		formData = {
-			name: '',
-			degree: '',
-			universityName: '',
-			graduationDate: ''
-		}
-	}
 </script>
 
 <Modal
 	title="Formación Académica"
-	subtitle="Agrega una nueva formación académica para añadir a tu CV"
-	bind:isOpen={openedModal}
+	subtitle="Edita tu información académica"
+	bind:isOpen
 	icon={graduationCapIcon}
 >
 	<form slot="body" class="w-full flex pl-6 py-12 justify-between">
@@ -96,29 +88,29 @@
 				type="text"
 				label="Instituto o Universidad"
 				placeholder="Ingrese el instituto o universidad"
-				bind:value={formData.universityName}
+				bind:value={studyData.universityName}
 				error={formErrors.universityName}
 			/>
 			<Input
 				type="text"
 				label="Fecha de Graduación"
-				placeholder="aaaa-mm-dd"
-				bind:value={formData.graduationDate}
+				placeholder="dd/mm/aaaa"
+				bind:value={studyData.graduationDate}
 				error={formErrors.graduationDate}
 			/>
 		</div>
-		<div class="flex flex-col w-full gap-12">
+		<div class="flex flex-col w-full items-center gap-12">
 			<Input
 				type="text"
 				label="Carrera"
 				placeholder="Ingrese la carrera"
-				bind:value={formData.name}
+				bind:value={studyData.name}
 				error={formErrors.name}
 			/>
 			<div class="flex flex-col w-full">
 				<select
 					class="flex border-4 border-[#f0f0f0] h-[64px] w-full max-w-[330px] rounded-xl bg-brand-white px-4"
-					bind:value={formData.degree}
+					bind:value={studyData.degree}
 				>
 					<option value="">Seleccione el nivel de estudios</option>
 					<option value="pregrado"> Pregrado </option>
@@ -131,5 +123,5 @@
 		</div>
 	</form>
 
-	<SaveModalFooter slot="footer" handleSave={save} {disabled} />
+	<SaveModalFooter slot="footer" handleSave={updateAcademicTraining} {disabled} />
 </Modal>

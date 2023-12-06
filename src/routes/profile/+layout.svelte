@@ -1,6 +1,4 @@
 <script lang="ts">
-	import userIcon from '$lib/icons/male-user.svg'
-	import pencilIcon from '$lib/icons/pencil.svg'
 	import deleteIcon from '$lib/icons/delete.svg'
 	import Header from './Header.svelte'
 	import Add from '$lib/components/profile/add/Add.svelte'
@@ -16,13 +14,8 @@
 			<div
 				class="w-full h-full flex flex-col justify-center items-center gap-2 text-brand-white pt-10 pb-28 bg-ucab-green rounded-[10px] rounded-bl-[150px]"
 			>
-				<img
-					src={userIcon}
-					alt="Foto de perfil"
-					class="aspect-square object-cover rounded-full w-[116px] mb-3"
-				/>
-				<h2 class="text-center text-2xl font-poppins">{data.personalInformation.name}</h2>
-				<p class="text-lg w-[360px] font-open-sans">{data.personalInformation.aboutMe}</p>
+				<h2 class="text-center text-2xl font-poppins">{data.name}</h2>
+				<p class="text-lg w-[360px] font-open-sans">{data.aboutMe}</p>
 			</div>
 			<figure class="flex flex-col w-full gap-2 max-w-[420px]">
 				<figcaption class="text-left w-full text-2xl font-poppins border-b-4 border-ucab-blue pb-2">
@@ -36,13 +29,13 @@
 					</ul>
 					<ul class="flex flex-col gap-4">
 						<li>
-							{data.personalInformation.email}
+							{data.email}
 						</li>
 						<li>
-							{data.personalInformation.phone}
+							{data.phoneNumber}
 						</li>
 						<li>
-							{data.personalInformation.residenceAddress}
+							{data.residenceAddress}
 						</li>
 					</ul>
 				</div>
@@ -58,13 +51,12 @@
 					<Add clickHandler={() => {}} />
 				</div>
 				<ul class="w-full flex flex-col gap-3 mt-3">
-					{#each data.linksOfInterest as link}
+					{#each data.personalLinks as link}
 						<li class="flex justify-between">
 							<a href={link.url}>{link.name}</a>
-							<div class="flex gap-3">
-								<img src={pencilIcon} alt="Editar enlace" />
+							<button>
 								<img src={deleteIcon} alt="Eliminar enlace" />
-							</div>
+							</button>
 						</li>
 					{/each}
 				</ul>
