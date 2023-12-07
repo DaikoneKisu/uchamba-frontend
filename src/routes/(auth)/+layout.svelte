@@ -1,8 +1,9 @@
 <script lang="ts">
+	import './layout.css';
 	import '../../app.css'
 	import { page } from '$app/stores'
 	import ucabLogo from '$lib/images/logo-ucab.webp'
-	import firstLoginImage from '$lib/images/login-image-one.png'
+	import firstLoginImage from '$lib/images/edificio.png'
 	import secondLoginImage from '$lib/images/login-image-two.png'
 	import SignUpLogInSwitchButton from '$lib/components/sign-up-log-in-switch-button/SignUpLogInSwitchButton.svelte'
 
@@ -15,31 +16,34 @@
 	}
 </script>
 
-<main class="min-h-screen flex flex-col items-center justify-start gap-10 pb-24 pt-10">
-	<img src={ucabLogo} alt="logo de la ucab" class="max-w-[497px] aspect-[497/75] overflow-hidden" />
 
-	<div class="flex flex-col justify-center items-center">
-		<div class="flex flex-col gap-3">
-			{#if $page.url.pathname === '/sign-up'}
-				<h1 class="text-center">¡Bienvenido!</h1>
-				<h2 class="text-center text-zinc-400">
-					A nuestro catálogo de egresados en línea
-				</h2>
-			{:else if $page.url.pathname === '/login'}
-				<h1 class="text-center">Bienvenido de regreso</h1>
-				<h2 class="text-center text-zinc-400">A nuestro catálogo de egresados en línea</h2>
-			{/if}
-		</div>
-
-		<div class="py-10">
-			<SignUpLogInSwitchButton {chosen} logInUrl="/login" signInUrl="/sign-up" />
-		</div>
-
-		<div class="invisible xl:visible -z-10">
-			<img src={firstLoginImage} alt="" class="absolute right-72 top-40" />
-			<img src={secondLoginImage} alt="" class="absolute bottom-12 left-64" />
-		</div>
-
-		<slot />
-	</div>
+<main class="flex">
+    <div class="min-h-screen flex flex-col items-center justify-start  pb-24 pt-10 w-1/2">
+        <img src={ucabLogo} alt="logo de la ucab" class="max-w-[497px] aspect-[497/75] overflow-hidden mt-custom" />
+        <div class="flex flex-col items-center justify-center h-full">
+            <div class="flex flex-col gap-3 items-center">
+                    <h1 class="text-center mb-2">Bienvenido de regreso</h1>
+                    <h2 class="text-center  font-bold mb-5 max-w-[450px]">
+                        A nuestro catálogo de egresados en línea
+                    </h2>
+            </div>
+            <slot />
+        </div>
+    </div>
+    <div>
+        <img src={firstLoginImage} alt=""
+            style="
+				margin-top: 20px;
+                width: 595px;
+                height: 673px;
+                position: absolute;
+                top: 29px6
+                left: 720px;
+                border-radius: 10px 190px 10px 190px;
+            "
+        />
+    </div>
 </main>
+
+
+
