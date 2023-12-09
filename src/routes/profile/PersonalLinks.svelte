@@ -3,7 +3,7 @@
 	import Add from '$lib/components/profile/add/Add.svelte'
 	import type { PersonalLink } from '../../types/profile-data.type'
 	import PersonalLinkCreationModal from './PersonalLinkCreationModal.svelte'
-	import { invalidateAll } from '$app/navigation'
+	import { slide } from 'svelte/transition'
 
 	export let links: PersonalLink[]
 
@@ -11,13 +11,13 @@
 
 	async function handleDelete(id: number) {
 		try {
+			links = links.filter((l) => l.linkId !== id)
+
 			const res = await fetch('/api/profile/personal-links/delete', {
 				method: 'POST',
 				body: JSON.stringify({ id })
 			})
 			if (!res.ok) throw new Error('Error al eliminar la formación académica')
-
-			invalidateAll()
 		} catch (error) {
 			alert(error)
 		}
@@ -38,7 +38,7 @@
 		</div>
 		<ul class="w-full flex flex-col gap-3 mt-3">
 			{#each links as l}
-				<li class="flex justify-between">
+				<li in:slide out:slide class="flex justify-between">
 					<a href={l.url} class="underline text-blue-500">{l.url}</a>
 					<button
 						on:click={() => {
