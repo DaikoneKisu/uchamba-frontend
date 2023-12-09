@@ -53,4 +53,4 @@
 	</div>
 </section>
 
-<PersonalLinkCreationModal {openedModal} />
+<PersonalLinkCreationModal bind:openedModal />
