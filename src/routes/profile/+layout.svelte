@@ -1,7 +1,6 @@
 <script lang="ts">
-	import deleteIcon from '$lib/icons/delete.svg'
 	import Header from './Header.svelte'
-	import Add from '$lib/components/profile/add/Add.svelte'
+	import PersonalLinks from './PersonalLinks.svelte'
 
 	export let data
 </script>
@@ -42,26 +41,7 @@
 			</figure>
 		</section>
 
-		<section class="bg-brand-white w-full px-6 pt-4 pb-12 rounded-[20px]">
-			<div class="flex flex-col gap-2">
-				<div
-					class="text-left w-full flex justify-between text-2xl font-poppins border-b-4 border-ucab-blue pb-2"
-				>
-					<h2>Enlaces de Interés</h2>
-					<Add clickHandler={() => {}} />
-				</div>
-				<ul class="w-full flex flex-col gap-3 mt-3">
-					{#each data.personalLinks as link}
-						<li class="flex justify-between">
-							<a href={link.url}>{link.name}</a>
-							<button>
-								<img src={deleteIcon} alt="Eliminar enlace" />
-							</button>
-						</li>
-					{/each}
-				</ul>
-			</div>
-		</section>
+		<PersonalLinks links={data.personalLinks} />
 
 		<button class="bg-ucab-green text-brand-white rounded-[10px] w-full h-[61px] m-auto"
 			>Exportar mi CV</button

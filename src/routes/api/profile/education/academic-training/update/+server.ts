@@ -1,5 +1,6 @@
 import { BACKEND_BASE_URL } from '$env/static/private'
 import { json } from '@sveltejs/kit'
+import { token } from '../../../../token'
 
 export interface AcademicTrainingCreationPayload {
 	studyId: number
@@ -15,8 +16,7 @@ export async function POST({ request }: { request: Request }) {
 	const response = await fetch(url, {
 		method: 'PUT',
 		headers: {
-			Authorization:
-				'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibmFtZSI6IkFsZWphbmRybyBSb3NhcyIsImVtYWlsIjoiYWpyb3Nhcy4xOUBlc3QudWNhYi5lZHUudmUiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MDExMzc5NTMsImV4cCI6MTcwMjAwMTk1M30.3fo6TsWXPSpiK2xJbMn9Qlh9AM7-puxPbxfx1bs8BA0',
+			Authorization: 'Bearer ' + token,
 			'Content-Type': 'application/json'
 		},
 		body: JSON.stringify(formData)
