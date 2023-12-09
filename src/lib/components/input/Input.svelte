@@ -17,10 +17,10 @@
 
 <div class="flex flex-col w-full">
 	<label
-		class={'flex border-4 border-[#f0f0f0] h-[64px] w-full max-w-[330px] rounded-xl bg-brand-white pr-4 transition-all ' +
-			className +
+		class={'flex border-4 h-[64px] w-full max-w-[330px] rounded-xl bg-brand-white pr-4 transition-all ' +
+			(error && !isPristine ? ' border-[#D14F4F]' : 'border-[#f0f0f0]') +
 			' ' +
-			(error && !isPristine ? ' border-[#D14F4F]' : '')}
+			className}
 	>
 		<div class="flex flex-col pl-5 h-full justify-center w-full text-[15px]">
 			<span class="text-brand-p-black">{label}</span>
