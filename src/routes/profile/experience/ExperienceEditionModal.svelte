@@ -3,7 +3,7 @@
 	import Input from '$lib/components/input/Input.svelte'
 	import business from '$lib/icons/business.svg'
 	import { invalidateAll } from '$app/navigation'
-	import EditModalFooter from '$lib/components/profile/modal/EditModalFooter.svelte'
+	import SaveModalFooter from '$lib/components/profile/modal/SaveModalFooter.svelte'
 
 	export let openedModal = false
 
@@ -32,7 +32,7 @@
 
 <Modal
 title="Experiencia Laboral"
-subtitle="Ver mas informacion sobre la experiencia laboral"
+subtitle="Edita la informacion de la experiencia laboral"
 bind:isOpen={openedModal}
 icon={business}
 >
@@ -41,7 +41,6 @@ icon={business}
 	<div class="flex flex-col w-full gap-12">
 		<Input
 			type="text"
-			disabled
 			label="Organizacion"
 			placeholder="Ingrese el instituto o universidad"
 			className="text-brand-p-black"
@@ -49,7 +48,6 @@ icon={business}
 		/>
 		<Input
 			type="text"
-			disabled
 			label="Fecha de entrada"
 			placeholder="dd/mm/aaaa"
 			className="text-brand-p-black"
@@ -58,7 +56,6 @@ icon={business}
 		<Input type="text" label="Rol" placeholder="Ingrese el rol" bind:value={businesData.jobTitle} />
 		<Input
 			type="text"
-			disabled
 			label="Descripcion"
 			placeholder="Ingrese una breve descripcion"
 			className="text-brand-p-black"
@@ -69,7 +66,6 @@ icon={business}
 	<div class="flex flex-col w-full items-center gap-12">
 		<Input
 			type="text"
-			disabled
 			label="Direccion"
 			placeholder="Ingrese la direccion"
 			className="text-brand-p-black"
@@ -77,7 +73,6 @@ icon={business}
 		/>
 		<Input
 			type="text"
-			disabled
 			label="Fecha de salida (opcional)"
 			placeholder="dd/mm/aaaa"
 			className="text-brand-p-black"
@@ -85,7 +80,7 @@ icon={business}
 		/>
 	</div>
 </form>
-<EditModalFooter slot="footer" handlePressEdit={save} />
+<SaveModalFooter slot="footer" handleSave={save} />
 </Modal>
 
 

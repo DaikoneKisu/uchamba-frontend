@@ -4,6 +4,7 @@
 	import deleteIcon from '$lib/icons/delete.svg'
 	import ExperienceCreationModal from './ExperienceCreationModal.svelte'
 	import ExperienceDetailsModal from './ExperienceDetailsModal.svelte'
+	import ExperienceEditionModal from './ExperienceEditionModal.svelte'
 
 	export let business: {
 		workExpId: number
@@ -18,14 +19,64 @@
 
 	let openedcreationModal = false
 	let openedDetailsModal = false
+	let openedEditionModal = false
 
 	function opencreationModal() {
 		openedcreationModal = true
 	}
 
-	function openDetailsModal() {
+	function openDetailsModal(busines: {
+	  "workExpId":number
+      "organizationName":string
+      "jobTitle":string,
+      "description": string,
+      "address":string,
+      "entryDate": string,
+      "departureDate":string,
+      "createdAt": string
+	}) {
+		selectedExperienceDetails = busines
 		openedDetailsModal = true
 	}
+
+	function openEditionModal(busines: {
+	  "workExpId":number
+      "organizationName":string
+      "jobTitle":string,
+      "description": string,
+      "address":string,
+      "entryDate": string,
+      "departureDate":string,
+      "createdAt": string
+	}) {
+		selectedExperienceEdition = busines
+		openedEditionModal = true
+	}
+
+
+
+	let selectedExperienceDetails = {
+		workExpId: 0,
+		organizationName:'',
+		jobTitle:'',
+		description:'',
+		address:'',
+		entryDate:'',
+		departureDate:'',
+		createdAt:'',
+	}
+
+	let selectedExperienceEdition = {
+		workExpId: 0,
+		organizationName:'',
+		jobTitle:'',
+		description:'',
+		address:'',
+		entryDate:'',
+		departureDate:'',
+		createdAt:'',
+	}
+
 </script>
 
 <article class="bg-brand-white flex-col w-full">
@@ -43,7 +94,11 @@
 				<div class="flex justify-between items-center">
 					<h3 class="text-2xl font-poppins">{busines.organizationName}</h3>
 					<div class="flex gap-6">
-						<button>
+						<button
+						on:click={() => {
+							openEditionModal( busines)
+						}}
+						>
 							<img src={pencilIcon} alt="Editar estudio" />
 						</button>
 						<button>
@@ -58,7 +113,9 @@
 
 				<div class="flex justify-start items-center mt-2">
 					<button
-						on:click={openDetailsModal}
+						on:click={() => {
+							openDetailsModal( busines)
+						}}
 						class="text-left text-ucab-green underline underline-offset-2"
 					>
 						Ver Información
@@ -69,5 +126,6 @@
 	</ul>
 </article>
 
-<ExperienceDetailsModal bind:openedModal={openedDetailsModal} />
+<ExperienceDetailsModal bind:openedModal={openedDetailsModal} businesData={selectedExperienceDetails} />
 <ExperienceCreationModal bind:openedModal={openedcreationModal} />
+<ExperienceEditionModal bind:openedModal = {openedEditionModal} businesData={selectedExperienceDetails} />
