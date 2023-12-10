@@ -2,9 +2,9 @@
 	import { page } from '$app/stores'
 	import { crossfade } from 'svelte/transition'
 
-	let currentRoute: 'education' | 'experience' | 'portfolio' = 'education'
+	let currentRoute: 'education' | 'experience' | 'portafolio' = 'education'
 
-	$: currentRoute = $page.url.pathname.split('/').pop() as 'education' | 'experience' | 'portfolio'
+	$: currentRoute = $page.url.pathname.split('/').pop() as 'education' | 'experience' | 'portafolio'
 
 	const [send, receive] = crossfade({
 		duration: (d) => Math.sqrt(d * 200)
@@ -46,10 +46,10 @@
 			</li>
 			<li>
 				<a
-					href="/profile/portfolio"
+					href="/profile/portafolio"
 					class="flex flex-col justify-center items-center w-full h-full gap-2"
 					>PORTAFOLIO
-					{#if currentRoute === 'portfolio'}
+					{#if currentRoute === 'portafolio'}
 						<div
 							in:receive={{ key: 'line' }}
 							out:send={{ key: 'line' }}
