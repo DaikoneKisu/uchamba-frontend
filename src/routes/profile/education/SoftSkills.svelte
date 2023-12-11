@@ -4,6 +4,7 @@
 	import { flip } from 'svelte/animate'
 	import SoftSkillCreationModal from './SoftSkillCreationModal.svelte'
 	import { fade } from 'svelte/transition'
+	import { invalidateAll } from '$app/navigation'
 
 	export let softSkills: {
 		skillId: number
@@ -14,6 +15,20 @@
 	export let softSkillsList: string[]
 
 	let openedModal = false
+
+	async function handleDelete(name: string) {
+		try {
+			softSkills = softSkills.filter((skill) => skill.name !== name)
+			const res = await fetch('/api/profile/education/soft-skills/delete', {
+				method: 'DELETE',
+				body: JSON.stringify({ name })
+			})
+
+			if (!res.ok) throw new Error('Error al eliminar la habilidad blanda')
+		} catch (e) {
+			alert(e)
+		}
+	}
 
 	function openModal() {
 		openedModal = true
@@ -32,13 +47,7 @@
 	<ul class="flex gap-2 mt-6 flex-wrap">
 		{#each softSkills as skill (skill)}
 			<div animate:flip in:fade class="flex justify-center">
-				<Chip
-					key={skill.name}
-					text={skill.name}
-					deleteHandler={() => {
-						alert('intentaste borrar un chip')
-					}}
-				/>
+				<Chip key={skill.name} text={skill.name} deleteHandler={() => handleDelete(skill.name)} />
 			</div>
 		{/each}
 	</ul>

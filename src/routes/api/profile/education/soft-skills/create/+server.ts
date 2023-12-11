@@ -2,24 +2,21 @@ import { BACKEND_BASE_URL } from '$env/static/private'
 import { json } from '@sveltejs/kit'
 import { token } from '../../../../token'
 
-export interface LanguageDeletePayload {
-	id: number
-}
+export type SoftSkillCreationPayload = string[]
 
 export async function POST({ request }: { request: Request }) {
-	const formData = (await request.json()) as LanguageDeletePayload
-	const url = `${BACKEND_BASE_URL}/user-languages/language/${formData.id}`
+	const formData = (await request.json()) as SoftSkillCreationPayload
+	const url = `${BACKEND_BASE_URL}/profile-soft-skills`
 	const response = await fetch(url, {
-		method: 'DELETE',
+		method: 'POST',
 		headers: {
-			Authorization: 'Bearer ' + token
-		}
+			Authorization: 'Bearer ' + token,
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(formData)
 	})
-
 	const responseData = (await response.json()) as unknown
-
 	console.log(responseData)
 	if (!response.ok) return json(responseData, { status: response.status })
-
 	return json(responseData)
 }

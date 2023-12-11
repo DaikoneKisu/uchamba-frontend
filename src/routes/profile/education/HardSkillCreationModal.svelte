@@ -19,9 +19,17 @@
 
 	let disabled = false
 
-	function save() {
+	async function save() {
 		try {
 			disabled = true
+
+			const res = await fetch('/api/profile/education/hard-skills/create', {
+				method: 'POST',
+				body: JSON.stringify(skills)
+			})
+
+			if (!res.ok) throw new Error('Error al crear la habilidad dura')
+
 			skills = []
 			invalidateAll()
 			closeModal()

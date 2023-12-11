@@ -5,7 +5,7 @@
 	import AcademicTrainingCreationModal from './AcademicTrainingCreationModal.svelte'
 	import DeleteModal from '$lib/components/profile/modal/DeleteModal.svelte'
 	import { invalidateAll } from '$app/navigation'
-	import { flip } from 'svelte/animate'
+	import { slide } from 'svelte/transition'
 	import AcademicTrainingEditionModal from './AcademicTrainingEditionModal.svelte'
 	import type { PersonalStudy } from '../../../types/profile-data.type'
 
@@ -78,7 +78,7 @@
 
 	<ul class="flex flex-col gap-8 mt-6">
 		{#each studiesData.featured as featStudy}
-			<li class="flex flex-col gap-2">
+			<li in:slide out:slide class="flex flex-col gap-2">
 				<div class="flex justify-between">
 					<h3 class="text-2xl font-poppins">Universidad Católica Andrés Bello</h3>
 
@@ -94,7 +94,7 @@
 			</li>
 		{/each}
 		{#each studiesData.personal as personalStudy (personalStudy.studyId)}
-			<li animate:flip class="flex flex-col gap-2">
+			<li in:slide out:slide class="flex flex-col gap-2">
 				<div class="flex justify-between">
 					<h3 class="text-2xl font-poppins">{personalStudy.universityName}</h3>
 

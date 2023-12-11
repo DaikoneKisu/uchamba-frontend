@@ -15,6 +15,20 @@
 
 	let openedModal = false
 
+	async function handleDelete(name: string) {
+		try {
+			hardSkills = hardSkills.filter((skill) => skill.name !== name)
+			const res = await fetch('/api/profile/education/hard-skills/delete', {
+				method: 'DELETE',
+				body: JSON.stringify({ name })
+			})
+
+			if (!res.ok) throw new Error('Error al eliminar la habilidad dura')
+		} catch (e) {
+			alert(e)
+		}
+	}
+
 	function openModal() {
 		openedModal = true
 	}
@@ -36,7 +50,7 @@
 					key={skill.name}
 					text={skill.name}
 					deleteHandler={() => {
-						alert('intentaste borrar un chip')
+						handleDelete(skill.name)
 					}}
 				/>
 			</div>
