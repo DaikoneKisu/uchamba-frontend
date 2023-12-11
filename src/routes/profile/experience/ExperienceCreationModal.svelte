@@ -4,8 +4,11 @@
 	import graduationCapIcon from '$lib/icons/business.svg'
 	import SaveModalFooter from './SaveModalFooters.svelte'
 	import { invalidateAll } from '$app/navigation'
+	import { validateAcademicExperience } from '$lib/profile/experiencia/validate-academic-experience'
+	import { ValidationError } from 'yup'
 
 	export let openedModal = false
+	
 
 	let formData = {
 		organizationName: '',
@@ -16,6 +19,17 @@
 		departureDate: ''
 	}
 
+	let formErrors = {
+		organizationName: '',
+		jobTitle: '',
+		description: '',
+		address: '',
+		entryDate: '',
+		departureDate: ''
+	}
+
+	let disabled = false
+
 	function save() {
 		invalidateAll()
 		closeModal()
@@ -23,6 +37,47 @@
 
 	function closeModal() {
 		openedModal = false
+	}
+
+	$: if (openedModal) {
+		try {
+			validateAcademicExperience(formData)
+			disabled = false
+
+			formErrors = {
+				organizationName: '',
+				jobTitle: '',
+				description: '',
+				address: '',
+				entryDate: '',
+				departureDate: ''
+			}
+		} catch (error: unknown) {
+			disabled = true
+			if (error instanceof ValidationError) {
+				const errors = error.inner
+
+				formErrors = {
+					organizationName: errors.find((e) => e.path === 'organizationName')?.message ?? '',
+					jobTitle: errors.find((e) => e.path === 'jobTitle')?.message ?? '',
+					description: errors.find((e) => e.path === 'description')?.message ?? '',
+					address: errors.find((e) => e.path === 'address')?.message ?? '',
+					entryDate: errors.find((e) => e.path === 'entryDate')?.message ?? '',
+					departureDate: errors.find((e) => e.path === 'departureDate')?.message ?? ''
+				}
+			}
+		}
+	}
+
+	$: if (!openedModal) {
+		formData = {
+			organizationName: '',
+			jobTitle: '',
+			description: '',
+			address: '',
+			entryDate: '',
+			departureDate: ''
+		}
 	}
 </script>
 
@@ -39,12 +94,14 @@
 				label="Organizacion"
 				placeholder="Ingrese el instituto o universidad"
 				bind:value={formData.organizationName}
+				error={formErrors.organizationName}
 			/>
 			<Input
 				type="text"
 				label="Fecha de entrada"
 				placeholder="dd/mm/aaaa"
 				bind:value={formData.entryDate}
+				error={formErrors.entryDate}
 			/>
 			<Input type="text" label="Rol" placeholder="Ingrese el rol" bind:value={formData.jobTitle} />
 			<Input
@@ -52,6 +109,7 @@
 				label="Descripcion"
 				placeholder="Ingrese una breve descripcion"
 				bind:value={formData.description}
+				error={formErrors.description}
 			/>
 		</div>
 		<div class="flex flex-col w-full items-center gap-12">
@@ -60,15 +118,17 @@
 				label="Direccion"
 				placeholder="Ingrese la direccion"
 				bind:value={formData.address}
+				error={formErrors.address}
 			/>
 			<Input
 				type="text"
 				label="Fecha de salida (opcional)"
 				placeholder="dd/mm/aaaa"
 				bind:value={formData.departureDate}
+				error={formErrors.departureDate}
 			/>
 		</div>
 	</form>
 
-	<SaveModalFooter slot="footer" handleSave={save} />
+	<SaveModalFooter slot="footer" handleSave={save}  />
 </Modal>
