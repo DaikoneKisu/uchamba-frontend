@@ -4,7 +4,10 @@
 	import deleteIcon from '$lib/icons/delete.svg'
 	import ExperienceCreationModal from './ExperienceCreationModal.svelte'
 	import ExperienceDetailsModal from './ExperienceDetailsModal.svelte'
-	import ExperienceEditionModal from './ExperienceEditionModal.svelte'
+	import DeleteModal from '$lib/components/profile/modal/DeleteModal.svelte'
+	import type { WorkExperience } from '../../../types/profile-data.type'
+	import { slide } from 'svelte/transition'
+	import { invalidateAll } from '$app/navigation'
 
 	export let business: {
 		workExpId: number
@@ -17,64 +20,60 @@
 		createdAt: string
 	}[]
 
-	let openedcreationModal = false
+	let openedCreationModal = false
 	let openedDetailsModal = false
-	let openedEditionModal = false
+	let openedDeleteModal = false
+	let experienceIdToDelete: number
+	let detailsModalMode: 'view' | 'edit' = 'view'
 
-	function opencreationModal() {
-		openedcreationModal = true
+	function openDeleteModal(id: number) {
+		experienceIdToDelete = id
+		openedDeleteModal = true
 	}
 
-	function openDetailsModal(busines: {
-	  "workExpId":number
-      "organizationName":string
-      "jobTitle":string,
-      "description": string,
-      "address":string,
-      "entryDate": string,
-      "departureDate":string,
-      "createdAt": string
-	}) {
-		selectedExperienceDetails = busines
+	function opencreationModal() {
+		openedCreationModal = true
+	}
+
+	function openDetailsModal(busines: WorkExperience) {
+		selectedExperienceDetails = { ...busines }
 		openedDetailsModal = true
 	}
 
-	function openEditionModal(busines: {
-	  "workExpId":number
-      "organizationName":string
-      "jobTitle":string,
-      "description": string,
-      "address":string,
-      "entryDate": string,
-      "departureDate":string,
-      "createdAt": string
-	}) {
-		selectedExperienceEdition = busines
-		openedEditionModal = true
+	function openEditionModal(busines: WorkExperience) {
+		selectedExperienceDetails = { ...busines }
+		detailsModalMode = 'edit'
+		openedDetailsModal = true
 	}
-
-
 
 	let selectedExperienceDetails = {
 		workExpId: 0,
-		organizationName:'',
-		jobTitle:'',
-		description:'',
-		address:'',
-		entryDate:'',
-		departureDate:'',
-		createdAt:'',
+		organizationName: '',
+		jobTitle: '',
+		description: '',
+		address: '',
+		entryDate: '',
+		departureDate: '',
+		createdAt: ''
 	}
 
-	let selectedExperienceEdition = {
-		workExpId: 0,
-		organizationName:'',
-		jobTitle:'',
-		description:'',
-		address:'',
-		entryDate:'',
-		departureDate:'',
-		createdAt:'',
+	async function handleDelete() {
+		try {
+			const res = await fetch('/api/profile/experience/academic-experience/delete', {
+				method: 'POST',
+				body: JSON.stringify({ id: experienceIdToDelete })
+			})
+			if (!res.ok) throw new Error('Error al eliminar la experiencia laboral')
+
+			invalidateAll()
+			closeDeleteModal()
+		} catch (error) {
+			alert(error)
+		}
+	}
+
+	function closeDeleteModal() {
+		openedDeleteModal = false
 	}
 
 </script>
@@ -89,19 +88,23 @@
 	</header>
 
 	<ul class="flex flex-col gap-8 mt-6">
-		{#each business as busines}
-			<li class="flex flex-col gap-2">
+		{#each business as busines (busines.workExpId)}
+			<li in:slide out:slide class="flex flex-col gap-2">
 				<div class="flex justify-between items-center">
 					<h3 class="text-2xl font-poppins">{busines.organizationName}</h3>
 					<div class="flex gap-6">
 						<button
-						on:click={() => {
-							openEditionModal( busines)
-						}}
+							on:click={() => {
+								openEditionModal(busines)
+							}}
 						>
 							<img src={pencilIcon} alt="Editar estudio" />
 						</button>
-						<button>
+						<button
+						on:click={() => {
+							openDeleteModal(busines.workExpId)
+						}}
+					>
 							<img src={deleteIcon} alt="Eliminar estudio" />
 						</button>
 					</div>
@@ -114,7 +117,7 @@
 				<div class="flex justify-start items-center mt-2">
 					<button
 						on:click={() => {
-							openDetailsModal( busines)
+							openDetailsModal(busines)
 						}}
 						class="text-left text-ucab-green underline underline-offset-2"
 					>
@@ -126,6 +129,16 @@
 	</ul>
 </article>
 
-<ExperienceDetailsModal bind:openedModal={openedDetailsModal} businesData={selectedExperienceDetails} />
-<ExperienceCreationModal bind:openedModal={openedcreationModal} />
-<ExperienceEditionModal bind:openedModal = {openedEditionModal} businesData={selectedExperienceDetails} />
+<ExperienceDetailsModal 
+bind:openedModal={openedDetailsModal} 
+businesData={selectedExperienceDetails}
+bind:mode={detailsModalMode}
+
+/>
+<ExperienceCreationModal bind:openedModal={openedCreationModal} />
+<DeleteModal
+	title="¿Seguro que desea eliminar esta experiencia laboral?"
+	bind:isOpen={openedDeleteModal}
+	{handleDelete}
+/>
+

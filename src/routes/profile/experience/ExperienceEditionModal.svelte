@@ -7,7 +7,7 @@
 	import { validateAcademicExperience } from '$lib/profile/experiencia/validate-academic-experience'
 	import { ValidationError } from 'yup'
 
-	export let openedModal = false
+	//export let openedModal = false
 
 	export let isOpen: boolean
 
@@ -33,12 +33,25 @@
 
 	export let disabled = false
 
-	function save() {
-		invalidateAll()
-		closeModal()
+	async function updateExperienceAcademic() {
+		try {
+			disabled = true
+			const res = await fetch('/api/profile/experience/academic-experience/update', {
+				method: 'POST',
+				body: JSON.stringify(businesData)
+			})
+			if (!res.ok) throw new Error('Error al actualizar la experiencia academica')
+			invalidateAll()
+			closeModal()
+		} catch (error) {
+			alert(error)
+		} finally {
+			disabled = false
+		}
 	}
+
 	function closeModal() {
-		openedModal = false
+		isOpen = false
 	}
 
 	$: if (isOpen) {
@@ -76,7 +89,7 @@
 <Modal
 	title="Experiencia Laboral"
 	subtitle="Edita la informacion de la experiencia laboral"
-	bind:isOpen={openedModal}
+	bind:isOpen
 	icon={business}
 >
 	<form slot="body" class="w-full flex pl-6 py-12 justify-between">
@@ -133,5 +146,5 @@
 			/>
 		</div>
 	</form>
-	<SaveModalFooter slot="footer" handleSave={save} {disabled}/>
+	<SaveModalFooter slot="footer" handleSave={updateExperienceAcademic} {disabled}/>
 </Modal>
