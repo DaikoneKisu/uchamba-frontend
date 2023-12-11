@@ -1,8 +1,5 @@
 <script lang="ts">
-	import AcademicTraining from './AcademicTraining.svelte'
 	import Languages from './Languages.svelte'
-	import SoftSkills from './SoftSkills.svelte'
-	import HardSkills from './HardSkills.svelte'
 
 	export let data
 </script>

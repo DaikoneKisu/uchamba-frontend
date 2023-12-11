@@ -50,8 +50,8 @@
 
 {#if mode === 'view'}
 	<Modal
-		title="Idioma"
-		subtitle="Visualiza la información del idioma"
+		title="Proyecto Realizado"
+		subtitle="Agrega un nuevo proyecto para añadir a tu CV"
 		bind:isOpen={openedModal}
 		icon={languageIcon}
 	>
@@ -80,22 +80,13 @@
 	</Modal>
 {:else if mode === 'edit'}
 	<Modal
-		title="Idioma"
+		title="Proyecto Realizado"
 		subtitle="Edita la información del idioma"
 		bind:isOpen={openedModal}
 		icon={languageIcon}
 	>
 		<form slot="body" class="w-full flex pl-6 py-12 justify-between">
 			<div class="flex w-full gap-12">
-				<select
-					class="flex border-4 border-[#f0f0f0] h-[64px] w-full max-w-[330px] rounded-xl bg-brand-white px-4"
-					bind:value={langData.languageId}
-				>
-					<option value="">Seleccione su idioma</option>
-					{#each langsList as lang}
-						<option value={lang.languageId}>{lang.name}</option>
-					{/each}
-				</select>
 				<select
 					class="flex border-4 border-[#f0f0f0] h-[64px] w-full max-w-[330px] rounded-xl bg-brand-white px-4"
 					bind:value={langData.proficientLevel}

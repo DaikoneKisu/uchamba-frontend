@@ -26,6 +26,8 @@
 	let langIdToDelete: number
 
 	function openCreationModal() {
+		console.log("hola");
+		
 		openedCreationModal = true
 	}
 
