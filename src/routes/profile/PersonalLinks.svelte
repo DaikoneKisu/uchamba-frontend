@@ -39,7 +39,7 @@
 		<ul class="w-full flex flex-col gap-3 mt-3">
 			{#each links as l}
 				<li in:slide out:slide class="flex justify-between">
-					<a href={l.url} class="underline text-blue-500">{l.url}</a>
+					<a href={l.url} class="underline text-blue-500 whitespace-nowrap overflow-x-hidden mr-8">{l.url}</a>
 					<button
 						on:click={() => {
 							handleDelete(l.linkId)
