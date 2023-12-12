@@ -21,13 +21,13 @@
 	}
 	export let disabled = false
 
-	function goToEditMode(){
+	function goToEditMode() {
 		mode = 'edit'
 	}
 	function closeModal() {
 		openedModal = false
 	}
-	
+
 	async function updateExperienceDetails() {
 		try {
 			disabled = true
@@ -47,117 +47,122 @@
 </script>
 
 {#if mode === 'view'}
-<Modal
-title="Experiencia Laboral"
-subtitle="Ver mas informacion sobre la experiencia laboral"
-bind:isOpen={openedModal}
-icon={business}
->
+	<Modal
+		title="Experiencia Laboral"
+		subtitle="Ver mas informacion sobre la experiencia laboral"
+		bind:isOpen={openedModal}
+		icon={business}
+	>
+		<form slot="body" class="w-full flex pl-6 py-12 justify-between">
+			<div class="flex flex-col w-full gap-12">
+				<Input
+					type="text"
+					disabled
+					label="Organizacion"
+					placeholder="Ingrese el instituto o universidad"
+					className="text-brand-p-black"
+					bind:value={businesData.organizationName}
+				/>
+				<Input
+					type="text"
+					disabled
+					label="Fecha de entrada"
+					placeholder="dd/mm/aaaa"
+					className="text-brand-p-black"
+					bind:value={businesData.entryDate}
+				/>
+				<Input
+					type="text"
+					label="Rol"
+					placeholder="Ingrese el rol"
+					bind:value={businesData.jobTitle}
+				/>
+				<Input
+					type="text"
+					disabled
+					label="Descripcion"
+					placeholder="Ingrese una breve descripcion"
+					className="text-brand-p-black"
+					bind:value={businesData.description}
+				/>
+			</div>
 
-<form slot="body" class="w-full flex pl-6 py-12 justify-between">
-	<div class="flex flex-col w-full gap-12">
-		<Input
-			type="text"
-			disabled
-			label="Organizacion"
-			placeholder="Ingrese el instituto o universidad"
-			className="text-brand-p-black"
-			bind:value={businesData.organizationName}
-		/>
-		<Input
-			type="text"
-			disabled
-			label="Fecha de entrada"
-			placeholder="dd/mm/aaaa"
-			className="text-brand-p-black"
-			bind:value={businesData.entryDate}
-		/>
-		<Input type="text" label="Rol" placeholder="Ingrese el rol" bind:value={businesData.jobTitle} />
-		<Input
-			type="text"
-			disabled
-			label="Descripcion"
-			placeholder="Ingrese una breve descripcion"
-			className="text-brand-p-black"
-			bind:value={businesData.description}
-		/>
-	</div>
-
-	<div class="flex flex-col w-full items-center gap-12">
-		<Input
-			type="text"
-			disabled
-			label="Direccion"
-			placeholder="Ingrese la direccion"
-			className="text-brand-p-black"
-			bind:value={businesData.address}
-		/>
-		<Input
-			type="text"
-			disabled
-			label="Fecha de salida (opcional)"
-			placeholder="dd/mm/aaaa"
-			className="text-brand-p-black"
-			bind:value={businesData.departureDate}
-		/>
-	</div>
-</form>
-<EditModalFooter slot="footer" handlePressEdit={goToEditMode} />
-</Modal>
-
+			<div class="flex flex-col w-full items-center gap-12">
+				<Input
+					type="text"
+					disabled
+					label="Direccion"
+					placeholder="Ingrese la direccion"
+					className="text-brand-p-black"
+					bind:value={businesData.address}
+				/>
+				<Input
+					type="text"
+					disabled
+					label="Fecha de salida (opcional)"
+					placeholder="dd/mm/aaaa"
+					className="text-brand-p-black"
+					bind:value={businesData.departureDate}
+				/>
+			</div>
+		</form>
+		<EditModalFooter slot="footer" handlePressEdit={goToEditMode} />
+	</Modal>
 {:else if mode === 'edit'}
+	<Modal
+		title="Experiencia Laboral"
+		subtitle="Ver mas informacion sobre la experiencia laboral"
+		bind:isOpen={openedModal}
+		icon={business}
+	>
+		<form slot="body" class="w-full flex pl-6 py-12 justify-between">
+			<div class="flex flex-col w-full gap-12">
+				<Input
+					type="text"
+					label="Organizacion"
+					placeholder="Ingrese el instituto o universidad"
+					className="text-brand-p-black"
+					bind:value={businesData.organizationName}
+				/>
+				<Input
+					type="text"
+					label="Fecha de entrada"
+					placeholder="dd/mm/aaaa"
+					className="text-brand-p-black"
+					bind:value={businesData.entryDate}
+				/>
+				<Input
+					type="text"
+					label="Rol"
+					placeholder="Ingrese el rol"
+					bind:value={businesData.jobTitle}
+				/>
+				<Input
+					type="text"
+					label="Descripcion"
+					placeholder="Ingrese una breve descripcion"
+					className="text-brand-p-black"
+					bind:value={businesData.description}
+				/>
+			</div>
 
-<Modal
-title="Experiencia Laboral"
-subtitle="Ver mas informacion sobre la experiencia laboral"
-bind:isOpen={openedModal}
-icon={business}
->
-
-<form slot="body" class="w-full flex pl-6 py-12 justify-between">
-	<div class="flex flex-col w-full gap-12">
-		<Input
-			type="text"
-			label="Organizacion"
-			placeholder="Ingrese el instituto o universidad"
-			className="text-brand-p-black"
-			bind:value={businesData.organizationName}
-		/>
-		<Input
-			type="text"
-			label="Fecha de entrada"
-			placeholder="dd/mm/aaaa"
-			className="text-brand-p-black"
-			bind:value={businesData.entryDate}
-		/>
-		<Input type="text" label="Rol" placeholder="Ingrese el rol" bind:value={businesData.jobTitle} />
-		<Input
-			type="text"
-			label="Descripcion"
-			placeholder="Ingrese una breve descripcion"
-			className="text-brand-p-black"
-			bind:value={businesData.description}
-		/>
-	</div>
-
-	<div class="flex flex-col w-full items-center gap-12">
-		<Input
-			type="text"
-			label="Direccion"
-			placeholder="Ingrese la direccion"
-			className="text-brand-p-black"
-			bind:value={businesData.address}
-		/>
-		<Input
-			type="text"
-			label="Fecha de salida (opcional)"
-			placeholder="dd/mm/aaaa"
-			className="text-brand-p-black"
-			bind:value={businesData.departureDate}
-		/>
-	</div>
-</form>
-<SaveModalFooter slot="footer" handleSave={updateExperienceDetails} {disabled} />
-</Modal>
+			<div class="flex flex-col w-full items-center gap-12">
+				<Input
+					type="text"
+					label="Direccion"
+					placeholder="Ingrese la direccion"
+					className="text-brand-p-black"
+					bind:value={businesData.address}
+				/>
+				<Input
+					type="text"
+					label="Fecha de salida (opcional)"
+					placeholder="dd/mm/aaaa"
+					className="text-brand-p-black"
+					bind:value={businesData.departureDate}
+				/>
+			</div>
+		</form>
+		<SaveModalFooter slot="footer" handleSave={updateExperienceDetails} {disabled} />
+	</Modal>
 {/if}
-

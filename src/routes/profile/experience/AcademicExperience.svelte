@@ -35,13 +35,14 @@
 		openedCreationModal = true
 	}
 
-	function openDetailsModal(busines: WorkExperience) {
-		selectedExperienceDetails = { ...busines }
+	function openDetailsModal(business: WorkExperience) {
+		selectedExperienceDetails = { ...business }
+		detailsModalMode = 'view'
 		openedDetailsModal = true
 	}
 
-	function openEditionModal(busines: WorkExperience) {
-		selectedExperienceDetails = { ...busines }
+	function openEditionModal(business: WorkExperience) {
+		selectedExperienceDetails = { ...business }
 		detailsModalMode = 'edit'
 		openedDetailsModal = true
 	}
@@ -75,7 +76,6 @@
 	function closeDeleteModal() {
 		openedDeleteModal = false
 	}
-
 </script>
 
 <article class="bg-brand-white flex-col w-full">
@@ -101,10 +101,10 @@
 							<img src={pencilIcon} alt="Editar estudio" />
 						</button>
 						<button
-						on:click={() => {
-							openDeleteModal(busines.workExpId)
-						}}
-					>
+							on:click={() => {
+								openDeleteModal(busines.workExpId)
+							}}
+						>
 							<img src={deleteIcon} alt="Eliminar estudio" />
 						</button>
 					</div>
@@ -129,11 +129,10 @@
 	</ul>
 </article>
 
-<ExperienceDetailsModal 
-bind:openedModal={openedDetailsModal} 
-businesData={selectedExperienceDetails}
-bind:mode={detailsModalMode}
-
+<ExperienceDetailsModal
+	bind:openedModal={openedDetailsModal}
+	businesData={selectedExperienceDetails}
+	bind:mode={detailsModalMode}
 />
 <ExperienceCreationModal bind:openedModal={openedCreationModal} />
 <DeleteModal
@@ -141,4 +140,3 @@ bind:mode={detailsModalMode}
 	bind:isOpen={openedDeleteModal}
 	{handleDelete}
 />
-

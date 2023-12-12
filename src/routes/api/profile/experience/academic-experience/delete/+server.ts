@@ -1,5 +1,6 @@
 import { BACKEND_BASE_URL } from '$env/static/private'
 import { json } from '@sveltejs/kit'
+import { token } from '../../../../token'
 
 export interface AcademicExperienceDeletePayload {
 	id: number
@@ -11,8 +12,7 @@ export async function POST({ request }: { request: Request }) {
 	const response = await fetch(url, {
 		method: 'DELETE',
 		headers: {
-			Authorization:
-				'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwibmFtZSI6IkVkdWFyZG8gU3VjcmUiLCJlbWFpbCI6ImVqc3VjcmUuMTlAZXN0LnVjYWIuZWR1LnZlIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzAyMjY1MDk1LCJleHAiOjE3MDMxMjkwOTV9.908ldtc_d1ftJrboWfSTD8TKHBcrcCCDB4_gUaFYBek'
+			Authorization: 'Bearer ' + token
 		}
 	})
 
