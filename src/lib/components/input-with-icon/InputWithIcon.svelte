@@ -1,12 +1,14 @@
 <script lang="ts">
 	import type { HTMLInputTypeAttribute } from '../../../types/html-input-type-attribute.type'
 
+	export let name: string
 	export let label: string = 'Default label'
 	export let placeholder = 'Default placeholder'
 	export let type: HTMLInputTypeAttribute
 	export let value: string | number = ''
 	export let src: string
 	export let className = ''
+  export let required = false
 </script>
 
 <label class={'flex border-4 border-gray-300 rounded-xl bg-brand-white ' + className}>
@@ -18,40 +20,13 @@
 	<div class="flex flex-col p-4 w-full">
 		<span class="text-xs">{label}</span>
 		{#if type === 'text'}
-			<input
-				type="text"
-				{placeholder}
-				bind:value
-				class="text-sm focus:outline-none focus:border-0 focus:shadow-none"
-			/>
+			<input {name} type="text" {placeholder} bind:value class="text-sm focus:outline-none focus:border-0 focus:shadow-none" {required} />
 		{:else if type === 'number'}
-			<input
-				type="number"
-				{placeholder}
-				bind:value
-				class="text-sm focus:outline-none focus:border-0 focus:shadow-none"
-			/>
+			<input {name} type="number" {placeholder} bind:value class="text-sm focus:outline-none focus:border-0 focus:shadow-none" {required} />
 		{:else if type === 'email'}
-			<input
-				type="email"
-				{placeholder}
-				bind:value
-				class="text-sm focus:outline-none focus:border-0 focus:shadow-none"
-			/>
-		{:else if type === 'password'}
-			<input
-				type="password"
-				{placeholder}
-				bind:value
-				class="text-sm focus:outline-none focus:border-0 focus:shadow-none"
-			/>
+			<input {name} type="email" {placeholder} bind:value class="text-sm focus:outline-none focus:border-0 focus:shadow-none" {required} />
 		{:else if type === 'tel'}
-			<input
-				type="tel"
-				{placeholder}
-				bind:value
-				class="text-sm focus:outline-none focus:border-0 focus:shadow-none"
-			/>
+			<input {name} type="tel" {placeholder} bind:value class="text-sm focus:outline-none focus:border-0 focus:shadow-none" {required} />
 		{/if}
 	</div>
 </label>

@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
+  darkMode: 'class',
 	theme: {
 		extend: {
 			colors: {
@@ -14,11 +15,11 @@ export default {
 				'brand-h2-black': '#4D4D4D',
 				'brand-white': '#FFFFFF'
 			},
-			fontFamily: {
-				'open-sans': ['Open Sans', 'sans-serif'],
-				poppins: ['Poppins', 'sans-serif']
-			}
-		}
+      fontFamily: {
+        'open-sans': ['Open Sans', 'sans-serif'],
+        'poppins': ['Poppins', 'sans-serif']
+      }
+    }
 	},
-	plugins: []
+  plugins: []
 }

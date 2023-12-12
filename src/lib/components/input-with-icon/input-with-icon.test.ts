@@ -8,7 +8,7 @@ import email from '$lib/icons/email.svg'
 
 describe('Input Component', () => {
 	test('it should render', () => {
-		render(InputWithIcon__SvelteComponent_, { type: 'text', label: 'test-label', src: email })
+		render(InputWithIcon__SvelteComponent_, { type: 'text', label: 'test-label', src: email, name: 'test-name' })
 		const label = screen.getByLabelText('test-label')
 
 		expect(label).toBeInTheDocument()
@@ -21,7 +21,8 @@ describe('Input Component', () => {
 			type: 'text',
 			value: initialValue,
 			placeholder: 'test-placeholder',
-			src: email
+			src: email,
+      name: 'test-name'
 		})
 		const input: HTMLInputElement = screen.getByPlaceholderText('test-placeholder')
 		await fireEvent.change(input, { target: { value: input.value + 'input' } })
@@ -29,10 +30,39 @@ describe('Input Component', () => {
 		expect(input.value).toBe('test-input')
 	})
 
+  test('it should be required if specified', () => {
+    render(InputWithIcon__SvelteComponent_, {
+      type: 'text',
+      required: true,
+      src: email,
+      name: 'test-name',
+      label: 'test-label'
+    })
+
+    const input: HTMLInputElement = screen.getByLabelText('test-label')
+
+    expect(input.required).toBe(true)
+  })
+
+  test('it should not be required if specified', () => {
+    render(InputWithIcon__SvelteComponent_, {
+      type: 'text',
+      required: false,
+      src: email,
+      name: 'test-name',
+      label: 'test-label'
+    })
+
+    const input: HTMLInputElement = screen.getByLabelText('test-label')
+
+    expect(input.required).toBe(false)
+  })
+
 	test('it should render an icon', () => {
 		render(InputWithIcon__SvelteComponent_, {
 			type: 'text',
-			src: email
+			src: email,
+      name: 'test-name'
 		})
 
 		const icon: HTMLImageElement = screen.getByAltText('')
