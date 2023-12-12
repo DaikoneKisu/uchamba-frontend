@@ -7,16 +7,10 @@
 	import { flip } from 'svelte/animate'
 	import DeleteModal from '$lib/components/profile/modal/DeleteModal.svelte'
 	import { invalidateAll } from '$app/navigation'
+	import type { ProfileData, Project } from '../../../types/profile-data.type'
 
-	export let languages: {
-		languageId: number
-		name: string
-		proficientLevel: string
-		createdAt: string
-		updatedAt: string
-	}[]
-
-	export let langsList: { languageId: number; name: string }[]
+	export let profileData: ProfileData
+	export let projects: Project[] = profileData.projects
 
 	let openedCreationModal = false
 	let openedDeleteModal = false
@@ -26,8 +20,6 @@
 	let langIdToDelete: number
 
 	function openCreationModal() {
-		console.log("hola");
-		
 		openedCreationModal = true
 	}
 
@@ -36,36 +28,23 @@
 		openedDeleteModal = true
 	}
 
-	function openDetailsModal(lang: {
-		languageId: number
-		name: string
-		proficientLevel: string
-		createdAt: string
-		updatedAt: string
-	}) {
+	function openDetailsModal(project: Project) {
 		detailsModalMode = 'view'
-		selectedLanguageDetails = { ...lang }
+		selectedProjectsDetails = { ...project }
 		openedDetailsModal = true
 	}
 
-	function openEditModal(lang: {
-		languageId: number
-		name: string
-		proficientLevel: string
-		createdAt: string
-		updatedAt: string
-	}) {
+	function openEditModal(project: Project) {
 		detailsModalMode = 'edit'
-		selectedLanguageDetails = { ...lang }
+		selectedProjectsDetails = { ...project }
 		openedDetailsModal = true
 	}
 
-	let selectedLanguageDetails = {
-		languageId: 0,
-		name: '',
-		proficientLevel: '',
-		createdAt: '',
-		updatedAt: ''
+	let selectedProjectsDetails: Project = {
+		projectId: 0,
+		name: "",
+		description: "",
+		projectUrl: ""
 	}
 
 	async function handleDelete() {
@@ -86,6 +65,8 @@
 	function closeDeleteModal() {
 		openedDeleteModal = false
 	}
+	console.log(projects);
+	
 </script>
 
 <article class="bg-brand-white flex-col w-full">
@@ -98,22 +79,22 @@
 	</header>
 
 	<ul class="flex flex-col gap-8 mt-6">
-		{#each languages as lang (lang.languageId)}
+		{#each projects as project (project.projectId)}
 			<li animate:flip class="flex flex-col gap-2">
 				<div class="flex justify-between">
-					<h3 class="text-2xl font-poppins">{lang.name}</h3>
+					<h3 class="text-2xl font-poppins">{project.name}</h3>
 
 					<div class="flex gap-6">
 						<button
 							on:click={() => {
-								openEditModal(lang)
+								openEditModal(project)
 							}}
 						>
 							<img src={pencilIcon} alt="Editar estudio" />
 						</button>
 						<button
 							on:click={() => {
-								openDeleteModal(lang.languageId)
+								openDeleteModal(project.projectId)/*  */
 							}}
 						>
 							<img src={deleteIcon} alt="Eliminar estudio" />
@@ -121,12 +102,12 @@
 					</div>
 				</div>
 				<p class="text-brand-p-black">
-					Nivel {lang.proficientLevel}
+					Nivel {project.description}
 				</p>
 
 				<button
 					on:click={() => {
-						openDetailsModal(lang)
+						openDetailsModal(project)
 					}}
 					class="text-left text-ucab-green underline underline-offset-2"
 				>
@@ -139,13 +120,12 @@
 
 <LanguagesDetailsModal
 	bind:openedModal={openedDetailsModal}
-	langData={selectedLanguageDetails}
+	project={selectedProjectsDetails}
 	bind:mode={detailsModalMode}
-	{langsList}
 />
-<LanguageCreationModal bind:openedModal={openedCreationModal} {langsList} />
+<LanguageCreationModal bind:openedModal={openedCreationModal} /> 
 <DeleteModal
-	title="¿Seguro que deseas eliminar este idioma de tu lista?"
+	title="¿Seguro que deseas eliminar este proyecto de tu lista?"
 	bind:isOpen={openedDeleteModal}
 	{handleDelete}
 />

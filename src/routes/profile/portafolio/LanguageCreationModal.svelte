@@ -1,11 +1,10 @@
 <script lang="ts">
 	import Modal from '$lib/components/profile/modal/Modal.svelte'
+	import './portafolio.css';
 	import Input from '$lib/components/input/Input.svelte'
-	import languageIcon from '$lib/icons/language.svg'
+	import languageIcon from '$lib/icons/Portfolio.svg'
 	import SaveModalFooter from '../../../lib/components/profile/modal/SaveModalFooter.svelte'
 	import { invalidateAll } from '$app/navigation'
-
-	export let langsList: { languageId: number; name: string }[]
 
 	export let openedModal = false
 
@@ -50,7 +49,7 @@
 
 <Modal
 	title="Proyecto Realizado"
-	subtitle="Agrega un nuevo idioma para añadir a tu CV"
+	subtitle="Agrega un nuevo proyecto para añadir a tu CV"
 	bind:isOpen={openedModal}
 	icon={languageIcon}
 >
@@ -59,27 +58,25 @@
         <div class="flex w-full gap-12">
             <Input
                 type="text"
-                label="Instituto o Universidad"
-                placeholder="Ingrese el instituto o universidad"
+                label="Proyecto"
+                placeholder="Ingrese el nombre del proyecto"
                 bind:value={formData.name}
                 error={formErrors.name}
             />
             <Input
                 type="text"
-                label="Fecha de Graduación"
-                placeholder="aaaa-mm-dd"
+                label="Link (Opcional)"
+                placeholder="Ingrese el link del proyecto"
                 bind:value={formData.projectUrl}
                 error={formErrors.name}
             />
         </div>
-        <Input
-            type="text"
-            label="Nuevo Input"
-            placeholder="Este input ocupará todo el ancho"
-            className="input-full-width" 
-            bind:value={formData.name}
-            error={formErrors.name}
-        />
+		<div class="custom-input">
+			<label for="custom-input">Descripcion</label>
+			<input type="text" id="custom-input" placeholder="Ingrese una nueva descripcion" />
+		</div>
+		
+
     </div>
 </form>
 

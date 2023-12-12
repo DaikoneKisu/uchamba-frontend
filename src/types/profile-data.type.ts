@@ -88,6 +88,6 @@ export interface Project {
 	name: string
 	description: string
 	projectUrl: string
-	createdAt: string
-	updatedAt: string
+	createdAt?: string
+	updatedAt?: string
 }

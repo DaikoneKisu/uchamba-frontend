@@ -1,24 +1,17 @@
 <script lang="ts">
 	import Modal from '$lib/components/profile/modal/Modal.svelte'
 	import Input from '$lib/components/input/Input.svelte'
-	import languageIcon from '$lib/icons/language.svg'
+	import languageIcon from '$lib/icons/Portfolio.svg'
 	import EditModalFooter from '$lib/components/profile/modal/EditModalFooter.svelte'
 	import SaveModalFooter from '$lib/components/profile/modal/SaveModalFooter.svelte'
 	import { invalidateAll } from '$app/navigation'
+	import type { Project } from '../../../types/profile-data.type'
 
 	export let openedModal = false
 
 	export let mode: 'view' | 'edit'
 
-	export let langData: {
-		languageId: number
-		name: string
-		proficientLevel: string
-		createdAt: string
-		updatedAt: string
-	}
-
-	export let langsList: { languageId: number; name: string }[]
+	export let project: Project
 
 	export let disabled = false
 
@@ -35,7 +28,7 @@
 			disabled = true
 			const res = await fetch('/api/profile/education/languages/update', {
 				method: 'POST',
-				body: JSON.stringify(langData)
+				body: JSON.stringify(project)
 			})
 			if (!res.ok) throw new Error('Error al actualizar el idioma')
 			invalidateAll()
@@ -56,23 +49,27 @@
 		icon={languageIcon}
 	>
 		<form slot="body" class="w-full flex pl-6 py-12 justify-between">
-			<div class="flex w-full gap-12">
-				<Input
-					type="text"
-					disabled
-					label="Idioma"
-					placeholder="Ingrese el idioma"
-					className="text-brand-p-black"
-					bind:value={langData.name}
-				/>
-				<Input
-					type="text"
-					disabled
-					label="Nivel del idioma"
-					placeholder="Ingrese su nivel con el idioma"
-					className="text-brand-p-black"
-					bind:value={langData.proficientLevel}
-				/>
+			<div class="flex w-full flex-col gap-12">
+				<div class="flex w-full gap-12">
+					<Input
+						type="text"
+						label="Proyecto"
+						placeholder="Ingrese el nombre del proyecto"
+						bind:value={project.name}
+						error={project.name}
+					/>
+					<Input
+						type="text"
+						label="Link (Opcional)"
+						placeholder="Ingrese el link del proyecto"
+						bind:value={project.projectUrl}
+						error={project.name}
+					/>
+				</div>
+				<div class="custom-input">
+					<label for="custom-input">Descripcion</label>
+					<input type="text" id="custom-input" value={project.description} placeholder="Ingrese una nueva descripcion" />
+				</div>
 			</div>
 		</form>
 
@@ -81,26 +78,34 @@
 {:else if mode === 'edit'}
 	<Modal
 		title="Proyecto Realizado"
-		subtitle="Edita la información del idioma"
+		subtitle="Edita la información del proyecto"
 		bind:isOpen={openedModal}
 		icon={languageIcon}
 	>
-		<form slot="body" class="w-full flex pl-6 py-12 justify-between">
+	<form slot="body" class="w-full flex pl-6 py-12 justify-between">
+		<div class="flex w-full flex-col gap-12">
 			<div class="flex w-full gap-12">
-				<select
-					class="flex border-4 border-[#f0f0f0] h-[64px] w-full max-w-[330px] rounded-xl bg-brand-white px-4"
-					bind:value={langData.proficientLevel}
-				>
-					<option value="">Seleccione su nivel</option>
-					<option value="A1">A1</option>
-					<option value="A2">A2</option>
-					<option value="B1">B1</option>
-					<option value="B2">B2</option>
-					<option value="C1">C1</option>
-					<option value="C2">C2</option>
-				</select>
+				<Input
+					type="text"
+					label="Proyecto"
+					placeholder="Ingrese el nombre del proyecto"
+					bind:value={project.name}
+					error={project.name}
+				/>
+				<Input
+					type="text"
+					label="Link (Opcional)"
+					placeholder="Ingrese el link del proyecto"
+					bind:value={project.projectUrl}
+					error={project.name}
+				/>
 			</div>
-		</form>
+			<div class="custom-input">
+				<label for="custom-input">Descripcion</label>
+				<input type="text" id="custom-input" value={project.description} placeholder="Ingrese una nueva descripcion" />
+			</div>
+		</div>
+	</form>
 
 		<SaveModalFooter slot="footer" handleSave={updateLanguage} {disabled} />
 	</Modal>

@@ -1,14 +1,8 @@
-import { BACKEND_BASE_URL } from '$env/static/private'
+import type { ProfileData } from '../../../types/profile-data.type'
 
 export async function load() {
-	const langsRes = await fetch(`${BACKEND_BASE_URL}/languages/all`, {
-		headers: {
-			Authorization:
-				'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibmFtZSI6IkFsZWphbmRybyBSb3NhcyIsImVtYWlsIjoiYWpyb3Nhcy4xOUBlc3QudWNhYi5lZHUudmUiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MDExMzc5NTMsImV4cCI6MTcwMjAwMTk1M30.3fo6TsWXPSpiK2xJbMn9Qlh9AM7-puxPbxfx1bs8BA0'
-		}
-	})
-
-	const languages = (await langsRes.json()) as { languageId: number; name: string }[]
-
-	return { langsList: languages }
+	const res = await fetch('https://uchamba-backend-staging.1.us-1.fl0.io/users/4')
+	const data = (await res.json()) as ProfileData
+	
+	return data
 }
