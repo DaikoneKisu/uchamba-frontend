@@ -6,7 +6,7 @@ export interface AcademicTrainingCreationPayload {
 	name: string
 	universityName: string
 	degree: string
-	graduationDate: string
+	graduationYear: string
 }
 
 export async function POST({ request }: { request: Request }) {

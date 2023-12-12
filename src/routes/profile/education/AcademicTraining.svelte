@@ -14,7 +14,7 @@
 			ucareerId: number
 			name: string
 			degree: string
-			graduationDate: string
+			graduationYear: string
 			createdAt: string
 		}[]
 		personal: {
@@ -22,7 +22,7 @@
 			name: string
 			universityName: string
 			degree: string
-			graduationDate: string
+			graduationYear: string
 			createdAt: string
 		}[]
 	}
@@ -90,7 +90,7 @@
 						.map((c, i) => (i === 0 ? c.toUpperCase() : c))
 						.join('')}
 				</p>
-				<p>Fecha de graduación: {featStudy.graduationDate}</p>
+				<p>Año de graduación {featStudy.graduationYear}</p>
 			</li>
 		{/each}
 		{#each studiesData.personal as personalStudy (personalStudy.studyId)}
@@ -121,7 +121,7 @@
 						.map((c, i) => (i === 0 ? c.toUpperCase() : c))
 						.join('')}
 				</p>
-				<p>Fecha de graduación {personalStudy.graduationDate}</p>
+				<p>Año de graduación {personalStudy.graduationYear}</p>
 			</li>
 		{/each}
 	</ul>
