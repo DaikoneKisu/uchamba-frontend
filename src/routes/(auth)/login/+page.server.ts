@@ -38,7 +38,7 @@ export const actions = {
       const redirectTo = url.searchParams.get('redirectTo')
       if (redirectTo && redirectTo !== '/')
         throw redirect(StatusCodes.SEE_OTHER, `/${redirectTo}`)
-      throw redirect(StatusCodes.SEE_OTHER, '/')
+      throw redirect(StatusCodes.SEE_OTHER, '/profile/me')
     }
 	}
 }
