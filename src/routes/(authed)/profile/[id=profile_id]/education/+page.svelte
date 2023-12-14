@@ -8,14 +8,16 @@
 </script>
 
 <div class="w-full flex flex-col justify-between pb-28 items-center pt-8 gap-16 px-16">
-	<AcademicTraining studiesData={data.education} />
-	<Languages languages={data.languages} langsList={data.langsList} />
+	<AcademicTraining studiesData={data.education} isEditable={data.isEditable} />
+	<Languages languages={data.languages} langsList={data.langsList} isEditable={data.isEditable} />
 	<SoftSkills
 		softSkills={data.softSkills.featured.concat(data.softSkills.personal)}
 		softSkillsList={[]}
+		isEditable={data.isEditable}
 	/>
 	<HardSkills
 		hardSkills={data.hardSkills.featured.concat(data.hardSkills.personal)}
 		hardSkillsList={[]}
+		isEditable={data.isEditable}
 	/>
 </div>

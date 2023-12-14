@@ -6,6 +6,8 @@
 
 	$: currentRoute = $page.url.pathname.split('/').pop() as 'education' | 'experience' | 'portfolio'
 
+	const profileId = $page.url.pathname.split('/')[2]
+
 	const [send, receive] = crossfade({
 		duration: (d) => Math.sqrt(d * 200)
 	})
@@ -18,7 +20,7 @@
 		>
 			<li>
 				<a
-					href="/profile/education"
+					href={`/profile/${profileId}/education`}
 					class="flex flex-col justify-center items-center w-full h-full gap-2"
 					>EDUCACIÓN
 					{#if currentRoute === 'education'}
@@ -32,7 +34,7 @@
 			</li>
 			<li>
 				<a
-					href="/profile/experience"
+					href={`/profile/${profileId}/experience`}
 					class="flex flex-col justify-center items-center w-full h-full gap-2"
 					>EXPERIENCIA
 					{#if currentRoute === 'experience'}
@@ -46,7 +48,7 @@
 			</li>
 			<li>
 				<a
-					href="/profile/portfolio"
+					href={`/profile/${profileId}/portfolio`}
 					class="flex flex-col justify-center items-center w-full h-full gap-2"
 					>PORTAFOLIO
 					{#if currentRoute === 'portfolio'}

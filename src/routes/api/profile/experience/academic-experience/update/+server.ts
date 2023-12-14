@@ -1,6 +1,5 @@
 import { BACKEND_BASE_URL } from '$env/static/private'
 import { json } from '@sveltejs/kit'
-import { token } from '../../../../token'
 
 export interface AcademicExperienceDeletePayload {
 	workExpId: number
@@ -12,13 +11,12 @@ export interface AcademicExperienceDeletePayload {
 	departureDate: string
 }
 
-export async function POST({ request }: { request: Request }) {
+export async function POST({ request, fetch }: { request: Request; fetch: typeof window.fetch }) {
 	const formData = (await request.json()) as AcademicExperienceDeletePayload
 	const url = `${BACKEND_BASE_URL}/work-experiences/${formData.workExpId}`
 	const response = await fetch(url, {
 		method: 'PUT',
 		headers: {
-			Authorization: 'Bearer ' + token,
 			'Content-Type': 'application/json'
 		},
 		body: JSON.stringify(formData)

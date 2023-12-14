@@ -17,6 +17,7 @@
 	}[]
 
 	export let langsList: { languageId: number; name: string }[]
+	export let isEditable: boolean
 
 	let openedCreationModal = false
 	let openedDeleteModal = false
@@ -90,7 +91,9 @@
 	<header>
 		<div class="flex justify-between w-full">
 			<h2>Idiomas</h2>
-			<Add clickHandler={openCreationModal} />
+			{#if isEditable}
+				<Add clickHandler={openCreationModal} />
+			{/if}
 		</div>
 		<div class="h-1 bg-ucab-blue w-full mt-2" />
 	</header>
@@ -100,23 +103,24 @@
 			<li in:slide out:slide class="flex flex-col gap-2">
 				<div class="flex justify-between">
 					<h3 class="text-2xl font-poppins">{lang.name}</h3>
-
-					<div class="flex gap-6">
-						<button
-							on:click={() => {
-								openEditModal(lang)
-							}}
-						>
-							<img src={pencilIcon} alt="Editar estudio" />
-						</button>
-						<button
-							on:click={() => {
-								openDeleteModal(lang.languageId)
-							}}
-						>
-							<img src={deleteIcon} alt="Eliminar estudio" />
-						</button>
-					</div>
+					{#if isEditable}
+						<div class="flex gap-6">
+							<button
+								on:click={() => {
+									openEditModal(lang)
+								}}
+							>
+								<img src={pencilIcon} alt="Editar estudio" />
+							</button>
+							<button
+								on:click={() => {
+									openDeleteModal(lang.languageId)
+								}}
+							>
+								<img src={deleteIcon} alt="Eliminar estudio" />
+							</button>
+						</div>
+					{/if}
 				</div>
 				<p class="text-brand-p-black">
 					Nivel {lang.proficientLevel}
@@ -140,10 +144,13 @@
 	langData={selectedLanguageDetails}
 	bind:mode={detailsModalMode}
 	{langsList}
+	{isEditable}
 />
-<LanguageCreationModal bind:openedModal={openedCreationModal} {langsList} />
-<DeleteModal
-	title="¿Seguro que deseas eliminar este idioma de tu lista?"
-	bind:isOpen={openedDeleteModal}
-	{handleDelete}
-/>
+{#if isEditable}
+	<LanguageCreationModal bind:openedModal={openedCreationModal} {langsList} />
+	<DeleteModal
+		title="¿Seguro que deseas eliminar este idioma de tu lista?"
+		bind:isOpen={openedDeleteModal}
+		{handleDelete}
+	/>
+{/if}

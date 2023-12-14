@@ -7,7 +7,7 @@
 	import { invalidateAll } from '$app/navigation'
 	import { slide } from 'svelte/transition'
 	import AcademicTrainingEditionModal from './AcademicTrainingEditionModal.svelte'
-	import type { PersonalStudy } from '../../../types/profile-data.type'
+	import type { PersonalStudy } from '../../../../../types/profile-data.type'
 
 	export let studiesData: {
 		featured: {
@@ -26,6 +26,8 @@
 			createdAt: string
 		}[]
 	}
+
+	export let isEditable: boolean
 
 	let openedModal = false
 	let openedDeleteModal = false
@@ -71,7 +73,9 @@
 	<header>
 		<div class="flex justify-between w-full">
 			<h2>Formación Académica</h2>
-			<Add clickHandler={openModal} />
+			{#if isEditable}
+				<Add clickHandler={openModal} />
+			{/if}
 		</div>
 		<div class="h-1 bg-ucab-blue w-full mt-2" />
 	</header>
@@ -97,23 +101,24 @@
 			<li in:slide out:slide class="flex flex-col gap-2">
 				<div class="flex justify-between">
 					<h3 class="text-2xl font-poppins">{personalStudy.universityName}</h3>
-
-					<div class="flex gap-6">
-						<button
-							on:click={() => {
-								openEditionModal(personalStudy)
-							}}
-						>
-							<img src={pencilIcon} alt="Editar estudio" />
-						</button>
-						<button
-							on:click={() => {
-								openDeleteModal(personalStudy.studyId)
-							}}
-						>
-							<img src={deleteIcon} alt="Eliminar estudio" />
-						</button>
-					</div>
+					{#if isEditable}
+						<div class="flex gap-6">
+							<button
+								on:click={() => {
+									openEditionModal(personalStudy)
+								}}
+							>
+								<img src={pencilIcon} alt="Editar estudio" />
+							</button>
+							<button
+								on:click={() => {
+									openDeleteModal(personalStudy.studyId)
+								}}
+							>
+								<img src={deleteIcon} alt="Eliminar estudio" />
+							</button>
+						</div>
+					{/if}
 				</div>
 				<p class="text-brand-p-black">
 					{personalStudy.name} - {personalStudy.degree
@@ -127,13 +132,15 @@
 	</ul>
 </article>
 
-<AcademicTrainingCreationModal bind:openedModal />
-<AcademicTrainingEditionModal
-	bind:studyData={selectedStudyToUpdate}
-	bind:isOpen={openedEditionModal}
-/>
-<DeleteModal
-	title="¿Seguro que desea eliminar esta formación académica?"
-	bind:isOpen={openedDeleteModal}
-	{handleDelete}
-/>
+{#if isEditable}
+	<AcademicTrainingCreationModal bind:openedModal />
+	<AcademicTrainingEditionModal
+		bind:studyData={selectedStudyToUpdate}
+		bind:isOpen={openedEditionModal}
+	/>
+	<DeleteModal
+		title="¿Seguro que desea eliminar esta formación académica?"
+		bind:isOpen={openedDeleteModal}
+		{handleDelete}
+	/>
+{/if}

@@ -22,6 +22,8 @@
 
 	export let disabled = false
 
+	export let isEditable: boolean = true
+
 	function goToEditMode() {
 		mode = 'edit'
 	}
@@ -76,7 +78,9 @@
 			</div>
 		</form>
 
-		<EditModalFooter slot="footer" handlePressEdit={goToEditMode} />
+		{#if isEditable}
+			<EditModalFooter slot="footer" handlePressEdit={goToEditMode} />
+		{/if}
 	</Modal>
 {:else if mode === 'edit'}
 	<Modal

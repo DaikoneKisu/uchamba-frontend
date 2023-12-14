@@ -1,11 +1,13 @@
 <script lang="ts">
 	import deleteIcon from '$lib/icons/delete.svg'
 	import Add from '$lib/components/profile/add/Add.svelte'
-	import type { PersonalLink } from '../../types/profile-data.type'
+	import type { PersonalLink } from '../../../../types/profile-data.type'
 	import PersonalLinkCreationModal from './PersonalLinkCreationModal.svelte'
 	import { slide } from 'svelte/transition'
 
 	export let links: PersonalLink[]
+
+	export let isEditable: boolean
 
 	let openedModal = false
 
@@ -34,23 +36,31 @@
 			class="text-left w-full flex justify-between text-2xl font-poppins border-b-4 border-ucab-blue pb-2"
 		>
 			<h2>Enlaces de Interés</h2>
-			<Add clickHandler={openModal} />
+			{#if isEditable}
+				<Add clickHandler={openModal} />
+			{/if}
 		</div>
 		<ul class="w-full flex flex-col gap-3 mt-3">
 			{#each links as l}
 				<li in:slide out:slide class="flex justify-between">
-					<a href={l.url} class="underline text-blue-500 whitespace-nowrap overflow-x-hidden mr-8">{l.url}</a>
-					<button
-						on:click={() => {
-							handleDelete(l.linkId)
-						}}
+					<a href={l.url} class="underline text-blue-500 whitespace-nowrap overflow-x-hidden mr-8"
+						>{l.url}</a
 					>
-						<img src={deleteIcon} alt="Eliminar enlace" />
-					</button>
+					{#if isEditable}
+						<button
+							on:click={() => {
+								handleDelete(l.linkId)
+							}}
+						>
+							<img src={deleteIcon} alt="Eliminar enlace" />
+						</button>
+					{/if}
 				</li>
 			{/each}
 		</ul>
 	</div>
 </section>
 
-<PersonalLinkCreationModal bind:openedModal />
+{#if isEditable}
+	<PersonalLinkCreationModal bind:openedModal />
+{/if}

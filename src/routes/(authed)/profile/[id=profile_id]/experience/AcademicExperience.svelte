@@ -5,7 +5,7 @@
 	import ExperienceCreationModal from './ExperienceCreationModal.svelte'
 	import ExperienceDetailsModal from './ExperienceDetailsModal.svelte'
 	import DeleteModal from '$lib/components/profile/modal/DeleteModal.svelte'
-	import type { WorkExperience } from '../../../types/profile-data.type'
+	import type { WorkExperience } from '../../../../../types/profile-data.type'
 	import { slide } from 'svelte/transition'
 	import { invalidateAll } from '$app/navigation'
 
@@ -25,6 +25,7 @@
 	let openedDeleteModal = false
 	let experienceIdToDelete: number
 	let detailsModalMode: 'view' | 'edit' = 'view'
+	let isEditable: boolean
 
 	function openDeleteModal(id: number) {
 		experienceIdToDelete = id
@@ -82,7 +83,9 @@
 	<header>
 		<div class="flex justify-between w-full">
 			<h2>Experiencia Laboral</h2>
-			<Add clickHandler={opencreationModal} />
+			{#if isEditable}
+				<Add clickHandler={opencreationModal} />
+			{/if}
 		</div>
 		<div class="h-1 bg-ucab-blue w-full mt-2" />
 	</header>
@@ -92,22 +95,24 @@
 			<li in:slide out:slide class="flex flex-col gap-2">
 				<div class="flex justify-between items-center">
 					<h3 class="text-2xl font-poppins">{busines.organizationName}</h3>
-					<div class="flex gap-6">
-						<button
-							on:click={() => {
-								openEditionModal(busines)
-							}}
-						>
-							<img src={pencilIcon} alt="Editar estudio" />
-						</button>
-						<button
-							on:click={() => {
-								openDeleteModal(busines.workExpId)
-							}}
-						>
-							<img src={deleteIcon} alt="Eliminar estudio" />
-						</button>
-					</div>
+					{#if isEditable}
+						<div class="flex gap-6">
+							<button
+								on:click={() => {
+									openEditionModal(busines)
+								}}
+							>
+								<img src={pencilIcon} alt="Editar estudio" />
+							</button>
+							<button
+								on:click={() => {
+									openDeleteModal(busines.workExpId)
+								}}
+							>
+								<img src={deleteIcon} alt="Eliminar estudio" />
+							</button>
+						</div>
+					{/if}
 				</div>
 
 				<p class="font-bold font-open-sans text-ucab-black">{busines.jobTitle}</p>
@@ -133,10 +138,13 @@
 	bind:openedModal={openedDetailsModal}
 	businesData={selectedExperienceDetails}
 	bind:mode={detailsModalMode}
+	{isEditable}
 />
-<ExperienceCreationModal bind:openedModal={openedCreationModal} />
-<DeleteModal
-	title="¿Seguro que desea eliminar esta experiencia laboral?"
-	bind:isOpen={openedDeleteModal}
-	{handleDelete}
-/>
+{#if isEditable}
+	<ExperienceCreationModal bind:openedModal={openedCreationModal} />
+	<DeleteModal
+		title="¿Seguro que desea eliminar esta experiencia laboral?"
+		bind:isOpen={openedDeleteModal}
+		{handleDelete}
+	/>
+{/if}
