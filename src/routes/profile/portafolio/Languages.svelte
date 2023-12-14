@@ -31,29 +31,40 @@
 	function openDetailsModal(project: Project) {
 		detailsModalMode = 'view'
 		selectedProjectsDetails = { ...project }
+		console.log(selectedProjectsDetails);
+		
 		openedDetailsModal = true
 	}
 
 	function openEditModal(project: Project) {
 		detailsModalMode = 'edit'
 		selectedProjectsDetails = { ...project }
+		console.log(selectedProjectsDetails);
+
 		openedDetailsModal = true
 	}
 
 	let selectedProjectsDetails: Project = {
+		coverImage: '',
+		images: '',
+		imageOpcional: '',
 		projectId: 0,
-		name: "",
-		description: "",
-		projectUrl: ""
+		name: '',
+		description: '',
+		projectUrl: ''
 	}
 
 	async function handleDelete() {
 		try {
-			const res = await fetch('/api/profile/education/languages/delete', {
-				method: 'POST',
-				body: JSON.stringify({ id: langIdToDelete })
+			const url = `https://uchamba-backend-staging.1.us-1.fl0.io/projects/${langIdToDelete}`
+			const res = await fetch(url, {
+				method: 'DELETE',
+				headers: {
+					Authorization:
+						'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibmFtZSI6IkFsZWphbmRybyBSb3NhcyIsImVtYWlsIjoiYWpyb3Nhcy4xOUBlc3QudWNhYi5lZHUudmUiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MDIwNjQ5ODIsImV4cCI6MTcwMjkyODk4Mn0.sZYZvKi_gQ0CrkZe3li971QB8jHv5vsrANiROCECgcw'
+				}
 			})
-			if (!res.ok) throw new Error('Error al eliminar la formación académica')
+			if (!res.ok) throw new Error('Error al eliminar la Proyecto')
 
 			invalidateAll()
 			closeDeleteModal()
@@ -65,8 +76,7 @@
 	function closeDeleteModal() {
 		openedDeleteModal = false
 	}
-	console.log(projects);
-	
+	console.log(projects)
 </script>
 
 <article class="bg-brand-white flex-col w-full">
@@ -94,7 +104,7 @@
 						</button>
 						<button
 							on:click={() => {
-								openDeleteModal(project.projectId)/*  */
+								openDeleteModal(project.projectId) /*  */
 							}}
 						>
 							<img src={deleteIcon} alt="Eliminar estudio" />
@@ -123,7 +133,7 @@
 	project={selectedProjectsDetails}
 	bind:mode={detailsModalMode}
 />
-<LanguageCreationModal bind:openedModal={openedCreationModal} /> 
+<LanguageCreationModal bind:openedModal={openedCreationModal} />
 <DeleteModal
 	title="¿Seguro que deseas eliminar este proyecto de tu lista?"
 	bind:isOpen={openedDeleteModal}

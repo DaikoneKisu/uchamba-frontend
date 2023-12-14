@@ -84,6 +84,10 @@ export interface WorkExperience {
 }
 
 export interface Project {
+	coverImageUrl: string
+	coverImage: string,
+	images: string,
+	imageOpcional: string
 	projectId: number
 	name: string
 	description: string
