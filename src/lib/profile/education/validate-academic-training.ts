@@ -7,7 +7,7 @@ const schema = object({
 		.required('Campo requerido'),
 	universityName: string().required('Campo requerido'),
 	//TODO: change this format to only year
-	graduationDate: string().required('Campo requerido')
+	graduationYear: string().required('Campo requerido')
 })
 
 export const validateAcademicTraining = (obj: object) => {

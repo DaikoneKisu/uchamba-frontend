@@ -13,14 +13,14 @@
 		name: '',
 		degree: '',
 		universityName: '',
-		graduationDate: ''
+		graduationYear: ''
 	}
 
 	let formErrors = {
 		name: '',
 		degree: '',
 		universityName: '',
-		graduationDate: ''
+		graduationYear: ''
 	}
 
 	let disabled = false
@@ -57,7 +57,7 @@
 				name: '',
 				degree: '',
 				universityName: '',
-				graduationDate: ''
+				graduationYear: ''
 			}
 		} catch (error: unknown) {
 			disabled = true
@@ -68,7 +68,7 @@
 					name: errors.find((e) => e.path === 'name')?.message ?? '',
 					degree: errors.find((e) => e.path === 'degree')?.message ?? '',
 					universityName: errors.find((e) => e.path === 'universityName')?.message ?? '',
-					graduationDate: errors.find((e) => e.path === 'graduationDate')?.message ?? ''
+					graduationYear: errors.find((e) => e.path === 'graduationYear')?.message ?? ''
 				}
 			}
 		}
@@ -79,7 +79,7 @@
 			name: '',
 			degree: '',
 			universityName: '',
-			graduationDate: ''
+			graduationYear: ''
 		}
 	}
 </script>
@@ -101,10 +101,10 @@
 			/>
 			<Input
 				type="text"
-				label="Fecha de Graduación"
-				placeholder="aaaa-mm-dd"
-				bind:value={formData.graduationDate}
-				error={formErrors.graduationDate}
+				label="Año de Graduación"
+				placeholder="2023"
+				bind:value={formData.graduationYear}
+				error={formErrors.graduationYear}
 			/>
 		</div>
 		<div class="flex flex-col w-full gap-12">

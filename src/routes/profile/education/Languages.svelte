@@ -4,7 +4,7 @@
 	import deleteIcon from '$lib/icons/delete.svg'
 	import LanguageCreationModal from './LanguageCreationModal.svelte'
 	import LanguagesDetailsModal from './LanguagesDetailsModal.svelte'
-	import { flip } from 'svelte/animate'
+	import { slide } from 'svelte/transition'
 	import DeleteModal from '$lib/components/profile/modal/DeleteModal.svelte'
 	import { invalidateAll } from '$app/navigation'
 
@@ -97,7 +97,7 @@
 
 	<ul class="flex flex-col gap-8 mt-6">
 		{#each languages as lang (lang.languageId)}
-			<li animate:flip class="flex flex-col gap-2">
+			<li in:slide out:slide class="flex flex-col gap-2">
 				<div class="flex justify-between">
 					<h3 class="text-2xl font-poppins">{lang.name}</h3>
 

@@ -59,7 +59,7 @@ export interface FeaturedStudy {
 	ucareerId: number
 	name: string
 	degree: string
-	graduationDate: string
+	graduationYear: string
 	createdAt: string
 }
 
@@ -68,7 +68,7 @@ export interface PersonalStudy {
 	name: string
 	universityName: string
 	degree: string
-	graduationDate: string
+	graduationYear: string
 	createdAt: string
 }
 
