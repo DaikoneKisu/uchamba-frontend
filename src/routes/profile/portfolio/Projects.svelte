@@ -31,27 +31,27 @@
 	function openDetailsModal(project: Project) {
 		detailsModalMode = 'view'
 		selectedProjectsDetails = { ...project }
-		console.log(selectedProjectsDetails);
-		
+		console.log(selectedProjectsDetails)
+
 		openedDetailsModal = true
 	}
 
 	function openEditModal(project: Project) {
 		detailsModalMode = 'edit'
 		selectedProjectsDetails = { ...project }
-		console.log(selectedProjectsDetails);
+		console.log(selectedProjectsDetails)
 
 		openedDetailsModal = true
 	}
 
 	let selectedProjectsDetails: Project = {
-		coverImage: '',
-		images: '',
-		imageOpcional: '',
 		projectId: 0,
 		name: '',
 		description: '',
-		projectUrl: ''
+		projectUrl: '',
+		coverImageId: '',
+		coverImageUrl: '',
+		images: []
 	}
 
 	async function handleDelete() {
@@ -104,7 +104,7 @@
 						</button>
 						<button
 							on:click={() => {
-								openDeleteModal(project.projectId) /*  */
+								openDeleteModal(project.projectId)
 							}}
 						>
 							<img src={deleteIcon} alt="Eliminar estudio" />

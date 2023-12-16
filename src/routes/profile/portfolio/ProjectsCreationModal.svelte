@@ -5,36 +5,42 @@
 	import languageIcon from '$lib/icons/Portfolio.svg'
 	import SaveModalFooter from '../../../lib/components/profile/modal/SaveModalFooter.svelte'
 	import { invalidateAll } from '$app/navigation'
+	import type { ProjectCreationPayload } from '$lib/profile/portfolio/project-creation-payload.type'
 
 	export let openedModal = false
 
-	let formData = {
+	let formData: ProjectCreationPayload = {
+		name: '',
+		description: '',
+		projectUrl: '',
+		coverImage: null,
+		images: []
+	}
+
+	let formErrors = {
 		name: '',
 		description: '',
 		projectUrl: '',
 		coverImage: '',
-		images: '',
-		imageOpcional: ''
-	}
-	let formErrors = {
-		name: '',
-		degree: '',
-		description: '',
-		projectUrl: ''
+		images: ''
 	}
 
 	let disabled = false
 
 	async function save() {
-		const form = new FormData()
-		form.append('name', formData.name)
-		form.append('description', formData.description)
-		form.append('projectUrl', formData.projectUrl)
-		form.append('images', formData.images)
-		form.append('coverImage', formData.coverImage)
-		form.append('imageOpcional', formData.imageOpcional)
-
 		try {
+			const form = new FormData()
+			form.append('name', formData.name)
+			form.append('description', formData.description)
+
+			if (formData.projectUrl) form.append('projectUrl', formData.projectUrl)
+
+			for (const img in formData.images) {
+				form.append('images', img)
+			}
+
+			if (formData.coverImage) form.append('coverImage', formData.coverImage)
+
 			disabled = true
 			const res = await fetch(`https://uchamba-backend-staging.1.us-1.fl0.io/projects`, {
 				headers: {
@@ -67,17 +73,6 @@
 			if (file) {
 				formData.coverImage = file
 				console.log(formData.coverImage)
-			}
-		}
-	}
-
-	function handleFileChangeOpcional(event: any) {
-		const input = event.target
-		if (input.files && input.files[0]) {
-			const file = input.files[0]
-			// Realizar la lógica con el archivo aquí
-			if (file) {
-				formData.imageOpcional = file
 			}
 		}
 	}
@@ -130,10 +125,6 @@
 			<label>
 				Imagen:
 				<input type="file" accept="image/*" on:change={handleFileChange} />
-			</label>
-			<label>
-				Imagen Opcional:
-				<input type="file" accept="image/*" on:change={handleFileChangeOpcional} />
 			</label>
 			<label>
 				Imagen Cover:
