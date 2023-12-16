@@ -19,13 +19,13 @@
 		departureDate: string
 		createdAt: string
 	}[]
+	export let isEditable: boolean
 
 	let openedCreationModal = false
 	let openedDetailsModal = false
 	let openedDeleteModal = false
 	let experienceIdToDelete: number
 	let detailsModalMode: 'view' | 'edit' = 'view'
-	let isEditable: boolean
 
 	function openDeleteModal(id: number) {
 		experienceIdToDelete = id
