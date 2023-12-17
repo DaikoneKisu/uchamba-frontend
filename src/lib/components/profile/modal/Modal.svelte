@@ -20,7 +20,7 @@
 	>
 		<div
 			in:scale
-			class="bg-white py-4 rounded-[20px] shadow justify-center items-center max-w-[802px] w-[90%]"
+			class="bg-white py-4 rounded-[20px] shadow justify-center items-center max-w-[802px] max-h-[95%] w-[90%] overflow-y-auto"
 		>
 			<header
 				class="flex w-full justify-between items-center px-8 border-b-2 border-[#f3f3f3] pb-5 pt-3"

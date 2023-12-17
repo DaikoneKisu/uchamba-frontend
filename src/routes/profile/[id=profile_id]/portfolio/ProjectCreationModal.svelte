@@ -6,8 +6,12 @@
 	import SaveModalFooter from '$lib/components/profile/modal/SaveModalFooter.svelte'
 	import { invalidateAll } from '$app/navigation'
 	import type { ProjectCreationPayload } from '$lib/profile/portfolio/project-creation-payload.type'
+	import ImageInput from '$lib/components/profile/image-input/ImageInput.svelte'
+	import Textbox from '$lib/components/profile/textbox/Textbox.svelte'
 
 	export let openedModal = false
+
+	let insertedImages: string[] = []
 
 	let formData: ProjectCreationPayload = {
 		name: '',
@@ -35,18 +39,15 @@
 
 			if (formData.projectUrl) form.append('projectUrl', formData.projectUrl)
 
-			for (const img in formData.images) {
+			for (const img of formData.images) {
 				form.append('images', img)
 			}
 
 			if (formData.coverImage) form.append('coverImage', formData.coverImage)
 
 			disabled = true
-			const res = await fetch(`https://uchamba-backend-staging.1.us-1.fl0.io/projects`, {
-				headers: {
-					Authorization:
-						'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibmFtZSI6IkFsZWphbmRybyBSb3NhcyIsImVtYWlsIjoiYWpyb3Nhcy4xOUBlc3QudWNhYi5lZHUudmUiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MDIwNjQ5ODIsImV4cCI6MTcwMjkyODk4Mn0.sZYZvKi_gQ0CrkZe3li971QB8jHv5vsrANiROCECgcw'
-				},
+
+			const res = await fetch(`/api/profile/portfolio/projects/create`, {
 				method: 'POST',
 				body: form
 			})
@@ -65,27 +66,50 @@
 		openedModal = false
 	}
 
-	function handleImageCoverChange(event: any) {
+	function handleCoverImageChange(event: any) {
 		const input = event.target
 		if (input.files && input.files[0]) {
 			const file = input.files[0]
-			// Realizar la lógica con el archivo aquí
 			if (file) {
 				formData.coverImage = file
-				console.log(formData.coverImage)
 			}
 		}
 	}
 
-	function handleFileChange(event: any) {
+	function handleImageChange(event: any) {
 		const input = event.target
-		if (input.files && input.files[0]) {
-			const file = input.files[0]
-			// Realizar la lógica con el archivo aquí
+		const { files, name } = input
+
+		if (files && files[0]) {
+			const file = files[0]
 			if (file) {
-				formData.images = file
+				formData.images.push(file)
+
+				if (insertedImages.includes(name))
+					insertedImages = insertedImages.filter((img) => img !== name)
+
+				insertedImages = [...insertedImages, name]
+				console.log(insertedImages)
 			}
 		}
+	}
+
+	$: if (!openedModal) {
+		formData = {
+			name: '',
+			description: '',
+			projectUrl: '',
+			coverImage: null,
+			images: []
+		}
+		formErrors = {
+			name: '',
+			description: '',
+			projectUrl: '',
+			coverImage: '',
+			images: ''
+		}
+		insertedImages = []
 	}
 </script>
 
@@ -95,7 +119,7 @@
 	bind:isOpen={openedModal}
 	icon={languageIcon}
 >
-	<form slot="body" class="w-full flex pl-6 py-12 justify-between">
+	<form slot="body" class="w-full flex px-6 py-12 justify-between">
 		<div class="flex w-full flex-col gap-12">
 			<div class="flex w-full gap-12">
 				<Input
@@ -113,23 +137,27 @@
 					error={formErrors.name}
 				/>
 			</div>
-			<div class="custom-input">
-				<label for="custom-input">Descripcion</label>
-				<input
-					type="text"
-					id="custom-input"
-					bind:value={formData.description}
-					placeholder="Ingrese una nueva descripcion"
+			<Textbox
+				value={formData.description}
+				label="Descripción"
+				placeholder="Ingrese una descripción del proyecto"
+			/>
+
+			<div class="flex justify-evenly items-center flex-wrap gap-y-4">
+				<ImageInput
+					handleChange={handleCoverImageChange}
+					title="Click para subir una imagen de portada"
+					subTitle="Se admite cualquier formato de imágen"
 				/>
+				{#each Array(insertedImages.length + 1) as _, i}
+					<ImageInput
+						name={`image-${i}`}
+						handleChange={handleImageChange}
+						title="Click para subir una imagen del carrusel"
+						subTitle="Se admite cualquier formato de imágen"
+					/>
+				{/each}
 			</div>
-			<label>
-				Imagen:
-				<input type="file" accept="image/*" on:change={handleFileChange} />
-			</label>
-			<label>
-				Imagen Cover:
-				<input type="file" accept="image/*" on:change={handleImageCoverChange} />
-			</label>
 		</div>
 	</form>
 
