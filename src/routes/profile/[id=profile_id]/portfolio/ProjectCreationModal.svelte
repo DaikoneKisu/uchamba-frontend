@@ -3,7 +3,7 @@
 	import './portafolio.css'
 	import Input from '$lib/components/input/Input.svelte'
 	import languageIcon from '$lib/icons/Portfolio.svg'
-	import SaveModalFooter from '../../../../../lib/components/profile/modal/SaveModalFooter.svelte'
+	import SaveModalFooter from '$lib/components/profile/modal/SaveModalFooter.svelte'
 	import { invalidateAll } from '$app/navigation'
 	import type { ProjectCreationPayload } from '$lib/profile/portfolio/project-creation-payload.type'
 

@@ -7,7 +7,7 @@
 	import { invalidateAll } from '$app/navigation'
 	import { slide } from 'svelte/transition'
 	import AcademicTrainingEditionModal from './AcademicTrainingEditionModal.svelte'
-	import type { PersonalStudy } from '../../../../../types/profile-data.type'
+	import type { PersonalStudy } from '$lib/types/profile-data.type'
 
 	export let studiesData: {
 		featured: {

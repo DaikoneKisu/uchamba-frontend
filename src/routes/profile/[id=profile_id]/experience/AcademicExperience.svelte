@@ -5,7 +5,7 @@
 	import ExperienceCreationModal from './ExperienceCreationModal.svelte'
 	import ExperienceDetailsModal from './ExperienceDetailsModal.svelte'
 	import DeleteModal from '$lib/components/profile/modal/DeleteModal.svelte'
-	import type { WorkExperience } from '../../../../../types/profile-data.type'
+	import type { WorkExperience } from '$lib/types/profile-data.type'
 	import { slide } from 'svelte/transition'
 	import { invalidateAll } from '$app/navigation'
 

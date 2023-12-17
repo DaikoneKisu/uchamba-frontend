@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { ProfileData } from '../../../../../types/profile-data.type'
+	import type { ProfileData } from '$lib/types/profile-data.type'
 	import Projects from './Projects.svelte'
 
 	export let data: ProfileData

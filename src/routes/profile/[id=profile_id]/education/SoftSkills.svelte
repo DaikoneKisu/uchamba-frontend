@@ -4,7 +4,6 @@
 	import { flip } from 'svelte/animate'
 	import SoftSkillCreationModal from './SoftSkillCreationModal.svelte'
 	import { fade } from 'svelte/transition'
-	import { invalidateAll } from '$app/navigation'
 
 	export let softSkills: {
 		skillId: number
