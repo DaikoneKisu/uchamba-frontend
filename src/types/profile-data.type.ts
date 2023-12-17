@@ -87,7 +87,8 @@ export interface Project {
 	projectId: number
 	name: string
 	description: string
-	projectUrl: string
-	createdAt: string
-	updatedAt: string
+	projectUrl?: string
+	coverImageId: string
+	coverImageUrl: string
+	images: string[]
 }
