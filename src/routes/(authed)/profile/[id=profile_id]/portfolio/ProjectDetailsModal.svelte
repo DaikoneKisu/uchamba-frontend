@@ -5,7 +5,7 @@
 	import EditModalFooter from '$lib/components/profile/modal/EditModalFooter.svelte'
 	import SaveModalFooter from '$lib/components/profile/modal/SaveModalFooter.svelte'
 	import { invalidateAll } from '$app/navigation'
-	import type { Project } from '../../../types/profile-data.type'
+	import type { Project } from '../../../../../types/profile-data.type'
 
 	export let openedModal = false
 
