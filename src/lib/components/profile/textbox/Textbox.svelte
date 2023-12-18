@@ -31,13 +31,13 @@
 				{required}
 				{disabled}
 			/>
-		</div></label
-	>
+		</div>
+	</label>
 	{#if error && !isPristine}
-		<span
-			in:fly={{ x: -12 }}
-			out:fly={{ x: 12 }}
-			class="text-red-600 text-[12px] ml-3 absolute translate-y-16">{error}</span
+		<span in:fly={{ x: -12 }} class="text-red-600 text-[12px] ml-3">{error}</span>
+	{:else}
+		<span class="text-red-600 text-[12px] ml-3 invisible" aria-hidden
+			>Has como que no estás leyendo esto</span
 		>
 	{/if}
 </div>

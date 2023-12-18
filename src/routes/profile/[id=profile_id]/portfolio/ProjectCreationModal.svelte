@@ -8,6 +8,8 @@
 	import type { ProjectCreationPayload } from '$lib/profile/portfolio/project-creation-payload.type'
 	import ImageInput from '$lib/components/profile/image-input/ImageInput.svelte'
 	import Textbox from '$lib/components/profile/textbox/Textbox.svelte'
+	import { validateProject } from '$lib/profile/portfolio/validate-project'
+	import { ValidationError } from 'yup'
 
 	export let openedModal = false
 
@@ -111,6 +113,34 @@
 		}
 		insertedImages = []
 	}
+
+	$: if (openedModal) {
+		try {
+			validateProject(formData)
+			disabled = false
+
+			formErrors = {
+				name: '',
+				description: '',
+				projectUrl: '',
+				coverImage: '',
+				images: ''
+			}
+		} catch (error: unknown) {
+			disabled = true
+			if (error instanceof ValidationError) {
+				const errors = error.inner
+
+				formErrors = {
+					name: errors.find((e) => e.path === 'name')?.message ?? '',
+					description: errors.find((e) => e.path === 'description')?.message ?? '',
+					projectUrl: errors.find((e) => e.path === 'projectUrl')?.message ?? '',
+					coverImage: errors.find((e) => e.path === 'coverImage')?.message ?? '',
+					images: errors.find((e) => e.path === 'images')?.message ?? ''
+				}
+			}
+		}
+	}
 </script>
 
 <Modal
@@ -134,13 +164,14 @@
 					label="Link (Opcional)"
 					placeholder="Ingrese el link del proyecto"
 					bind:value={formData.projectUrl}
-					error={formErrors.name}
+					error={formErrors.projectUrl}
 				/>
 			</div>
 			<Textbox
-				value={formData.description}
+				bind:value={formData.description}
 				label="Descripción"
 				placeholder="Ingrese una descripción del proyecto"
+				error={formErrors.description}
 			/>
 
 			<div class="flex justify-evenly items-center flex-wrap gap-y-4">
@@ -156,6 +187,7 @@
 						title="Click para subir una imagen del carrusel"
 						subTitle="Se admite cualquier formato de imágen"
 					/>
+
 				{/each}
 			</div>
 		</div>

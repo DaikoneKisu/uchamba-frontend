@@ -17,14 +17,14 @@
 	let openedDetailsModal = false
 	let detailsModalMode: 'view' | 'edit' = 'view'
 
-	let langIdToDelete: number
+	let ProjectIdToDelete: number
 
 	function openCreationModal() {
 		openedCreationModal = true
 	}
 
 	function openDeleteModal(id: number) {
-		langIdToDelete = id
+		ProjectIdToDelete = id
 		openedDeleteModal = true
 	}
 
@@ -56,13 +56,10 @@
 
 	async function handleDelete() {
 		try {
-			const url = `https://uchamba-backend-staging.1.us-1.fl0.io/projects/${langIdToDelete}`
+			const url = '/api/profile/portfolio/projects/delete'
 			const res = await fetch(url, {
 				method: 'DELETE',
-				headers: {
-					Authorization:
-						'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibmFtZSI6IkFsZWphbmRybyBSb3NhcyIsImVtYWlsIjoiYWpyb3Nhcy4xOUBlc3QudWNhYi5lZHUudmUiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MDIwNjQ5ODIsImV4cCI6MTcwMjkyODk4Mn0.sZYZvKi_gQ0CrkZe3li971QB8jHv5vsrANiROCECgcw'
-				}
+				body: JSON.stringify({ id: ProjectIdToDelete })
 			})
 			if (!res.ok) throw new Error('Error al eliminar la Proyecto')
 

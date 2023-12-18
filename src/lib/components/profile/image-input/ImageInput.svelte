@@ -1,5 +1,6 @@
 <script lang="ts">
 	import uploadIcon from '$lib/icons/upload.svg'
+	import { slide } from 'svelte/transition'
 
 	export let handleChange: (event: Event) => void
 	export let title: string
@@ -10,6 +11,7 @@
 </script>
 
 <label
+	in:slide
 	class="w-[335px] h-[212px] flex flex-col justify-center overflow-clip items-center border border-dashed border-[#343434] border-opacity-25 text-center hover:cursor-pointer"
 >
 	<input
