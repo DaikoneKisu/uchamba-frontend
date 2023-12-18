@@ -7,10 +7,9 @@
 	import { flip } from 'svelte/animate'
 	import DeleteModal from '$lib/components/profile/modal/DeleteModal.svelte'
 	import { invalidateAll } from '$app/navigation'
-	import type { ProfileData, Project } from '$lib/types/profile-data.type'
+	import type { Project } from '$lib/types/profile-data.type'
 
-	export let profileData: ProfileData
-	export let projects: Project[] = profileData.projects
+	export let projects: Project[]
 
 	let openedCreationModal = false
 	let openedDeleteModal = false

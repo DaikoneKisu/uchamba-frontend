@@ -7,9 +7,9 @@ export interface ProjectDeletePayload {
 
 export async function DELETE({ request, fetch }: { request: Request; fetch: typeof window.fetch }) {
 	const formData = (await request.json()) as ProjectDeletePayload
-	const url = `${BACKEND_BASE_URL}/projects/${formData.id}}`
+	const url = `${BACKEND_BASE_URL}/projects/${formData.id}`
 	const response = await fetch(url, {
-		method: 'DELETE'
+		method: 'DELETE',
 	})
 
 	const responseData = (await response.json()) as unknown
