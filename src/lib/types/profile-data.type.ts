@@ -90,5 +90,8 @@ export interface Project {
 	projectUrl?: string
 	coverImageId: string
 	coverImageUrl: string
-	images: string[]
+	images: {
+		imageCloudId: string
+		imageUrl: string
+	}[]
 }

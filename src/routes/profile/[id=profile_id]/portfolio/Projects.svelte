@@ -18,6 +18,16 @@
 
 	let ProjectIdToDelete: number
 
+	let selectedProjectsDetails: Project = {
+		projectId: 0,
+		name: '',
+		description: '',
+		projectUrl: '',
+		coverImageId: '',
+		coverImageUrl: '',
+		images: []
+	}
+
 	function openCreationModal() {
 		openedCreationModal = true
 	}
@@ -30,27 +40,15 @@
 	function openDetailsModal(project: Project) {
 		detailsModalMode = 'view'
 		selectedProjectsDetails = { ...project }
-		console.log(selectedProjectsDetails)
 
 		openedDetailsModal = true
 	}
 
-	function openEditModal(project: Project) {
+	function openEditionModal(project: Project) {
 		detailsModalMode = 'edit'
 		selectedProjectsDetails = { ...project }
-		console.log(selectedProjectsDetails)
 
 		openedDetailsModal = true
-	}
-
-	let selectedProjectsDetails: Project = {
-		projectId: 0,
-		name: '',
-		description: '',
-		projectUrl: '',
-		coverImageId: '',
-		coverImageUrl: '',
-		images: []
 	}
 
 	async function handleDelete() {
@@ -93,7 +91,7 @@
 					<div class="flex gap-6">
 						<button
 							on:click={() => {
-								openEditModal(project)
+								openEditionModal(project)
 							}}
 						>
 							<img src={pencilIcon} alt="Editar estudio" />

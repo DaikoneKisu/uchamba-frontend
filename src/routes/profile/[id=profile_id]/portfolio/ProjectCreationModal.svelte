@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Modal from '$lib/components/profile/modal/Modal.svelte'
-	import './portafolio.css'
 	import Input from '$lib/components/input/Input.svelte'
 	import languageIcon from '$lib/icons/Portfolio.svg'
 	import SaveModalFooter from '$lib/components/profile/modal/SaveModalFooter.svelte'
@@ -12,8 +11,6 @@
 	import { ValidationError } from 'yup'
 
 	export let openedModal = false
-
-	let insertedImages: string[] = []
 
 	let formData: ProjectCreationPayload = {
 		name: '',
@@ -42,7 +39,7 @@
 			if (formData.projectUrl) form.append('projectUrl', formData.projectUrl)
 
 			for (const img of formData.images) {
-				form.append('images', img)
+				if (img instanceof File) form.append('images', img)
 			}
 
 			if (formData.coverImage) form.append('coverImage', formData.coverImage)
@@ -68,34 +65,6 @@
 		openedModal = false
 	}
 
-	function handleCoverImageChange(event: any) {
-		const input = event.target
-		if (input.files && input.files[0]) {
-			const file = input.files[0]
-			if (file) {
-				formData.coverImage = file
-			}
-		}
-	}
-
-	function handleImageChange(event: any) {
-		const input = event.target
-		const { files, name } = input
-
-		if (files && files[0]) {
-			const file = files[0]
-			if (file) {
-				formData.images.push(file)
-
-				if (insertedImages.includes(name))
-					insertedImages = insertedImages.filter((img) => img !== name)
-
-				insertedImages = [...insertedImages, name]
-				console.log(insertedImages)
-			}
-		}
-	}
-
 	$: if (!openedModal) {
 		formData = {
 			name: '',
@@ -111,7 +80,6 @@
 			coverImage: '',
 			images: ''
 		}
-		insertedImages = []
 	}
 
 	$: if (openedModal) {
@@ -140,6 +108,13 @@
 				}
 			}
 		}
+	}
+
+	$: if (formData.images.every((img) => img instanceof File)) {
+		formData.images.push(null)
+	} else {
+		formData.images = formData.images.filter((img) => img instanceof File)
+		formData.images.push(null)
 	}
 </script>
 
@@ -176,18 +151,16 @@
 
 			<div class="flex justify-evenly items-center flex-wrap gap-y-4">
 				<ImageInput
-					handleChange={handleCoverImageChange}
+					bind:image={formData.coverImage}
 					title="Click para subir una imagen de portada"
 					subTitle="Se admite cualquier formato de imágen"
 				/>
-				{#each Array(insertedImages.length + 1) as _, i}
+				{#each formData.images as img}
 					<ImageInput
-						name={`image-${i}`}
-						handleChange={handleImageChange}
+						bind:image={img}
 						title="Click para subir una imagen del carrusel"
 						subTitle="Se admite cualquier formato de imágen"
 					/>
-
 				{/each}
 			</div>
 		</div>
