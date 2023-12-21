@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { fade, fly } from 'svelte/transition'
+	import { fly } from 'svelte/transition'
 	import type { HTMLInputTypeAttribute } from '../../../types/html-input-type-attribute.type'
 
 	export let label: string
@@ -17,10 +17,10 @@
 
 <div class="flex flex-col w-full">
 	<label
-		class={'flex border-4 h-[64px] w-full max-w-[330px] rounded-xl bg-brand-white pr-4 transition-all ' +
-			(error && !isPristine ? ' border-[#D14F4F]' : 'border-[#f0f0f0]') +
+		class={'flex border-4 border-[#f0f0f0] h-[64px] w-full max-w-[330px] rounded-xl bg-brand-white pr-4 transition-all ' +
+			className +
 			' ' +
-			className}
+			(error && !isPristine ? ' border-[#D14F4F]' : '')}
 	>
 		<div class="flex flex-col pl-5 h-full justify-center w-full text-[15px]">
 			<span class="text-brand-p-black">{label}</span>
@@ -72,10 +72,8 @@
 		</div>
 	</label>
 	{#if error && !isPristine}
-		<span
-			in:fly={{ x: -12 }}
-			out:fly={{ x: 12 }}
-			class="text-red-600 text-[12px] ml-3 absolute translate-y-16">{error}</span
-		>
+		<span in:fly={{ x: -12 }} class="text-red-600 text-[12px] ml-3">{error}</span>
+	{:else}
+		<span class="text-red-600 text-[12px] ml-3 invisible" aria-hidden>you haven't read this</span>
 	{/if}
 </div>
