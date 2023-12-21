@@ -10,6 +10,7 @@
 	import { validateProject } from '$lib/profile/portfolio/validate-project'
 	import { ValidationError } from 'yup'
 	import type { ProjectEditionPayload } from '$lib/profile/portfolio/project-edition-payload'
+	import Carousel from '$lib/components/profile/carousel/Carousel.svelte'
 
 	export let openedModal = false
 
@@ -147,7 +148,10 @@
 		const imagesToUploadQuantity = formData.images.filter((img) => img instanceof File).length
 		const projectImagesQuantity = project.images.length
 
-		if (formData.images.every((img) => img instanceof File) || imagesToDeleteQuantity + imagesToUploadQuantity === projectImagesQuantity) {
+		if (
+			formData.images.every((img) => img instanceof File) ||
+			imagesToDeleteQuantity + imagesToUploadQuantity === projectImagesQuantity
+		) {
 			formData.images.push(null)
 		} else if (project.images.length) {
 			formData.images = formData.images.filter((img) => img instanceof File)
@@ -163,48 +167,33 @@
 		bind:isOpen={openedModal}
 		icon={languageIcon}
 	>
-		<form slot="body" class="w-full flex pl-6 py-12 justify-between">
+		<form slot="body" class="w-full flex px-6 py-12 justify-between">
 			<div class="flex w-full flex-col gap-12">
 				<div class="flex w-full gap-12">
 					<Input
 						type="text"
-						placeholder="Ingrese el nombre del proyecto"
 						label="Proyecto"
-						bind:value={project.name}
-						error={project.name}
+						placeholder="Ingrese el nombre del proyecto"
+						bind:value={formData.name}
+						error={formErrors.name}
 					/>
 					<Input
 						type="text"
 						label="Link (Opcional)"
 						placeholder="Ingrese el link del proyecto"
-						bind:value={project.projectUrl}
-						error={project.name}
+						bind:value={formData.projectUrl}
+						error={formErrors.projectUrl}
 					/>
 				</div>
-				<div class="custom-input">
-					<label for="custom-input">Descripcion</label>
-					<input
-						type="text"
-						id="custom-input"
-						bind:value={project.description}
-						placeholder="Ingrese una nueva descripcion"
-					/>
-				</div>
-				<img
-					src={project.coverImageUrl}
-					alt="Descripción de la imagen"
-					style="width: 200px; height: 150px;"
+				<Textbox
+					bind:value={formData.description}
+					label="Descripción"
+					placeholder="Ingrese una descripción del proyecto"
+					error={formErrors.description}
 				/>
-
-				{#if project.images && project.images.length > 0}
-					{#each project.images as image, index}
-						<div>
-							<!-- <img src={image.imageUrl} alt={`Imagen ${index + 1}`} /> -->
-							<!-- 	<button on:click={() => editImage(index)}>Editar</button>
-				<button on:click={() => deleteImage(index)}>Eliminar</button> -->
-						</div>
-					{/each}
-				{/if}
+				<div class="w-[calc(100%+140px)] right-[70px] relative">
+					<Carousel />
+				</div>
 			</div>
 		</form>
 
