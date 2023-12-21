@@ -70,7 +70,6 @@
 	function closeDeleteModal() {
 		openedDeleteModal = false
 	}
-	console.log(projects)
 </script>
 
 <article class="bg-brand-white flex-col w-full">

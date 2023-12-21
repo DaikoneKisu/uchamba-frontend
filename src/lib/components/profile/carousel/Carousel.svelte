@@ -2,11 +2,7 @@
 	import rightArrow from '$lib/icons/right-arrow.svg'
 	import leftArrow from '$lib/icons/left-arrow.svg'
 
-	export let images: string[] = [
-		'https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg',
-		'https://images.pexels.com/photos/220429/pexels-photo-220429.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-		'https://images.unsplash.com/photo-1575936123452-b67c3203c357?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D'
-	]
+	export let images: string[]
 
 	let currentImage = 0
 
@@ -26,25 +22,25 @@
 	$: prevImage = (currentImage - 1 + images.length) % images.length
 </script>
 
-<div class="flex flex-col justify-center items-center">
+<div class="flex flex-col justify-center items-center gap-4">
 	<div class="flex items-end gap-7">
 		<button on:click={goPrev}>
 			<img
 				src={images[prevImage]}
 				alt="Imágen del carrusel"
-				class="w-[316px] aspect-[316/148] opacity-40 rounded-[10px] object-cover"
+				class="w-[316px] aspect-[316/200] opacity-40 rounded-[10px] object-contain"
 			/>
 		</button>
 		<img
 			src={images[currentImage]}
 			alt="Imágen del carrusel"
-			class="w-[316px] aspect-[316/148] rounded-[10px] mb-4 object-cover"
+			class="w-[316px] aspect-[316/200] rounded-[10px] mb-4 object-contain"
 		/>
 		<button on:click={goNext}>
 			<img
 				src={images[nextImage]}
 				alt="Imágen del carrusel"
-				class="w-[316px] aspect-[316/148] opacity-40 rounded-[10px] object-cover"
+				class="w-[316px] aspect-[316/200] opacity-40 rounded-[10px] object-contain"
 			/>
 		</button>
 	</div>

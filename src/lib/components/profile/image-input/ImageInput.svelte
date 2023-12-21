@@ -7,6 +7,7 @@
 	export let subTitle: string
 	export let handleChange: (event: Event) => void = () => {}
 	export let handleDelete: () => void = () => {}
+	export let isDeletable: boolean = true
 
 	export let files: FileList | null = null
 
@@ -34,14 +35,16 @@
 	<input type="file" accept="image/*" class="hidden" on:change={handleChange} bind:files />
 
 	{#if imageUrl}
-		<div class="relative h-0 w-0 top-7 left-36 flex justify-center items-center">
-			<button
-				on:click|preventDefault={deleteImage}
-				class="hover:cursor-pointer absolute h-[33px] w-[39px] z-10"
-			>
-				<img src={deleteIcon} alt="Delete img" />
-			</button>
-		</div>
+		{#if isDeletable}
+			<div class="relative h-0 w-0 top-7 left-36 flex justify-center items-center">
+				<button
+					on:click|preventDefault={deleteImage}
+					class="hover:cursor-pointer absolute h-[33px] w-[39px] z-10"
+				>
+					<img src={deleteIcon} alt="Delete img" />
+				</button>
+			</div>
+		{/if}
 		<img src={imageUrl} alt="" class="object-contain h-full w-full relative" />
 	{:else}
 		<img src={uploadIcon} alt="" />

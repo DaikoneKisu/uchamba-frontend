@@ -10,6 +10,7 @@
 	import { validateProject } from '$lib/profile/portfolio/validate-project'
 	import { ValidationError } from 'yup'
 	import type { ProjectEditionPayload } from '$lib/profile/portfolio/project-edition-payload'
+	import { invalidateAll } from '$app/navigation'
 	import Carousel from '$lib/components/profile/carousel/Carousel.svelte'
 
 	export let openedModal = false
@@ -29,10 +30,12 @@
 	}
 
 	let formData: ProjectEditionPayload = {
+		projectId: 0,
 		name: '',
 		description: '',
 		projectUrl: '',
 		coverImage: null,
+		coverImageId: null,
 		images: [],
 		deletedImages: []
 	}
@@ -46,22 +49,28 @@
 	}
 
 	async function updateProject() {
-		console.log(formData)
+		const form = new FormData()
+		form.append('name', formData.name)
+		form.append('description', formData.description)
+		form.append('projectId', String(formData.projectId))
+		if (formData.coverImage) form.append('coverImageId', String(formData.coverImageId))
 
-		/* 		const form = new FormData();
-		form.append('name', project.name);
-		form.append('description', project.description);
-		form.append('projectUrl', project.projectUrl);
-		form.append('images', project.images);
-		form.append('coverImage', project.coverImage);
-		form.append('imageOpcional', project.imageOpcional);
+		if (formData.projectUrl) form.append('projectUrl', formData.projectUrl)
+
+		for (const img of formData.images) {
+			if (img instanceof File) form.append('images', img)
+		}
+
+		if (formData.coverImage) form.append('coverImage', formData.coverImage)
+
+		for (const delImg of formData.deletedImages) {
+			form.append('deletedImages', delImg)
+		}
+
+		disabled = true
 		try {
 			disabled = true
-			const res = await fetch(`https://uchamba-backend-staging.1.us-1.fl0.io/projects`, {
-				headers: {
-					Authorization:
-						'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibmFtZSI6IkFsZWphbmRybyBSb3NhcyIsImVtYWlsIjoiYWpyb3Nhcy4xOUBlc3QudWNhYi5lZHUudmUiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MDIwNjQ5ODIsImV4cCI6MTcwMjkyODk4Mn0.sZYZvKi_gQ0CrkZe3li971QB8jHv5vsrANiROCECgcw'
-				},
+			const res = await fetch('/api/profile/portfolio/projects/update', {
 				method: 'PUT',
 				body: form
 			})
@@ -72,7 +81,7 @@
 			alert(error)
 		} finally {
 			disabled = false
-		} */
+		}
 	}
 
 	function handleImageChange(event: any, imgId: string) {
@@ -92,6 +101,10 @@
 		}
 	}
 
+	function handleCoverImageChange(imgId: string) {
+		formData.coverImageId = imgId
+	}
+
 	function goToEditMode() {
 		mode = 'edit'
 	}
@@ -100,9 +113,30 @@
 		openedModal = false
 	}
 
+	function setFormData() {
+		formData = {
+			projectId: project.projectId,
+			coverImageId: null,
+			name: project.name,
+			description: project.description,
+			projectUrl: project.projectUrl ?? '',
+			coverImage: null,
+			images: Array(5).fill(null),
+			deletedImages: []
+		}
+	}
+
+	$: if (project) {
+		setFormData()
+	}
+
+	$: {
+		console.log(project)
+	}
+
 	$: if (openedModal) {
 		try {
-			validateProject(project)
+			validateProject(formData)
 			disabled = false
 
 			formErrors = {
@@ -128,74 +162,34 @@
 		}
 	}
 
-	function setFormData() {
-		formData = {
-			name: project.name,
-			description: project.description,
-			projectUrl: project.projectUrl,
-			coverImage: null,
-			images: [...project.images.map(() => null), null],
-			deletedImages: []
-		}
-	}
-
 	$: if (project) {
 		setFormData()
-	}
-
-	$: {
-		const imagesToDeleteQuantity = formData.deletedImages.length
-		const imagesToUploadQuantity = formData.images.filter((img) => img instanceof File).length
-		const projectImagesQuantity = project.images.length
-
-		if (
-			formData.images.every((img) => img instanceof File) ||
-			imagesToDeleteQuantity + imagesToUploadQuantity === projectImagesQuantity
-		) {
-			formData.images.push(null)
-		} else if (project.images.length) {
-			formData.images = formData.images.filter((img) => img instanceof File)
-			formData.images.push(null)
-		}
 	}
 </script>
 
 {#if mode === 'view'}
 	<Modal
 		title="Proyecto Realizado"
-		subtitle="Agrega un nuevo proyecto para añadir a tu CV"
+		subtitle={project.name}
 		bind:isOpen={openedModal}
 		icon={languageIcon}
 	>
-		<form slot="body" class="w-full flex px-6 py-12 justify-between">
-			<div class="flex w-full flex-col gap-12">
-				<div class="flex w-full gap-12">
-					<Input
-						type="text"
-						label="Proyecto"
-						placeholder="Ingrese el nombre del proyecto"
-						bind:value={formData.name}
-						error={formErrors.name}
-					/>
-					<Input
-						type="text"
-						label="Link (Opcional)"
-						placeholder="Ingrese el link del proyecto"
-						bind:value={formData.projectUrl}
-						error={formErrors.projectUrl}
-					/>
-				</div>
-				<Textbox
-					bind:value={formData.description}
-					label="Descripción"
-					placeholder="Ingrese una descripción del proyecto"
-					error={formErrors.description}
-				/>
-				<div class="w-[calc(100%+140px)] right-[70px] relative">
-					<Carousel />
-				</div>
+		<div
+			slot="body"
+			class="w-full flex flex-col gap-4 px-6 py-12 justify-between overflow-x-hidden"
+		>
+			<div class="flex w-full flex-col">
+				<h3>Descripción</h3>
+				<p>
+					{project.description}
+				</p>
 			</div>
-		</form>
+
+			<a href={project.projectUrl} class="text-blue-500">{project.projectUrl}</a>
+			<div class="w-[calc(100%+140px)] right-[70px] relative overflow-x-hidden mt-5">
+				<Carousel images={[project.coverImageUrl, ...project.images.map((img) => img.imageUrl)]} />
+			</div>
+		</div>
 
 		<EditModalFooter slot="footer" handlePressEdit={goToEditMode} />
 	</Modal>
@@ -233,7 +227,11 @@
 
 				<div class="flex justify-evenly items-center flex-wrap gap-y-4">
 					<ImageInput
+						handleChange={() => {
+							handleCoverImageChange(project.coverImageId)
+						}}
 						bind:image={formData.coverImage}
+						isDeletable={false}
 						imageUrl={project.coverImageUrl}
 						title="Click para subir una imagen de portada"
 						subTitle="Se admite cualquier formato de imágen"
