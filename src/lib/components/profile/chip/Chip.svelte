@@ -1,6 +1,5 @@
 <script lang="ts">
 	import cancelIcon from '$lib/icons/cancel.svg'
-	import type { AnimationConfig } from 'svelte/animate'
 	import { expand, shrink } from './expand'
 
 	export let text: string

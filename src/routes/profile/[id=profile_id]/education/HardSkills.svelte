@@ -52,7 +52,7 @@
 				<Chip
 					key={skill.name}
 					text={skill.name}
-					animation={false}
+					animation={isEditable}
 					deleteHandler={() => {
 						handleDelete(skill.name)
 					}}
