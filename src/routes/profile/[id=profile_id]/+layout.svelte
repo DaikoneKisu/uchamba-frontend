@@ -1,5 +1,7 @@
 <script lang="ts">
+	import pencilIcon from '$lib/icons/pencil.svg'
 	import Header from './Header.svelte'
+	import PersonalInformation from './PersonalInformation.svelte'
 	import PersonalLinks from './PersonalLinks.svelte'
 
 	export let data
@@ -45,29 +47,7 @@
 				<h2 class="text-center text-2xl font-poppins">{data.name}</h2>
 				<p class="text-lg w-[360px] font-open-sans">{data.aboutMe}</p>
 			</div>
-			<figure class="flex flex-col w-full gap-2 max-w-[420px]">
-				<figcaption class="text-left w-full text-2xl font-poppins border-b-4 border-ucab-blue pb-2">
-					Información Personal
-				</figcaption>
-				<div class="flex justify-between mt-3">
-					<ul class="flex flex-col gap-4">
-						<li>Correo electrónico:</li>
-						<li>Número de contacto:</li>
-						<li>Dirección de residencia:</li>
-					</ul>
-					<ul class="flex flex-col gap-4">
-						<li>
-							{data.email}
-						</li>
-						<li>
-							{data.phoneNumber}
-						</li>
-						<li>
-							{data.residenceAddress}
-						</li>
-					</ul>
-				</div>
-			</figure>
+			<PersonalInformation {data} />
 		</section>
 
 		<PersonalLinks links={data.personalLinks} isEditable={data.isEditable} />

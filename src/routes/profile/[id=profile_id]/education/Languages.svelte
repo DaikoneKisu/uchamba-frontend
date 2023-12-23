@@ -85,6 +85,10 @@
 	function closeDeleteModal() {
 		openedDeleteModal = false
 	}
+
+	$: langsList = langsList.filter((lang) => {
+		return !languages.find((l) => l.languageId === lang.languageId)
+	})
 </script>
 
 <article class="bg-brand-white flex-col w-full">
@@ -123,7 +127,7 @@
 					{/if}
 				</div>
 				<p class="text-brand-p-black">
-					Nivel {lang.proficientLevel}
+					Nivel {lang.proficientLevel === 'Native' ? 'Nativo' : lang.proficientLevel}
 				</p>
 
 				<button

@@ -3,7 +3,9 @@ export interface ProfileData {
 	name: string
 	email: string
 	aboutMe: string
-	phoneNumber: string
+	country: string
+	state: string
+	city: string
 	residenceAddress: string
 	role: string
 	isVerified: boolean

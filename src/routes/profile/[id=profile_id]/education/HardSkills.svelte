@@ -17,6 +17,8 @@
 	let openedModal = false
 
 	async function handleDelete(name: string) {
+		const [hardSkillToDelete] = hardSkills.filter((skill) => skill.name === name)
+
 		try {
 			hardSkills = hardSkills.filter((skill) => skill.name !== name)
 			const res = await fetch('/api/profile/education/hard-skills/delete', {
@@ -27,6 +29,7 @@
 			if (!res.ok) throw new Error('Error al eliminar la habilidad dura')
 		} catch (e) {
 			alert(e)
+			hardSkills = [...hardSkills, hardSkillToDelete]
 		}
 	}
 

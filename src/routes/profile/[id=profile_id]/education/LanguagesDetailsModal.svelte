@@ -22,7 +22,7 @@
 
 	export let disabled = false
 
-	export let isEditable: boolean = true
+	export let isEditable: boolean
 
 	function goToEditMode() {
 		mode = 'edit'
@@ -77,10 +77,11 @@
 				/>
 			</div>
 		</form>
-
-		{#if isEditable}
-			<EditModalFooter slot="footer" handlePressEdit={goToEditMode} />
-		{/if}
+		<div slot="footer">
+			{#if isEditable}
+				<EditModalFooter handlePressEdit={goToEditMode} />
+			{/if}
+		</div>
 	</Modal>
 {:else if mode === 'edit'}
 	<Modal
@@ -96,6 +97,7 @@
 					bind:value={langData.languageId}
 				>
 					<option value="">Seleccione su idioma</option>
+					<option value={langData.languageId}>{langData.name}</option>
 					{#each langsList as lang}
 						<option value={lang.languageId}>{lang.name}</option>
 					{/each}
@@ -111,7 +113,7 @@
 					<option value="B2">B2</option>
 					<option value="C1">C1</option>
 					<option value="C2">C2</option>
-					<option value="Native">Native</option>
+					<option value="Native">Nativo</option>
 				</select>
 			</div>
 		</form>

@@ -3,12 +3,19 @@
 	import languageIcon from '$lib/icons/language.svg'
 	import SaveModalFooter from '$lib/components/profile/modal/SaveModalFooter.svelte'
 	import { invalidateAll } from '$app/navigation'
+	import { validateLanguage } from '$lib/profile/education/validate-language'
+	import { ValidationError } from 'yup'
 
 	export let langsList: { languageId: number; name: string }[]
 
 	export let openedModal = false
 
 	let formData = {
+		langId: '',
+		proficientLevel: ''
+	}
+
+	let formErrors = {
 		langId: '',
 		proficientLevel: ''
 	}
@@ -35,6 +42,35 @@
 
 	function closeModal() {
 		openedModal = false
+	}
+
+	$: if (!openedModal) {
+		formData = {
+			langId: '',
+			proficientLevel: ''
+		}
+	}
+
+	$: if (openedModal) {
+		try {
+			validateLanguage(formData)
+			disabled = false
+
+			formErrors = {
+				langId: '',
+				proficientLevel: ''
+			}
+		} catch (error: unknown) {
+			disabled = true
+			if (error instanceof ValidationError) {
+				const errors = error.inner
+
+				formErrors = {
+					langId: errors.find((e) => e.path === 'name')?.message ?? '',
+					proficientLevel: errors.find((e) => e.path === 'degree')?.message ?? ''
+				}
+			}
+		}
 	}
 </script>
 
@@ -66,6 +102,7 @@
 				<option value="B2">B2</option>
 				<option value="C1">C1</option>
 				<option value="C2">C2</option>
+				<option value="Native">Nativo</option>
 			</select>
 		</div>
 	</form>

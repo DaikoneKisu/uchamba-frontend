@@ -10,12 +10,10 @@
 	export let openedModal = false
 
 	let formData = {
-		name: '',
 		url: ''
 	}
 
 	let formErrors = {
-		name: '',
 		url: ''
 	}
 
@@ -50,7 +48,6 @@
 			disabled = false
 
 			formErrors = {
-				name: '',
 				url: ''
 			}
 		} catch (error: unknown) {
@@ -59,7 +56,6 @@
 				const errors = error.inner
 
 				formErrors = {
-					name: errors.find((e) => e.path === 'name')?.message ?? '',
 					url: errors.find((e) => e.path === 'url')?.message ?? ''
 				}
 			}
@@ -68,7 +64,6 @@
 
 	$: if (!openedModal) {
 		formData = {
-			name: '',
 			url: ''
 		}
 	}
@@ -80,19 +75,12 @@
 	bind:isOpen={openedModal}
 	icon={externalLinkIcon}
 >
-	<form slot="body" class="w-full flex pl-6 py-12 justify-between">
-		<div class="flex w-full gap-12">
-			<Input
-				type="text"
-				label="Nombre"
-				placeholder="Twitter"
-				bind:value={formData.name}
-				error={formErrors.name}
-			/>
+	<form slot="body" class="w-full flex justify-center pl-6 py-12">
+		<div class="flex justify-center">
 			<Input
 				type="text"
 				label="URL"
-				placeholder="Tu enlace"
+				placeholder="https://www.tu-enlace.com"
 				bind:value={formData.url}
 				error={formErrors.url}
 			/>

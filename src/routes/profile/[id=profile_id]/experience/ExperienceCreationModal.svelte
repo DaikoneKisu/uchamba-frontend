@@ -6,9 +6,9 @@
 	import { invalidateAll } from '$app/navigation'
 	import { validateAcademicExperience } from '$lib/profile/experiencia/validate-academic-experience'
 	import { ValidationError } from 'yup'
+	import Textbox from '$lib/components/profile/textbox/Textbox.svelte'
 
 	export let openedModal = false
-	
 
 	let formData = {
 		organizationName: '',
@@ -48,7 +48,6 @@
 			disabled = false
 		}
 	}
-
 
 	function closeModal() {
 		openedModal = false
@@ -102,47 +101,54 @@
 	bind:isOpen={openedModal}
 	icon={graduationCapIcon}
 >
-	<form slot="body" class="w-full flex pl-6 py-12 justify-between">
-		<div class="flex flex-col w-full gap-12">
-			<Input
-				type="text"
-				label="Organizacion"
-				placeholder="Ingrese el instituto o universidad"
-				bind:value={formData.organizationName}
-				error={formErrors.organizationName}
-			/>
-			<Input
-				type="text"
-				label="Fecha de entrada"
-				placeholder="dd/mm/aaaa"
-				bind:value={formData.entryDate}
-				error={formErrors.entryDate}
-			/>
-			<Input type="text" label="Rol" placeholder="Ingrese el rol" bind:value={formData.jobTitle} />
-			<Input
-				type="text"
-				label="Descripcion"
-				placeholder="Ingrese una breve descripcion"
-				bind:value={formData.description}
-				error={formErrors.description}
-			/>
+	<form slot="body" class="w-full flex-col px-6 py-12 justify-between">
+		<div class="flex w-full">
+			<div class="flex flex-col w-full gap-12">
+				<Input
+					type="text"
+					label="Organizacion"
+					placeholder="Ingrese el instituto o universidad"
+					bind:value={formData.organizationName}
+					error={formErrors.organizationName}
+				/>
+				<Input
+					type="text"
+					label="Fecha de entrada"
+					placeholder="dd/mm/aaaa"
+					bind:value={formData.entryDate}
+					error={formErrors.entryDate}
+				/>
+				<Input
+					type="text"
+					label="Rol"
+					placeholder="Ingrese el rol"
+					bind:value={formData.jobTitle}
+				/>
+			</div>
+			<div class="flex flex-col w-full items-center gap-12">
+				<Input
+					type="text"
+					label="Direccion"
+					placeholder="Ingrese la direccion"
+					bind:value={formData.address}
+					error={formErrors.address}
+				/>
+				<Input
+					type="text"
+					label="Fecha de salida (opcional)"
+					placeholder="dd/mm/aaaa"
+					bind:value={formData.departureDate}
+					error={formErrors.departureDate}
+				/>
+			</div>
 		</div>
-		<div class="flex flex-col w-full items-center gap-12">
-			<Input
-				type="text"
-				label="Direccion"
-				placeholder="Ingrese la direccion"
-				bind:value={formData.address}
-				error={formErrors.address}
-			/>
-			<Input
-				type="text"
-				label="Fecha de salida (opcional)"
-				placeholder="dd/mm/aaaa"
-				bind:value={formData.departureDate}
-				error={formErrors.departureDate}
-			/>
-		</div>
+		<Textbox
+			className="mt-10"
+			label="Descripción"
+			bind:value={formData.description}
+			error={formErrors.description}
+			placeholder="Ingresa una breve descripción"
+		/>
 	</form>
 
 	<SaveModalFooter slot="footer" handleSave={save} {disabled} />

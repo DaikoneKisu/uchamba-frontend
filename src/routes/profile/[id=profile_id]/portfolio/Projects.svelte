@@ -85,7 +85,7 @@
 		{#each projects as project (project.projectId)}
 			<li animate:flip class="flex flex-col gap-2">
 				<div class="flex justify-between">
-					<h3 class="text-2xl font-poppins">{project.name}</h3>
+					<h3 class="text-2xl font-poppins font-medium">{project.name}</h3>
 
 					<div class="flex gap-6">
 						<button
@@ -104,8 +104,11 @@
 						</button>
 					</div>
 				</div>
-				<p class="text-brand-p-black">
-					Nivel {project.description}
+				<p class="font-open-sans font-semibold text-[15px]">
+					{project.projectUrl}
+				</p>
+				<p class="text-black">
+					{project.description}
 				</p>
 
 				<button

@@ -1,7 +1,6 @@
 import { object, string } from 'yup'
 
 const schema = object({
-	name: string().required('Campo requerido'),
 	url: string().required('Campo requerido').url('URL inválida')
 })
 

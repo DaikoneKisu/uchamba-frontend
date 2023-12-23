@@ -109,9 +109,8 @@
 				/>
 			</div>
 		</form>
-		{#if isEditable}
-			<EditModalFooter slot="footer" handlePressEdit={goToEditMode} />
-		{/if}
+
+		<EditModalFooter slot="footer" handlePressEdit={goToEditMode} />
 	</Modal>
 {:else if mode === 'edit'}
 	<Modal

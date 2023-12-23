@@ -3,6 +3,7 @@
 
 	export let title: string
 	export let isOpen = false
+	let disabled = false
 
 	function closeModal() {
 		isOpen = false
@@ -17,8 +18,13 @@
 			>Cancelar</button
 		>
 		<button
-			on:click={handleDelete}
-			class="bg-red-600 text-brand-white rounded-[10px] py-2 px-8 shadow-md hover:bg-red-500 hover:shadow-red-300 transition-all"
+			on:click={async () => {
+				disabled = true
+				await handleDelete()
+				disabled = false
+			}}
+			{disabled}
+			class="bg-red-600 text-brand-white rounded-[10px] py-2 px-8 shadow-md hover:bg-red-500 hover:shadow-red-300 transition-all disabled:opacity-50"
 			>Eliminar</button
 		>
 	</div>

@@ -17,6 +17,8 @@
 	let openedModal = false
 
 	async function handleDelete(name: string) {
+		const [softSkillToDelete] = softSkills.filter((skill) => skill.name === name)
+
 		try {
 			softSkills = softSkills.filter((skill) => skill.name !== name)
 			const res = await fetch('/api/profile/education/soft-skills/delete', {
@@ -27,6 +29,7 @@
 			if (!res.ok) throw new Error('Error al eliminar la habilidad blanda')
 		} catch (e) {
 			alert(e)
+			softSkills = [...softSkills, softSkillToDelete]
 		}
 	}
 

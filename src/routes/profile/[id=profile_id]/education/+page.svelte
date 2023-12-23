@@ -12,12 +12,12 @@
 	<Languages languages={data.languages} langsList={data.langsList} isEditable={data.isEditable} />
 	<SoftSkills
 		softSkills={data.softSkills.featured.concat(data.softSkills.personal)}
-		softSkillsList={[]}
+		softSkillsList={data.softSkillsList.map((skill) => skill.name)}
 		isEditable={data.isEditable}
 	/>
 	<HardSkills
 		hardSkills={data.hardSkills.featured.concat(data.hardSkills.personal)}
-		hardSkillsList={[]}
+		hardSkillsList={data.hardSkillsList.map((skill) => skill.name)}
 		isEditable={data.isEditable}
 	/>
 </div>

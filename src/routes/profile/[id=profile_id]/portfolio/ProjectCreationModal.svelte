@@ -110,9 +110,9 @@
 		}
 	}
 
-	$: if (formData.images.every((img) => img instanceof File)) {
+	$: if (formData.images.every((img) => img instanceof File) && formData.images.length < 5) {
 		formData.images.push(null)
-	} else {
+	} else if (formData.images.length < 5) {
 		formData.images = formData.images.filter((img) => img instanceof File)
 		formData.images.push(null)
 	}
