@@ -3,7 +3,7 @@
 	import '../../app.css'
 	import { page } from '$app/stores'
 	import ucabLogo from '$lib/images/logo-ucab.webp'
-	import firstLoginImage from '$lib/images/edificio.png'
+	import firstLoginImage from '$lib/images/edificiodef.png'
 	import secondLoginImage from '$lib/images/login-image-two.png'
 	import SignUpLogInSwitchButton from '$lib/components/sign-up-log-in-switch-button/SignUpLogInSwitchButton.svelte'
 
@@ -22,7 +22,7 @@
         <img src={ucabLogo} alt="logo de la ucab" class="max-w-[497px] aspect-[497/75] overflow-hidden mt-custom" />
         <div class="flex flex-col items-center justify-center h-full">
             <div class="flex flex-col gap-3 items-center">
-                    <h1 class="text-center mb-2">Bienvenido de regreso</h1>
+                <h1 class="w-[543px] h-[61px] text-center text-black text-[46px] leading-[59.80px]">Bienvenido de regreso</h1>
                     <h2 class="text-center  font-bold mb-5 max-w-[450px]">
                         A nuestro catálogo de egresados en línea
                     </h2>
@@ -30,20 +30,18 @@
             <slot />
         </div>
     </div>
-    <div>
-        <img src={firstLoginImage} alt=""
-            style="
-				margin-top: 20px;
-                width: 595px;
-                height: 673px;
-                position: absolute;
-                top: 29px6
-                left: 720px;
-                border-radius: 10px 190px 10px 190px;
-            "
-        />
+    <style>
+        .custom-image img {
+            width: 600px;
+            height: 650px;
+            margin-top:20px;
+        }
+    </style>
+    
+    <div class="custom-image">
+        <img src={firstLoginImage} alt="" />
     </div>
+    
 </main>
-
 
 

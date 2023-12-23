@@ -16,13 +16,13 @@
 
 <form
 	aria-label="form"
-	class="flex flex-col gap-5 w-[400px]"
+	class="flex flex-col gap-5 w-[330px]"
 	method="POST"
 	use:enhance
 	novalidate
   on:submit
   on:input
->
+> 
 	<InputWithIcon
 		name="email"
 		type="email"
@@ -55,7 +55,8 @@
 	{:else}
 		<button
 			type="submit"
-			class="mt-5 bg-ucab-green text-brand-white rounded-[10px] w-[330px] h-[64px] m-auto shadow-lg"
+			class="w-[330px] h-16 bg-green-700 rounded-[10px] shadow"
+			
 		>
 			Continuar
 		</button>
