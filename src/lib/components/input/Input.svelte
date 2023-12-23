@@ -57,6 +57,17 @@
 					{required}
 					{disabled}
 				/>
+			{:else if type === 'date'}
+				<input
+					on:input|once={() => (isPristine = false)}
+					{name}
+					type="date"
+					{placeholder}
+					bind:value
+					class="text-sm focus:outline-none focus:border-0 focus:shadow-none"
+					{required}
+					{disabled}
+				/>
 			{:else if type === 'tel'}
 				<input
 					on:input|once={() => (isPristine = false)}

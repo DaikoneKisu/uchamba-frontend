@@ -20,7 +20,7 @@ export async function POST({ request, fetch }: { request: Request; fetch: typeof
 		headers: {
 			'Content-Type': 'application/json'
 		},
-		body: JSON.stringify({ ...formData, state: '', country: '', city: '' })
+		body: JSON.stringify({ ...formData })
 	})
 	const responseData = (await response.json()) as unknown
 	console.log(responseData)

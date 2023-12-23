@@ -82,7 +82,11 @@ export interface WorkExperience {
 	description: string
 	entryDate: string
 	departureDate: string
-	createdAt: string
+	city: string
+	state: string
+	country: string
+	freelancer: boolean
+	createdAt?: string
 }
 
 export interface Project {

@@ -9,16 +9,7 @@
 	import { slide } from 'svelte/transition'
 	import { invalidateAll } from '$app/navigation'
 
-	export let business: {
-		workExpId: number
-		organizationName: string
-		jobTitle: string
-		description: string
-		address: string
-		entryDate: string
-		departureDate: string
-		createdAt: string
-	}[]
+	export let business: WorkExperience[]
 	export let isEditable: boolean
 
 	let openedCreationModal = false
@@ -26,6 +17,21 @@
 	let openedDeleteModal = false
 	let experienceIdToDelete: number
 	let detailsModalMode: 'view' | 'edit' = 'view'
+
+	let selectedExperienceDetails: WorkExperience = {
+		workExpId: 0,
+		organizationName: '',
+		jobTitle: '',
+		description: '',
+		entryDate: '',
+		departureDate: '',
+		freelancer: false,
+		country: '',
+		state: '',
+		city: '',
+		address: '',
+		createdAt: ''
+	}
 
 	function openDeleteModal(id: number) {
 		experienceIdToDelete = id
@@ -46,17 +52,6 @@
 		selectedExperienceDetails = { ...business }
 		detailsModalMode = 'edit'
 		openedDetailsModal = true
-	}
-
-	let selectedExperienceDetails = {
-		workExpId: 0,
-		organizationName: '',
-		jobTitle: '',
-		description: '',
-		address: '',
-		entryDate: '',
-		departureDate: '',
-		createdAt: ''
 	}
 
 	async function handleDelete() {
@@ -117,7 +112,6 @@
 
 				<p class="font-bold font-open-sans text-ucab-black">{busines.jobTitle}</p>
 				<p class="font-open-sans text-brand-p-black">{busines.description}</p>
-				<p>{busines.address}</p>
 
 				<div class="flex justify-start items-center mt-2">
 					<button
@@ -136,7 +130,7 @@
 
 <ExperienceDetailsModal
 	bind:openedModal={openedDetailsModal}
-	businesData={selectedExperienceDetails}
+	formData={{ ...selectedExperienceDetails, freelancer: false }}
 	bind:mode={detailsModalMode}
 	{isEditable}
 />
