@@ -57,7 +57,6 @@
 	async function updateExperienceDetails() {
 		try {
 			disabledSaveButton = true
-			console.log(formData)
 			const res = await fetch('/api/profile/experience/academic-experience/update', {
 				method: 'POST',
 				body: JSON.stringify(formData)
@@ -124,10 +123,6 @@
 			city: '',
 			address: ''
 		}
-	}
-
-	$: if (openedModal) {
-		console.log(formData)
 	}
 
 	$: if (formData.freelancer) {

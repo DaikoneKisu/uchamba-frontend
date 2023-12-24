@@ -17,7 +17,6 @@ export async function POST({ request, fetch }: { request: Request; fetch: typeof
 		body: JSON.stringify({ proficientLevel: formData.proficientLevel })
 	})
 	const responseData = (await response.json()) as unknown
-	console.log(responseData)
 	if (!response.ok) return json(responseData, { status: response.status })
 	return json(responseData)
 }

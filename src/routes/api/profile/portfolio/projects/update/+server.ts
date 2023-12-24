@@ -7,8 +7,6 @@ export async function PUT({ request, fetch }: { request: Request; fetch: typeof 
 	const projectId = formData.get('projectId') as string
 
 	formData.delete('projectId')
-	console.log(formData)
-	console.log(projectId)
 
 	const url = `${BACKEND_BASE_URL}/projects/${projectId}`
 	const response = await fetch(url, {
@@ -16,7 +14,6 @@ export async function PUT({ request, fetch }: { request: Request; fetch: typeof 
 		body: formData
 	})
 	const responseData = (await response.json()) as unknown
-	console.log(responseData)
 	if (!response.ok) return json(responseData, { status: response.status })
 	return json(responseData)
 }

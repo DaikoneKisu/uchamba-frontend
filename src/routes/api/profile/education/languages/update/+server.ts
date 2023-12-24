@@ -8,7 +8,6 @@ export interface LanguageUpdatePayload {
 
 export async function POST({ request, fetch }: { request: Request; fetch: typeof window.fetch }) {
 	const formData = (await request.json()) as LanguageUpdatePayload
-	console.log(formData)
 	const url = `${BACKEND_BASE_URL}/user-languages/language/${formData.languageId}`
 	const response = await fetch(url, {
 		method: 'PUT',
@@ -20,7 +19,6 @@ export async function POST({ request, fetch }: { request: Request; fetch: typeof
 
 	const responseData = (await response.json()) as unknown
 
-	console.log(responseData)
 	if (!response.ok) return json(responseData, { status: response.status })
 
 	return json(responseData)

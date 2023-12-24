@@ -130,10 +130,6 @@
 		setFormData()
 	}
 
-	$: {
-		console.log(project)
-	}
-
 	$: if (openedModal) {
 		try {
 			validateProject(formData)

@@ -14,7 +14,6 @@ export async function DELETE({ request, fetch }: { request: Request; fetch: type
 
 	const responseData = (await response.json()) as unknown
 
-	console.log(responseData)
 	if (!response.ok) return json(responseData, { status: response.status })
 
 	return json(responseData)
