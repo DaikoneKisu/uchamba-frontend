@@ -1,4 +1,4 @@
 export interface LoginFailData extends Record<string, unknown> {
-	reason: string
+  reason: string
   solution: string
 }
