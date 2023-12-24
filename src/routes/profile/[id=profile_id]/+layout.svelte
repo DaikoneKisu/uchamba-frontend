@@ -1,68 +1,68 @@
 <script lang="ts">
-	import pencilIcon from '$lib/icons/pencil.svg'
-	import Header from './Header.svelte'
-	import PersonalInformation from './PersonalInformation.svelte'
-	import PersonalLinks from './PersonalLinks.svelte'
+  import pencilIcon from '$lib/icons/pencil.svg'
+  import Header from './Header.svelte'
+  import PersonalInformation from './PersonalInformation.svelte'
+  import PersonalLinks from './PersonalLinks.svelte'
 
-	export let data
+  export let data
 
-	let disabledExport = false
+  let disabledExport = false
 
-	async function exportCV() {
-		try {
-			disabledExport = true
-			const res = await fetch(`/api/profile/generate-cv`, {
-				method: 'POST',
-				body: JSON.stringify({ id: data.userId })
-			})
+  async function exportCV() {
+    try {
+      disabledExport = true
+      const res = await fetch(`/api/profile/generate-cv`, {
+        method: 'POST',
+        body: JSON.stringify({ id: data.userId })
+      })
 
-			const pdfBlob = await res.blob()
+      const pdfBlob = await res.blob()
 
-			downloadPDF(pdfBlob)
-		} catch (e) {
-			alert(e)
-		} finally {
-			disabledExport = false
-		}
-	}
+      downloadPDF(pdfBlob)
+    } catch (e) {
+      alert(e)
+    } finally {
+      disabledExport = false
+    }
+  }
 
-	function downloadPDF(pdfBlob: Blob) {
-		const url = window.URL.createObjectURL(pdfBlob)
+  function downloadPDF(pdfBlob: Blob) {
+    const url = window.URL.createObjectURL(pdfBlob)
 
-		const link = document.createElement('a')
-		link.href = url
-		link.download = 'CV.pdf'
-		link.click()
-	}
+    const link = document.createElement('a')
+    link.href = url
+    link.download = 'CV.pdf'
+    link.click()
+  }
 </script>
 
-<main class="flex gap-10 min-h-screen p-10 pt-12 bg-[#f0f0f0]">
-	<div class="flex flex-col gap-12 justify-center items-center h-full w-full max-w-[465px]">
-		<section
-			class="flex flex-col gap-7 justify-center items-center bg-brand-white w-full pb-12 rounded-[20px]"
-		>
-			<div
-				class="w-full h-full flex flex-col justify-center items-center gap-2 text-brand-white pt-10 pb-28 bg-ucab-green rounded-[10px] rounded-bl-[150px]"
-			>
-				<h2 class="text-center text-2xl font-poppins">{data.name}</h2>
-				<p class="text-lg w-[360px] font-open-sans">{data.aboutMe}</p>
-			</div>
-			<PersonalInformation {data} />
-		</section>
+<main class="flex min-h-screen gap-10 bg-[#f0f0f0] p-10 pt-12">
+  <div class="flex h-full w-full max-w-[465px] flex-col items-center justify-center gap-12">
+    <section
+      class="flex w-full flex-col items-center justify-center gap-7 rounded-[20px] bg-brand-white pb-12"
+    >
+      <div
+        class="flex h-full w-full flex-col items-center justify-center gap-2 rounded-[10px] rounded-bl-[150px] bg-ucab-green pb-28 pt-10 text-brand-white"
+      >
+        <h2 class="text-center font-poppins text-2xl">{data.name}</h2>
+        <p class="w-[360px] font-open-sans text-lg">{data.aboutMe}</p>
+      </div>
+      <PersonalInformation {data} />
+    </section>
 
-		<PersonalLinks links={data.personalLinks} isEditable={data.isEditable} />
+    <PersonalLinks links={data.personalLinks} isEditable={data.isEditable} />
 
-		<button
-			on:click={exportCV}
-			disabled={disabledExport}
-			class="bg-ucab-green text-brand-white rounded-[10px] w-full h-[61px] m-auto shadow-xl hover:shadow-emerald-200 hover:shadow-lg hover:bg-green-600 transition-all duration-200 disabled:opacity-50"
-			>Exportar mi CV</button
-		>
-	</div>
+    <button
+      on:click={exportCV}
+      disabled={disabledExport}
+      class="m-auto h-[61px] w-full rounded-[10px] bg-ucab-green text-brand-white shadow-xl transition-all duration-200 hover:bg-green-600 hover:shadow-lg hover:shadow-emerald-200 disabled:opacity-50"
+      >Exportar mi CV</button
+    >
+  </div>
 
-	<section class="w-full flex flex-col items-center bg-brand-white rounded-[10px]">
-		<Header />
+  <section class="flex w-full flex-col items-center rounded-[10px] bg-brand-white">
+    <Header />
 
-		<slot />
-	</section>
+    <slot />
+  </section>
 </main>
