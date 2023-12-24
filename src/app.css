@@ -5,33 +5,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@500;600;700&display=swap');
 
 h1 {
-	@apply font-poppins font-bold text-[46px] leading-[130%] tracking-[-0.5%]
+  @apply font-poppins text-[46px] font-bold leading-[130%] tracking-[-0.5%];
 }
 
 h2 {
-  @apply font-poppins font-medium text-[25px] leading-[130%] tracking-[-0.5%]
+  @apply font-poppins text-[25px] font-medium leading-[130%] tracking-[-0.5%];
 }
 
 p {
-  @apply font-open-sans font-normal text-[16px] leading-[150%] tracking-[-1.1%]
+  @apply font-open-sans text-[16px] font-normal leading-[150%] tracking-[-1.1%];
 }
 
 /* Nav bar text style in Figma */
 nav > a {
-  @apply font-poppins font-semibold text-[14px] leading-[150%] tracking-[-1.1%]
+  @apply font-poppins text-[14px] font-semibold leading-[150%] tracking-[-1.1%];
 }
 
 button {
-  @apply font-open-sans font-bold text-[15px] leading-[150%] tracking-[-1.1%]
+  @apply font-open-sans text-[15px] font-bold leading-[150%] tracking-[-1.1%];
 }
 
 input,
 textarea {
-  @apply font-open-sans font-semibold text-[15px] leading-[150%] tracking-[-1.1%]
+  @apply font-open-sans text-[15px] font-semibold leading-[150%] tracking-[-1.1%];
 }
 
 label,
 input::placeholder,
 textarea::placeholder {
-  @apply font-open-sans font-normal text-[15px] leading-[150%] tracking-[-1.1%]
+  @apply font-open-sans text-[15px] font-normal leading-[150%] tracking-[-1.1%];
 }
