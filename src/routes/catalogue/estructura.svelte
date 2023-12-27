@@ -4,23 +4,9 @@
 	import Selector from '$lib/icons/Selector.svg'
 	import DownloadCv from '$lib/components/buttons/DownloadCV.svelte'
 	import ViewProfile from '$lib/components/buttons/ViewProfile.svelte'
+  import type { graduatedInfo } from '$lib/types/graduated-info.type'
 
-	export let business: {
-		name: string
-		address: {
-			country: string
-			state: string
-			city: string
-		}
-		featuredEducations: {
-			name: string
-		}
-		languages: {
-			name: string
-			proficientLevel: string
-		}
-		aboutMe: string
-	}[]
+	export let business: graduatedInfo[] 
 </script>
 
 <main class="flex flex-col gap-10 min-h-screen p-10 pt-5 bg-[#f0f0f0]">
@@ -77,10 +63,10 @@
 								<p class="mt-4">
 									{busines.address.country} - {busines.address.state} - {busines.address.city}
 								</p>
-								<h3>
+								<!-- <h3>
 									{busines.featuredEducations.name} - Educacion -{busines.languages.name} -{busines
 										.languages.proficientLevel}
-								</h3>
+								</h3> -->
 
 								<h3 class="font-semibold whitespace-normal">{busines.aboutMe}</h3>
 
