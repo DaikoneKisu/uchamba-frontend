@@ -2,5 +2,4 @@
 	import { cv } from './cv.store'
 </script>
 
-
-{JSON.stringify($cv)}
+<div />
