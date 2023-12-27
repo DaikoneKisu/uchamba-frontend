@@ -1,31 +1,31 @@
 <script lang="ts">
-	import Modal from './Modal.svelte'
+  import Modal from './Modal.svelte'
 
-	export let title: string
-	export let isOpen = false
-	let disabled = false
+  export let title: string
+  export let isOpen = false
+  let disabled = false
 
-	function closeModal() {
-		isOpen = false
-	}
+  function closeModal() {
+    isOpen = false
+  }
 
-	export let handleDelete: () => Promise<void> | void
+  export let handleDelete: () => Promise<void> | void
 </script>
 
 <Modal bind:isOpen {title}>
-	<div slot="body" class="w-full flex justify-center items-center gap-5 py-8">
-		<button on:click={closeModal} class="py-2 px-8 bg-slate-200 rounded-[10px] hover:bg-slate-300"
-			>Cancelar</button
-		>
-		<button
-			on:click={async () => {
-				disabled = true
-				await handleDelete()
-				disabled = false
-			}}
-			{disabled}
-			class="bg-red-600 text-brand-white rounded-[10px] py-2 px-8 shadow-md hover:bg-red-500 hover:shadow-red-300 transition-all disabled:opacity-50"
-			>Eliminar</button
-		>
-	</div>
+  <div slot="body" class="flex w-full items-center justify-center gap-5 py-8">
+    <button on:click={closeModal} class="rounded-[10px] bg-slate-200 px-8 py-2 hover:bg-slate-300"
+      >Cancelar</button
+    >
+    <button
+      on:click={async () => {
+        disabled = true
+        await handleDelete()
+        disabled = false
+      }}
+      {disabled}
+      class="rounded-[10px] bg-red-600 px-8 py-2 text-brand-white shadow-md transition-all hover:bg-red-500 hover:shadow-red-300 disabled:opacity-50"
+      >Eliminar</button
+    >
+  </div>
 </Modal>

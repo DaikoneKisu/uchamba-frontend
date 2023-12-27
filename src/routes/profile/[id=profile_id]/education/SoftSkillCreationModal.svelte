@@ -1,117 +1,117 @@
 <script lang="ts">
-	import Modal from '$lib/components/profile/modal/Modal.svelte'
-	import staffIcon from '$lib/icons/staff.svg'
-	import SaveModalFooter from '$lib/components/profile/modal/SaveModalFooter.svelte'
-	import { invalidateAll } from '$app/navigation'
-	import Chip from '$lib/components/profile/chip/Chip.svelte'
-	import { flip } from 'svelte/animate'
-	import { fade } from 'svelte/transition'
+  import Modal from '$lib/components/profile/modal/Modal.svelte'
+  import staffIcon from '$lib/icons/staff.svg'
+  import SaveModalFooter from '$lib/components/profile/modal/SaveModalFooter.svelte'
+  import { invalidateAll } from '$app/navigation'
+  import Chip from '$lib/components/profile/chip/Chip.svelte'
+  import { flip } from 'svelte/animate'
+  import { fade } from 'svelte/transition'
 
-	export let softSkillsList: string[] = []
+  export let softSkillsList: string[] = []
 
-	export let openedModal = false
+  export let openedModal = false
 
-	let skills: string[] = []
+  let skills: string[] = []
 
-	let value = ''
+  let value = ''
 
-	let input: HTMLInputElement
+  let input: HTMLInputElement
 
-	let disabled = false
+  let disabled = false
 
-	async function save() {
-		try {
-			disabled = true
+  async function save() {
+    try {
+      disabled = true
 
-			const res = await fetch('/api/profile/education/soft-skills/create', {
-				method: 'POST',
-				body: JSON.stringify(skills)
-			})
+      const res = await fetch('/api/profile/education/soft-skills/create', {
+        method: 'POST',
+        body: JSON.stringify(skills)
+      })
 
-			if (!res.ok) throw new Error('Error al crear la habilidad blanda')
+      if (!res.ok) throw new Error('Error al crear la habilidad blanda')
 
-			skills = []
-			invalidateAll()
-			closeModal()
-		} catch (e) {
-			alert(e)
-		} finally {
-			disabled = false
-		}
-	}
+      skills = []
+      invalidateAll()
+      closeModal()
+    } catch (e) {
+      alert(e)
+    } finally {
+      disabled = false
+    }
+  }
 
-	function insertSkill() {
-		if (value) {
-			skills = [...skills, value]
-			value = ''
-			input.focus()
-		}
-	}
+  function insertSkill() {
+    if (value) {
+      skills = [...skills, value]
+      value = ''
+      input.focus()
+    }
+  }
 
-	function deleteSkill(skillToDelete: string) {
-		skills = skills.filter((skill) => skill !== skillToDelete)
-	}
+  function deleteSkill(skillToDelete: string) {
+    skills = skills.filter((skill) => skill !== skillToDelete)
+  }
 
-	function closeModal() {
-		openedModal = false
-	}
+  function closeModal() {
+    openedModal = false
+  }
 
-	$: skills = [...new Set(skills)]
+  $: skills = [...new Set(skills)]
 </script>
 
 <Modal
-	title="Habilidades Blandas"
-	subtitle="Agrega una nueva habilidad blanda para añadir a tu CV"
-	bind:isOpen={openedModal}
-	icon={staffIcon}
+  title="Habilidades Blandas"
+  subtitle="Agrega una nueva habilidad blanda para añadir a tu CV"
+  bind:isOpen={openedModal}
+  icon={staffIcon}
 >
-	<svelte:fragment slot="body">
-		<form
-			class="w-full flex pl-6 pt-12 pb-8 justify-between"
-			on:submit={(e) => {
-				e.preventDefault()
-				insertSkill()
-			}}
-		>
-			<div class="flex justify-center w-full gap-12">
-				<label
-					class={'flex justify-center border-4 border-[#f0f0f0] h-[64px] w-full max-w-[330px] rounded-xl bg-brand-white pr-4'}
-				>
-					<div class="flex flex-col pl-5 h-full justify-center w-full text-[15px]">
-						<input
-							bind:this={input}
-							list="soft-skills-list"
-							type="text"
-							bind:value
-							placeholder="Ingresa una habilidad blanda"
-							class="text-sm focus:outline-none focus:border-0 focus:shadow-none placeholder:text-brand-p-black"
-						/>
-						<datalist id="soft-skills-list">
-							{#each softSkillsList as skill}
-								<option value={skill} />
-							{/each}
-						</datalist>
-					</div>
-				</label>
-			</div>
-		</form>
+  <svelte:fragment slot="body">
+    <form
+      class="flex w-full justify-between pb-8 pl-6 pt-12"
+      on:submit={(e) => {
+        e.preventDefault()
+        insertSkill()
+      }}
+    >
+      <div class="flex w-full justify-center gap-12">
+        <label
+          class={'flex h-[64px] w-full max-w-[330px] justify-center rounded-xl border-4 border-[#f0f0f0] bg-brand-white pr-4'}
+        >
+          <div class="flex h-full w-full flex-col justify-center pl-5 text-[15px]">
+            <input
+              bind:this={input}
+              list="soft-skills-list"
+              type="text"
+              bind:value
+              placeholder="Ingresa una habilidad blanda"
+              class="text-sm placeholder:text-brand-p-black focus:border-0 focus:shadow-none focus:outline-none"
+            />
+            <datalist id="soft-skills-list">
+              {#each softSkillsList as skill}
+                <option value={skill} />
+              {/each}
+            </datalist>
+          </div>
+        </label>
+      </div>
+    </form>
 
-		<div class="min-h-[200px]">
-			<ul class="flex flex-wrap justify-center items-start px-12 gap-2 pb-12">
-				{#each skills as skill (skill)}
-					<div animate:flip in:fade class="flex justify-center">
-						<Chip
-							key={skill}
-							text={skill}
-							deleteHandler={() => {
-								deleteSkill(skill)
-							}}
-						/>
-					</div>
-				{/each}
-			</ul>
-		</div>
-	</svelte:fragment>
+    <div class="min-h-[200px]">
+      <ul class="flex flex-wrap items-start justify-center gap-2 px-12 pb-12">
+        {#each skills as skill (skill)}
+          <div animate:flip in:fade class="flex justify-center">
+            <Chip
+              key={skill}
+              text={skill}
+              deleteHandler={() => {
+                deleteSkill(skill)
+              }}
+            />
+          </div>
+        {/each}
+      </ul>
+    </div>
+  </svelte:fragment>
 
-	<SaveModalFooter slot="footer" handleSave={save} {disabled} />
+  <SaveModalFooter slot="footer" handleSave={save} {disabled} />
 </Modal>

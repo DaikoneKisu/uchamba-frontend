@@ -1,9 +1,9 @@
 <script lang="ts">
-	import AcademicExperience from './AcademicExperience.svelte'
+  import AcademicExperience from './AcademicExperience.svelte'
 
-	export let data
+  export let data
 </script>
 
-<div class="w-full flex flex-col justify-between pb-28 items-center pt-8 gap-16 px-16">
-	<AcademicExperience business={data.workExperiences} isEditable={data.isEditable} />
+<div class="flex w-full flex-col items-center justify-between gap-16 px-16 pb-28 pt-8">
+  <AcademicExperience business={data.workExperiences} isEditable={data.isEditable} />
 </div>

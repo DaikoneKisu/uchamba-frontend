@@ -1,18 +1,18 @@
 <script lang="ts">
-	import saveIcon from '$lib/icons/save.svg'
+  import saveIcon from '$lib/icons/save.svg'
 
-	export let handleSave: () => void
+  export let handleSave: () => void
 
-	export let disabled: boolean
+  export let disabled: boolean
 </script>
 
-<footer class="w-full flex justify-end pr-10 border-t-2 border-[#f3f3f3] pt-6 pb-3">
-	<button
-		disabled={disabled}
-		on:click={handleSave}
-		class="flex items-center justify-center gap-2 max-w-[181px] w-full h-[46px] rounded-[10px] bg-ucab-green text-brand-white shadow-xl hover:shadow-emerald-200 hover:shadow-lg hover:bg-green-600 transition-all duration-200 disabled:opacity-50"
-	>
-		<img src={saveIcon} alt="" />
-		<span>Guardar</span>
-	</button>
+<footer class="flex w-full justify-end border-t-2 border-[#f3f3f3] pb-3 pr-10 pt-6">
+  <button
+    {disabled}
+    on:click={handleSave}
+    class="flex h-[46px] w-full max-w-[181px] items-center justify-center gap-2 rounded-[10px] bg-ucab-green text-brand-white shadow-xl transition-all duration-200 hover:bg-green-600 hover:shadow-lg hover:shadow-emerald-200 disabled:opacity-50"
+  >
+    <img src={saveIcon} alt="" />
+    <span>Guardar</span>
+  </button>
 </footer>
