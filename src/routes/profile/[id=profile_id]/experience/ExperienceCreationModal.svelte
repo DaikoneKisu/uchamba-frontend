@@ -161,7 +161,7 @@
       <Input
         type="date"
         disabled={disabledDepartureDate}
-        label="Fecha de salida (opcional)"
+        label="Fecha de salida"
         placeholder="dd/mm/aaaa"
         bind:value={formData.departureDate}
         error={formErrors.departureDate}

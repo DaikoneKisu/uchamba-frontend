@@ -144,7 +144,7 @@
     icon={graduationCapIcon}
   >
     <form slot="body" class="w-full flex-col justify-between px-6 py-12">
-      <div class="grid w-full grid-cols-2">
+      <div class="grid w-full grid-cols-2 gap-y-2">
         <Input
           type="text"
           disabled
@@ -172,7 +172,7 @@
           <Input
             type="date"
             disabled
-            label="Fecha de salida (opcional)"
+            label="Fecha de salida"
             placeholder="dd/mm/aaaa"
             bind:value={formData.departureDate}
             error={formErrors.departureDate}
@@ -191,7 +191,7 @@
       />
       <div class="flex flex-col">
         {#if !formData.freelancer}
-          <div in:slide out:slide class="grid w-full grid-cols-2">
+          <div in:slide out:slide class="grid w-full grid-cols-2 gap-y-2">
             <Input
               type="text"
               disabled
@@ -243,7 +243,7 @@
     icon={graduationCapIcon}
   >
     <form slot="body" class="w-full flex-col justify-between px-6 py-12">
-      <div class="grid w-full grid-cols-2">
+      <div class="grid w-full grid-cols-2 gap-y-2">
         <Input
           type="text"
           label="Organizacion"
@@ -256,6 +256,7 @@
           label="Rol"
           placeholder="Ingrese el rol"
           bind:value={formData.jobTitle}
+          error={formErrors.jobTitle}
         />
         <Input
           type="date"
@@ -299,7 +300,7 @@
         </label>
 
         {#if !formData.freelancer}
-          <div in:slide out:slide class="grid w-full grid-cols-2">
+          <div in:slide out:slide class="grid w-full grid-cols-2 gap-y-2">
             <Input
               type="text"
               label="País"
