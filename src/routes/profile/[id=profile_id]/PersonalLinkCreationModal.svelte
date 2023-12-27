@@ -76,7 +76,7 @@
   icon={externalLinkIcon}
 >
   <form slot="body" class="flex w-full justify-center py-12 pl-6">
-    <div class="flex justify-center">
+    <div class="flex w-full justify-center">
       <Input
         type="text"
         label="URL"
