@@ -1,12 +1,14 @@
 <script lang="ts">
-  import type { HTMLInputTypeAttribute } from '../../types/html-input-type-attribute.type'
+  import type { HTMLInputTypeAttribute } from '../../../types/html-input-type-attribute.type'
 
+  export let name: string
   export let label: string = 'Default label'
   export let placeholder = 'Default placeholder'
   export let type: HTMLInputTypeAttribute
   export let value: string | number = ''
   export let src: string
   export let className = ''
+  export let required = false
 </script>
 
 <label class={'flex rounded-xl border-4 border-gray-300 bg-brand-white ' + className}>
@@ -19,38 +21,39 @@
     <span class="text-xs">{label}</span>
     {#if type === 'text'}
       <input
+        {name}
         type="text"
         {placeholder}
         bind:value
         class="text-sm focus:border-0 focus:shadow-none focus:outline-none"
+        {required}
       />
     {:else if type === 'number'}
       <input
+        {name}
         type="number"
         {placeholder}
         bind:value
         class="text-sm focus:border-0 focus:shadow-none focus:outline-none"
+        {required}
       />
     {:else if type === 'email'}
       <input
+        {name}
         type="email"
         {placeholder}
         bind:value
         class="text-sm focus:border-0 focus:shadow-none focus:outline-none"
-      />
-    {:else if type === 'password'}
-      <input
-        type="password"
-        {placeholder}
-        bind:value
-        class="text-sm focus:border-0 focus:shadow-none focus:outline-none"
+        {required}
       />
     {:else if type === 'tel'}
       <input
+        {name}
         type="tel"
         {placeholder}
         bind:value
         class="text-sm focus:border-0 focus:shadow-none focus:outline-none"
+        {required}
       />
     {/if}
   </div>

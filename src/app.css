@@ -35,3 +35,8 @@ input::placeholder,
 textarea::placeholder {
   @apply font-open-sans text-[15px] font-normal leading-[150%] tracking-[-1.1%];
 }
+
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
