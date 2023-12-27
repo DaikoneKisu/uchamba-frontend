@@ -10,14 +10,16 @@
   export let isDeletable: boolean = true
 
   export let files: FileList | null = null
-
   export let imageUrl: string = ''
-
   export let image: File | null = null
+
+  let input: HTMLInputElement
 
   function deleteImage() {
     image = null
     imageUrl = ''
+    files = null
+    input.value = ''
     handleDelete()
   }
 
@@ -32,7 +34,14 @@
   out:slide
   class="mt-0 flex h-[212px] w-[335px] flex-col items-center justify-center overflow-clip border border-dashed border-[#343434] border-opacity-25 pt-0 text-center"
 >
-  <input type="file" accept="image/*" class="hidden" on:change={handleChange} bind:files />
+  <input
+    type="file"
+    accept="image/*"
+    class="hidden"
+    on:change={handleChange}
+    bind:files
+    bind:this={input}
+  />
 
   {#if imageUrl}
     {#if isDeletable}
