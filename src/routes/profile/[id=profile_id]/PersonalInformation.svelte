@@ -3,7 +3,11 @@
   import type { ProfileData } from '$lib/types/profile-data.type'
   import PersonalInformationEditionModal from './PersonalInformationEditionModal.svelte'
 
-  export let data: ProfileData
+  interface ProfileDataWithIsEditable extends ProfileData {
+    isEditable: boolean
+  }
+
+  export let data: ProfileDataWithIsEditable
 
   let openedModal = false
 
@@ -12,14 +16,16 @@
   }
 </script>
 
-<figure class="flex w-full max-w-[420px] flex-col gap-2">
+<figure class="flex w-full max-w-[420px] flex-col gap-2 pb-12">
   <figcaption
     class="flex w-full justify-between border-b-4 border-ucab-blue pb-2 pr-4 text-left font-poppins text-2xl"
   >
     Información Personal
-    <button on:click={openModal}>
-      <img src={pencilIcon} alt="Editar información del perfil" />
-    </button>
+    {#if data.isEditable}
+      <button on:click={openModal}>
+        <img src={pencilIcon} alt="Editar información del perfil" />
+      </button>
+    {/if}
   </figcaption>
   <div class="mt-3 flex justify-between">
     <ul class="flex flex-col gap-4">
