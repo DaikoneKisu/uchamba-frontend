@@ -130,7 +130,7 @@
 
 <ExperienceDetailsModal
   bind:openedModal={openedDetailsModal}
-  formData={{ ...selectedExperienceDetails, freelancer: false }}
+  formData={{ ...selectedExperienceDetails }}
   bind:mode={detailsModalMode}
   {isEditable}
 />

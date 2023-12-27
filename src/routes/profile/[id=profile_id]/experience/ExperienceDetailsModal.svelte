@@ -221,7 +221,7 @@
               placeholder="Ingrese la direccion"
               bind:value={formData.address}
               error={formErrors.address}
-            />s
+            />
           </div>
         {/if}
       </div>

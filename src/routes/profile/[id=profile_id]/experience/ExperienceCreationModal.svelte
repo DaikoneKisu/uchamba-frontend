@@ -136,7 +136,7 @@
   icon={graduationCapIcon}
 >
   <form slot="body" class="w-full flex-col justify-between px-6 py-12">
-    <div class="grid w-full grid-cols-2">
+    <div class="grid w-full grid-cols-2 gap-y-2">
       <Input
         type="text"
         label="Organizacion"
@@ -144,7 +144,13 @@
         bind:value={formData.organizationName}
         error={formErrors.organizationName}
       />
-      <Input type="text" label="Rol" placeholder="Ingrese el rol" bind:value={formData.jobTitle} />
+      <Input
+        type="text"
+        label="Rol"
+        placeholder="Ingrese el rol"
+        bind:value={formData.jobTitle}
+        error={formErrors.jobTitle}
+      />
       <Input
         type="date"
         label="Fecha de entrada"
@@ -161,7 +167,7 @@
         error={formErrors.departureDate}
       />
       <div />
-      <label class="flex items-center gap-2 pl-3">
+      <label class="flex items-center justify-center gap-3">
         <input
           type="checkbox"
           bind:checked={disabledDepartureDate}
@@ -187,7 +193,7 @@
       </label>
 
       {#if !formData.freelancer}
-        <div in:slide out:slide class="grid w-full grid-cols-2">
+        <div in:slide out:slide class="grid w-full grid-cols-2 gap-y-2">
           <Input
             type="text"
             label="País"
