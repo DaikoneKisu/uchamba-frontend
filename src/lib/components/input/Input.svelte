@@ -17,10 +17,10 @@
 
 <div class="flex w-full flex-col items-center">
   <label
-    class={'flex h-[64px] w-full max-w-[330px] rounded-xl border-4 border-[#f0f0f0] bg-brand-white pr-4 transition-all ' +
+    class={'flex h-[64px] w-full max-w-[330px] rounded-xl border-4  bg-brand-white pr-4 transition-all ' +
       className +
       ' ' +
-      (error && !isPristine ? ' border-[#D14F4F]' : '')}
+      (error && !isPristine ? ' border-[#D14F4F]' : 'border-[#f0f0f0]')}
   >
     <div class="flex h-full w-full flex-col justify-center pl-5 text-[15px]">
       <span class="text-brand-p-black">{label}</span>
@@ -83,8 +83,12 @@
     </div>
   </label>
   {#if error && !isPristine}
-    <span in:fly={{ x: -12 }} class="ml-3 text-[12px] text-red-600">{error}</span>
+    <strong in:fly={{ x: -12 }} class="ml-3 w-[80%] text-left text-[12px] text-red-600"
+      >{error}</strong
+    >
   {:else}
-    <span class="invisible ml-3 text-[12px] text-red-600" aria-hidden>you haven't read this</span>
+    <strong class="invisible ml-3 w-[80%] text-left text-[12px] text-red-600" aria-hidden
+      >you haven't read this</strong
+    >
   {/if}
 </div>
