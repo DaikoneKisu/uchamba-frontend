@@ -38,7 +38,7 @@
     openedDeleteModal = true
   }
 
-  function opencreationModal() {
+  function openCreationModal() {
     openedCreationModal = true
   }
 
@@ -79,29 +79,29 @@
     <div class="flex w-full justify-between">
       <h2>Experiencia Laboral</h2>
       {#if isEditable}
-        <Add clickHandler={opencreationModal} />
+        <Add clickHandler={openCreationModal} />
       {/if}
     </div>
     <div class="mt-2 h-1 w-full bg-ucab-blue" />
   </header>
 
   <ul class="mt-6 flex flex-col gap-8">
-    {#each business as busines (busines.workExpId)}
+    {#each business as b (b.workExpId)}
       <li in:slide out:slide class="flex flex-col gap-2">
         <div class="flex items-center justify-between">
-          <h3 class="font-poppins text-2xl">{busines.organizationName}</h3>
+          <h3 class="font-poppins text-2xl">{b.organizationName}</h3>
           {#if isEditable}
             <div class="flex gap-6">
               <button
                 on:click={() => {
-                  openEditionModal(busines)
+                  openEditionModal(b)
                 }}
               >
                 <img src={pencilIcon} alt="Editar estudio" />
               </button>
               <button
                 on:click={() => {
-                  openDeleteModal(busines.workExpId)
+                  openDeleteModal(b.workExpId)
                 }}
               >
                 <img src={deleteIcon} alt="Eliminar estudio" />
@@ -110,13 +110,13 @@
           {/if}
         </div>
 
-        <p class="font-open-sans font-bold text-ucab-black">{busines.jobTitle}</p>
-        <p class="font-open-sans text-brand-p-black">{busines.description}</p>
+        <p class="font-open-sans font-bold text-ucab-black">{b.jobTitle}</p>
+        <p class="font-open-sans text-brand-p-black">{b.description}</p>
 
         <div class="mt-2 flex items-center justify-start">
           <button
             on:click={() => {
-              openDetailsModal(busines)
+              openDetailsModal(b)
             }}
             class="text-left text-ucab-green underline underline-offset-2"
           >
