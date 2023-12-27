@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { fade, fly } from 'svelte/transition'
+  import { fly } from 'svelte/transition'
   import type { HTMLInputTypeAttribute } from '../../../types/html-input-type-attribute.type'
 
   export let label: string
@@ -15,12 +15,12 @@
   let isPristine = true
 </script>
 
-<div class="flex w-full flex-col">
+<div class="flex w-full flex-col items-center">
   <label
-    class={'flex h-[64px] w-full max-w-[330px] rounded-xl border-4 bg-brand-white pr-4 transition-all ' +
-      (error && !isPristine ? ' border-[#D14F4F]' : 'border-[#f0f0f0]') +
+    class={'flex h-[64px] w-full max-w-[330px] rounded-xl border-4 border-[#f0f0f0] bg-brand-white pr-4 transition-all ' +
+      className +
       ' ' +
-      className}
+      (error && !isPristine ? ' border-[#D14F4F]' : '')}
   >
     <div class="flex h-full w-full flex-col justify-center pl-5 text-[15px]">
       <span class="text-brand-p-black">{label}</span>
@@ -57,17 +57,6 @@
           {required}
           {disabled}
         />
-      {:else if type === 'date'}
-        <input
-          on:input|once={() => (isPristine = false)}
-          {name}
-          type="date"
-          {placeholder}
-          bind:value
-          class="text-sm focus:border-0 focus:shadow-none focus:outline-none"
-          {required}
-          {disabled}
-        />
       {:else if type === 'tel'}
         <input
           on:input|once={() => (isPristine = false)}
@@ -85,8 +74,6 @@
   {#if error && !isPristine}
     <span in:fly={{ x: -12 }} class="ml-3 text-[12px] text-red-600">{error}</span>
   {:else}
-    <span class="invisible ml-3 text-[12px] text-red-600" aria-hidden
-      >Has como que no estás leyendo esto</span
-    >
+    <span class="invisible ml-3 text-[12px] text-red-600" aria-hidden>you haven't read this</span>
   {/if}
 </div>
