@@ -168,14 +168,16 @@
           bind:value={formData.entryDate}
           error={formErrors.entryDate}
         />
-        <Input
-          type="date"
-          disabled
-          label="Fecha de salida (opcional)"
-          placeholder="dd/mm/aaaa"
-          bind:value={formData.departureDate}
-          error={formErrors.departureDate}
-        />
+        {#if formData.departureDate}
+          <Input
+            type="date"
+            disabled
+            label="Fecha de salida (opcional)"
+            placeholder="dd/mm/aaaa"
+            bind:value={formData.departureDate}
+            error={formErrors.departureDate}
+          />
+        {/if}
         <div />
       </div>
 
