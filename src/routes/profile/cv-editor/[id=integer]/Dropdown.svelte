@@ -1,5 +1,5 @@
 <script lang="ts">
-  import rightIcon from '$lib/icons/right-arrow.svg'
+  import downIcon from '$lib/icons/down-arrow.svg'
   import { slide } from 'svelte/transition'
 
   export let title: string
@@ -12,9 +12,9 @@
     <button on:click={() => (isOpen = !isOpen)} class="flex w-full justify-between">
       <h4 class="font-poppins text-xl">{title}</h4>
       <img
-        src={rightIcon}
+        src={downIcon}
         class={`aspect-square w-[30px] select-none transition-transform duration-300 ${
-          isOpen ? '-rotate-90' : 'rotate-90'
+          isOpen ? '-rotate-180' : 'rotate-0'
         }`}
         alt="Expandir lista"
       />
