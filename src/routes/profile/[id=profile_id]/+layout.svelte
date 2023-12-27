@@ -31,7 +31,7 @@
 
     const link = document.createElement('a')
     link.href = url
-    link.download = 'CV.pdf'
+    link.download = data.name + ' CV.pdf'
     link.click()
   }
 </script>
