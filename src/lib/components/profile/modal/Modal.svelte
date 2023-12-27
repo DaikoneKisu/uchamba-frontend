@@ -16,7 +16,7 @@
   <div
     in:fade={{ duration: 100 }}
     out:fade={{ duration: 100 }}
-    class="fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50"
+    class="fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50 z-10"
   >
     <div
       in:scale
