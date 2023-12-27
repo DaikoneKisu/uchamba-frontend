@@ -68,6 +68,17 @@
           {required}
           {disabled}
         />
+      {:else if type === 'date'}
+        <input
+          on:input|once={() => (isPristine = false)}
+          {name}
+          type="date"
+          {placeholder}
+          bind:value
+          class="text-sm focus:border-0 focus:shadow-none focus:outline-none"
+          {required}
+          {disabled}
+        />
       {/if}
     </div>
   </label>
