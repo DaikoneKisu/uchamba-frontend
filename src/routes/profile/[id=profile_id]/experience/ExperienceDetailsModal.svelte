@@ -7,7 +7,7 @@
   import EditModalFooter from '$lib/components/profile/modal/EditModalFooter.svelte'
   import SaveModalFooter from '$lib/components/profile/modal/SaveModalFooter.svelte'
   import { ValidationError } from 'yup'
-  import { validateAcademicExperience } from '$lib/profile/experiencia/validate-academic-experience'
+  import { validateAcademicExperience } from '$lib/profile/experience/validate-academic-experience'
   import { slide } from 'svelte/transition'
   import Textbox from '$lib/components/profile/textbox/Textbox.svelte'
   import type { WorkExperience } from '$lib/types/profile-data.type'

@@ -4,7 +4,7 @@
   import graduationCapIcon from '$lib/icons/business.svg'
   import SaveModalFooter from '$lib/components/profile/modal/SaveModalFooter.svelte'
   import { invalidateAll } from '$app/navigation'
-  import { validateAcademicExperience } from '$lib/profile/experiencia/validate-academic-experience'
+  import { validateAcademicExperience } from '$lib/profile/experience/validate-academic-experience'
   import { ValidationError } from 'yup'
   import Textbox from '$lib/components/profile/textbox/Textbox.svelte'
   import { slide } from 'svelte/transition'
