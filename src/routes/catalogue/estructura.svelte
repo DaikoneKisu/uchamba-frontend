@@ -4,9 +4,11 @@
 	import Selector from '$lib/icons/Selector.svg'
 	import DownloadCv from '$lib/components/buttons/DownloadCV.svelte'
 	import ViewProfile from '$lib/components/buttons/ViewProfile.svelte'
-  import type { graduatedInfo } from '$lib/types/graduated-info.type'
+	import Dropdown from './Dropdown.svelte'
+	import type { graduatedInfo } from '$lib/types/graduated-info.type'
+	import CareersDropdown from './CareersDropdown.svelte'
 
-	export let business: graduatedInfo[] 
+	export let business: graduatedInfo[]
 </script>
 
 <main class="flex flex-col gap-10 min-h-screen p-10 pt-5 bg-[#f0f0f0]">
@@ -20,16 +22,17 @@
 
 	<div class="flex flex-col gap-10 flex-grow md:flex-row">
 		<div
-			class="flex flex-col gap-12 justify-center items-start flex-grow w-full max-w-[400px] mt-0"
+			class="flex flex-col gap-12 justify-center items-center flex-grow w-full max-w-[400px] mt-0"
 		>
 			<section
-				class="flex flex-col gap-7 justify-center items-center bg-white w-full pb-12 rounded-[10px] flex-grow"
+				class="flex flex-col gap-7 bg-stone-50 w-full p-6 rounded-[10px] flex-grow border border-red-600"
 			>
-				<div
-					class="w-full flex flex-col justify-center items-center gap-2 text-brand-white pt-4 pb-28 bg-ucab-green rounded-[10px] rounded-bl-[150px]"
-				>
-					<h2 class="text-2xl font-poppins">Filtrar por</h2>
-				</div>
+				<h2 class="text-2xl font-poppins">Filtrar por</h2>
+				<CareersDropdown />
+				<Dropdown title="Localidad" />
+				<Dropdown title="Idiomas" />
+				<Dropdown title="Habilidades Duras" />
+				<Dropdown title="Habilidades Blandas" />
 			</section>
 		</div>
 
