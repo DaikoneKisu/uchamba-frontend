@@ -4,9 +4,9 @@
 	import Selector from '$lib/icons/Selector.svg'
 	import DownloadCv from '$lib/components/buttons/DownloadCV.svelte'
 	import ViewProfile from '$lib/components/buttons/ViewProfile.svelte'
-  import type { graduatedInfo } from '$lib/types/graduated-info.type'
+	import type { graduatedInfo } from '$lib/types/graduated-info.type'
 
-	export let business: graduatedInfo[] 
+	export let business: graduatedInfo[]
 </script>
 
 <main class="flex flex-col gap-10 min-h-screen p-10 pt-5 bg-[#f0f0f0]">
@@ -36,14 +36,14 @@
 		<section class="w-full flex flex-row items-start bg-white rounded-[10px]">
 			<div class="flex flex-col mt-4 ml-8">
 				<div
-					class="flex items-start border-4 border-gray-300 rounded-xl bg-brand-white pr-4 pl-4 pt-4 pb-2"
+					class="flex items-start border-4 border-zinc-100 rounded-xl bg-brand-white pr-4 pl-4 pt-4 pb-2"
 				>
 					<div class="flex flex-col p-2 w-full">
 						<div class="relative">
 							<input
 								type="text"
 								placeholder="Busca un egresado..."
-								class="text-sm focus:outline-none focus:border-0 focus:shadow-none w-full pr-24"
+								class="text-sm text-gray-900 focus:outline-none focus:border-0 focus:shadow-none w-full pr-24"
 							/>
 							<div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
 								<img class="w-[48.38px] h-[32.54px]" alt="" src={Buscador} />
@@ -63,12 +63,25 @@
 								<p class="mt-4">
 									{busines.address.country} - {busines.address.state} - {busines.address.city}
 								</p>
-								<!-- <h3>
-									{busines.featuredEducations.name} - Educacion -{busines.languages.name} -{busines
-										.languages.proficientLevel}
-								</h3> -->
+								<ul style="list-style: none; padding: 0; margin: 0;">
+									{#each busines.featuredEducations as education, index}
+										<li style="display: inline;">
+											{education.name}{#if index !== busines.featuredEducations.length - 1} - {/if}
+										</li>
+									{/each}
+								</ul>
 
-								<h3 class="font-semibold whitespace-normal">{busines.aboutMe}</h3>
+								<ul style="display: flex; list-style: none; padding: 0; margin: 0;">
+									<li style="white-space: nowrap; margin-right: 4px;">
+										{#each busines.languages as language, index}
+											{#if index !== 0}, {/if}
+											{language.name} - Proficient Level: {language.proficientLevel}
+										{/each}
+									</li>
+								</ul>
+								<h3 class="font-semibold whitespace-normal w-full" style="max-width: 1300px;">
+									{busines.aboutMe}
+								</h3>
 
 								<div class="mt-8 ml-0" />
 								<DownloadCv />
@@ -80,25 +93,7 @@
 				</div>
 			</div>
 
-			<div class="flex flex-col mt-4 ml-36">
-				<div
-					class="flex items-start border-4 border-gray-300 rounded-xl bg-brand-white pr-4 pl-4 pt-4 pb-2"
-				>
-					<div class="flex flex-col p-2 w-full">
-						<div class="relative" style="width: calc(100% - 24px);">
-							<input
-								type="text"
-								placeholder="Ordenar por"
-								class="text-sm focus:outline-none focus:border-0 focus:shadow-none w-full pr-48"
-								style="width: 100%;"
-							/>
-							<div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-								<img class="w-[48.38px] h-[32.54px]" alt="" src={Selector} />
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			
 		</section>
 	</div>
 </main>
