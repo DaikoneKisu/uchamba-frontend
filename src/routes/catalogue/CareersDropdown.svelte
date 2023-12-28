@@ -11,7 +11,7 @@
 	let informatics = false
 </script>
 
-<Dropdown title="Formaciones Académicas">
+<Dropdown title="Carreras">
 	<ul class="flex flex-col gap-5 py-5">
 		<li class="flex items-center gap-5 pl-2">
 			<Checkbox bind:checked={admin} />
