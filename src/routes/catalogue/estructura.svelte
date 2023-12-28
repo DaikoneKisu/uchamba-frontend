@@ -5,7 +5,6 @@
 	import DownloadCv from '$lib/components/buttons/DownloadCV.svelte'
 	import ViewProfile from '$lib/components/buttons/ViewProfile.svelte'
 	import type { graduatedInfo } from '$lib/types/graduated-info.type'
-
 	export let business: graduatedInfo[]
 </script>
 
@@ -82,6 +81,16 @@
 								<h3 class="font-semibold whitespace-normal w-full" style="max-width: 1300px;">
 									{busines.aboutMe}
 								</h3>
+
+								<ul style="display: flex; list-style: none; padding: 0; margin: 0; ">
+									{#each busines.skills.hardSkills as hardskills, index}
+									  <li style="white-space: nowrap; margin-right: 10px; ">
+										<div class="min-w-[fit-content] h-[35px] px-[15px] py-1.5 bg-neutral-100 rounded-[50px] border border-stone-300 border-opacity-90 justify-center items-center gap-2.5 inline-flex" style="margin-top: 15px;">
+										  <div class="text-black text-[15px] font-bold font-['Open Sans'] leading-snug">{hardskills.name}</div>
+										</div>
+									  </li>
+									{/each}
+								  </ul>
 
 								<div class="mt-8 ml-0" />
 								<DownloadCv />

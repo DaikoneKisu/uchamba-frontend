@@ -49,6 +49,9 @@ export function load() {
           },
           {
             "name": "Data Modeling"
+          },
+          {
+            "name": "Data Modeling 2"
           }
         ]
       }
