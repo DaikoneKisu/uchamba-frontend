@@ -128,7 +128,7 @@
             </div>
           {/if}
         </div>
-        <p class="text-brand-p-black">
+        <p class="text-brand-p-black capitalize">
           Nivel {lang.proficientLevel === 'Native' ? 'Nativo' : lang.proficientLevel}
         </p>
 
