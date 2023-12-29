@@ -35,7 +35,7 @@
       <li>
         <a
           href={`/profile/${profileId}/experience`}
-          class="flex h-full w-full flex-col items-center justify-center gap-2"
+          class="flex h-full w-full flex-col items-center justify-center gap-2 uppercase"
           >EXPERIENCIA
           {#if currentRoute === 'experience'}
             <div
