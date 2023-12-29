@@ -36,8 +36,6 @@
   {#if error && !isPristine}
     <span in:fly={{ x: -12 }} class="ml-3 text-[12px] text-red-600">{error}</span>
   {:else}
-    <span class="invisible ml-3 text-[12px] text-red-600" aria-hidden
-      >Has como que no estás leyendo esto</span
-    >
+    <div class="invisible h-5" aria-hidden></div>
   {/if}
 </div>
