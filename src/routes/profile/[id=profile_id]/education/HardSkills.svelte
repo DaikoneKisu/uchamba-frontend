@@ -1,7 +1,7 @@
 <script lang="ts">
   import { fade } from 'svelte/transition'
   import { flip } from 'svelte/animate'
-  
+
   import Add from '$lib/components/profile/add/Add.svelte'
   import Chip from '$lib/components/profile/chip/Chip.svelte'
   import HardSkillCreationModal from './HardSkillCreationModal.svelte'

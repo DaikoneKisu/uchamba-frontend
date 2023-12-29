@@ -1,9 +1,9 @@
 <script lang="ts">
   import { ValidationError } from 'yup'
   import { invalidateAll } from '$app/navigation'
-  
+
   import type { PersonalStudy } from '$lib/types/profile-data.type'
-  
+
   import Modal from '$lib/components/profile/modal/Modal.svelte'
   import Input from '$lib/components/input/Input.svelte'
   import SaveModalFooter from '$lib/components/profile/modal/SaveModalFooter.svelte'

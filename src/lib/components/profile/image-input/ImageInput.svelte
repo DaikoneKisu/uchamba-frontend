@@ -1,6 +1,6 @@
 <script lang="ts">
   import { slide } from 'svelte/transition'
-  
+
   import deleteIcon from '$lib/icons/delete.svg'
   import uploadIcon from '$lib/icons/upload.svg'
 
@@ -54,7 +54,11 @@
         </button>
       </div>
     {/if}
-    <img src={imageUrl} alt="Imagen subida por el usuario" class="relative h-full w-full object-contain" />
+    <img
+      src={imageUrl}
+      alt="Imagen subida por el usuario"
+      class="relative h-full w-full object-contain"
+    />
   {:else}
     <img src={uploadIcon} alt="Sube una imagen" />
     <p class="font-bold">{title}</p>

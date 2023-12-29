@@ -1,16 +1,16 @@
 <script lang="ts">
   import { ValidationError } from 'yup'
   import { invalidateAll } from '$app/navigation'
-  
+
   import type { ProjectCreationPayload } from '$lib/profile/portfolio/project-creation-payload.type'
-  
+
   import Modal from '$lib/components/profile/modal/Modal.svelte'
   import Input from '$lib/components/input/Input.svelte'
   import SaveModalFooter from '$lib/components/profile/modal/SaveModalFooter.svelte'
   import ImageInput from '$lib/components/profile/image-input/ImageInput.svelte'
   import Textbox from '$lib/components/profile/textbox/Textbox.svelte'
   import { validateProject } from '$lib/profile/portfolio/validate-project'
-  
+
   import languageIcon from '$lib/icons/Portfolio.svg'
 
   export let openedModal = false

@@ -1,14 +1,14 @@
 <script lang="ts">
   import { invalidateAll } from '$app/navigation'
   import { slide } from 'svelte/transition'
-  
+
   import type { PersonalStudy } from '$lib/types/profile-data.type'
-  
+
   import Add from '$lib/components/profile/add/Add.svelte'
   import AcademicTrainingCreationModal from './AcademicTrainingCreationModal.svelte'
   import DeleteModal from '$lib/components/profile/modal/DeleteModal.svelte'
   import AcademicTrainingEditionModal from './AcademicTrainingEditionModal.svelte'
-  
+
   import pencilIcon from '$lib/icons/pencil.svg'
   import deleteIcon from '$lib/icons/delete.svg'
 
@@ -91,7 +91,7 @@
 
           <div class="flex gap-6" />
         </div>
-        <p class="text-brand-p-black capitalize">
+        <p class="capitalize text-brand-p-black">
           {featStudy.name} - {featStudy.degree}
         </p>
         <p>Año de graduación {featStudy.graduationYear}</p>
@@ -120,7 +120,7 @@
             </div>
           {/if}
         </div>
-        <p class="text-brand-p-black capitalize">
+        <p class="capitalize text-brand-p-black">
           {personalStudy.name} - {personalStudy.degree}
         </p>
         <p>Año de graduación {personalStudy.graduationYear}</p>

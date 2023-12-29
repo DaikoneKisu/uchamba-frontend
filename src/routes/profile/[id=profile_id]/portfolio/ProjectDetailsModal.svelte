@@ -1,10 +1,10 @@
 <script lang="ts">
   import { ValidationError } from 'yup'
   import { invalidateAll } from '$app/navigation'
-  
+
   import type { ProjectEditionPayload } from '$lib/profile/portfolio/project-edition-payload'
   import type { Project } from '$lib/types/profile-data.type'
-  
+
   import Modal from '$lib/components/profile/modal/Modal.svelte'
   import Input from '$lib/components/input/Input.svelte'
   import EditModalFooter from '$lib/components/profile/modal/EditModalFooter.svelte'
@@ -13,7 +13,7 @@
   import Textbox from '$lib/components/profile/textbox/Textbox.svelte'
   import Carousel from '$lib/components/profile/carousel/Carousel.svelte'
   import { validateProject } from '$lib/profile/portfolio/validate-project'
-  
+
   import languageIcon from '$lib/icons/Portfolio.svg'
 
   export let openedModal = false

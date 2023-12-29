@@ -1,12 +1,12 @@
 <script lang="ts">
   import { invalidateAll } from '$app/navigation'
   import { slide } from 'svelte/transition'
-  
+
   import Add from '$lib/components/profile/add/Add.svelte'
   import LanguageCreationModal from './LanguageCreationModal.svelte'
   import LanguagesDetailsModal from './LanguagesDetailsModal.svelte'
   import DeleteModal from '$lib/components/profile/modal/DeleteModal.svelte'
-  
+
   import pencilIcon from '$lib/icons/pencil.svg'
   import deleteIcon from '$lib/icons/delete.svg'
 
@@ -27,7 +27,7 @@
   let detailsModalMode: 'view' | 'edit' = 'view'
 
   let langIdToDelete: number
-  
+
   let selectedLanguageDetails = {
     languageId: 0,
     name: '',
@@ -128,7 +128,7 @@
             </div>
           {/if}
         </div>
-        <p class="text-brand-p-black capitalize">
+        <p class="capitalize text-brand-p-black">
           Nivel {lang.proficientLevel === 'Native' ? 'Nativo' : lang.proficientLevel}
         </p>
 
@@ -136,7 +136,7 @@
           on:click={() => {
             openDetailsModal(lang)
           }}
-          class="text-left text-ucab-green underline underline-offset-2 capitalize"
+          class="text-left capitalize text-ucab-green underline underline-offset-2"
         >
           Ver Información
         </button>

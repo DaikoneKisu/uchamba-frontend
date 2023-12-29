@@ -1,6 +1,6 @@
 <script lang="ts">
   import { fade, scale } from 'svelte/transition'
-  
+
   import cancelIcon from '$lib/icons/cancel-black.svg'
 
   export let isOpen: boolean
@@ -16,7 +16,7 @@
 {#if isOpen}
   <dialog
     transition:fade={{ duration: 100 }}
-    class="fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50 z-10"
+    class="fixed left-0 top-0 z-10 flex h-full w-full items-center justify-center bg-black bg-opacity-50"
   >
     <div
       in:scale

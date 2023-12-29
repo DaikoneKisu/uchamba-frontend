@@ -2,11 +2,11 @@
   import { flip } from 'svelte/animate'
   import { fade } from 'svelte/transition'
   import { invalidateAll } from '$app/navigation'
-  
+
   import Modal from '$lib/components/profile/modal/Modal.svelte'
   import SaveModalFooter from '$lib/components/profile/modal/SaveModalFooter.svelte'
   import Chip from '$lib/components/profile/chip/Chip.svelte'
-  
+
   import learningIcon from '$lib/icons/learning.svg'
 
   export let openedModal = false

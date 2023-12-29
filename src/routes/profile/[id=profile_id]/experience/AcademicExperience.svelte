@@ -1,14 +1,14 @@
 <script lang="ts">
   import { slide } from 'svelte/transition'
   import { invalidateAll } from '$app/navigation'
-  
+
   import type { WorkExperience } from '$lib/types/profile-data.type'
-  
+
   import Add from '$lib/components/profile/add/Add.svelte'
   import ExperienceCreationModal from './ExperienceCreationModal.svelte'
   import ExperienceDetailsModal from './ExperienceDetailsModal.svelte'
   import DeleteModal from '$lib/components/profile/modal/DeleteModal.svelte'
-  
+
   import pencilIcon from '$lib/icons/pencil.svg'
   import deleteIcon from '$lib/icons/delete.svg'
 
@@ -113,7 +113,7 @@
           {/if}
         </div>
 
-        <p class="font-open-sans font-bold text-ucab-black capitalize">{b.jobTitle}</p>
+        <p class="font-open-sans font-bold capitalize text-ucab-black">{b.jobTitle}</p>
         <p class="font-open-sans text-brand-p-black">{b.description}</p>
 
         <div class="mt-2 flex items-center justify-start">
@@ -121,7 +121,7 @@
             on:click={() => {
               openDetailsModal(b)
             }}
-            class="text-left text-ucab-green underline underline-offset-2 capitalize"
+            class="text-left capitalize text-ucab-green underline underline-offset-2"
           >
             Ver Información
           </button>

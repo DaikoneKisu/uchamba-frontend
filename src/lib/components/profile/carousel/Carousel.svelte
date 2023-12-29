@@ -14,7 +14,7 @@
   }
 
   function goPrev() {
-    currentImage -= 1 + images.length % images.length
+    currentImage -= 1 + (images.length % images.length)
   }
 </script>
 
@@ -42,7 +42,11 @@
   </div>
   <div class="flex items-center gap-3">
     <button on:click={goPrev}>
-      <img src={leftArrow} alt="Flecha izquierda - Imagen anterior" class="aspect-square w-[30px]" />
+      <img
+        src={leftArrow}
+        alt="Flecha izquierda - Imagen anterior"
+        class="aspect-square w-[30px]"
+      />
     </button>
     {#each images as _, index}
       <button
@@ -52,7 +56,11 @@
       />
     {/each}
     <button on:click={goNext}>
-      <img src={rightArrow} alt="Flecha derecha - Imagen siguiente" class="aspect-square w-[30px]" />
+      <img
+        src={rightArrow}
+        alt="Flecha derecha - Imagen siguiente"
+        class="aspect-square w-[30px]"
+      />
     </button>
   </div>
 </section>

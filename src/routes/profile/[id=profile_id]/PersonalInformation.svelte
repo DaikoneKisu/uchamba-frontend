@@ -1,8 +1,8 @@
 <script lang="ts">
   import type { ProfileData } from '$lib/types/profile-data.type'
-  
+
   import PersonalInformationEditionModal from './PersonalInformationEditionModal.svelte'
-  
+
   import pencilIcon from '$lib/icons/pencil.svg'
 
   interface ProfileDataWithIsEditable extends ProfileData {

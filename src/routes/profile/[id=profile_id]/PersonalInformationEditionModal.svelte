@@ -1,13 +1,13 @@
 <script lang="ts">
   import { ValidationError } from 'yup'
   import { invalidateAll } from '$app/navigation'
-  
+
   import Modal from '$lib/components/profile/modal/Modal.svelte'
   import SaveModalFooter from '$lib/components/profile/modal/SaveModalFooter.svelte'
   import Input from '$lib/components/input/Input.svelte'
   import Textbox from '$lib/components/profile/textbox/Textbox.svelte'
   import { validatePersonalInformation } from '$lib/profile/personal-information/validate-personal-information'
-  
+
   import userIcon from '$lib/icons/user.svg'
 
   export let isOpen: boolean
