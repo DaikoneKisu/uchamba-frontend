@@ -54,7 +54,7 @@
         </button>
       </div>
     {/if}
-    <img src={imageUrl} alt="" class="relative h-full w-full object-contain" />
+    <img src={imageUrl} alt="Imagen subida por el usuario" class="relative h-full w-full object-contain" />
   {:else}
     <img src={uploadIcon} alt="" />
     <p class="font-bold">{title}</p>
