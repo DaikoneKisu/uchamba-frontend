@@ -66,7 +66,7 @@
         method: 'POST',
         body: JSON.stringify(formData)
       })
-      if (!res.ok) throw new Error('Error al actualizar la experiencia academica')
+      if (!res.ok) throw new Error('Error al actualizar la experiencia laboral')
       invalidateAll()
       closeModal()
     } catch (error) {
