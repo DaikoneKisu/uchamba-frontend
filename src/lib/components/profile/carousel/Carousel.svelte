@@ -6,9 +6,8 @@
 
   let currentImage = 0
 
-  let nextImage = 1
-
-  let prevImage = images.length - 1
+  $: nextImage = (currentImage + 1) % images.length
+  $: prevImage = (currentImage - 1 + images.length) % images.length
 
   function goNext() {
     currentImage = (currentImage + 1) % images.length
@@ -17,9 +16,6 @@
   function goPrev() {
     currentImage = (currentImage - 1 + images.length) % images.length
   }
-
-  $: nextImage = (currentImage + 1) % images.length
-  $: prevImage = (currentImage - 1 + images.length) % images.length
 </script>
 
 <div class="flex flex-col items-center justify-center gap-4">
