@@ -14,7 +14,7 @@
   }
 
   function goPrev() {
-    currentImage = (currentImage - 1 + images.length) % images.length
+    currentImage -= 1 + images.length % images.length
   }
 </script>
 
