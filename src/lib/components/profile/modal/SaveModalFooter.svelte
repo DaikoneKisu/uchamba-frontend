@@ -2,7 +2,6 @@
   import saveIcon from '$lib/icons/save.svg'
 
   export let handleSave: () => void
-
   export let disabled: boolean
 </script>
 
