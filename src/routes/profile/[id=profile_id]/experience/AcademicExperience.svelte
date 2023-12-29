@@ -90,7 +90,7 @@
 
   <ul class="mt-6 flex flex-col gap-8">
     {#each business as b (b.workExpId)}
-      <li in:slide out:slide class="flex flex-col gap-2">
+      <li transition:slide class="flex flex-col gap-2">
         <div class="flex items-center justify-between">
           <h3 class="font-poppins text-2xl">{b.organizationName}</h3>
           {#if isEditable}
