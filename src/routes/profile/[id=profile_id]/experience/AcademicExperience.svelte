@@ -80,7 +80,7 @@
 <article class="w-full flex-col bg-brand-white">
   <header>
     <div class="flex w-full justify-between">
-      <h2>Experiencia Laboral</h2>
+      <h2 class="capitalize">Experiencia Laboral</h2>
       {#if isEditable}
         <Add clickHandler={openCreationModal} />
       {/if}
