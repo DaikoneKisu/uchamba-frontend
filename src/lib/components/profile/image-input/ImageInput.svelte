@@ -11,7 +11,7 @@
   export let isDeletable = true
 
   export let files: FileList | null = null
-  export let imageUrl: string = ''
+  export let imageUrl = ''
   export let image: File | null = null
 
   let input: HTMLInputElement
