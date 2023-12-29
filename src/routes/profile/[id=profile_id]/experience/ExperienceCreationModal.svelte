@@ -1,13 +1,15 @@
 <script lang="ts">
+  import { ValidationError } from 'yup'
+  import { slide } from 'svelte/transition'
+  import { invalidateAll } from '$app/navigation'
+  
   import Modal from '$lib/components/profile/modal/Modal.svelte'
   import Input from '$lib/components/input/Input.svelte'
-  import graduationCapIcon from '$lib/icons/business.svg'
   import SaveModalFooter from '$lib/components/profile/modal/SaveModalFooter.svelte'
-  import { invalidateAll } from '$app/navigation'
-  import { validateAcademicExperience } from '$lib/profile/experience/validate-academic-experience'
-  import { ValidationError } from 'yup'
   import Textbox from '$lib/components/profile/textbox/Textbox.svelte'
-  import { slide } from 'svelte/transition'
+  import { validateAcademicExperience } from '$lib/profile/experience/validate-academic-experience'
+  
+  import graduationCapIcon from '$lib/icons/business.svg'
 
   export let openedModal = false
 
