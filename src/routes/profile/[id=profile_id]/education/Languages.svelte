@@ -123,7 +123,7 @@
                   openDeleteModal(lang.languageId)
                 }}
               >
-                <img src={deleteIcon} alt="Eliminar estudio" />
+                <img src={deleteIcon} alt="Eliminar idioma" />
               </button>
             </div>
           {/if}
