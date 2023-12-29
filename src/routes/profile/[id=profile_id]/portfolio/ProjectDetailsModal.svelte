@@ -245,7 +245,7 @@
               }}
               imageUrl={project.images[i]?.imageUrl}
               title="Click para subir una imagen del carrusel"
-              subTitle="Se admite cualquier formato de imágen"
+              subTitle="Se admite cualquier formato de imagen"
               bind:image={img}
             />
           {/each}
