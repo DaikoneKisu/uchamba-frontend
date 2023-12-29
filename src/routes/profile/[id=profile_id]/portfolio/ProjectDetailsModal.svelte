@@ -77,7 +77,7 @@
         method: 'PUT',
         body: form
       })
-      if (!res.ok) throw new Error('Error editando el Proyecto')
+      if (!res.ok) throw new Error('Error editando el proyecto')
       invalidateAll()
       closeModal()
     } catch (error) {
