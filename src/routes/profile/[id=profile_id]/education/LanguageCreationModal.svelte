@@ -90,7 +90,7 @@
       >
         <option value="" selected disabled>Seleccione su idioma</option>
         {#each langsList as lang}
-          <option value={lang.languageId}>{lang.name}</option>
+          <option class="capitalize" value={lang.languageId}>{lang.name}</option>
         {/each}
       </select>
       <select
