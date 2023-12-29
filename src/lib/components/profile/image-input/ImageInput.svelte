@@ -1,7 +1,8 @@
 <script lang="ts">
+  import { slide } from 'svelte/transition'
+  
   import deleteIcon from '$lib/icons/delete.svg'
   import uploadIcon from '$lib/icons/upload.svg'
-  import { slide } from 'svelte/transition'
 
   export let title: string
   export let subTitle: string
