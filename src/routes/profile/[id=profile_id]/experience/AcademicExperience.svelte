@@ -100,7 +100,7 @@
                   openEditionModal(b)
                 }}
               >
-                <img src={pencilIcon} alt="Editar estudio" />
+                <img src={pencilIcon} alt="Editar experiencia académica" />
               </button>
               <button
                 on:click={() => {
