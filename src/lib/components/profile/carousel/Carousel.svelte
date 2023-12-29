@@ -23,7 +23,7 @@
     <button on:click={goPrev}>
       <img
         src={images[prevImage]}
-        alt="Imágen del carrusel"
+        alt="Imagen del carrusel"
         class="aspect-[316/200] w-[316px] rounded-[10px] object-contain opacity-40"
       />
     </button>
