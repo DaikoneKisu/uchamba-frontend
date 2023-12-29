@@ -16,10 +16,10 @@ export async function load({
 }) {
   let res: Response
 
-  const isLoggedUser = id === 'me'
+  const accessingMyProfile = id === 'me'
   const sessionDoesntExists = !cookies.get('session')
 
-  if (isLoggedUser) {
+  if (accessingMyProfile) {
     if (sessionDoesntExists) {
       throw redirect(303, `/login?redirectTo=${url.pathname}`)
     }
@@ -31,5 +31,5 @@ export async function load({
 
   const data = (await res.json()) as ProfileData
 
-  return { ...data, isEditable: isLoggedUser }
+  return { ...data, isEditable: accessingMyProfile }
 }
