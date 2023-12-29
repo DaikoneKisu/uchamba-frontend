@@ -219,7 +219,7 @@
             <Input
               type="text"
               disabled
-              label="Direccion"
+              label="Dirección"
               placeholder="Ingrese la dirección"
               bind:value={formData.address}
               error={formErrors.address}
