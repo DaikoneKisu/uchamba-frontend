@@ -87,7 +87,7 @@
     {#each studiesData.featured as featStudy}
       <li in:slide out:slide class="flex flex-col gap-2">
         <div class="flex justify-between">
-          <h3 class="font-poppins text-2xl">Universidad Católica Andrés Bello</h3>
+          <h3 class="font-poppins text-2xl capitalize">Universidad Católica Andrés Bello</h3>
 
           <div class="flex gap-6" />
         </div>
