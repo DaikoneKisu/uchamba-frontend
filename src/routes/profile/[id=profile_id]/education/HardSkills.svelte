@@ -1,9 +1,10 @@
 <script lang="ts">
+  import { fade } from 'svelte/transition'
+  import { flip } from 'svelte/animate'
+  
   import Add from '$lib/components/profile/add/Add.svelte'
   import Chip from '$lib/components/profile/chip/Chip.svelte'
-  import { flip } from 'svelte/animate'
   import HardSkillCreationModal from './HardSkillCreationModal.svelte'
-  import { fade } from 'svelte/transition'
 
   export let hardSkills: {
     skillId: number
