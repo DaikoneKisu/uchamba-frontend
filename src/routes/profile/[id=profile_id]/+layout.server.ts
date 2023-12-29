@@ -1,6 +1,7 @@
-import type { ProfileData } from '../../../lib/types/profile-data.type'
-import { BACKEND_BASE_URL } from '$env/static/private'
 import { redirect, type Cookies } from '@sveltejs/kit'
+import { BACKEND_BASE_URL } from '$env/static/private'
+
+import type { ProfileData } from '$lib/types/profile-data.type'
 
 export async function load({
   fetch,
