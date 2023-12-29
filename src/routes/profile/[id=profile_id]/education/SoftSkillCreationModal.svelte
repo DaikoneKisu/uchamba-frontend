@@ -70,10 +70,7 @@
   <svelte:fragment slot="body">
     <form
       class="flex w-full justify-between pb-8 pl-6 pt-12"
-      on:submit={(e) => {
-        e.preventDefault()
-        insertSkill()
-      }}
+      on:submit|preventDefault={() => insertSkill()}
     >
       <div class="flex w-full justify-center gap-12">
         <label
