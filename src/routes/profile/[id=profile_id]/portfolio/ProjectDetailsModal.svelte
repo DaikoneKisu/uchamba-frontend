@@ -233,7 +233,7 @@
             isDeletable={false}
             imageUrl={project.coverImageUrl}
             title="Click para subir una imagen de portada"
-            subTitle="Se admite cualquier formato de imágen"
+            subTitle="Se admite cualquier formato de imagen"
           />
           {#each formData.images as img, i}
             <ImageInput
