@@ -98,7 +98,7 @@
       </li>
     {/each}
     {#each studiesData.personal as personalStudy (personalStudy.studyId)}
-      <li in:slide out:slide class="flex flex-col gap-2">
+      <li transition:slide class="flex flex-col gap-2">
         <div class="flex justify-between">
           <h3 class="font-poppins text-2xl">{personalStudy.universityName}</h3>
           {#if isEditable}
