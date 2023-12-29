@@ -27,6 +27,14 @@
   let detailsModalMode: 'view' | 'edit' = 'view'
 
   let langIdToDelete: number
+  
+  let selectedLanguageDetails = {
+    languageId: 0,
+    name: '',
+    proficientLevel: '',
+    createdAt: '',
+    updatedAt: ''
+  }
 
   function openCreationModal() {
     openedCreationModal = true
@@ -59,14 +67,6 @@
     detailsModalMode = 'edit'
     selectedLanguageDetails = { ...lang }
     openedDetailsModal = true
-  }
-
-  let selectedLanguageDetails = {
-    languageId: 0,
-    name: '',
-    proficientLevel: '',
-    createdAt: '',
-    updatedAt: ''
   }
 
   async function handleDelete() {
