@@ -1,11 +1,13 @@
 <script lang="ts">
+  import { ValidationError } from 'yup'
+  import { invalidateAll } from '$app/navigation'
+  
   import Modal from '$lib/components/profile/modal/Modal.svelte'
   import Input from '$lib/components/input/Input.svelte'
-  import externalLinkIcon from '$lib/icons/external-link.svg'
   import SaveModalFooter from '$lib/components/profile/modal/SaveModalFooter.svelte'
-  import { invalidateAll } from '$app/navigation'
   import { validatePersonalLink } from '$lib/profile/personal-links/validate-personal-link'
-  import { ValidationError } from 'yup'
+  
+  import externalLinkIcon from '$lib/icons/external-link.svg'
 
   export let openedModal = false
 
