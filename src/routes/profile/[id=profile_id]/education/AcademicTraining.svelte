@@ -120,11 +120,8 @@
             </div>
           {/if}
         </div>
-        <p class="text-brand-p-black">
-          {personalStudy.name} - {personalStudy.degree
-            .split('')
-            .map((c, i) => (i === 0 ? c.toUpperCase() : c))
-            .join('')}
+        <p class="text-brand-p-black capitalize">
+          {personalStudy.name} - {personalStudy.degree}
         </p>
         <p>Año de graduación {personalStudy.graduationYear}</p>
       </li>
