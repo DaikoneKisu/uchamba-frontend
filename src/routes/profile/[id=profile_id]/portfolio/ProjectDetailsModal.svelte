@@ -14,7 +14,7 @@
   import Carousel from '$lib/components/profile/carousel/Carousel.svelte'
   import { validateProject } from '$lib/profile/portfolio/validate-project'
 
-  import languageIcon from '$lib/icons/Portfolio.svg'
+  import languageIcon from '$lib/icons/portfolio.svg'
 
   export let openedModal = false
 
