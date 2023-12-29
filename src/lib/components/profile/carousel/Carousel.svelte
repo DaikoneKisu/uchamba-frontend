@@ -29,7 +29,7 @@
     </button>
     <img
       src={images[currentImage]}
-      alt="Imágen del carrusel"
+      alt="Imagen del carrusel"
       class="mb-4 aspect-[316/200] w-[316px] rounded-[10px] object-contain"
     />
     <button on:click={goNext}>
