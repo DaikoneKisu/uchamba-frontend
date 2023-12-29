@@ -1,9 +1,12 @@
 <script lang="ts">
-  import deleteIcon from '$lib/icons/delete.svg'
-  import Add from '$lib/components/profile/add/Add.svelte'
-  import type { PersonalLink } from '$lib/types/profile-data.type'
-  import PersonalLinkCreationModal from './PersonalLinkCreationModal.svelte'
   import { slide } from 'svelte/transition'
+  
+  import type { PersonalLink } from '$lib/types/profile-data.type'
+  
+  import Add from '$lib/components/profile/add/Add.svelte'
+  import PersonalLinkCreationModal from './PersonalLinkCreationModal.svelte'
+  
+  import deleteIcon from '$lib/icons/delete.svg'
 
   export let links: PersonalLink[]
 
