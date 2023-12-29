@@ -247,7 +247,7 @@
         <Input
           type="text"
           label="Organizacion"
-          placeholder="Ingrese el instituto o universidad"
+          placeholder="Ingrese el nombre de la organización"
           bind:value={formData.organizationName}
           error={formErrors.organizationName}
         />
