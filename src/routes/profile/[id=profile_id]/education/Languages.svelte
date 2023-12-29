@@ -108,7 +108,7 @@
     {#each languages as lang (lang.languageId)}
       <li transition:slide class="flex flex-col gap-2">
         <div class="flex justify-between">
-          <h3 class="font-poppins text-2xl">{lang.name}</h3>
+          <h3 class="font-poppins text-2xl capitalize">{lang.name}</h3>
           {#if isEditable}
             <div class="flex gap-6">
               <button
