@@ -19,7 +19,7 @@
 
   export let mode: 'view' | 'edit'
 
-  export let isEditable: boolean = true
+  export let isEditable = true
 
   export let formData: WorkExperience = {
     workExpId: 0,
