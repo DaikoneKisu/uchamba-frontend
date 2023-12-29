@@ -1,6 +1,7 @@
 <script lang="ts">
-  import cancelIcon from '$lib/icons/cancel-black.svg'
   import { fade, scale } from 'svelte/transition'
+  
+  import cancelIcon from '$lib/icons/cancel-black.svg'
 
   export let isOpen: Boolean
   export let title = ''
