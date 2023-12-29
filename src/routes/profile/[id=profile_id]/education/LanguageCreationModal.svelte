@@ -97,7 +97,7 @@
         class="flex h-[64px] w-full max-w-[330px] rounded-xl border-4 border-[#f0f0f0] bg-brand-white px-4"
         bind:value={formData.proficientLevel}
       >
-        <option value="">Seleccione su nivel</option>
+        <option value="" selected disabled>Seleccione su nivel</option>
         <option value="A1">A1</option>
         <option value="A2">A2</option>
         <option value="B1">B1</option>
