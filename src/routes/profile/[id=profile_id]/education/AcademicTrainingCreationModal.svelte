@@ -122,7 +122,7 @@
           class="flex h-[64px] w-full max-w-[330px] rounded-xl border-4 border-[#f0f0f0] bg-brand-white px-4"
           bind:value={formData.degree}
         >
-          <option value="">Seleccione el nivel de estudios</option>
+          <option value="" selected disabled>Seleccione el nivel de estudios</option>
           <option value="pregrado"> Pregrado </option>
           <option value="postgrado"> Postgrado </option>
           <option value="especializacion"> Especialización </option>
