@@ -107,7 +107,7 @@
                   openDeleteModal(b.workExpId)
                 }}
               >
-                <img src={deleteIcon} alt="Eliminar estudio" />
+                <img src={deleteIcon} alt="Eliminar experiencia académica" />
               </button>
             </div>
           {/if}
