@@ -8,7 +8,7 @@
   export let subTitle: string
   export let handleChange: (event: Event) => void = () => {}
   export let handleDelete: () => void = () => {}
-  export let isDeletable: boolean = true
+  export let isDeletable = true
 
   export let files: FileList | null = null
   export let imageUrl: string = ''
