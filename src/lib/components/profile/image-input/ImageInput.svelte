@@ -50,7 +50,7 @@
           on:click|preventDefault={deleteImage}
           class="absolute z-10 h-[33px] w-[39px] hover:cursor-pointer"
         >
-          <img src={deleteIcon} alt="Delete img" />
+          <img src={deleteIcon} alt="Borrar imagen" />
         </button>
       </div>
     {/if}
