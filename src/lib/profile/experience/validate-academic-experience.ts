@@ -4,12 +4,12 @@ const schema = object({
   organizationName: string().required('Campo requerido'),
   jobTitle: string().required('Campo requerido'),
   description: string().required('Campo requerido'),
-  entryDate: date().nullable().default(null).required('Campo requerido'),
+  entryDate: date().required('Campo requerido'),
   departureDate: date()
     .nullable()
     .transform((curr: Date, orig) => (orig === '' ? null : curr))
     .when('entryDate', {
-      is: (entryDate: Date) => entryDate !== null,
+      is: (entryDate: Date) => Boolean(entryDate),
       then: (s) => s.min(ref('entryDate'), 'La fecha de salida debe ser posterior a la de entrada')
     }),
 
