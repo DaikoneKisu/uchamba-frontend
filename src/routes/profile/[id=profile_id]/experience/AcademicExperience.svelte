@@ -1,13 +1,16 @@
 <script lang="ts">
+  import { slide } from 'svelte/transition'
+  import { invalidateAll } from '$app/navigation'
+  
+  import type { WorkExperience } from '$lib/types/profile-data.type'
+  
   import Add from '$lib/components/profile/add/Add.svelte'
-  import pencilIcon from '$lib/icons/pencil.svg'
-  import deleteIcon from '$lib/icons/delete.svg'
   import ExperienceCreationModal from './ExperienceCreationModal.svelte'
   import ExperienceDetailsModal from './ExperienceDetailsModal.svelte'
   import DeleteModal from '$lib/components/profile/modal/DeleteModal.svelte'
-  import type { WorkExperience } from '$lib/types/profile-data.type'
-  import { slide } from 'svelte/transition'
-  import { invalidateAll } from '$app/navigation'
+  
+  import pencilIcon from '$lib/icons/pencil.svg'
+  import deleteIcon from '$lib/icons/delete.svg'
 
   export let business: WorkExperience[]
   export let isEditable: boolean
