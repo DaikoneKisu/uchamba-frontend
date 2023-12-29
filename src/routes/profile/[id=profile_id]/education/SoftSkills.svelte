@@ -42,7 +42,7 @@
 <article class="mb-5 w-full flex-col bg-brand-white">
   <header>
     <div class="flex w-full justify-between">
-      <h2>Habilidades Blandas</h2>
+      <h2 class="capitalize">Habilidades Blandas</h2>
       {#if isEditable}
         <Add clickHandler={openModal} />
       {/if}
