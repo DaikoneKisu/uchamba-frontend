@@ -116,7 +116,7 @@
                   openEditModal(lang)
                 }}
               >
-                <img src={pencilIcon} alt="Editar estudio" />
+                <img src={pencilIcon} alt="Editar idioma" />
               </button>
               <button
                 on:click={() => {
