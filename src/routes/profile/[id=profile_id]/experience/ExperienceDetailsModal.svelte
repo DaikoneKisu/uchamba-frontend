@@ -325,7 +325,7 @@
             <Input
               type="text"
               label="Direccion"
-              placeholder="Ingrese la direccion"
+              placeholder="Ingrese la dirección"
               bind:value={formData.address}
               error={formErrors.address}
             />
