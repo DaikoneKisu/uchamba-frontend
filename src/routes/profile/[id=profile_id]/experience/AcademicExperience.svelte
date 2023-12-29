@@ -113,7 +113,7 @@
           {/if}
         </div>
 
-        <p class="font-open-sans font-bold text-ucab-black">{b.jobTitle}</p>
+        <p class="font-open-sans font-bold text-ucab-black capitalize">{b.jobTitle}</p>
         <p class="font-open-sans text-brand-p-black">{b.description}</p>
 
         <div class="mt-2 flex items-center justify-start">
