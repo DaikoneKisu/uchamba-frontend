@@ -195,7 +195,7 @@
       </label>
 
       {#if !formData.freelancer}
-        <div in:slide out:slide class="grid w-full grid-cols-2 gap-y-2">
+        <div transition:slide class="grid w-full grid-cols-2 gap-y-2">
           <Input
             type="text"
             label="País"
