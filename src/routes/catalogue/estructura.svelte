@@ -7,7 +7,8 @@
 	import Dropdown from './Dropdown.svelte'
 	import type { graduatedInfo } from '$lib/types/graduated-info.type'
 	import CareersDropdown from './CareersDropdown.svelte'
-  import LocationDropdown from './LocationDropdown.svelte'
+  	import LocationDropdown from './LocationDropdown.svelte'
+	import LanguaguesDropdown from './LanguaguesDropdown.svelte'
 
 	export let business: graduatedInfo[]
 </script>
@@ -31,7 +32,7 @@
 				<h2 class="text-2xl font-poppins">Filtrar por</h2>
 				<CareersDropdown />
 				<LocationDropdown />
-				<Dropdown title="Idiomas" />
+				<LanguaguesDropdown />
 				<Dropdown title="Habilidades Duras" />
 				<Dropdown title="Habilidades Blandas" />
 			</section>

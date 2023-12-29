@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Dropdown from './Dropdown.svelte'
-	import Checkbox from '$lib/components/Checkbox.svelte'
+	import Checkbox from '$lib/components/Checkbox/Checkbox.svelte'
 	let admin = false
 	let communication = false
 	let accountancy = false
