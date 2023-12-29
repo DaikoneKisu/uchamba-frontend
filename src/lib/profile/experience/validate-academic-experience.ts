@@ -13,7 +13,7 @@ const schema = object({
       then: (s) => s.min(ref('entryDate'), 'La fecha de salida debe ser posterior a la de entrada')
     }),
 
-  freelancer: boolean(),
+  freelancer: boolean().required('Campo requerido'),
   country: string().when('freelancer', {
     is: false,
     then: (s) => s.required('Campo requerido'),
