@@ -106,7 +106,7 @@
 
   <ul class="mt-6 flex flex-col gap-8">
     {#each languages as lang (lang.languageId)}
-      <li in:slide out:slide class="flex flex-col gap-2">
+      <li transition:slide class="flex flex-col gap-2">
         <div class="flex justify-between">
           <h3 class="font-poppins text-2xl">{lang.name}</h3>
           {#if isEditable}
