@@ -18,7 +18,7 @@
   }
 </script>
 
-<div class="flex flex-col items-center justify-center gap-4">
+<section class="flex flex-col items-center justify-center gap-4">
   <div class="flex items-end gap-7">
     <button on:click={goPrev}>
       <img
@@ -42,7 +42,7 @@
   </div>
   <div class="flex items-center gap-3">
     <button on:click={goPrev}>
-      <img src={leftArrow} alt="Flecha izquierda" class="aspect-square w-[30px]" />
+      <img src={leftArrow} alt="Flecha izquierda - Imagen anterior" class="aspect-square w-[30px]" />
     </button>
     {#each images as _, index}
       <button
@@ -52,7 +52,7 @@
       />
     {/each}
     <button on:click={goNext}>
-      <img src={rightArrow} alt="Flecha derecha" class="aspect-square w-[30px]" />
+      <img src={rightArrow} alt="Flecha derecha - Imagen siguiente" class="aspect-square w-[30px]" />
     </button>
   </div>
-</div>
+</section>
