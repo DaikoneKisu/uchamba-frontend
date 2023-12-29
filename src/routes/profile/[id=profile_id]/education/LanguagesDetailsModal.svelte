@@ -1,10 +1,12 @@
 <script lang="ts">
+  import { invalidateAll } from '$app/navigation'
+  
   import Modal from '$lib/components/profile/modal/Modal.svelte'
   import Input from '$lib/components/input/Input.svelte'
-  import languageIcon from '$lib/icons/language.svg'
   import EditModalFooter from '$lib/components/profile/modal/EditModalFooter.svelte'
-  import SaveModalFooter from '$lib/components/profile/modal/SaveModalFooter.svelte'
-  import { invalidateAll } from '$app/navigation'
+  import SaveModalFooter from '$lib/components/profile/modal/SaveModalFooter.svelte
+  
+  import languageIcon from '$lib/icons/language.svg'
 
   export let openedModal = false
 
