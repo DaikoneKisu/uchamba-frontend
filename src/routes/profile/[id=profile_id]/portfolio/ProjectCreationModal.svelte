@@ -162,7 +162,7 @@
           <ImageInput
             bind:image={img}
             title="Click para subir una imagen del carrusel"
-            subTitle="Se admite cualquier formato de imágen"
+            subTitle="Se admite cualquier formato de imagen"
           />
         {/each}
       </div>
