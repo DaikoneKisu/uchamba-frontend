@@ -1,13 +1,16 @@
 <script lang="ts">
+  import { invalidateAll } from '$app/navigation'
+  import { flip } from 'svelte/animate'
+  
+  import type { Project } from '$lib/types/profile-data.type'
+  
   import Add from '$lib/components/profile/add/Add.svelte'
-  import pencilIcon from '$lib/icons/pencil.svg'
-  import deleteIcon from '$lib/icons/delete.svg'
   import ProjectDetailsModal from './ProjectDetailsModal.svelte'
   import ProjectCreationModal from './ProjectCreationModal.svelte'
-  import { flip } from 'svelte/animate'
   import DeleteModal from '$lib/components/profile/modal/DeleteModal.svelte'
-  import { invalidateAll } from '$app/navigation'
-  import type { Project } from '$lib/types/profile-data.type'
+
+  import pencilIcon from '$lib/icons/pencil.svg'
+  import deleteIcon from '$lib/icons/delete.svg'
 
   export let projects: Project[]
 
