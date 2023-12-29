@@ -31,8 +31,7 @@
 </script>
 
 <label
-  in:slide
-  out:slide
+  transition:slide
   class="mt-0 flex h-[212px] w-[335px] flex-col items-center justify-center overflow-clip border border-dashed border-[#343434] border-opacity-25 pt-0 text-center"
 >
   <input
