@@ -1,11 +1,13 @@
 <script lang="ts">
+  import { ValidationError } from 'yup'
+  import { invalidateAll } from '$app/navigation'
+  
   import Modal from '$lib/components/profile/modal/Modal.svelte'
   import Input from '$lib/components/input/Input.svelte'
-  import graduationCapIcon from '$lib/icons/graduation-cap.svg'
   import SaveModalFooter from '$lib/components/profile/modal/SaveModalFooter.svelte'
-  import { invalidateAll } from '$app/navigation'
   import { validateAcademicTraining } from '$lib/profile/education/validate-academic-training'
-  import { ValidationError } from 'yup'
+  
+  import graduationCapIcon from '$lib/icons/graduation-cap.svg'
 
   export let openedModal = false
 
