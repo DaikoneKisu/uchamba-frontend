@@ -3,7 +3,7 @@
   
   import cancelIcon from '$lib/icons/cancel-black.svg'
 
-  export let isOpen: Boolean
+  export let isOpen: boolean
   export let title = ''
   export let subtitle = ''
   export let icon = ''
