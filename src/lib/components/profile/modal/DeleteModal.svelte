@@ -9,7 +9,7 @@
     isOpen = false
   }
 
-  export let handleDelete: () => Promise<void> | void
+  export let handleDelete: () => Promise<void>
 </script>
 
 <Modal bind:isOpen {title}>
