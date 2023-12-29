@@ -52,7 +52,7 @@
         body: JSON.stringify(formData)
       })
 
-      if (!res.ok) throw new Error('Error al crear una experiencia academica')
+      if (!res.ok) throw new Error('Error al crear una experiencia laboral')
 
       invalidateAll()
       closeModal()
