@@ -92,7 +92,7 @@
     {#each business as b (b.workExpId)}
       <li transition:slide class="flex flex-col gap-2">
         <div class="flex items-center justify-between">
-          <h3 class="font-poppins text-2xl">{b.organizationName}</h3>
+          <h3 class="font-poppins text-2xl capitalize">{b.organizationName}</h3>
           {#if isEditable}
             <div class="flex gap-6">
               <button
