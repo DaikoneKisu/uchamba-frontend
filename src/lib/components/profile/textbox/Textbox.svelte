@@ -26,10 +26,10 @@
         on:input|once={() => (isPristine = false)}
         {name}
         {placeholder}
-        bind:value
-        class="h-full resize-none text-sm focus:border-0 focus:shadow-none focus:outline-none"
         {required}
         {disabled}
+        bind:value
+        class="h-full resize-none text-sm focus:border-0 focus:shadow-none focus:outline-none"
       />
     </div>
   </label>
