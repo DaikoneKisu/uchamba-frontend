@@ -5,7 +5,7 @@
   
   import Modal from '$lib/components/profile/modal/Modal.svelte'
   import SaveModalFooter from '$lib/components/profile/modal/SaveModalFooter.svelte'
-  import Chip from '$lib/components/profile/chip/Chip.svelte
+  import Chip from '$lib/components/profile/chip/Chip.svelte'
   
   import staffIcon from '$lib/icons/staff.svg'
 
