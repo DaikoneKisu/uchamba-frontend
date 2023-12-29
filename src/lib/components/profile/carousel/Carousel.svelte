@@ -10,7 +10,7 @@
   $: prevImage = (currentImage - 1 + images.length) % images.length
 
   function goNext() {
-    currentImage = (currentImage + 1) % images.length
+    currentImage += 1 % images.length
   }
 
   function goPrev() {
