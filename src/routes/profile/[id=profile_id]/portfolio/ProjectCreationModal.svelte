@@ -53,7 +53,7 @@
         method: 'POST',
         body: form
       })
-      if (!res.ok) throw new Error('Error creando el Proyecto')
+      if (!res.ok) throw new Error('Error creando el proyecto')
 
       invalidateAll()
       closeModal()
