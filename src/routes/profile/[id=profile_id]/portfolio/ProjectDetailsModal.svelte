@@ -135,6 +135,7 @@
 
   $: if (openedModal) {
     try {
+      formData.images = formData.images.filter((img) => img instanceof File)
       validateProject(formData)
       disabled = false
 
