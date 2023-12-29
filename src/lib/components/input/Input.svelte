@@ -1,6 +1,6 @@
 <script lang="ts">
   import { fly } from 'svelte/transition'
-  import type { HTMLInputTypeAttribute } from '../../../types/html-input-type-attribute.type'
+  import type { HTMLInputTypeAttribute } from '$lib/types/html-input-type-attribute.type'
 
   export let label: string
   export let name: string | undefined = undefined
