@@ -88,7 +88,7 @@
         class="flex h-[64px] w-full max-w-[330px] rounded-xl border-4 border-[#f0f0f0] bg-brand-white px-4"
         bind:value={formData.langId}
       >
-        <option value="">Seleccione su idioma</option>
+        <option value="" selected disabled>Seleccione su idioma</option>
         {#each langsList as lang}
           <option value={lang.languageId}>{lang.name}</option>
         {/each}
