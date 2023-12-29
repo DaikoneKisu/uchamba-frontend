@@ -1,9 +1,9 @@
 <script lang="ts">
   import { invalidateAll } from '$app/navigation'
   import { flip } from 'svelte/animate'
-  
+
   import type { Project } from '$lib/types/profile-data.type'
-  
+
   import Add from '$lib/components/profile/add/Add.svelte'
   import ProjectDetailsModal from './ProjectDetailsModal.svelte'
   import ProjectCreationModal from './ProjectCreationModal.svelte'
@@ -19,7 +19,7 @@
   let openedDetailsModal = false
   let detailsModalMode: 'view' | 'edit' = 'view'
 
-  let ProjectIdToDelete: number
+  let projectIdToDelete: number
 
   let selectedProjectsDetails: Project = {
     projectId: 0,
@@ -36,7 +36,7 @@
   }
 
   function openDeleteModal(id: number) {
-    ProjectIdToDelete = id
+    projectIdToDelete = id
     openedDeleteModal = true
   }
 
@@ -59,9 +59,9 @@
       const url = '/api/profile/portfolio/projects/delete'
       const res = await fetch(url, {
         method: 'DELETE',
-        body: JSON.stringify({ id: ProjectIdToDelete })
+        body: JSON.stringify({ id: projectIdToDelete })
       })
-      if (!res.ok) throw new Error('Error al eliminar la Proyecto')
+      if (!res.ok) throw new Error('Error al eliminar el proyecto')
 
       invalidateAll()
       closeDeleteModal()
@@ -96,14 +96,14 @@
                 openEditionModal(project)
               }}
             >
-              <img src={pencilIcon} alt="Editar estudio" />
+              <img src={pencilIcon} alt="Editar proyecto" />
             </button>
             <button
               on:click={() => {
                 openDeleteModal(project.projectId)
               }}
             >
-              <img src={deleteIcon} alt="Eliminar estudio" />
+              <img src={deleteIcon} alt="Eliminar proyecto" />
             </button>
           </div>
         </div>
