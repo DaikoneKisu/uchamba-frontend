@@ -56,7 +56,7 @@
     {/if}
     <img src={imageUrl} alt="Imagen subida por el usuario" class="relative h-full w-full object-contain" />
   {:else}
-    <img src={uploadIcon} alt="" />
+    <img src={uploadIcon} alt="Sube una imagen" />
     <p class="font-bold">{title}</p>
     <p>{subTitle}</p>
   {/if}
