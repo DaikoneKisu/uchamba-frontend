@@ -21,7 +21,7 @@
       <li>
         <a
           href={`/profile/${profileId}/education`}
-          class="flex h-full w-full flex-col items-center justify-center gap-2"
+          class="flex h-full w-full flex-col items-center justify-center gap-2 uppercase"
           >EDUCACIÓN
           {#if currentRoute === 'education'}
             <div
