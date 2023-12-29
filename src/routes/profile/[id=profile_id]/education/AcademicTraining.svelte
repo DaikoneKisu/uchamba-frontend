@@ -100,7 +100,7 @@
     {#each studiesData.personal as personalStudy (personalStudy.studyId)}
       <li transition:slide class="flex flex-col gap-2">
         <div class="flex justify-between">
-          <h3 class="font-poppins text-2xl">{personalStudy.universityName}</h3>
+          <h3 class="font-poppins text-2xl capitalize">{personalStudy.universityName}</h3>
           {#if isEditable}
             <div class="flex gap-6">
               <button
