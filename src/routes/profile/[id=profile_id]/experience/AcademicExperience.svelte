@@ -121,7 +121,7 @@
             on:click={() => {
               openDetailsModal(b)
             }}
-            class="text-left text-ucab-green underline underline-offset-2"
+            class="text-left text-ucab-green underline underline-offset-2 capitalize"
           >
             Ver Información
           </button>
