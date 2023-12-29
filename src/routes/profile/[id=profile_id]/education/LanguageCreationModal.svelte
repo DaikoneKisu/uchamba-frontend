@@ -1,10 +1,12 @@
 <script lang="ts">
-  import Modal from '$lib/components/profile/modal/Modal.svelte'
-  import languageIcon from '$lib/icons/language.svg'
-  import SaveModalFooter from '$lib/components/profile/modal/SaveModalFooter.svelte'
-  import { invalidateAll } from '$app/navigation'
-  import { validateLanguage } from '$lib/profile/education/validate-language'
   import { ValidationError } from 'yup'
+  import { invalidateAll } from '$app/navigation'
+  
+  import Modal from '$lib/components/profile/modal/Modal.svelte'
+  import SaveModalFooter from '$lib/components/profile/modal/SaveModalFooter.svelte'
+  import { validateLanguage } from '$lib/profile/education/validate-language'
+  
+  import languageIcon from '$lib/icons/language.svg'
 
   export let langsList: { languageId: number; name: string }[]
 
