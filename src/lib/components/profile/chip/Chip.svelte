@@ -1,14 +1,14 @@
 <script lang="ts">
   import cancelIcon from '$lib/icons/cancel.svg'
+
   import { expand, shrink } from './expand'
 
   export let text: string
   export let key: string
-  export let animation: boolean = true
+  export let animation = true
   export let deleteHandler: () => void
 
   let hovered = false
-
   let chip: HTMLElement
 </script>
 
