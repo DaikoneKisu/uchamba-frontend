@@ -22,7 +22,7 @@
         method: 'POST',
         body: JSON.stringify({ id })
       })
-      if (!res.ok) throw new Error('Error al eliminar la formación académica')
+      if (!res.ok) throw new Error('Error al eliminar el link de interés')
     } catch (error) {
       alert(error)
     }
