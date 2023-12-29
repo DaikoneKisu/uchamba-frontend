@@ -54,6 +54,7 @@
   function goToEditMode() {
     mode = 'edit'
   }
+
   function closeModal() {
     openedModal = false
   }
