@@ -91,11 +91,8 @@
 
           <div class="flex gap-6" />
         </div>
-        <p class="text-brand-p-black">
-          {featStudy.name} - {featStudy.degree
-            .split('')
-            .map((c, i) => (i === 0 ? c.toUpperCase() : c))
-            .join('')}
+        <p class="text-brand-p-black capitalize">
+          {featStudy.name} - {featStudy.degree}
         </p>
         <p>Año de graduación {featStudy.graduationYear}</p>
       </li>
