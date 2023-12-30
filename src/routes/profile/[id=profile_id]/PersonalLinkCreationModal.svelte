@@ -77,8 +77,8 @@
   bind:isOpen={openedModal}
   icon={externalLinkIcon}
 >
-  <form slot="body" class="flex w-full justify-center py-12 pl-6">
-    <div class="flex w-full justify-center">
+  <form slot="body" class="flex w-full justify-center py-12">
+    <div class="flex w-full justify-center pl-[30%]">
       <Input
         type="text"
         label="URL"
