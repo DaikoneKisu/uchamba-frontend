@@ -5,7 +5,7 @@ export interface PersonalLinkDeletePayload {
   id: number
 }
 
-export async function POST({ request, fetch }: { request: Request; fetch: typeof window.fetch }) {
+export async function PUT({ request, fetch }: { request: Request; fetch: typeof window.fetch }) {
   const formData = (await request.json()) as PersonalLinkDeletePayload
   const url = `${BACKEND_BASE_URL}/personal-links/${formData.id}`
   const response = await fetch(url, {

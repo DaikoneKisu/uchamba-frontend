@@ -38,7 +38,7 @@
     try {
       disabled = true
       const res = await fetch('/api/profile/education/languages/update', {
-        method: 'POST',
+        method: 'PUT',
         body: JSON.stringify(langData)
       })
       if (!res.ok) throw new Error('Error al actualizar el idioma')

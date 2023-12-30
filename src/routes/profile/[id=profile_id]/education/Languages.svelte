@@ -72,7 +72,7 @@
   async function handleDelete() {
     try {
       const res = await fetch('/api/profile/education/languages/delete', {
-        method: 'POST',
+        method: 'DELETE',
         body: JSON.stringify({ id: langIdToDelete })
       })
       if (!res.ok) throw new Error('Error al eliminar la formación académica')

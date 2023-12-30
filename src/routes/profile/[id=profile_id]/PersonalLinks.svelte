@@ -19,7 +19,7 @@
       links = links.filter((l) => l.linkId !== id)
 
       const res = await fetch('/api/profile/personal-links/delete', {
-        method: 'POST',
+        method: 'DELETE',
         body: JSON.stringify({ id })
       })
       if (!res.ok) throw new Error('Error al eliminar el link de interés')

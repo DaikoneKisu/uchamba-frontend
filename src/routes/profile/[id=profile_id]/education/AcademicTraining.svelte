@@ -55,7 +55,7 @@
   async function handleDelete() {
     try {
       const res = await fetch('/api/profile/education/academic-training/delete', {
-        method: 'POST',
+        method: 'DELETE',
         body: JSON.stringify({ id: studyIdToDelete })
       })
       if (!res.ok) throw new Error('Error al eliminar la formación académica')

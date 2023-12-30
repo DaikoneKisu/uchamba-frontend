@@ -60,7 +60,7 @@
   async function handleDelete() {
     try {
       const res = await fetch('/api/profile/experience/academic-experience/delete', {
-        method: 'POST',
+        method: 'DELETE',
         body: JSON.stringify({ id: experienceIdToDelete })
       })
       if (!res.ok) throw new Error('Error al eliminar la experiencia laboral')

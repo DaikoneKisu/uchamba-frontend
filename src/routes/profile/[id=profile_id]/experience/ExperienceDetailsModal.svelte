@@ -63,7 +63,7 @@
     try {
       disabledSaveButton = true
       const res = await fetch('/api/profile/experience/academic-experience/update', {
-        method: 'POST',
+        method: 'PUT',
         body: JSON.stringify(formData)
       })
       if (!res.ok) throw new Error('Error al actualizar la experiencia laboral')

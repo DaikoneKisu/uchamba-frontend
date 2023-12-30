@@ -35,7 +35,7 @@
     try {
       disabled = true
       const res = await fetch('/api/profile/education/academic-training/update', {
-        method: 'POST',
+        method: 'PUT',
         body: JSON.stringify(studyData)
       })
       if (!res.ok) throw new Error('Error al actualizar la formación académica')
