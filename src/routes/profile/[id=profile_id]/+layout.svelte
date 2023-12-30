@@ -20,7 +20,7 @@
 
       downloadPDF(pdfBlob)
     } catch (e) {
-      alert('Hubo un error en el servidor al intentar exportar el CV')
+       alert('Hubo un error en el servidor al intentar exportar el CV')
     } finally {
       disabledExport = false
     }
