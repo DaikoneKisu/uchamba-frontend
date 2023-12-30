@@ -24,7 +24,7 @@
     handleDelete()
   }
 
-  $: if (files) {
+  $: if (files && files.length > 0) {
     image = files[0]
     imageUrl = URL.createObjectURL(files[0])
   }
