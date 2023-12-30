@@ -12,9 +12,9 @@
   import ImageInput from '$lib/components/profile/image-input/ImageInput.svelte'
   import Textbox from '$lib/components/profile/textbox/Textbox.svelte'
   import Carousel from '$lib/components/profile/carousel/Carousel.svelte'
-  import { validateProject } from '$lib/profile/portfolio/validate-project'
 
   import languageIcon from '$lib/icons/portfolio.svg'
+	import { validateProjectEditionPayload } from '$lib/profile/portfolio/validate-project-edition-payload'
 
   export let openedModal = false
 
@@ -135,8 +135,7 @@
 
   $: if (openedModal) {
     try {
-      formData.images = formData.images.filter((img) => img instanceof File)
-      validateProject(formData)
+      validateProjectEditionPayload(formData)
       disabled = false
 
       formErrors = {

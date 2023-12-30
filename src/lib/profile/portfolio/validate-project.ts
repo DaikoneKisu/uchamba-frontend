@@ -1,4 +1,5 @@
-import { object, string, mixed, array } from 'yup'
+import { object, string, array } from 'yup'
+import { file } from '$lib/utils/yup-file'
 
 const schema = object({
   name: string().required('Campo requerido'),
@@ -7,10 +8,6 @@ const schema = object({
   coverImage: file().required('Campo requerido'),
   images: array().of(file()).min(1).required('Campo requerido')
 })
-
-function file() {
-  return mixed((input: unknown): input is File => input instanceof File)
-}
 
 export const validateProject = (obj: object) => {
   return schema.validateSync(obj, { abortEarly: false })
