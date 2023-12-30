@@ -16,7 +16,7 @@
   let isPristine = true
 </script>
 
-<div class="flex w-full flex-col items-center">
+<div class="flex w-full">
   <label
     class={'flex h-[64px] w-full max-w-[330px] rounded-xl border-4  bg-brand-white pr-4 transition-all ' +
       className +
