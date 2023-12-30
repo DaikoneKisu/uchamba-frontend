@@ -22,9 +22,9 @@
         method: 'DELETE',
         body: JSON.stringify({ id })
       })
-      if (!res.ok) throw new Error('Error al eliminar el link de interés')
+      if (!res.ok) throw new Error()
     } catch (error) {
-      alert(error)
+      alert('Hubo un error en el servidor al intentar eliminar el link de interés')
     }
   }
 

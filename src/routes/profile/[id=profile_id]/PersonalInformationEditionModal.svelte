@@ -41,12 +41,12 @@
         body: JSON.stringify(formData)
       })
 
-      if (!res.ok) throw new Error('Error actualizando tu información personal')
+      if (!res.ok) throw new Error()
 
       invalidateAll()
       closeModal()
     } catch (e) {
-      alert(e)
+      alert('Hubo un error en el servidor al intentar actualizar tu información personal')
     } finally {
       disabled = false
     }

@@ -38,11 +38,11 @@
         method: 'PUT',
         body: JSON.stringify(studyData)
       })
-      if (!res.ok) throw new Error('Error al actualizar la formación académica')
+      if (!res.ok) throw new Error()
       invalidateAll()
       closeModal()
     } catch (error) {
-      alert(error)
+      alert('Hubo un error en el servidor al intentar actualizar la formación académica')
     } finally {
       disabled = false
     }

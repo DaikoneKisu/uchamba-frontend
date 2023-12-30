@@ -61,12 +61,12 @@
         method: 'DELETE',
         body: JSON.stringify({ id: projectIdToDelete })
       })
-      if (!res.ok) throw new Error('Error al eliminar el proyecto')
+      if (!res.ok) throw new Error()
 
       invalidateAll()
       closeDeleteModal()
     } catch (error) {
-      alert(error)
+      alert('Hubo un error en el servidor al intentar eliminar el proyecto')
     }
   }
 

@@ -75,12 +75,12 @@
         method: 'DELETE',
         body: JSON.stringify({ id: langIdToDelete })
       })
-      if (!res.ok) throw new Error('Error al eliminar la formación académica')
+      if (!res.ok) throw new Error()
 
       invalidateAll()
       closeDeleteModal()
     } catch (error) {
-      alert(error)
+      alert('Hubo un error en el servidor al intentar eliminar el idioma')
     }
   }
 

@@ -31,12 +31,12 @@
         method: 'POST',
         body: JSON.stringify(formData)
       })
-      if (!res.ok) throw new Error('Error creando el lenguaje')
+      if (!res.ok) throw new Error()
 
       invalidateAll()
       closeModal()
     } catch (error) {
-      alert(error)
+      alert('Hubo un error en el servidor al intentar crear el idioma')
     } finally {
       disabled = false
     }

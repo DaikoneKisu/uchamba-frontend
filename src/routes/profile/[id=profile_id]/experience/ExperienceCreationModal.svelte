@@ -52,12 +52,12 @@
         body: JSON.stringify(formData)
       })
 
-      if (!res.ok) throw new Error('Error al crear una experiencia laboral')
+      if (!res.ok) throw new Error()
 
       invalidateAll()
       closeModal()
     } catch (error) {
-      alert(error)
+      alert('Hubo un error en el servidor al intentar crear la experiencia laboral')
     } finally {
       disabledSaveButton = false
     }

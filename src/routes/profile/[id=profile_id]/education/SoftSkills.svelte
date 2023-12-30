@@ -27,9 +27,9 @@
         body: JSON.stringify({ name })
       })
 
-      if (!res.ok) throw new Error('Error al eliminar la habilidad blanda')
-    } catch (e) {
-      alert(e)
+      if (!res.ok) throw new Error()
+    } catch (error) {
+      alert('Hubo un error en el servidor al intentar eliminar la habilidad blanda')
       softSkills = [...softSkills, softSkillToDelete]
     }
   }

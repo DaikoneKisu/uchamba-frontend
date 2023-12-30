@@ -35,12 +35,12 @@
         body: JSON.stringify(formData)
       })
 
-      if (!res.ok) throw new Error('Error al crear la formación académica')
+      if (!res.ok) throw new Error()
 
       invalidateAll()
       closeModal()
     } catch (error) {
-      alert(error)
+      alert('Hubo un error en el servidor al intentar crear la formación académica')
     } finally {
       disabled = false
     }

@@ -30,13 +30,13 @@
         body: JSON.stringify(skills)
       })
 
-      if (!res.ok) throw new Error('Error al crear la habilidad dura')
+      if (!res.ok) throw new Error()
 
       skills = []
       invalidateAll()
       closeModal()
     } catch (e) {
-      alert(e)
+      alert('Hubo un error en el servidor al intentar crear la habilidad dura')
     } finally {
       disabled = false
     }

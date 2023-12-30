@@ -53,12 +53,12 @@
         method: 'POST',
         body: form
       })
-      if (!res.ok) throw new Error('Error creando el proyecto')
+      if (!res.ok) throw new Error()
 
       invalidateAll()
       closeModal()
     } catch (error) {
-      alert(error)
+      alert('Hubo un error en el servidor al intentar crear el proyecto')
     } finally {
       disabled = false
     }

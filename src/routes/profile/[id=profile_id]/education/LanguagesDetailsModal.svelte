@@ -41,11 +41,11 @@
         method: 'PUT',
         body: JSON.stringify(langData)
       })
-      if (!res.ok) throw new Error('Error al actualizar el idioma')
+      if (!res.ok) throw new Error()
       invalidateAll()
       closeModal()
     } catch (error) {
-      alert(error)
+      alert('Hubo un error en el servidor al intentar actualizar el idioma')
     } finally {
       disabled = false
     }

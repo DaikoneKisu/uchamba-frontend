@@ -63,12 +63,12 @@
         method: 'DELETE',
         body: JSON.stringify({ id: experienceIdToDelete })
       })
-      if (!res.ok) throw new Error('Error al eliminar la experiencia laboral')
+      if (!res.ok) throw new Error()
 
       invalidateAll()
       closeDeleteModal()
     } catch (error) {
-      alert(error)
+      alert('Hubo un error en el servidor al intentar eliminar la experiencia laboral')
     }
   }
 

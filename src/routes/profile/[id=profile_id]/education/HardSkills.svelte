@@ -27,9 +27,9 @@
         body: JSON.stringify({ name })
       })
 
-      if (!res.ok) throw new Error('Error al eliminar la habilidad dura')
+      if (!res.ok) throw new Error()
     } catch (e) {
-      alert(e)
+      alert('Hubo un error en el servidor al intentar eliminar la habilidad dura')
       hardSkills = [...hardSkills, hardSkillToDelete]
     }
   }
