@@ -1,5 +1,5 @@
 <script lang='ts'>
-import Estructura from './estructura.svelte';
+import Estructura from './structure.svelte';
 export let data;
   </script>
 
