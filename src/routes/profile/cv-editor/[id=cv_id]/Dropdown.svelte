@@ -1,6 +1,7 @@
 <script lang="ts">
-  import downIcon from '$lib/icons/down-arrow.svg'
   import { slide } from 'svelte/transition'
+
+  import downIcon from '$lib/icons/down-arrow.svg'
 
   export let title: string
 

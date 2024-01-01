@@ -1,8 +1,10 @@
 <script lang="ts">
-  import closeIcon from '$lib/icons/cancel-black.svg'
-  import type { Skill } from '$lib/types/profile-data.type'
   import { slide } from 'svelte/transition'
+
+  import type { Skill } from '$lib/types/profile-data.type'
+  import closeIcon from '$lib/icons/cancel-black.svg'
   import Dropdown from './Dropdown.svelte'
+  import EmptyListMessage from './EmptyListMessage.svelte'
   import { cv } from './cv.store'
 
   export let softSkills: Skill[]
@@ -42,6 +44,10 @@
 </script>
 
 <Dropdown title="Habilidades Blandas">
+  {#if softSkills.length < 1}
+    <EmptyListMessage text="No has subido habilidades blandas" />
+  {/if}
+
   <div class="pt-4">
     <label
       class="flex h-[49px] w-full max-w-[330px] justify-center rounded-xl border-4 border-[#f0f0f0] bg-brand-white pr-4"

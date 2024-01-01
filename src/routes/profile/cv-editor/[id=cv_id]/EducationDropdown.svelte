@@ -2,6 +2,7 @@
   import type { FeaturedStudy, PersonalStudy } from '$lib/types/profile-data.type'
   import Checkbox from '$lib/components/checkbox/Checkbox.svelte'
   import Dropdown from './Dropdown.svelte'
+  import EmptyListMessage from './EmptyListMessage.svelte'
   import { cv } from './cv.store'
 
   export let featuredStudies: FeaturedStudy[]

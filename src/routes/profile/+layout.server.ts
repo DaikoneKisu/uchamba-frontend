@@ -13,7 +13,7 @@ export async function load({
   cookies: Cookies
   url: URL
 }) {
-  const isCVEditorPage = url.pathname === '/profile/cv-editor'
+  const isCVEditorPage = url.pathname.startsWith('/profile/cv-editor')
   const isLoggedUser = id === 'me'
   const sessionDoesntExist = !cookies.get('session')
 

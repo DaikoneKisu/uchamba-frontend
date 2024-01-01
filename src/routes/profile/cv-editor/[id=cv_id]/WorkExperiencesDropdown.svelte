@@ -1,6 +1,7 @@
 <script lang="ts">
-  import Checkbox from '$lib/components/checkbox/Checkbox.svelte'
   import type { WorkExperience } from '$lib/types/profile-data.type'
+  import Checkbox from '$lib/components/checkbox/Checkbox.svelte'
+  import EmptyListMessage from './EmptyListMessage.svelte'
   import Dropdown from './Dropdown.svelte'
   import { cv } from './cv.store'
 
@@ -38,6 +39,9 @@
 </script>
 
 <Dropdown title="Experiencias Laborales">
+  {#if workExperiences.length < 1}
+    <EmptyListMessage text="No has subido experiencias laborales" />
+  {/if}
   <ul class="flex flex-col gap-5 py-5">
     {#each workExperiences as we}
       <li class="flex items-center gap-5 pl-2">

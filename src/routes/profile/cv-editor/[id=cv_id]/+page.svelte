@@ -1,15 +1,13 @@
 <script lang="ts">
-  import Header from './Header.svelte'
   import CVBuilder from './CVBuilder.svelte'
   import CVPreview from './CVPreview.svelte'
 
   export let data
 </script>
 
-<main class="flex flex-col py-8">
-  <Header />
-  <div class="flex justify-around py-8">
-    <CVPreview />
+<main class="flex min-h-screen flex-col bg-[#F0F0F0] py-4">
+  <div class="flex justify-center py-8 gap-10">
+    <CVPreview profileData={data} />
     <CVBuilder profileData={data} />
   </div>
 </main>
