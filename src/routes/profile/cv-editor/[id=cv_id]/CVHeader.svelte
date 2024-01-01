@@ -16,8 +16,8 @@
     openedModal = true
   }
 
-  $: careerId = $cv.careerId
-  $: cvName = $cv.name
+  $: if ($cv.careerId) careerId = $cv.careerId
+  $: if ($cv.name) cvName = $cv.name
 </script>
 
 <header class="flex min-w-[21.59cm] items-center justify-center gap-12">
