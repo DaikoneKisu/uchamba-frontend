@@ -4,9 +4,10 @@
 	import Selector from '$lib/icons/Selector.svg'
 	import DownloadCv from '$lib/components/buttons/DownloadCV.svelte'
 	import ViewProfile from '$lib/components/buttons/ViewProfile.svelte'
-  import type { graduatedInfo } from '$lib/types/graduated-info.type'
+	import type { graduatedInfo } from '$lib/types/graduated-info.type'
+	import MultiplesCvModal from './MultiplesCVModal.svelte'
 
-	export let business: graduatedInfo[] 
+	export let business: graduatedInfo[]
 </script>
 
 <main class="flex flex-col gap-10 min-h-screen p-10 pt-5 bg-[#f0f0f0]">
@@ -99,6 +100,7 @@
 					</div>
 				</div>
 			</div>
+			<MultiplesCvModal />
 		</section>
 	</div>
 </main>
