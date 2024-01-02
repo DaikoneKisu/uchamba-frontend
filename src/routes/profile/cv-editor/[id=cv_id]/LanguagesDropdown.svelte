@@ -37,7 +37,10 @@
   <ul class="flex flex-col gap-5 py-5">
     {#each languages as l (l.languageId)}
       <li class="flex items-center gap-5 pl-2">
-        <Checkbox handleInput={() => handleInput(l.languageId)} />
+        <Checkbox
+          handleInput={() => handleInput(l.languageId)}
+          checked={$cv.entries.languages.includes(l.languageId)}
+        />
         <p>{l.name} {l.proficientLevel === 'Native' ? 'Nativo' : l.proficientLevel}</p>
       </li>
     {/each}
