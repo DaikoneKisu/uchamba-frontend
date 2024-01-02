@@ -56,6 +56,7 @@
       bind:value={formData.careerId}
       class="flex h-[64px] w-full max-w-[330px] rounded-xl border-4 border-[#f0f0f0] bg-brand-white px-4"
     >
+      <option value="0" disabled>Área del CV</option>
       {#each Object.entries($careers) as [id, name]}
         <option value={id}>{name}</option>
       {/each}
