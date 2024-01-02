@@ -18,6 +18,7 @@ export interface ProfileData {
   education: Education
   workExperiences: WorkExperience[]
   projects: Project[]
+  cvs: CV[]
 }
 
 export interface Language {
@@ -100,4 +101,11 @@ export interface Project {
     imageCloudId: string
     imageUrl: string
   }[]
+}
+
+export interface CV {
+  cvId: number
+  careerId: number
+  careerName: string
+  name: string
 }
