@@ -5,8 +5,6 @@
 	import DownloadCv from '$lib/components/buttons/DownloadCV.svelte'
 	import ViewProfile from '$lib/components/buttons/ViewProfile.svelte'
 	import type { graduatedInfo } from '$lib/types/graduated-info.type'
-	import MultiplesCvModal from './MultiplesCVModal.svelte'
-
 	export let business: graduatedInfo[]
 </script>
 
@@ -100,7 +98,6 @@
 					</div>
 				</div>
 			</div>
-			<MultiplesCvModal />
 		</section>
 	</div>
 </main>
