@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Modal from '$lib/components/Modal.svelte'
 	import documentsIcon from '$lib/icons/documents.svg'
-	import MultiplesCVModal from '$lib/components/MultiplesCVModal.svelte'
+	import DownloadableCVCard from '$lib/components/DownloadableCVCard.svelte'
 
 	export let openedModal = true
 </script>
@@ -13,7 +13,7 @@
 	bind:isOpen={openedModal}
 >
 	<section slot="body" class="flex flex-wrap items-center justify-start">
-		<MultiplesCVModal />
+		<DownloadableCVCard />
 	</section>
 	<footer
 		slot="footer"
