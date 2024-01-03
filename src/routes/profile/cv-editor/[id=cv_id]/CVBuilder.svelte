@@ -48,15 +48,11 @@
   <section class="flex w-full max-w-[500px] flex-col gap-8 rounded-xl bg-white px-14 py-10">
     <WorkExperiencesDropdown workExperiences={profileData.workExperiences} />
     <EducationDropdown
-      featuredStudies={profileData.education.featured}
-      personalStudies={profileData.education.personal}
+      featuredStudies={profileData.education.filter((s) => !s.universityName)}
+      personalStudies={profileData.education.filter((s) => !!s.universityName)}
     />
-    <SoftSkillsDropdown
-      softSkills={[...profileData.softSkills.featured, ...profileData.softSkills.personal]}
-    />
-    <HardSkillsDropdown
-      hardSkills={[...profileData.hardSkills.featured, ...profileData.hardSkills.personal]}
-    />
+    <SoftSkillsDropdown softSkills={profileData.skills.soft} />
+    <HardSkillsDropdown hardSkills={profileData.skills.hard} />
     <LanguagesDropdown languages={profileData.languages} />
   </section>
 </div>

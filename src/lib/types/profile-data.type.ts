@@ -13,9 +13,11 @@ export interface ProfileData {
   updatedAt: string
   languages: Language[]
   personalLinks: PersonalLink[]
-  hardSkills: HardSkills
-  softSkills: SoftSkills
-  education: Education
+  skills: {
+    hard: string[]
+    soft: string[]
+  }
+  education: Study[]
   workExperiences: WorkExperience[]
   projects: Project[]
   cvs: CV[]
@@ -37,37 +39,17 @@ export interface PersonalLink {
   updatedAt: string
 }
 
-export interface HardSkills {
-  featured: Skill[]
-  personal: Skill[]
-}
-
-export interface SoftSkills {
-  featured: Skill[]
-  personal: Skill[]
-}
-
-export interface Skill {
-  skillId: number
-  name: string
-  createdAt: string
-}
-
-export interface Education {
-  featured: FeaturedStudy[]
-  personal: PersonalStudy[]
-}
-
-export interface FeaturedStudy {
-  ucareerId: number
+export interface Study {
+  id: number
   name: string
   degree: string
+  universityName?: string
   graduationYear: string
   createdAt: string
 }
 
 export interface PersonalStudy {
-  studyId: number
+  id: number
   name: string
   universityName: string
   degree: string

@@ -3,15 +3,15 @@
   import Modal from '$lib/components/profile/modal/Modal.svelte'
   import Input from '$lib/components/input/Input.svelte'
   import SaveModalFooter from '$lib/components/profile/modal/SaveModalFooter.svelte'
-  import type { PersonalStudy } from '$lib/types/profile-data.type'
+  import type { Study } from '$lib/types/profile-data.type'
   import { invalidateAll } from '$app/navigation'
   import { validateAcademicTraining } from '$lib/profile/education/validate-academic-training'
   import { ValidationError } from 'yup'
 
   export let isOpen: boolean
 
-  export let studyData: PersonalStudy = {
-    studyId: 0,
+  export let studyData: Study = {
+    id: 0,
     name: '',
     degree: '',
     universityName: '',

@@ -30,5 +30,6 @@ export async function load({
   const res = await fetch(`${BACKEND_BASE_URL}/users/${isLoggedUser ? 'me' : id}`)
   const data = (await res.json()) as ProfileData
 
+  console.log(data)
   return { ...data, isEditable: isLoggedUser }
 }

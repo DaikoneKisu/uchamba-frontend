@@ -5,11 +5,7 @@
   import HardSkillCreationModal from './HardSkillCreationModal.svelte'
   import { fade } from 'svelte/transition'
 
-  export let hardSkills: {
-    skillId: number
-    name: string
-    createdAt: string
-  }[]
+  export let hardSkills: string[]
 
   export let hardSkillsList: string[]
   export let isEditable: boolean
@@ -17,10 +13,10 @@
   let openedModal = false
 
   async function handleDelete(name: string) {
-    const [hardSkillToDelete] = hardSkills.filter((skill) => skill.name === name)
+    const [hardSkillToDelete] = hardSkills.filter((skill) => skill === name)
 
     try {
-      hardSkills = hardSkills.filter((skill) => skill.name !== name)
+      hardSkills = hardSkills.filter((skill) => skill !== name)
       const res = await fetch('/api/profile/education/hard-skills/delete', {
         method: 'DELETE',
         body: JSON.stringify({ name })
@@ -53,11 +49,11 @@
     {#each hardSkills as skill (skill)}
       <div animate:flip in:fade class="flex justify-center">
         <Chip
-          key={skill.name}
-          text={skill.name}
+          key={skill}
+          text={skill}
           animation={isEditable}
           deleteHandler={() => {
-            handleDelete(skill.name)
+            handleDelete(skill)
           }}
         />
       </div>

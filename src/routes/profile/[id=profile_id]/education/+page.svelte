@@ -11,13 +11,13 @@
   <AcademicTraining studiesData={data.education} isEditable={data.isEditable} />
   <Languages languages={data.languages} langsList={data.langsList} isEditable={data.isEditable} />
   <SoftSkills
-    softSkills={data.softSkills.featured.concat(data.softSkills.personal)}
-    softSkillsList={data.softSkillsList.map((skill) => skill.name)}
+    softSkills={data.skills.soft}
+    softSkillsList={data.softSkillsList.map((s) => s.name)}
     isEditable={data.isEditable}
   />
   <HardSkills
-    hardSkills={data.hardSkills.featured.concat(data.hardSkills.personal)}
-    hardSkillsList={data.hardSkillsList.map((skill) => skill.name)}
+    hardSkills={data.skills.soft}
+    hardSkillsList={data.hardSkillsList.map((s) => s.name)}
     isEditable={data.isEditable}
   />
 </div>

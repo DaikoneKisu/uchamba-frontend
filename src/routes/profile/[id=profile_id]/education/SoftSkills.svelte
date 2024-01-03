@@ -5,11 +5,7 @@
   import SoftSkillCreationModal from './SoftSkillCreationModal.svelte'
   import { fade } from 'svelte/transition'
 
-  export let softSkills: {
-    skillId: number
-    name: string
-    createdAt: string
-  }[]
+  export let softSkills: string[]
 
   export let softSkillsList: string[]
   export let isEditable: boolean
@@ -17,10 +13,10 @@
   let openedModal = false
 
   async function handleDelete(name: string) {
-    const [softSkillToDelete] = softSkills.filter((skill) => skill.name === name)
+    const [softSkillToDelete] = softSkills.filter((skill) => skill === name)
 
     try {
-      softSkills = softSkills.filter((skill) => skill.name !== name)
+      softSkills = softSkills.filter((skill) => skill !== name)
       const res = await fetch('/api/profile/education/soft-skills/delete', {
         method: 'DELETE',
         body: JSON.stringify({ name })
@@ -53,9 +49,9 @@
     {#each softSkills as skill (skill)}
       <div animate:flip in:fade class="flex justify-center">
         <Chip
-          key={skill.name}
-          text={skill.name}
-          deleteHandler={() => handleDelete(skill.name)}
+          key={skill}
+          text={skill}
+          deleteHandler={() => handleDelete(skill)}
           animation={isEditable}
         />
       </div>

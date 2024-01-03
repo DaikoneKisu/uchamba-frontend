@@ -7,25 +7,9 @@
   import { invalidateAll } from '$app/navigation'
   import { slide } from 'svelte/transition'
   import AcademicTrainingEditionModal from './AcademicTrainingEditionModal.svelte'
-  import type { PersonalStudy } from '$lib/types/profile-data.type'
+  import type { Study } from '$lib/types/profile-data.type'
 
-  export let studiesData: {
-    featured: {
-      ucareerId: number
-      name: string
-      degree: string
-      graduationYear: string
-      createdAt: string
-    }[]
-    personal: {
-      studyId: number
-      name: string
-      universityName: string
-      degree: string
-      graduationYear: string
-      createdAt: string
-    }[]
-  }
+  export let studiesData: Study[]
 
   export let isEditable: boolean
 
@@ -33,7 +17,7 @@
   let openedDeleteModal = false
   let openedEditionModal = false
   let studyIdToDelete: number
-  let selectedStudyToUpdate: PersonalStudy
+  let selectedStudyToUpdate: Study
 
   function openModal() {
     openedModal = true
@@ -44,7 +28,7 @@
     openedDeleteModal = true
   }
 
-  function openEditionModal(study: PersonalStudy) {
+  function openEditionModal(study: Study) {
     selectedStudyToUpdate = { ...study }
     openedEditionModal = true
   }
@@ -81,38 +65,24 @@
   </header>
 
   <ul class="mt-6 flex flex-col gap-8">
-    {#each studiesData.featured as featStudy}
+    {#each studiesData as study (study.id)}
       <li in:slide out:slide class="flex flex-col gap-2">
         <div class="flex justify-between">
-          <h3 class="font-poppins text-2xl">Universidad Católica Andrés Bello</h3>
-
-          <div class="flex gap-6" />
-        </div>
-        <p class="text-brand-p-black">
-          {featStudy.name} - {featStudy.degree
-            .split('')
-            .map((c, i) => (i === 0 ? c.toUpperCase() : c))
-            .join('')}
-        </p>
-        <p>Año de graduación {featStudy.graduationYear}</p>
-      </li>
-    {/each}
-    {#each studiesData.personal as personalStudy (personalStudy.studyId)}
-      <li in:slide out:slide class="flex flex-col gap-2">
-        <div class="flex justify-between">
-          <h3 class="font-poppins text-2xl">{personalStudy.universityName}</h3>
-          {#if isEditable}
+          <h3 class="font-poppins text-2xl">
+            {study.universityName ?? 'Universidad Católica Andrés Bello'}
+          </h3>
+          {#if isEditable && study.universityName}
             <div class="flex gap-6">
               <button
                 on:click={() => {
-                  openEditionModal(personalStudy)
+                  openEditionModal(study)
                 }}
               >
                 <img src={pencilIcon} alt="Editar estudio" />
               </button>
               <button
                 on:click={() => {
-                  openDeleteModal(personalStudy.studyId)
+                  openDeleteModal(study.id)
                 }}
               >
                 <img src={deleteIcon} alt="Eliminar estudio" />
@@ -121,12 +91,12 @@
           {/if}
         </div>
         <p class="text-brand-p-black">
-          {personalStudy.name} - {personalStudy.degree
+          {study.name} - {study.degree
             .split('')
             .map((c, i) => (i === 0 ? c.toUpperCase() : c))
             .join('')}
         </p>
-        <p>Año de graduación {personalStudy.graduationYear}</p>
+        <p>Año de graduación {study.graduationYear}</p>
       </li>
     {/each}
   </ul>
