@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores'
 	import { crossfade } from 'svelte/transition'
+	import ExitButton from './ExitButton.svelte'
 
 	let currentRoute: 'prueba1' | 'catalogue' | 'prueba2' = 'prueba1'
 
@@ -12,7 +13,8 @@
 </script>
 
 <header class="w-full">
-	<nav class="flex justify-between items-center bg-white p-2 rounded-[10px] mb-0">
+	<nav class="flex justify-between items-center bg-white p-3 rounded-[5px] mb-0">
+		<ExitButton/>
 		<ul
 			class="w-full text-lg text-center max-w-xl flex justify-between [&>li]:min-w-[150px] [&>li>a]:py-5 [&>li>a]:text-center"
 		>

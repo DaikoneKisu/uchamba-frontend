@@ -11,12 +11,12 @@
 <main class="flex flex-col gap-6 min-h-screen p-10 pt-5 bg-[#f0f0f0]">
 	<Navegation/>
 
-	<div class="flex flex-col gap-6 flex-grow md:flex-row">
+	<div class="flex flex-col gap-4 flex-grow md:flex-row">
 		<div
 			class="flex flex-col gap-12 justify-center items-start flex-grow w-full max-w-[300px] mt-0"
 		>
 			<section
-				class="flex flex-col gap-7 justify-center items-center bg-white w-full pb-12 rounded-[10px] flex-grow"
+				class="flex flex-col gap-7 justify-center items-center bg-white w-full pb-12 rounded-[5px] flex-grow"
 			>
 				<div
 					class="w-full flex flex-col justify-center items-center gap-2 text-brand-white pt-4 pb-28 bg-ucab-green rounded-[10px] rounded-bl-[150px]"
@@ -26,7 +26,7 @@
 			</section>
 		</div>
 
-		<section class="w-full flex flex-row items-start bg-white rounded-[10px]">
+		<section class="w-full flex flex-row items-start bg-white rounded-[5px]">
 			<div class="flex flex-col mt-4 ml-8">
 				<div
 					class="flex items-start border-4 border-zinc-100 rounded-xl bg-brand-white pr-0 pl-4 pt-4 pb-2 w-[383px] h-16"
