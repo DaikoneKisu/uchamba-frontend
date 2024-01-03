@@ -16,7 +16,7 @@
     isEditable={data.isEditable}
   />
   <HardSkills
-    hardSkills={data.skills.soft}
+    hardSkills={data.skills.hard}
     hardSkillsList={data.hardSkillsList.map((s) => s.name)}
     isEditable={data.isEditable}
   />
