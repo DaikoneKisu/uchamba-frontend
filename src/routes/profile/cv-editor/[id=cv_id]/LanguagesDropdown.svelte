@@ -7,7 +7,7 @@
 
   export let languages: Language[]
 
-  let addedLanguages: number[] = []
+  let addedLanguages: number[] = $cv.entries.languages
 
   async function handleInput(langId: number) {
     if (addedLanguages.includes(langId)) {

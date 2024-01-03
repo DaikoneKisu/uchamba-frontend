@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { scale } from 'svelte/transition'
+  import { scale, slide } from 'svelte/transition'
+  import { flip } from 'svelte/animate'
 
   import type { ProfileData } from '$lib/types/profile-data.type'
   import { cv } from './cv.store'
@@ -43,8 +44,8 @@
     <section class="cv-section cv-section--work-experiences">
       <h3 class="cv-section__important-text">Experiencia Laboral</h3>
       <div>
-        {#each $cv.entries.experience.map( (id) => profileData.workExperiences.find((we) => we.workExpId === id) ) as we}
-          <article class="cv-article cv-article--work-experiences" transition:scale>
+        {#each $cv.entries.experiences.map( (id) => profileData.workExperiences.find((we) => we.workExpId === id) ) as we (we)}
+          <article class="cv-article cv-article--work-experiences" transition:slide>
             <h4 class="cv-article__title">{we?.jobTitle}</h4>
             {#if we?.departureDate}
               <strong class="cv-article__important-text"
@@ -75,35 +76,19 @@
     <section class="cv-section">
       <h3 class="cv-section__important-text">Formación Académica</h3>
       <div class="cv-section cv-section--education">
-        {#each $cv.entries.education.featured.map( (id) => profileData.education.featured.find((fs) => fs.ucareerId === id) ) as fs}
-          <article class="cv-article" transition:scale>
+        {#each profileData.education.filter((s) => (!s.universityName && $cv.entries.education.featured.includes(s.id)) || (s.universityName && $cv.entries.education.personal.includes(s.id))) as s (s.id + (s.universityName ?? 'XD'))}
+          <article class="cv-article" transition:slide>
             <h4 class="cv-article__title cv-article__title--education">
-              {fs?.name} -
+              {s?.name} -
               <strong class="cv-article__title cv-article__important-text--education">
-                {fs?.degree}
+                {s?.degree}
               </strong>
             </h4>
             <p class="cv-article__important-text cv-article__important-text--education_place">
-              {fs?.ucareerId}
+              {s?.universityName ?? 'Universidad Católica Andrés Bello'}
             </p>
             <p>
-              Año de graduación {fs?.graduationYear}
-            </p>
-          </article>
-        {/each}
-        {#each $cv.entries.education.personal.map( (id) => profileData.education.personal.find((ps) => ps.studyId === id) ) as ps}
-          <article class="cv-article" transition:scale>
-            <h4 class="cv-article__title cv-article__title--education">
-              {ps?.name} -
-              <strong class="cv-article__title cv-article__important-text--education">
-                {ps?.degree}
-              </strong>
-            </h4>
-            <p class="cv-article__important-text cv-article__important-text--education_place">
-              {ps?.universityName}
-            </p>
-            <p>
-              Año de graduación {ps?.graduationYear}
+              Año de graduación {s?.graduationYear}
             </p>
           </article>
         {/each}
@@ -118,16 +103,16 @@
         <section class="cv-section cv-section--skills">
           <h4 class="cv-section__important-text cv-section__important-text--subtitle">Blandas</h4>
           <ul class="cv-section__list cv-section__list--soft-skills">
-            {#each $cv.entries.skills.soft as ss}
-              <li transition:scale>{ss}</li>
+            {#each $cv.entries.skills.soft as ss (ss)}
+              <li transition:scale animate:flip={{ duration: 600 }}>{ss}</li>
             {/each}
           </ul>
         </section>
         <section class="cv-section cv-section--skills">
           <h4 class="cv-section__important-text cv-section__important-text--subtitle">Duras</h4>
           <ul class="cv-section__list cv-section__list--hard-skills">
-            {#each $cv.entries.skills.hard as hs}
-              <li transition:scale>{hs}</li>
+            {#each $cv.entries.skills.hard as hs (hs)}
+              <li transition:scale animate:flip={{ duration: 600 }}>{hs}</li>
             {/each}
           </ul>
         </section>
@@ -139,8 +124,10 @@
     <section class="cv-section cv-section--languages">
       <h3 class="cv-section__important-text">Idiomas</h3>
       <ul class="cv-section__list cv-section__list--languages">
-        {#each $cv.entries.languages.map( (id) => profileData.languages.find((lang) => lang.languageId === id) ) as l}
-          <li transition:scale>{l?.name} - {l?.proficientLevel}</li>
+        {#each $cv.entries.languages.map( (id) => profileData.languages.find((lang) => lang.languageId === id) ) as l (l)}
+          <li transition:scale animate:flip={{ duration: 600 }}>
+            {l?.name} - {l?.proficientLevel}
+          </li>
         {/each}
       </ul>
     </section>

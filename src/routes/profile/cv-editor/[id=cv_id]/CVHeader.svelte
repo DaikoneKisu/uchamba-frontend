@@ -23,7 +23,7 @@
 <header class="flex min-w-[21.59cm] items-center justify-center gap-12">
   <div class="flex flex-col items-center">
     <h2>Preview CV · {careerId ? $careers[Number(careerId)] : '(Área del CV)'}</h2>
-    <h3>{cvName ? cvName : '(Nombre de tu CV)'}</h3>
+    <h3 class="text-2xl">{cvName ? cvName : '(Nombre de tu CV)'}</h3>
   </div>
   <button on:click={openModal}>
     <img src={pencilIcon} alt="Editar CV" />

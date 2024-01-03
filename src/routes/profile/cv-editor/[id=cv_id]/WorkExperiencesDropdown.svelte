@@ -11,7 +11,7 @@
 
   function setAddedWorkExperiences() {
     workExperiences.forEach((we) => {
-      addedWorkExperiences[we.workExpId] = false
+      addedWorkExperiences[we.workExpId] = $cv.entries.experiences.includes(we.workExpId)
     })
   }
 
@@ -24,7 +24,7 @@
       ...$cv,
       entries: {
         ...$cv.entries,
-        experience: workExperiencesToAdd
+        experiences: workExperiencesToAdd
       }
     })
   }

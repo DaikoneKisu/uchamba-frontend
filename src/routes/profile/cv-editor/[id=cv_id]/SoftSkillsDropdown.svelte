@@ -1,20 +1,19 @@
 <script lang="ts">
   import { slide } from 'svelte/transition'
 
-  import type { Skill } from '$lib/types/profile-data.type'
   import closeIcon from '$lib/icons/cancel-black.svg'
   import Dropdown from './Dropdown.svelte'
   import EmptyListMessage from './EmptyListMessage.svelte'
   import { cv } from './cv.store'
 
-  export let softSkills: Skill[]
+  export let softSkills: string[]
 
-  let addedSoftSkills: string[] = []
+  let addedSoftSkills: string[] = $cv.entries.skills.soft
   let input: HTMLInputElement
   let value: string
 
   function addSoftSkill() {
-    if (value && !addedSoftSkills.includes(value) && softSkills.find((ss) => ss.name === value)) {
+    if (value && !addedSoftSkills.includes(value) && softSkills.find((ss) => ss === value)) {
       addedSoftSkills = [...addedSoftSkills, value]
       value = ''
       input.focus()
@@ -65,8 +64,8 @@
           class="text-sm placeholder:text-brand-p-black focus:border-0 focus:shadow-none focus:outline-none"
         />
         <datalist id="soft-skills-list">
-          {#each softSkills.filter((ss) => !addedSoftSkills.includes(ss.name)) as ss}
-            <option value={ss.name} />
+          {#each softSkills.filter((ss) => !addedSoftSkills.includes(ss)) as ss}
+            <option value={ss} />
           {/each}
         </datalist>
       </form>

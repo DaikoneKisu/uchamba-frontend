@@ -12,10 +12,10 @@
 
   function setAddedStudies() {
     featuredStudies.forEach((s) => {
-      addedFeaturedStudies[s.id] = false
+      addedFeaturedStudies[s.id] = $cv.entries.education.featured.includes(s.id)
     })
     personalStudies.forEach((s) => {
-      addedPersonalStudies[s.id] = false
+      addedPersonalStudies[s.id] = $cv.entries.education.personal.includes(s.id)
     })
   }
 

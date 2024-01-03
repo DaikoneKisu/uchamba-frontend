@@ -2,19 +2,18 @@
   import { slide } from 'svelte/transition'
 
   import closeIcon from '$lib/icons/cancel-black.svg'
-  import type { Skill } from '$lib/types/profile-data.type'
   import Dropdown from './Dropdown.svelte'
   import EmptyListMessage from './EmptyListMessage.svelte'
   import { cv } from './cv.store'
 
-  export let hardSkills: Skill[]
+  export let hardSkills: string[]
 
-  let addedHardSkills: string[] = []
+  let addedHardSkills: string[] = $cv.entries.skills.hard
   let input: HTMLInputElement
   let value: string
 
   function addHardSkill() {
-    if (value && !addedHardSkills.includes(value) && hardSkills.find((hs) => hs.name === value)) {
+    if (value && !addedHardSkills.includes(value) && hardSkills.find((hs) => hs === value)) {
       addedHardSkills = [...addedHardSkills, value]
       value = ''
       input.focus()
@@ -65,8 +64,8 @@
           class="text-sm placeholder:text-brand-p-black focus:border-0 focus:shadow-none focus:outline-none"
         />
         <datalist id="hard-skills-list">
-          {#each hardSkills.filter((hs) => !addedHardSkills.includes(hs.name)) as hs}
-            <option value={hs.name} />
+          {#each hardSkills.filter((hs) => !addedHardSkills.includes(hs)) as hs}
+            <option value={hs} />
           {/each}
         </datalist>
       </form>

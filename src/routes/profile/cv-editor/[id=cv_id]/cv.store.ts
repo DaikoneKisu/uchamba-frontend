@@ -2,13 +2,15 @@ import { writable } from 'svelte/store'
 
 interface CVPayload {
   careerId: number
+  careerName?: string
+  cvId?: number
   name: string
   entries: {
     education: {
       featured: number[]
       personal: number[]
     }
-    experience: number[]
+    experiences: number[]
     languages: number[]
     skills: {
       soft: string[]
@@ -25,7 +27,7 @@ export const cv = writable<CVPayload>({
       featured: [],
       personal: []
     },
-    experience: [],
+    experiences: [],
     languages: [],
     skills: {
       soft: [],

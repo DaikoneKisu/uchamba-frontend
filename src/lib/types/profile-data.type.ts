@@ -48,15 +48,6 @@ export interface Study {
   createdAt: string
 }
 
-export interface PersonalStudy {
-  id: number
-  name: string
-  universityName: string
-  degree: string
-  graduationYear: string
-  createdAt: string
-}
-
 export interface WorkExperience {
   workExpId: number
   organizationName: string
@@ -90,4 +81,16 @@ export interface CV {
   careerId: number
   careerName: string
   name: string
+  entries: {
+    education: {
+      featured: number[]
+      personal: number[]
+    }
+    experiences: number[]
+    languages: number[]
+    skills: {
+      soft: string[]
+      hard: string[]
+    }
+  }
 }

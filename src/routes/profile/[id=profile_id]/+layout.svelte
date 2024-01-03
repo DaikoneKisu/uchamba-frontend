@@ -5,35 +5,6 @@
   import PersonalLinks from './PersonalLinks.svelte'
 
   export let data
-
-  let disabledExport = false
-
-  async function exportCV() {
-    try {
-      disabledExport = true
-      const res = await fetch(`/api/profile/generate-cv`, {
-        method: 'POST',
-        body: JSON.stringify({ id: data.userId })
-      })
-
-      const pdfBlob = await res.blob()
-
-      downloadPDF(pdfBlob)
-    } catch (e) {
-      alert(e)
-    } finally {
-      disabledExport = false
-    }
-  }
-
-  function downloadPDF(pdfBlob: Blob) {
-    const url = window.URL.createObjectURL(pdfBlob)
-
-    const link = document.createElement('a')
-    link.href = url
-    link.download = data.name + ' CV.pdf'
-    link.click()
-  }
 </script>
 
 <main class="flex min-h-screen gap-10 bg-[#f0f0f0] p-10 pt-12">
@@ -51,13 +22,6 @@
     </section>
 
     <PersonalLinks links={data.personalLinks} isEditable={data.isEditable} />
-
-    <button
-      on:click={exportCV}
-      disabled={disabledExport}
-      class="m-auto h-[61px] w-full rounded-[10px] bg-ucab-green text-brand-white shadow-xl transition-all duration-200 hover:bg-green-600 hover:shadow-lg hover:shadow-emerald-200 disabled:opacity-50"
-      >Exportar mi CV</button
-    >
   </div>
 
   <section class="flex w-full flex-col items-center rounded-[10px] bg-brand-white">
