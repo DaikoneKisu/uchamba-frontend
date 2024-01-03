@@ -10,54 +10,54 @@
 	export let disabled = false
 	export let email: string
 	export let password: string
-  export let emailError = ''
-  export let passwordError = ''
+	export let emailError = ''
+	export let passwordError = ''
 </script>
 
 <form
 	aria-label="form"
-	class="flex flex-col gap-5 w-[330px]"
+	class="flex flex-col w-[360px]"
 	method="POST"
 	use:enhance
 	novalidate
-  on:submit
-  on:input
-> 
+	on:submit
+	on:input
+>
 	<InputWithIcon
 		name="email"
 		type="email"
-		placeholder="johndalton@est.ucab.edu.ve"
+		placeholder="Ej pflorez.20@est.ucab.edu.ve"
 		label="Correo electrónico"
 		bind:value={email}
 		src={emailIcon}
 		required
 	/>
-  {#if emailError}
-    <strong in:slide out:slide class="text-red-500 text-sm text-center">{emailError}</strong>
-  {/if}
+	<div class="text-red-500 text-sm ml-4 my-1 text-left h-6">
+		{#if emailError}
+			<strong in:slide out:slide>{emailError}</strong>
+		{/if}
+	</div>
 	<PasswordInput
 		name="password"
 		placeholder={'\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022'}
 		label="Contraseña"
 		bind:value={password}
 	/>
-  {#if passwordError}
-    <strong in:slide out:slide class="text-red-500 text-sm text-center">{passwordError}</strong>
-  {/if}
+	<div class="text-red-500 text-sm ml-4 my-1 text-left h-6">
+		{#if passwordError}
+			<strong in:slide out:slide>{passwordError}</strong>
+		{/if}
+	</div>
 	{#if disabled}
 		<button
 			type="submit"
-			class="mt-5 bg-ucab-green/50 text-brand-white/50 rounded-[10px] w-[330px] h-[64px] m-auto shadow-inner"
+			class="mt-4 bg-ucab-green/50 text-brand-white/50 rounded-[10px] w-[330px] h-[64px] m-auto shadow-inner"
 			disabled
 		>
 			Continuar
 		</button>
 	{:else}
-		<button
-			type="submit"
-			class="w-[330px] h-16 bg-green-700 rounded-[10px] shadow"
-			
-		>
+		<button type="submit" class="w-[330px] h-16 bg-green-700 text-white rounded-[10px] shadow">
 			Continuar
 		</button>
 	{/if}
