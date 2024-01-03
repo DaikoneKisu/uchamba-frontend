@@ -1,225 +1,236 @@
 <script lang="ts">
-  import Modal from '$lib/components/profile/modal/Modal.svelte'
-  import Input from '$lib/components/input/Input.svelte'
-  import graduationCapIcon from '$lib/icons/business.svg'
-  import SaveModalFooter from '$lib/components/profile/modal/SaveModalFooter.svelte'
-  import { invalidateAll } from '$app/navigation'
-  import { validateAcademicExperience } from '$lib/profile/experiencia/validate-academic-experience'
-  import { ValidationError } from 'yup'
-  import Textbox from '$lib/components/profile/textbox/Textbox.svelte'
-  import { slide } from 'svelte/transition'
+	import { ValidationError } from 'yup'
+	import { slide } from 'svelte/transition'
+	import { invalidateAll } from '$app/navigation'
 
-  export let openedModal = false
+	import Modal from '$lib/components/profile/modal/Modal.svelte'
+	import Input from '$lib/components/input/Input.svelte'
+	import SaveModalFooter from '$lib/components/profile/modal/SaveModalFooter.svelte'
+	import Textbox from '$lib/components/profile/textbox/Textbox.svelte'
+	import { validateAcademicExperience } from '$lib/profile/experience/validate-academic-experience'
 
-  let formData = {
-    organizationName: '',
-    jobTitle: '',
-    description: '',
-    entryDate: '',
-    departureDate: '',
-    freelancer: false,
-    country: '',
-    state: '',
-    city: '',
-    address: ''
-  }
+	import graduationCapIcon from '$lib/icons/business.svg'
 
-  let formErrors = {
-    organizationName: '',
-    jobTitle: '',
-    description: '',
-    entryDate: '',
-    departureDate: '',
-    freelancer: '',
-    country: '',
-    state: '',
-    city: '',
-    address: ''
-  }
+	export let openedModal = false
 
-  let disabledSaveButton = false
+	let formData = {
+		organizationName: '',
+		jobTitle: '',
+		description: '',
+		entryDate: '',
+		departureDate: '',
+		freelancer: false,
+		country: '',
+		state: '',
+		city: '',
+		address: ''
+	}
 
-  let disabledDepartureDate = false
+	let formErrors = {
+		organizationName: '',
+		jobTitle: '',
+		description: '',
+		entryDate: '',
+		departureDate: '',
+		freelancer: '',
+		country: '',
+		state: '',
+		city: '',
+		address: ''
+	}
 
-  async function save() {
-    try {
-      disabledSaveButton = true
+	let disabledSaveButton = false
 
-      const res = await fetch('/api/profile/experience/academic-experience/create', {
-        method: 'POST',
-        body: JSON.stringify(formData)
-      })
+	let disabledDepartureDate = false
 
-      if (!res.ok) throw new Error('Error al crear una experiencia academica')
+	async function save() {
+		try {
+			disabledSaveButton = true
 
-      invalidateAll()
-      closeModal()
-    } catch (error) {
-      alert(error)
-    } finally {
-      disabledSaveButton = false
-    }
-  }
+			const res = await fetch('/api/profile/experience/academic-experience/create', {
+				method: 'POST',
+				body: JSON.stringify(formData)
+			})
 
-  function closeModal() {
-    openedModal = false
-  }
+			const resBody = await res.json()
 
-  $: if (openedModal) {
-    try {
-      validateAcademicExperience(formData)
-      disabledSaveButton = false
+			if (!res.ok) throw new Error(resBody?.message)
 
-      formErrors = {
-        organizationName: '',
-        jobTitle: '',
-        description: '',
-        entryDate: '',
-        departureDate: '',
-        freelancer: '',
-        country: '',
-        state: '',
-        city: '',
-        address: ''
-      }
-    } catch (error: unknown) {
-      disabledSaveButton = true
-      if (error instanceof ValidationError) {
-        const errors = error.inner
+			invalidateAll()
+			closeModal()
+		} catch (error) {
+			if (error instanceof Error && error.message) alert(error.message)
+			else alert('Hubo un error en el servidor al intentar crear la experiencia laboral')
+		} finally {
+			disabledSaveButton = false
+		}
+	}
 
-        formErrors = {
-          organizationName: errors.find((e) => e.path === 'organizationName')?.message ?? '',
-          jobTitle: errors.find((e) => e.path === 'jobTitle')?.message ?? '',
-          description: errors.find((e) => e.path === 'description')?.message ?? '',
-          entryDate: errors.find((e) => e.path === 'entryDate')?.message ?? '',
-          departureDate: errors.find((e) => e.path === 'departureDate')?.message ?? '',
-          freelancer: errors.find((e) => e.path === 'freelancer')?.message ?? '',
-          country: errors.find((e) => e.path === 'country')?.message ?? '',
-          state: errors.find((e) => e.path === 'state')?.message ?? '',
-          city: errors.find((e) => e.path === 'city')?.message ?? '',
-          address: errors.find((e) => e.path === 'address')?.message ?? ''
-        }
-      }
-    }
-  }
+	function closeModal() {
+		openedModal = false
+	}
 
-  $: if (!openedModal) {
-    formData = {
-      organizationName: '',
-      jobTitle: '',
-      description: '',
-      entryDate: '',
-      departureDate: '',
-      freelancer: false,
-      country: '',
-      state: '',
-      city: '',
-      address: ''
-    }
-  }
+	$: if (openedModal) {
+		try {
+			validateAcademicExperience(formData)
+			disabledSaveButton = false
 
-  $: if (formData.freelancer) {
-    formData = {
-      ...formData,
-      country: '',
-      state: '',
-      city: '',
-      address: ''
-    }
-  }
+			formErrors = {
+				organizationName: '',
+				jobTitle: '',
+				description: '',
+				entryDate: '',
+				departureDate: '',
+				freelancer: '',
+				country: '',
+				state: '',
+				city: '',
+				address: ''
+			}
+		} catch (error: unknown) {
+			disabledSaveButton = true
+			if (error instanceof ValidationError) {
+				const errors = error.inner
+
+				formErrors = {
+					organizationName: errors.find((e) => e.path === 'organizationName')?.message ?? '',
+					jobTitle: errors.find((e) => e.path === 'jobTitle')?.message ?? '',
+					description: errors.find((e) => e.path === 'description')?.message ?? '',
+					entryDate: errors.find((e) => e.path === 'entryDate')?.message ?? '',
+					departureDate: errors.find((e) => e.path === 'departureDate')?.message ?? '',
+					freelancer: errors.find((e) => e.path === 'freelancer')?.message ?? '',
+					country: errors.find((e) => e.path === 'country')?.message ?? '',
+					state: errors.find((e) => e.path === 'state')?.message ?? '',
+					city: errors.find((e) => e.path === 'city')?.message ?? '',
+					address: errors.find((e) => e.path === 'address')?.message ?? ''
+				}
+			}
+		}
+	}
+
+	$: if (!openedModal) {
+		formData = {
+			organizationName: '',
+			jobTitle: '',
+			description: '',
+			entryDate: '',
+			departureDate: '',
+			freelancer: false,
+			country: '',
+			state: '',
+			city: '',
+			address: ''
+		}
+	}
+
+	$: if (formData.freelancer) {
+		formData = {
+			...formData,
+			country: '',
+			state: '',
+			city: '',
+			address: ''
+		}
+	}
 </script>
 
 <Modal
-  title="Experiencia Laboral"
-  subtitle="Agrega una nueva experiencia laboral para añadir a tu CV"
-  bind:isOpen={openedModal}
-  icon={graduationCapIcon}
+	title="Experiencia Laboral"
+	subtitle="Agrega una nueva experiencia laboral para añadir a tu CV"
+	bind:isOpen={openedModal}
+	icon={graduationCapIcon}
 >
-  <form slot="body" class="w-full flex-col justify-between px-6 py-12">
-    <div class="grid w-full grid-cols-2">
-      <Input
-        type="text"
-        label="Organizacion"
-        placeholder="Ingrese el instituto o universidad"
-        bind:value={formData.organizationName}
-        error={formErrors.organizationName}
-      />
-      <Input type="text" label="Rol" placeholder="Ingrese el rol" bind:value={formData.jobTitle} />
-      <Input
-        type="date"
-        label="Fecha de entrada"
-        placeholder="dd/mm/aaaa"
-        bind:value={formData.entryDate}
-        error={formErrors.entryDate}
-      />
-      <Input
-        type="date"
-        disabled={disabledDepartureDate}
-        label="Fecha de salida (opcional)"
-        placeholder="dd/mm/aaaa"
-        bind:value={formData.departureDate}
-        error={formErrors.departureDate}
-      />
-      <div />
-      <label class="flex items-center gap-2 pl-3">
-        <input
-          type="checkbox"
-          bind:checked={disabledDepartureDate}
-          on:input={() => {
-            formData.departureDate = ''
-          }}
-        />
-        Experiencia de trabajo actual
-      </label>
-    </div>
+	<form slot="body" class="w-full flex-col justify-between px-6 py-12">
+		<div class="grid w-full grid-cols-2 gap-y-2">
+			<Input
+				type="text"
+				label="Organizacion"
+				placeholder="Ingrese el nombre de la organización"
+				bind:value={formData.organizationName}
+				error={formErrors.organizationName}
+			/>
+			<Input
+				type="text"
+				label="Rol"
+				placeholder="Ingrese el rol"
+				bind:value={formData.jobTitle}
+				error={formErrors.jobTitle}
+			/>
+			<Input
+				type="date"
+				label="Fecha de entrada"
+				placeholder="dd/mm/aaaa"
+				bind:value={formData.entryDate}
+				error={formErrors.entryDate}
+			/>
+			<Input
+				type="date"
+				disabled={disabledDepartureDate}
+				label="Fecha de salida"
+				placeholder="dd/mm/aaaa"
+				bind:value={formData.departureDate}
+				error={formErrors.departureDate}
+			/>
+			<div />
+			<label class="flex items-center justify-center gap-3">
+				<input
+					type="checkbox"
+					bind:checked={disabledDepartureDate}
+					on:input={() => {
+						formData.departureDate = ''
+					}}
+				/>
+				Experiencia de trabajo actual
+			</label>
+		</div>
 
-    <Textbox
-      className="mt-10"
-      label="Descripción"
-      bind:value={formData.description}
-      error={formErrors.description}
-      placeholder="Ingresa una breve descripción"
-    />
-    <div class="flex flex-col">
-      <label class="mb-4 flex items-center gap-2 pl-8">
-        <input type="checkbox" bind:checked={formData.freelancer} />
-        Trabajador autónomo
-      </label>
+		<Textbox
+			className="mt-10"
+			label="Descripción"
+			bind:value={formData.description}
+			error={formErrors.description}
+			placeholder="Ingresa una breve descripción"
+		/>
+		<div class="flex flex-col">
+			<label class="mb-4 flex items-center gap-2 pl-8">
+				<input type="checkbox" bind:checked={formData.freelancer} />
+				Trabajador autónomo
+			</label>
 
-      {#if !formData.freelancer}
-        <div in:slide out:slide class="grid w-full grid-cols-2">
-          <Input
-            type="text"
-            label="País"
-            placeholder="Ingrese el país"
-            bind:value={formData.country}
-            error={formErrors.country}
-          />
-          <Input
-            type="text"
-            label="Estado"
-            placeholder="Ingrese el estado"
-            bind:value={formData.state}
-            error={formErrors.state}
-          />
-          <Input
-            type="text"
-            label="Ciudad"
-            placeholder="Ingrese la ciudad"
-            bind:value={formData.city}
-            error={formErrors.city}
-          />
-          <Input
-            type="text"
-            label="Direccion"
-            placeholder="Ingrese la direccion"
-            bind:value={formData.address}
-            error={formErrors.address}
-          />
-        </div>
-      {/if}
-    </div>
-  </form>
+			{#if !formData.freelancer}
+				<div transition:slide class="grid w-full grid-cols-2 gap-y-2">
+					<Input
+						type="text"
+						label="País"
+						placeholder="Ingrese el país"
+						bind:value={formData.country}
+						error={formErrors.country}
+					/>
+					<Input
+						type="text"
+						label="Estado"
+						placeholder="Ingrese el estado"
+						bind:value={formData.state}
+						error={formErrors.state}
+					/>
+					<Input
+						type="text"
+						label="Ciudad"
+						placeholder="Ingrese la ciudad"
+						bind:value={formData.city}
+						error={formErrors.city}
+					/>
+					<Input
+						type="text"
+						label="Dirección"
+						placeholder="Ingrese la dirección"
+						bind:value={formData.address}
+						error={formErrors.address}
+					/>
+				</div>
+			{/if}
+		</div>
+	</form>
 
-  <SaveModalFooter slot="footer" handleSave={save} disabled={disabledSaveButton} />
+	<SaveModalFooter slot="footer" handleSave={save} disabled={disabledSaveButton} />
 </Modal>

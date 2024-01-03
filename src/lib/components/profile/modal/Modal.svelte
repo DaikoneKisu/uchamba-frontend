@@ -1,8 +1,9 @@
 <script lang="ts">
-  import cancelIcon from '$lib/icons/cancel-black.svg'
   import { fade, scale } from 'svelte/transition'
 
-  export let isOpen: Boolean
+  import cancelIcon from '$lib/icons/cancel-black.svg'
+
+  export let isOpen: boolean
   export let title = ''
   export let subtitle = ''
   export let icon = ''
@@ -13,10 +14,9 @@
 </script>
 
 {#if isOpen}
-  <div
-    in:fade={{ duration: 100 }}
-    out:fade={{ duration: 100 }}
-    class="fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50 z-10"
+  <dialog
+    transition:fade={{ duration: 100 }}
+    class="fixed left-0 top-0 z-10 flex h-full w-full items-center justify-center bg-black bg-opacity-50"
   >
     <div
       in:scale
@@ -29,7 +29,7 @@
           <img src={icon} alt="" />
           <div class="flex flex-col">
             <h2 class="m-0 font-poppins">{title}</h2>
-            <p class="text-brand-p-black">{subtitle}</p>
+            <h3 class="text-brand-p-black">{subtitle}</h3>
           </div>
         </div>
         <button class="text-red-500" on:click={closeModal}
@@ -41,5 +41,5 @@
 
       <slot name="footer" />
     </div>
-  </div>
+  </dialog>
 {/if}

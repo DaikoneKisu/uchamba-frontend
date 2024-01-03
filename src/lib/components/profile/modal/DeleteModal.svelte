@@ -3,13 +3,13 @@
 
   export let title: string
   export let isOpen = false
+  export let handleDelete: () => Promise<void>
+
   let disabled = false
 
   function closeModal() {
     isOpen = false
   }
-
-  export let handleDelete: () => Promise<void> | void
 </script>
 
 <Modal bind:isOpen {title}>

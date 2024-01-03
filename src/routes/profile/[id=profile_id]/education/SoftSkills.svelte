@@ -1,9 +1,10 @@
 <script lang="ts">
+  import { fade } from 'svelte/transition'
+  import { flip } from 'svelte/animate'
+
   import Add from '$lib/components/profile/add/Add.svelte'
   import Chip from '$lib/components/profile/chip/Chip.svelte'
-  import { flip } from 'svelte/animate'
   import SoftSkillCreationModal from './SoftSkillCreationModal.svelte'
-  import { fade } from 'svelte/transition'
 
   export let softSkills: string[]
 
@@ -22,9 +23,12 @@
         body: JSON.stringify({ name })
       })
 
-      if (!res.ok) throw new Error('Error al eliminar la habilidad blanda')
-    } catch (e) {
-      alert(e)
+      const resBody = await res.json()
+
+      if (!res.ok) throw new Error(resBody?.message)
+    } catch (error) {
+      if (error instanceof Error && error.message) alert(error.message)
+      else alert('Hubo un error en el servidor al intentar eliminar la habilidad blanda')
       softSkills = [...softSkills, softSkillToDelete]
     }
   }
@@ -37,7 +41,7 @@
 <article class="mb-5 w-full flex-col bg-brand-white">
   <header>
     <div class="flex w-full justify-between">
-      <h2>Habilidades Blandas</h2>
+      <h2 class="capitalize">Habilidades Blandas</h2>
       {#if isEditable}
         <Add clickHandler={openModal} />
       {/if}

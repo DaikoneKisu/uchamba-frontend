@@ -26,18 +26,16 @@
         on:input|once={() => (isPristine = false)}
         {name}
         {placeholder}
-        bind:value
-        class="h-full resize-none text-sm focus:border-0 focus:shadow-none focus:outline-none"
         {required}
         {disabled}
+        bind:value
+        class="h-full resize-none text-sm focus:border-0 focus:shadow-none focus:outline-none"
       />
     </div>
   </label>
   {#if error && !isPristine}
     <span in:fly={{ x: -12 }} class="ml-3 text-[12px] text-red-600">{error}</span>
   {:else}
-    <span class="invisible ml-3 text-[12px] text-red-600" aria-hidden
-      >Has como que no estás leyendo esto</span
-    >
+    <div class="invisible h-5" aria-hidden></div>
   {/if}
 </div>

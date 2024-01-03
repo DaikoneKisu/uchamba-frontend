@@ -1,117 +1,119 @@
 <script lang="ts">
-  import Modal from '$lib/components/profile/modal/Modal.svelte'
-  import learningIcon from '$lib/icons/learning.svg'
-  import SaveModalFooter from '$lib/components/profile/modal/SaveModalFooter.svelte'
-  import { invalidateAll } from '$app/navigation'
-  import Chip from '$lib/components/profile/chip/Chip.svelte'
-  import { flip } from 'svelte/animate'
-  import { fade } from 'svelte/transition'
+	import { flip } from 'svelte/animate'
+	import { fade } from 'svelte/transition'
+	import { invalidateAll } from '$app/navigation'
 
-  export let openedModal = false
+	import Modal from '$lib/components/profile/modal/Modal.svelte'
+	import SaveModalFooter from '$lib/components/profile/modal/SaveModalFooter.svelte'
+	import Chip from '$lib/components/profile/chip/Chip.svelte'
 
-  export let hardSkillsList: string[] = []
+	import learningIcon from '$lib/icons/learning.svg'
 
-  let skills: string[] = []
+	export let openedModal = false
 
-  let value = ''
+	export let hardSkillsList: string[] = []
 
-  let input: HTMLInputElement
+	let skills: string[] = []
 
-  let disabled = false
+	let value = ''
 
-  async function save() {
-    try {
-      disabled = true
+	let input: HTMLInputElement
 
-      const res = await fetch('/api/profile/education/hard-skills/create', {
-        method: 'POST',
-        body: JSON.stringify(skills)
-      })
+	let disabled = false
 
-      if (!res.ok) throw new Error('Error al crear la habilidad dura')
+	async function save() {
+		try {
+			disabled = true
 
-      skills = []
-      invalidateAll()
-      closeModal()
-    } catch (e) {
-      alert(e)
-    } finally {
-      disabled = false
-    }
-  }
+			const res = await fetch('/api/profile/education/hard-skills/create', {
+				method: 'POST',
+				body: JSON.stringify(skills)
+			})
 
-  function insertSkill() {
-    if (value) {
-      skills = [...skills, value]
-      value = ''
-      input.focus()
-    }
-  }
+			const resBody = await res.json()
 
-  function deleteSkill(skillToDelete: string) {
-    skills = skills.filter((skill) => skill !== skillToDelete)
-  }
+			if (!res.ok) throw new Error(resBody?.message)
 
-  function closeModal() {
-    openedModal = false
-  }
+			skills = []
+			invalidateAll()
+			closeModal()
+		} catch (error) {
+			if (error instanceof Error && error.message) alert(error.message)
+			else alert('Hubo un error en el servidor al intentar crear la habilidad dura')
+		} finally {
+			disabled = false
+		}
+	}
 
-  $: skills = [...new Set(skills)]
+	function insertSkill() {
+		if (value) {
+			skills = [...skills, value]
+			value = ''
+			input.focus()
+		}
+	}
+
+	function deleteSkill(skillToDelete: string) {
+		skills = skills.filter((skill) => skill !== skillToDelete)
+	}
+
+	function closeModal() {
+		openedModal = false
+	}
+
+	$: skills = [...new Set(skills)]
 </script>
 
 <Modal
-  title="Habilidades Duras"
-  subtitle="Agrega una nueva habilidad dura para añadir a tu CV"
-  bind:isOpen={openedModal}
-  icon={learningIcon}
+	title="Habilidades Duras"
+	subtitle="Agrega una nueva habilidad dura para añadir a tu CV"
+	bind:isOpen={openedModal}
+	icon={learningIcon}
 >
-  <svelte:fragment slot="body">
-    <form
-      class="flex w-full justify-between pb-8 pl-6 pt-12"
-      on:submit={(e) => {
-        e.preventDefault()
-        insertSkill()
-      }}
-    >
-      <div class="flex w-full justify-center gap-12">
-        <label
-          class={'flex h-[64px] w-full max-w-[330px] justify-center rounded-xl border-4 border-[#f0f0f0] bg-brand-white pr-4'}
-        >
-          <div class="flex h-full w-full flex-col justify-center pl-5 text-[15px]">
-            <input
-              bind:this={input}
-              list="hard-skills-list"
-              type="text"
-              bind:value
-              placeholder="Ingresa una habilidad dura"
-              class="text-sm placeholder:text-brand-p-black focus:border-0 focus:shadow-none focus:outline-none"
-            />
-            <datalist id="hard-skills-list">
-              {#each hardSkillsList as skill}
-                <option value={skill} />
-              {/each}
-            </datalist>
-          </div>
-        </label>
-      </div>
-    </form>
+	<svelte:fragment slot="body">
+		<form
+			class="flex w-full justify-between pb-8 pl-6 pt-12"
+			on:submit|preventDefault={() => insertSkill()}
+		>
+			<div class="flex w-full justify-center gap-12">
+				<label
+					class={'flex h-[64px] w-full max-w-[330px] justify-center rounded-xl border-4 border-[#f0f0f0] bg-brand-white pr-4'}
+				>
+					<div class="flex h-full w-full flex-col justify-center pl-5 text-[15px]">
+						<input
+							bind:this={input}
+							list="hard-skills-list"
+							type="text"
+							bind:value
+							placeholder="Ingresa una habilidad dura"
+							class="text-sm placeholder:text-brand-p-black focus:border-0 focus:shadow-none focus:outline-none"
+						/>
+						<datalist id="hard-skills-list">
+							{#each hardSkillsList as skill}
+								<option value={skill} />
+							{/each}
+						</datalist>
+					</div>
+				</label>
+			</div>
+		</form>
 
-    <div class="min-h-[200px]">
-      <ul class="flex flex-wrap items-start justify-center gap-2 px-8 pb-12">
-        {#each skills as skill (skill)}
-          <div animate:flip in:fade class="flex justify-center">
-            <Chip
-              key={skill}
-              text={skill}
-              deleteHandler={() => {
-                deleteSkill(skill)
-              }}
-            />
-          </div>
-        {/each}
-      </ul>
-    </div>
-  </svelte:fragment>
+		<div class="min-h-[200px]">
+			<ul class="flex flex-wrap items-start justify-center gap-2 px-8 pb-12">
+				{#each skills as skill (skill)}
+					<div animate:flip in:fade class="flex justify-center">
+						<Chip
+							key={skill}
+							text={skill}
+							deleteHandler={() => {
+								deleteSkill(skill)
+							}}
+						/>
+					</div>
+				{/each}
+			</ul>
+		</div>
+	</svelte:fragment>
 
-  <SaveModalFooter slot="footer" handleSave={save} {disabled} />
+	<SaveModalFooter slot="footer" handleSave={save} {disabled} />
 </Modal>

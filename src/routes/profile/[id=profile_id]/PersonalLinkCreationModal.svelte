@@ -1,91 +1,96 @@
 <script lang="ts">
-  import Modal from '$lib/components/profile/modal/Modal.svelte'
-  import Input from '$lib/components/input/Input.svelte'
-  import externalLinkIcon from '$lib/icons/external-link.svg'
-  import SaveModalFooter from '$lib/components/profile/modal/SaveModalFooter.svelte'
-  import { invalidateAll } from '$app/navigation'
-  import { validatePersonalLink } from '$lib/profile/personal-links/validate-personal-link'
-  import { ValidationError } from 'yup'
+	import { ValidationError } from 'yup'
+	import { invalidateAll } from '$app/navigation'
 
-  export let openedModal = false
+	import Modal from '$lib/components/profile/modal/Modal.svelte'
+	import Input from '$lib/components/input/Input.svelte'
+	import SaveModalFooter from '$lib/components/profile/modal/SaveModalFooter.svelte'
+	import { validatePersonalLink } from '$lib/profile/personal-links/validate-personal-link'
 
-  let formData = {
-    url: ''
-  }
+	import externalLinkIcon from '$lib/icons/external-link.svg'
 
-  let formErrors = {
-    url: ''
-  }
+	export let openedModal = false
 
-  let disabled = false
+	let formData = {
+		url: ''
+	}
 
-  async function save() {
-    try {
-      disabled = true
-      const res = await fetch('/api/profile/personal-links/create', {
-        method: 'POST',
-        body: JSON.stringify(formData)
-      })
+	let formErrors = {
+		url: ''
+	}
 
-      if (!res.ok) throw new Error('Error al crear el enlace')
+	let disabled = false
 
-      invalidateAll()
-      closeModal()
-    } catch (error) {
-      alert(error)
-    } finally {
-      disabled = false
-    }
-  }
+	async function save() {
+		try {
+			disabled = true
+			const res = await fetch('/api/profile/personal-links/create', {
+				method: 'POST',
+				body: JSON.stringify(formData)
+			})
 
-  function closeModal() {
-    openedModal = false
-  }
+			const resBody = await res.json()
 
-  $: if (openedModal) {
-    try {
-      validatePersonalLink(formData)
-      disabled = false
+			if (!res.ok) throw new Error(resBody?.message)
 
-      formErrors = {
-        url: ''
-      }
-    } catch (error: unknown) {
-      disabled = true
-      if (error instanceof ValidationError) {
-        const errors = error.inner
+			invalidateAll()
+			closeModal()
+		} catch (error) {
+			if (error instanceof Error && error.message) alert(error.message)
+			else alert('Hubo un error en el servidor al intentar crear el link de interés')
+		} finally {
+			disabled = false
+		}
+	}
 
-        formErrors = {
-          url: errors.find((e) => e.path === 'url')?.message ?? ''
-        }
-      }
-    }
-  }
+	function closeModal() {
+		openedModal = false
+	}
 
-  $: if (!openedModal) {
-    formData = {
-      url: ''
-    }
-  }
+	$: if (openedModal) {
+		try {
+			validatePersonalLink(formData)
+			disabled = false
+
+			formErrors = {
+				url: ''
+			}
+		} catch (error: unknown) {
+			disabled = true
+			if (error instanceof ValidationError) {
+				const errors = error.inner
+
+				formErrors = {
+					url: errors.find((e) => e.path === 'url')?.message ?? ''
+				}
+			}
+		}
+	}
+
+	$: if (!openedModal) {
+		formData = {
+			url: ''
+		}
+	}
 </script>
 
 <Modal
-  title="Link de interés"
-  subtitle="Agrega un nuevo link para añadirlo a tu CV"
-  bind:isOpen={openedModal}
-  icon={externalLinkIcon}
+	title="Link de interés"
+	subtitle="Agrega un nuevo link para añadirlo a tu CV"
+	bind:isOpen={openedModal}
+	icon={externalLinkIcon}
 >
-  <form slot="body" class="flex w-full justify-center py-12 pl-6">
-    <div class="flex justify-center">
-      <Input
-        type="text"
-        label="URL"
-        placeholder="https://www.tu-enlace.com"
-        bind:value={formData.url}
-        error={formErrors.url}
-      />
-    </div>
-  </form>
+	<form slot="body" class="flex w-full justify-center py-12">
+		<div class="flex w-full justify-center pl-[30%]">
+			<Input
+				type="text"
+				label="URL"
+				placeholder="https://www.tu-enlace.com"
+				bind:value={formData.url}
+				error={formErrors.url}
+			/>
+		</div>
+	</form>
 
-  <SaveModalFooter slot="footer" handleSave={save} {disabled} />
+	<SaveModalFooter slot="footer" handleSave={save} {disabled} />
 </Modal>

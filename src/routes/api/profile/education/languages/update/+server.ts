@@ -6,7 +6,7 @@ export interface LanguageUpdatePayload {
   proficientLevel: string
 }
 
-export async function POST({ request, fetch }: { request: Request; fetch: typeof window.fetch }) {
+export async function PUT({ request, fetch }: { request: Request; fetch: typeof window.fetch }) {
   const formData = (await request.json()) as LanguageUpdatePayload
   const url = `${BACKEND_BASE_URL}/user-languages/language/${formData.languageId}`
   const response = await fetch(url, {

@@ -5,7 +5,7 @@ export interface AcademicTrainingDeletePayload {
   id: number
 }
 
-export async function POST({ request, fetch }: { request: Request; fetch: typeof window.fetch }) {
+export async function DELETE({ request, fetch }: { request: Request; fetch: typeof window.fetch }) {
   const formData = (await request.json()) as AcademicTrainingDeletePayload
   const url = `${BACKEND_BASE_URL}/foreign-studies/${formData.id}`
   const response = await fetch(url, {

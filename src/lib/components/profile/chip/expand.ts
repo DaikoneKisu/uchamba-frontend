@@ -1,3 +1,10 @@
+/*
+ If I don't define the parameter 'isExpanded' in the 'expand' and 'shrink' functions,
+ the parameter is not created in the 'update' function of the returned object.
+ Therefore, I need to disable the "no-unused-vars" rule if I want to avoid the error
+"Parameter 'isExpanded' is declared but never used."
+*/
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function expand(node: HTMLElement, isExpanded: boolean) {
   const initialWidth = node.offsetWidth

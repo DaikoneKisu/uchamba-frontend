@@ -6,34 +6,30 @@
 
   let currentImage = 0
 
-  let nextImage = 1
-
-  let prevImage = images.length - 1
+  $: nextImage = (currentImage + 1) % images.length
+  $: prevImage = (currentImage - 1 + images.length) % images.length
 
   function goNext() {
-    currentImage = (currentImage + 1) % images.length
+    currentImage += 1 % images.length
   }
 
   function goPrev() {
-    currentImage = (currentImage - 1 + images.length) % images.length
+    currentImage -= 1 + (images.length % images.length)
   }
-
-  $: nextImage = (currentImage + 1) % images.length
-  $: prevImage = (currentImage - 1 + images.length) % images.length
 </script>
 
-<div class="flex flex-col items-center justify-center gap-4">
+<section class="flex flex-col items-center justify-center gap-4">
   <div class="flex items-end gap-7">
     <button on:click={goPrev}>
       <img
         src={images[prevImage]}
-        alt="Imágen del carrusel"
+        alt="Imagen del carrusel"
         class="aspect-[316/200] w-[316px] rounded-[10px] object-contain opacity-40"
       />
     </button>
     <img
       src={images[currentImage]}
-      alt="Imágen del carrusel"
+      alt="Imagen del carrusel"
       class="mb-4 aspect-[316/200] w-[316px] rounded-[10px] object-contain"
     />
     <button on:click={goNext}>
@@ -46,7 +42,11 @@
   </div>
   <div class="flex items-center gap-3">
     <button on:click={goPrev}>
-      <img src={leftArrow} alt="Flecha izquierda" class="aspect-square w-[30px]" />
+      <img
+        src={leftArrow}
+        alt="Flecha izquierda - Imagen anterior"
+        class="aspect-square w-[30px]"
+      />
     </button>
     {#each images as _, index}
       <button
@@ -56,7 +56,11 @@
       />
     {/each}
     <button on:click={goNext}>
-      <img src={rightArrow} alt="Flecha derecha" class="aspect-square w-[30px]" />
+      <img
+        src={rightArrow}
+        alt="Flecha derecha - Imagen siguiente"
+        class="aspect-square w-[30px]"
+      />
     </button>
   </div>
-</div>
+</section>

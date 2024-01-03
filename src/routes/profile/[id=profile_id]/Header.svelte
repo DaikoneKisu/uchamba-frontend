@@ -39,7 +39,7 @@
       <li>
         <a
           href={`/profile/${profileId}/education`}
-          class="flex h-full w-full flex-col items-center justify-center gap-2"
+          class="flex h-full w-full flex-col items-center justify-center gap-2 uppercase"
           >EDUCACIÓN
           {#if currentRoute === 'education'}
             <div
@@ -53,7 +53,7 @@
       <li>
         <a
           href={`/profile/${profileId}/experience`}
-          class="flex h-full w-full flex-col items-center justify-center gap-2"
+          class="flex h-full w-full flex-col items-center justify-center gap-2 uppercase"
           >EXPERIENCIA
           {#if currentRoute === 'experience'}
             <div
@@ -67,7 +67,7 @@
       <li>
         <a
           href={`/profile/${profileId}/portfolio`}
-          class="flex h-full w-full flex-col items-center justify-center gap-2"
+          class="flex h-full w-full flex-col items-center justify-center gap-2 uppercase"
           >PORTAFOLIO
           {#if currentRoute === 'portfolio'}
             <div

@@ -1,9 +1,10 @@
 <script lang="ts">
+  import { fade } from 'svelte/transition'
+  import { flip } from 'svelte/animate'
+
   import Add from '$lib/components/profile/add/Add.svelte'
   import Chip from '$lib/components/profile/chip/Chip.svelte'
-  import { flip } from 'svelte/animate'
   import HardSkillCreationModal from './HardSkillCreationModal.svelte'
-  import { fade } from 'svelte/transition'
 
   export let hardSkills: string[]
 
@@ -22,9 +23,12 @@
         body: JSON.stringify({ name })
       })
 
-      if (!res.ok) throw new Error('Error al eliminar la habilidad dura')
-    } catch (e) {
-      alert(e)
+      const resBody = await res.json()
+
+      if (!res.ok) throw new Error(resBody?.message)
+    } catch (error) {
+      if (error instanceof Error && error.message) alert(error.message)
+      else alert('Hubo un error en el servidor al intentar eliminar la habilidad dura')
       hardSkills = [...hardSkills, hardSkillToDelete]
     }
   }

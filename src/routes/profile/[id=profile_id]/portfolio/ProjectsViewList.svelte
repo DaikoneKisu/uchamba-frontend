@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { Project } from '$lib/types/profile-data.type'
+
   import ProjectCard from './ProjectCard.svelte'
   import ProjectDetailsModal from './ProjectDetailsModal.svelte'
 

@@ -1,11 +1,13 @@
 <script lang="ts">
-  import Modal from '$lib/components/profile/modal/Modal.svelte'
-  import staffIcon from '$lib/icons/staff.svg'
-  import SaveModalFooter from '$lib/components/profile/modal/SaveModalFooter.svelte'
-  import { invalidateAll } from '$app/navigation'
-  import Chip from '$lib/components/profile/chip/Chip.svelte'
   import { flip } from 'svelte/animate'
   import { fade } from 'svelte/transition'
+  import { invalidateAll } from '$app/navigation'
+
+  import Modal from '$lib/components/profile/modal/Modal.svelte'
+  import SaveModalFooter from '$lib/components/profile/modal/SaveModalFooter.svelte'
+  import Chip from '$lib/components/profile/chip/Chip.svelte'
+
+  import staffIcon from '$lib/icons/staff.svg'
 
   export let softSkillsList: string[] = []
 
@@ -28,13 +30,13 @@
         body: JSON.stringify(skills)
       })
 
-      if (!res.ok) throw new Error('Error al crear la habilidad blanda')
+      if (!res.ok) throw new Error()
 
       skills = []
       invalidateAll()
       closeModal()
     } catch (e) {
-      alert(e)
+      alert('Hubo un error en el servidor al intentar crear la habilidad blanda')
     } finally {
       disabled = false
     }
@@ -68,10 +70,7 @@
   <svelte:fragment slot="body">
     <form
       class="flex w-full justify-between pb-8 pl-6 pt-12"
-      on:submit={(e) => {
-        e.preventDefault()
-        insertSkill()
-      }}
+      on:submit|preventDefault={() => insertSkill()}
     >
       <div class="flex w-full justify-center gap-12">
         <label

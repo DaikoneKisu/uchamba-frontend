@@ -9,7 +9,7 @@ export interface AcademicTrainingCreationPayload {
   graduationYear: string
 }
 
-export async function POST({ request, fetch }: { request: Request; fetch: typeof window.fetch }) {
+export async function PUT({ request, fetch }: { request: Request; fetch: typeof window.fetch }) {
   const formData = (await request.json()) as AcademicTrainingCreationPayload
   const url = `${BACKEND_BASE_URL}/foreign-studies/${formData.studyId}`
   const response = await fetch(url, {

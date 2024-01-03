@@ -11,7 +11,7 @@ export interface AcademicExperienceEditionPayload {
   departureDate: string
 }
 
-export async function POST({ request, fetch }: { request: Request; fetch: typeof window.fetch }) {
+export async function PUT({ request, fetch }: { request: Request; fetch: typeof window.fetch }) {
   const formData = (await request.json()) as AcademicExperienceEditionPayload
   const url = `${BACKEND_BASE_URL}/work-experiences/${formData.workExpId}`
   const response = await fetch(url, {

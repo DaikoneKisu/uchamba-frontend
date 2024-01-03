@@ -1,6 +1,7 @@
 <script lang="ts">
-  import { fade, fly } from 'svelte/transition'
-  import type { HTMLInputTypeAttribute } from '../../../types/html-input-type-attribute.type'
+  import { fly } from 'svelte/transition'
+
+  import type { HTMLInputTypeAttribute } from '$lib/types/html-input-type-attribute.type'
 
   export let label: string
   export let name: string | undefined = undefined
@@ -17,10 +18,10 @@
 
 <div class="flex w-full flex-col">
   <label
-    class={'flex h-[64px] w-full max-w-[330px] rounded-xl border-4 bg-brand-white pr-4 transition-all ' +
-      (error && !isPristine ? ' border-[#D14F4F]' : 'border-[#f0f0f0]') +
+    class={'flex h-[64px] w-full max-w-[330px] rounded-xl border-4  bg-brand-white pr-4 transition-all ' +
+      className +
       ' ' +
-      className}
+      (error && !isPristine ? ' border-[#D14F4F]' : 'border-[#f0f0f0]')}
   >
     <div class="flex h-full w-full flex-col justify-center pl-5 text-[15px]">
       <span class="text-brand-p-black">{label}</span>
@@ -57,17 +58,6 @@
           {required}
           {disabled}
         />
-      {:else if type === 'date'}
-        <input
-          on:input|once={() => (isPristine = false)}
-          {name}
-          type="date"
-          {placeholder}
-          bind:value
-          class="text-sm focus:border-0 focus:shadow-none focus:outline-none"
-          {required}
-          {disabled}
-        />
       {:else if type === 'tel'}
         <input
           on:input|once={() => (isPristine = false)}
@@ -79,14 +69,25 @@
           {required}
           {disabled}
         />
+      {:else if type === 'date'}
+        <input
+          on:input|once={() => (isPristine = false)}
+          {name}
+          type="date"
+          {placeholder}
+          bind:value
+          class="text-sm focus:border-0 focus:shadow-none focus:outline-none"
+          {required}
+          {disabled}
+        />
       {/if}
     </div>
   </label>
   {#if error && !isPristine}
-    <span in:fly={{ x: -12 }} class="ml-3 text-[12px] text-red-600">{error}</span>
-  {:else}
-    <span class="invisible ml-3 text-[12px] text-red-600" aria-hidden
-      >Has como que no estás leyendo esto</span
+    <strong in:fly={{ x: -12 }} class="ml-3 w-[80%] text-left text-[12px] text-red-600"
+      >{error}</strong
     >
+  {:else}
+    <div class="invisible h-5" aria-hidden></div>
   {/if}
 </div>
