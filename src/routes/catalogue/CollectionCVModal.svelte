@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Modal from '$lib/components/Modal.svelte'
+	import Modal from '$lib/components/catalogue/Modal.svelte'
 	import documentsIcon from '$lib/icons/documents.svg'
-	import DownloadableCVCard from '$lib/components/DownloadableCVCard.svelte'
+	import DownloadableCVCard from '$lib/components/catalogue/DownloadableCVCard.svelte'
 
 	export let openedModal = true
 </script>
