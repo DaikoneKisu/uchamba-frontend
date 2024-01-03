@@ -65,7 +65,7 @@
   </header>
 
   <ul class="mt-6 flex flex-col gap-8">
-    {#each studiesData as study (study.id)}
+    {#each studiesData as study (study.id + (study.universityName ?? 'XD'))}
       <li in:slide out:slide class="flex flex-col gap-2">
         <div class="flex justify-between">
           <h3 class="font-poppins text-2xl">
