@@ -1,7 +1,5 @@
 <script lang="ts">
-	import Header from './Header.svelte'
 	import Buscador from '$lib/icons/Buscador.svg'
-	import Selector from '$lib/icons/Selector.svg'
 	import DownloadCv from '$lib/components/buttons/DownloadCV.svelte'
 	import ViewProfile from '$lib/components/buttons/ViewProfile.svelte'
 	import type { graduatedInfo } from '$lib/types/graduated-info.type'
