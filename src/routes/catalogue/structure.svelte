@@ -5,22 +5,17 @@
 	import DownloadCv from '$lib/components/buttons/DownloadCV.svelte'
 	import ViewProfile from '$lib/components/buttons/ViewProfile.svelte'
 	import type { graduatedInfo } from '$lib/types/graduated-info.type'
+	import Navegation from '$lib/components/navegation.svelte'
 	export let business: graduatedInfo[]
 	
 </script>
 
-<main class="flex flex-col gap-10 min-h-screen p-10 pt-5 bg-[#f0f0f0]">
-	<header class="w-full">
-		<nav class="flex justify-between items-center bg-white p-6 rounded-[10px] mb-0">
-			<a href="/" class="font-bold">Pagina Principal</a>
-			<a href="/" class="font-bold">Catalogo</a>
-			<a href="/" class="font-bold">Iniciar Sesion</a>
-		</nav>
-	</header>
+<main class="flex flex-col gap-6 min-h-screen p-10 pt-5 bg-[#f0f0f0]">
+	<Navegation/>
 
-	<div class="flex flex-col gap-10 flex-grow md:flex-row">
+	<div class="flex flex-col gap-6 flex-grow md:flex-row">
 		<div
-			class="flex flex-col gap-12 justify-center items-start flex-grow w-full max-w-[400px] mt-0"
+			class="flex flex-col gap-12 justify-center items-start flex-grow w-full max-w-[300px] mt-0"
 		>
 			<section
 				class="flex flex-col gap-7 justify-center items-center bg-white w-full pb-12 rounded-[10px] flex-grow"
@@ -36,7 +31,7 @@
 		<section class="w-full flex flex-row items-start bg-white rounded-[10px]">
 			<div class="flex flex-col mt-4 ml-8">
 				<div
-					class="flex items-start border-4 border-zinc-100 rounded-xl bg-brand-white pr-4 pl-4 pt-4 pb-2"
+					class="flex items-start border-4 border-zinc-100 rounded-xl bg-brand-white pr-0 pl-4 pt-4 pb-2 w-[383px] h-16"
 				>
 					<div class="flex flex-col p-2 w-full">
 						<div class="relative">
@@ -56,7 +51,7 @@
 				<div class="mt-8">
 					<ul>
 						{#each business as busines}
-							<div class="max-w-[434px]">
+							<div class="w-[720px]">
 								<h3 class="w-[434px] h-5 text-black text-xl font-medium leading-relaxed">
 									{busines.name}
 								</h3>
@@ -107,6 +102,7 @@
 								<DownloadCv />
 								<ViewProfile />
 								<div class="border-t-2 border-[#f3f3f3] mt-4" />
+								<div class="mt-8 ml-0" />
 							</div>
 						{/each}
 					</ul>
