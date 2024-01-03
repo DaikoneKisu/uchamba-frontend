@@ -2,7 +2,7 @@
   import { page } from '$app/stores'
 
   import CVModal from './CVModal.svelte'
-  import { careers } from '../../careers.store'
+  import { careers } from '$lib/profile/careers/careers.store'
   import { cv } from './cv.store'
 
   import pencilIcon from '$lib/icons/pencil.svg'

@@ -1,11 +1,11 @@
 <script lang="ts">
   import Input from '$lib/components/input/Input.svelte'
   import Modal from '$lib/components/profile/modal/Modal.svelte'
-  import { cv } from './cv.store'
   import { careers } from '$lib/profile/careers/careers.store'
 
   import cvIcon from '$lib/icons/cv.svg'
   import SaveModalFooter from '$lib/components/profile/modal/SaveModalFooter.svelte'
+  import { goto } from '$app/navigation'
 
   export let isOpen: boolean
 
@@ -14,32 +14,21 @@
     cvName: ''
   }
 
-  function handleSave() {
-    updateCV()
-    closeModal()
-  }
+  let disabledButton = false
 
-  function updateCV() {
-    cv.set({
-      ...$cv,
-      careerId: Number(formData.careerId),
-      name: formData.cvName
-    })
-  }
-
-  function closeModal() {
-    isOpen = false
-  }
-
-  function setFormData() {
-    formData = {
-      careerId: String($cv.careerId),
-      cvName: $cv.name
+  async function handleSave() {
+    try {
+      disabledButton = true
+      await goToCVEditor()
+    } catch (error) {
+      alert('Ha ocurrido un error en el servidor al intentar navegar al editor de CV')
+    } finally {
+      disabledButton = false
     }
   }
 
-  $: if (isOpen) {
-    setFormData()
+  async function goToCVEditor() {
+    await goto(`/profile/cv-editor/new?name=${formData.cvName}&career=${formData.careerId}`)
   }
 
   $: if (!isOpen) {
@@ -56,7 +45,7 @@
       bind:value={formData.careerId}
       class="flex h-[64px] w-full max-w-[330px] rounded-xl border-4 border-[#f0f0f0] bg-brand-white px-4"
     >
-      <option value="0" disabled>Área del CV</option>
+      <option value="" selected>Área del CV</option>
       {#each Object.entries($careers) as [id, name]}
         <option value={id}>{name}</option>
       {/each}
@@ -64,5 +53,5 @@
 
     <Input type="text" label="Nombre del CV" bind:value={formData.cvName} />
   </form>
-  <SaveModalFooter slot="footer" {handleSave} disabled={false} />
+  <SaveModalFooter slot="footer" {handleSave} disabled={disabledButton} />
 </Modal>
