@@ -39,7 +39,7 @@
   }
 </script>
 
-<Modal bind:isOpen title="Preview CV" subtitle="Edita el área y el nombre de tu CV" icon={cvIcon}>
+<Modal bind:isOpen title="Crea un nuevo CV" subtitle="Agrega el nombre y área del CV" icon={cvIcon}>
   <form slot="body" class="flex justify-center gap-10 px-8 py-10">
     <select
       bind:value={formData.careerId}
@@ -51,7 +51,12 @@
       {/each}
     </select>
 
-    <Input type="text" label="Nombre del CV" bind:value={formData.cvName} />
+    <Input
+      type="text"
+      label="Nombre del CV"
+      placeholder="Ingrese el nombre del CV"
+      bind:value={formData.cvName}
+    />
   </form>
   <SaveModalFooter slot="footer" {handleSave} disabled={disabledButton} />
 </Modal>

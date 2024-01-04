@@ -8,7 +8,7 @@
   let isOpen = false
 </script>
 
-<section>
+<section class="border-b-2 pb-4">
   <header>
     <button on:click={() => (isOpen = !isOpen)} class="flex w-full justify-between">
       <h4 class="font-poppins text-xl">{title}</h4>
