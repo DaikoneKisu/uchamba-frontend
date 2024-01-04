@@ -8,7 +8,7 @@ export interface ProfileData {
   city: string
   residenceAddress: string
   role: string
-  isVerified: boolean
+  isActive: boolean
   createdAt: string
   updatedAt: string
   languages: Language[]

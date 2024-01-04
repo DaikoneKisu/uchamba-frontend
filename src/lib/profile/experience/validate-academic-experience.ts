@@ -4,7 +4,7 @@ const schema = object({
   organizationName: string().required('Campo requerido'),
   jobTitle: string().required('Campo requerido'),
   description: string().required('Campo requerido'),
-  entryDate: date().required('Campo requerido'),
+  entryDate: date().transform((curr: Date, orig) => (orig === '' ? null : curr)).required('Campo requerido'),
   departureDate: date()
     .nullable()
     .transform((curr: Date, orig) => (orig === '' ? null : curr))

@@ -87,7 +87,6 @@
   $: if (openedModal) {
     try {
       validateAcademicExperience(formData)
-      disabledSaveButton = false
 
       formErrors = {
         organizationName: '',
@@ -101,6 +100,10 @@
         city: '',
         address: ''
       }
+
+      if (!disabledDepartureDate && formData.departureDate === '') throw new Error()
+
+      disabledSaveButton = false
     } catch (error: unknown) {
       disabledSaveButton = true
       if (error instanceof ValidationError) {

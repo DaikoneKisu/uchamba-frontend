@@ -27,7 +27,7 @@
 
     <PersonalLinks links={data.personalLinks} isEditable={data.isEditable} />
 
-    <DeactivateProfileButton />
+    <DeactivateProfileButton isActive={data.isActive} />
   </div>
 
   <section class="flex w-full flex-col items-center rounded-[10px] bg-brand-white">
