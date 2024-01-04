@@ -7,6 +7,8 @@
 
   export let workExperiences: WorkExperience[]
 
+  const maxQuantity = 5
+
   let addedWorkExperiences: Record<number, boolean> = {}
 
   function setAddedWorkExperiences() {
@@ -38,14 +40,18 @@
   }
 </script>
 
-<Dropdown title="Experiencias Laborales" max={5}>
+<Dropdown title="Experiencias Laborales" max={maxQuantity}>
   {#if workExperiences.length < 1}
     <EmptyListMessage text="No has subido experiencias laborales" />
   {/if}
   <ul class="flex flex-col gap-5 py-5">
     {#each workExperiences as we}
       <li class="flex items-center gap-5 pl-2">
-        <Checkbox bind:checked={addedWorkExperiences[we.workExpId]} />
+        <Checkbox
+          bind:checked={addedWorkExperiences[we.workExpId]}
+          disabled={Object.values(addedWorkExperiences).filter(Boolean).length >= maxQuantity &&
+            !addedWorkExperiences[we.workExpId]}
+        />
         <div>
           <p>{we.organizationName}</p>
           <p>{we.jobTitle}</p>

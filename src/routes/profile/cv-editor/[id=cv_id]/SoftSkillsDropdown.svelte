@@ -8,6 +8,8 @@
 
   export let softSkills: string[]
 
+  const maxQuantity = 5
+
   let addedSoftSkills: string[] = $cv.entries.skills.soft
   let input: HTMLInputElement
   let value: string
@@ -42,7 +44,7 @@
   }
 </script>
 
-<Dropdown title="Habilidades Blandas" max={5}>
+<Dropdown title="Habilidades Blandas" max={maxQuantity}>
   {#if softSkills.length < 1}
     <EmptyListMessage text="No has subido habilidades blandas" />
   {/if}
@@ -56,6 +58,7 @@
         class="flex h-full w-full flex-col justify-center pl-5 text-[15px]"
       >
         <input
+          disabled={addedSoftSkills.length >= maxQuantity}
           bind:this={input}
           list="soft-skills-list"
           type="text"

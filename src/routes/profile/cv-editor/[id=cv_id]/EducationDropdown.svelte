@@ -7,6 +7,8 @@
   export let featuredStudies: Study[]
   export let personalStudies: Study[]
 
+  const maxQuantity = 5
+
   let addedFeaturedStudies: Record<number, boolean> = {}
   let addedPersonalStudies: Record<number, boolean> = {}
 
@@ -49,11 +51,16 @@
   }
 </script>
 
-<Dropdown title="Formaciones Académicas" max={5}>
+<Dropdown title="Formaciones Académicas" max={maxQuantity}>
   <ul class="flex flex-col gap-5 py-5">
     {#each featuredStudies as fs}
       <li class="flex items-center gap-5 pl-2">
-        <Checkbox bind:checked={addedFeaturedStudies[fs.id]} />
+        <Checkbox
+          bind:checked={addedFeaturedStudies[fs.id]}
+          disabled={Object.values({ ...addedFeaturedStudies, ...addedPersonalStudies }).filter(
+            Boolean
+          ).length >= maxQuantity && !addedFeaturedStudies[fs.id]}
+        />
         <div>
           <p>{fs.name} · {fs.degree}</p>
           <p>{'Universidad Católica Andrés Bello'}</p>
@@ -62,7 +69,12 @@
     {/each}
     {#each personalStudies as ps}
       <li class="flex items-center gap-5 pl-2">
-        <Checkbox bind:checked={addedPersonalStudies[ps.id]} />
+        <Checkbox
+          bind:checked={addedPersonalStudies[ps.id]}
+          disabled={Object.values({ ...addedPersonalStudies, ...addedFeaturedStudies }).filter(
+            Boolean
+          ).length >= maxQuantity && !addedPersonalStudies[ps.id]}
+        />
         <div>
           <p>{ps.name} · {ps.degree}</p>
           <p>{ps.universityName}</p>

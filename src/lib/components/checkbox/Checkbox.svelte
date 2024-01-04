@@ -2,7 +2,8 @@
   import checkmarkIcon from '$lib/icons/checkmark.svg'
   import { scale } from 'svelte/transition'
 
-  export let checked: boolean = false
+  export let checked = false
+  export let disabled = false
   export let handleInput = (e: Event) => {}
 </script>
 
@@ -11,6 +12,7 @@
     on:input={handleInput}
     type="checkbox"
     bind:checked
+    {disabled}
     class="aspect-square w-5 min-w-[20px] appearance-none rounded-md border border-sky-600 border-opacity-20 bg-white shadow transition-colors checked:border-none checked:bg-sky-400"
   />
   {#if checked}

@@ -7,6 +7,8 @@
 
   export let languages: Language[]
 
+  const maxQuantity = 3
+
   let addedLanguages: number[] = $cv.entries.languages
 
   async function handleInput(langId: number) {
@@ -29,7 +31,7 @@
   }
 </script>
 
-<Dropdown title="Idiomas" max={3}>
+<Dropdown title="Idiomas" max={maxQuantity}>
   {#if languages.length < 1}
     <EmptyListMessage text="No has subido idiomas" />
   {/if}
@@ -38,6 +40,7 @@
     {#each languages as l (l.languageId)}
       <li class="flex items-center gap-5 pl-2">
         <Checkbox
+          disabled={addedLanguages.length >= maxQuantity && !addedLanguages.includes(l.languageId)}
           handleInput={() => handleInput(l.languageId)}
           checked={$cv.entries.languages.includes(l.languageId)}
         />

@@ -8,6 +8,8 @@
 
   export let hardSkills: string[]
 
+  const maxQuantity = 5
+
   let addedHardSkills: string[] = $cv.entries.skills.hard
   let input: HTMLInputElement
   let value: string
@@ -42,7 +44,7 @@
   }
 </script>
 
-<Dropdown title="Habilidades Duras" max={5}>
+<Dropdown title="Habilidades Duras" max={maxQuantity}>
   {#if hardSkills.length < 1}
     <EmptyListMessage text="No has subido habilidades duras" />
   {/if}
@@ -59,6 +61,7 @@
           bind:this={input}
           list="hard-skills-list"
           type="text"
+          disabled={addedHardSkills.length >= maxQuantity}
           bind:value
           placeholder="Ingresa una habilidad dura"
           class="text-sm placeholder:text-brand-p-black focus:border-0 focus:shadow-none focus:outline-none"
