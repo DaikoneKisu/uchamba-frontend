@@ -26,6 +26,15 @@
       name: cvName
     })
   }
+
+  if (!cvId) {
+    cv.set({
+      ...$cv,
+      cvId: 0,
+      careerId: 0,
+      name: ''
+    })
+  }
 </script>
 
 <main class="flex min-h-screen flex-col bg-[#F0F0F0] py-4">

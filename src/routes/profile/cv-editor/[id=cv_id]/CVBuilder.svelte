@@ -54,7 +54,7 @@
   }
 
   function handleSubmit() {
-    if ($cv.cvId) updateCV()
+    if ($cv.cvId !== 0) updateCV()
     else createCV()
   }
 
