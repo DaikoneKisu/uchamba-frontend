@@ -70,7 +70,7 @@
   }
 </script>
 
-<div class="flex w-full max-w-[500px] flex-col items-end gap-8">
+<div class="flex w-full max-w-[500px] flex-col items-end gap-11">
   <header>
     <button
       on:click={handleSubmit}
