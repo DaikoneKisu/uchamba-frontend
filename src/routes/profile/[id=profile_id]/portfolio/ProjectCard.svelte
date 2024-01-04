@@ -15,7 +15,9 @@
 
   <div class="mt-3 px-3">
     <h3 class="font-poppins text-[20px] font-semibold">{project.name}</h3>
-    <a href={project.projectUrl} class="font-poppins font-semibold">{project.projectUrl}</a>
+    {#if project.projectUrl}
+      <a href={project.projectUrl} class="font-poppins font-semibold">{project.projectUrl}</a>
+    {/if}
     <p>{project.description}</p>
     <button on:click={handleShowMore} class="text-ucab-green underline">Ver Información</button>
   </div>
