@@ -49,7 +49,7 @@
   }
 </script>
 
-<Dropdown title="Formaciones Académicas">
+<Dropdown title="Formaciones Académicas" max={5}>
   <ul class="flex flex-col gap-5 py-5">
     {#each featuredStudies as fs}
       <li class="flex items-center gap-5 pl-2">

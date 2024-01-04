@@ -42,7 +42,7 @@
   }
 </script>
 
-<Dropdown title="Habilidades Blandas">
+<Dropdown title="Habilidades Blandas" max={5}>
   {#if softSkills.length < 1}
     <EmptyListMessage text="No has subido habilidades blandas" />
   {/if}

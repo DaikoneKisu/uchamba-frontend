@@ -38,7 +38,7 @@
   }
 </script>
 
-<Dropdown title="Experiencias Laborales">
+<Dropdown title="Experiencias Laborales" max={5}>
   {#if workExperiences.length < 1}
     <EmptyListMessage text="No has subido experiencias laborales" />
   {/if}

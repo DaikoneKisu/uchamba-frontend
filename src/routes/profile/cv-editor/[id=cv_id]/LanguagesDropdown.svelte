@@ -29,7 +29,7 @@
   }
 </script>
 
-<Dropdown title="Idiomas">
+<Dropdown title="Idiomas" max={3}>
   {#if languages.length < 1}
     <EmptyListMessage text="No has subido idiomas" />
   {/if}
