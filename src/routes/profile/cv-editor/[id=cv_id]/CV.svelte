@@ -127,7 +127,7 @@
       <ul class="cv-section__list cv-section__list--languages">
         {#each $cv.entries.languages.map( (id) => profileData.languages.find((lang) => lang.languageId === id) ) as l (l)}
           <li transition:scale animate:flip={{ duration: 600 }}>
-            {l?.name} - {l?.proficientLevel}
+            {l?.name} - {l?.proficientLevel === 'Native' ? 'Nativo' : l?.proficientLevel}
           </li>
         {/each}
       </ul>
