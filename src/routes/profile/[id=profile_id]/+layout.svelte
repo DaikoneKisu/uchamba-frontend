@@ -18,7 +18,9 @@
         class="flex h-full w-full flex-col items-center justify-center gap-2 rounded-[10px] rounded-bl-[150px] bg-ucab-green pb-28 pt-10 text-brand-white"
       >
         <h2 class="text-center font-poppins text-2xl">{data.name}</h2>
-        <p class="w-[360px] font-open-sans text-lg">{data.aboutMe}</p>
+        {#if data.aboutMe}
+          <p class="w-[360px] font-open-sans text-lg">{data.aboutMe}</p>
+        {/if}
       </div>
       {#if data.isEditable}
         <PersonalInformation {data} />
