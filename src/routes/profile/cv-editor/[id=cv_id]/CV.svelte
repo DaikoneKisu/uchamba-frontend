@@ -1,6 +1,7 @@
 <script lang="ts">
   import { scale, slide } from 'svelte/transition'
   import { flip } from 'svelte/animate'
+  import { page } from '$app/stores'
 
   import type { ProfileData } from '$lib/types/profile-data.type'
   import { cv } from './cv.store'
@@ -136,8 +137,10 @@
   <footer class="cv-footer">
     <small class="cv-footer__text">
       Para más información, visita mi perfil en: <a
-        href="https://www.google.com"
-        class="cv-footer__text cv-footer__text--my-profile-link">https://www.google.com</a
+        href={`${$page.url.origin}/profile/${profileData.userId}`}
+        target="_blank"
+        class="cv-footer__text cv-footer__text--my-profile-link"
+        >{$page.url.origin}/profile/{profileData.userId}</a
       >
     </small>
   </footer>
