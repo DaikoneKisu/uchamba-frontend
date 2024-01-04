@@ -19,7 +19,7 @@
     }
   }
 
-  if (careerId && cvName) {
+  if (careerId && cvName && !cvId) {
     cv.set({
       ...$cv,
       careerId: +careerId,
