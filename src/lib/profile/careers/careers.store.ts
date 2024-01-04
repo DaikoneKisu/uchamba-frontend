@@ -1,13 +1,13 @@
 import { readable } from 'svelte/store'
 
 export const careers = readable<Record<number, string>>({
-  1: 'Ingenieria Informatica',
-  2: 'Ingenieria Civil',
-  3: 'Ingenieria Industrial',
+  1: 'Ingeniería Informatica',
+  2: 'Ingeniería Civil',
+  3: 'Ingeniería Industrial',
   4: 'Relaciones Industriales',
-  5: 'Educacion',
-  6: 'Comunicacion Social',
+  5: 'Educación',
+  6: 'Comunicación Social',
   7: 'Derecho',
-  8: 'Administracion de Empresas',
-  9: 'Contaduria Publica'
+  8: 'Administración de Empresas',
+  9: 'Contaduría Pública'
 })
