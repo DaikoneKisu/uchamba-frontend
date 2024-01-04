@@ -30,9 +30,7 @@
   if (!cvId) {
     cv.set({
       ...$cv,
-      cvId: 0,
-      careerId: 0,
-      name: ''
+      cvId: 0
     })
   }
 </script>
