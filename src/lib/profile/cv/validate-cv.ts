@@ -5,10 +5,14 @@ const schema = object({
   name: string().required('Campo requerido'),
   entries: object({
     education: object({
-      featured: array().of(number()).min(1).required('Campo requerido'),
-      personal: array().of(number()).min(1).required('Campo requerido')
-    }).required('Campo requerido'),
-    experiences: array().of(number()).required('Campo requerido'),
+      featured: array().of(number()),
+      personal: array().of(number())
+    })
+      .test('at-least-one', 'Debe tener al menos una entrada', (entries) => {
+        return Boolean(entries?.featured?.length || entries?.personal?.length)
+      })
+      .required('Campo requerido'),
+    experiences: array().of(number()).min(1).required('Campo requerido'),
     languages: array().of(number()).min(1).required('Campo requerido'),
     skills: object({
       soft: array().of(string()).min(1).required('Campo requerido'),
