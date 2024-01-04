@@ -1,11 +1,14 @@
 <script lang="ts">
-  import { goto } from '$app/navigation'
+  import { goto, invalidateAll } from '$app/navigation'
+  import { slide } from 'svelte/transition'
 
   import type { CV } from '$lib/types/profile-data.type'
 
   import multiplesCV from '$lib/images/multiples-cvs.png'
   import fileDownloadIcon from '$lib/icons/file-download.svg'
   import fileEditIcon from '$lib/icons/file-edit.svg'
+  import deleteIcon from '$lib/icons/delete.svg'
+  import DeleteModal from '$lib/components/profile/modal/DeleteModal.svelte'
 
   export let cv: CV
   export let userName: string
@@ -13,6 +16,8 @@
 
   let disabledEditButton = false
   let disabledDownloadButton = false
+
+  let openedDeleteModal = false
 
   function goToCVEditor() {
     try {
@@ -34,7 +39,6 @@
         body: JSON.stringify({ cvId: cv.cvId, userId })
       })
 
-      console.log('XDDDDD')
       if (!res.ok) throw new Error()
 
       const file = await res.blob()
@@ -52,11 +56,41 @@
     a.download = `${userName} - ${cv.name} - CV.pdf`
     a.click()
   }
+
+  async function handleDelete() {
+    try {
+      const res = await fetch('/api/profile/cv-editor/delete', {
+        method: 'DELETE',
+        body: JSON.stringify({ id: cv.cvId })
+      })
+
+      if (!res.ok) throw new Error()
+
+      invalidateAll()
+      closeModal()
+    } catch (error) {
+      alert('Ha ocurrido un error en el servidor al intentar eliminar el CV')
+    } finally {
+      disabledDownloadButton = false
+    }
+  }
+
+  function openDeleteModal() {
+    openedDeleteModal = true
+  }
+
+  function closeModal() {
+    openedDeleteModal = false
+  }
 </script>
 
 <article
+  transition:slide
   class="m-8 flex h-[319px] w-[316px] flex-col items-start justify-start rounded-[10px] bg-zinc-100"
 >
+  <button on:click={openDeleteModal} class="absolute translate-x-[268px] translate-y-[10px]">
+    <img src={deleteIcon} alt="Eliminar CV" class="h-[33px] w-[39px]" />
+  </button>
   <figure class="h-[154px] w-full">
     <img
       class="rounded-[10px] border-4 border-gray-300"
@@ -85,3 +119,9 @@
     </button>
   </div>
 </article>
+
+<DeleteModal
+  isOpen={openedDeleteModal}
+  title="¿Estás seguro de que deseas eliminar este CV?"
+  {handleDelete}
+/>

@@ -8,11 +8,23 @@
 
   const cvId = +$page.params.id
 
+  const queryParams = $page.url.searchParams
+  const careerId = queryParams.get('career')
+  const cvName = queryParams.get('name')
+
   if (cvId) {
     const currentCv = data.cvs.find((cv) => cv.cvId === cvId)
     if (currentCv) {
       cv.set(currentCv)
     }
+  }
+
+  if (careerId && cvName) {
+    cv.set({
+      ...$cv,
+      careerId: +careerId,
+      name: cvName
+    })
   }
 </script>
 

@@ -9,6 +9,7 @@
   import SoftSkillsDropdown from './SoftSkillsDropdown.svelte'
   import WorkExperiencesDropdown from './WorkExperiencesDropdown.svelte'
   import { cv } from './cv.store'
+  import { validateCV } from '$lib/profile/cv/validate-cv'
 
   export let profileData: ProfileData
 
@@ -23,7 +24,7 @@
       })
 
       if (!res.ok) throw new Error()
-      
+
       await goto('/profile/me/cv')
     } catch (error) {
       if (error instanceof Error && error.message) alert(error.message)
@@ -42,7 +43,7 @@
       })
 
       if (!res.ok) throw new Error()
-      
+
       await goto('/profile/me/cv')
     } catch (error) {
       if (error instanceof Error && error.message) alert(error.message)
@@ -55,6 +56,16 @@
   function handleSubmit() {
     if ($cv.cvId) updateCV()
     else createCV()
+  }
+
+  $: if ($cv) {
+    try {
+      validateCV($cv)
+      disabledButton = false
+    } catch (error: unknown) {
+      disabledButton = true
+      console.log(error.inner)
+    }
   }
 </script>
 
