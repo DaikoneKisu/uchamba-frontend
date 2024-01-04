@@ -60,12 +60,10 @@
 
   $: if ($cv) {
     try {
-      console.log($cv)
       validateCV($cv)
       disabledButton = false
     } catch (error: unknown) {
       disabledButton = true
-      console.log(error)
     }
   }
 </script>

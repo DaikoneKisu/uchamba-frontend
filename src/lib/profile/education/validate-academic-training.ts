@@ -12,6 +12,10 @@ const schema = object({
       const yearRegex = /^(19|20)\d{2}$/
       return yearRegex.test(value)
     })
+    .test('is-not-a-future-year', 'No puede ser un año futuro', (value) => {
+      const currentYear = new Date().getFullYear()
+      return Number(value) <= currentYear
+    })
 })
 
 export const validateAcademicTraining = (obj: object) => {

@@ -57,9 +57,9 @@
       <li class="flex items-center gap-5 pl-2">
         <Checkbox
           bind:checked={addedFeaturedStudies[fs.id]}
-          disabled={Object.values({ ...addedFeaturedStudies, ...addedPersonalStudies }).filter(
-            Boolean
-          ).length >= maxQuantity && !addedFeaturedStudies[fs.id]}
+          disabled={Object.values(addedFeaturedStudies)
+            .concat(Object.values(addedPersonalStudies))
+            .filter(Boolean).length >= maxQuantity && !addedFeaturedStudies[fs.id]}
         />
         <div>
           <p>{fs.name} · {fs.degree}</p>
@@ -71,9 +71,9 @@
       <li class="flex items-center gap-5 pl-2">
         <Checkbox
           bind:checked={addedPersonalStudies[ps.id]}
-          disabled={Object.values({ ...addedPersonalStudies, ...addedFeaturedStudies }).filter(
-            Boolean
-          ).length >= maxQuantity && !addedPersonalStudies[ps.id]}
+          disabled={Object.values(addedFeaturedStudies)
+            .concat(Object.values(addedPersonalStudies))
+            .filter(Boolean).length >= maxQuantity && !addedPersonalStudies[ps.id]}
         />
         <div>
           <p>{ps.name} · {ps.degree}</p>
