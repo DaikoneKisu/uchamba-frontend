@@ -1,5 +1,4 @@
 <script lang="ts">
-  import pencilIcon from '$lib/icons/pencil.svg'
   import Header from './Header.svelte'
   import PersonalInformation from './PersonalInformation.svelte'
   import PersonalLinks from './PersonalLinks.svelte'
@@ -26,6 +25,8 @@
     </section>
 
     <PersonalLinks links={data.personalLinks} isEditable={data.isEditable} />
+
+    <button class="h-[59px] w-full max-w-[458] rounded-[10px] bg-red-500">AAA</button>
   </div>
 
   <section class="flex w-full flex-col items-center rounded-[10px] bg-brand-white">

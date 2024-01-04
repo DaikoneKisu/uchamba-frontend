@@ -21,19 +21,10 @@
 
   if (careerId && cvName && !cvId) {
     cv.set({
-      ...$cv,
+      ...cvInitialState,
       careerId: +careerId,
       name: cvName
     })
-
-    if (+careerId === $cv.careerId && cvName === $cv.name && !cvId) {
-      cv.set({
-        ...$cv,
-        cvId: 0
-      })
-    } else {
-      cv.set(cvInitialState)
-    }
   }
 </script>
 
