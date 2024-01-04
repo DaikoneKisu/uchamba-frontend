@@ -2,7 +2,7 @@
   import Header from './Header.svelte'
   import PersonalInformation from './PersonalInformation.svelte'
   import PersonalLinks from './PersonalLinks.svelte'
-  import DeactivateProfileButton from './DeactivateProfileButton.svelte'
+  import ProfileActivation from './ProfileActivationButton.svelte'
 
   export let data
 </script>
@@ -27,7 +27,7 @@
 
     <PersonalLinks links={data.personalLinks} isEditable={data.isEditable} />
 
-    <DeactivateProfileButton isActive={data.isActive} />
+    <ProfileActivation isActive={data.isActive} />
   </div>
 
   <section class="flex w-full flex-col items-center rounded-[10px] bg-brand-white">

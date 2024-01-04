@@ -10,7 +10,7 @@
   </button>
 {:else}
   <button
-    class="text-ucabborder-ucab-green hover:bg-ucabborder-ucab-green h-[59px] w-full max-w-[458] rounded-[10px] border-4 border-ucab-green transition-colors hover:text-brand-white"
+    class="text-ucabborder-ucab-green hover:bg-ucabborder-ucab-green h-[59px] w-full max-w-[458] rounded-[10px] border-4 border-ucab-green text-ucab-green transition-colors hover:bg-ucab-green hover:text-brand-white"
     >Activar Perfil
   </button>
 {/if}
