@@ -2,7 +2,7 @@
   import { page } from '$app/stores'
   import CVBuilder from './CVBuilder.svelte'
   import CVPreview from './CVPreview.svelte'
-  import { cv } from './cv.store'
+  import { cv, cvInitialState } from './cv.store'
 
   export let data
 
@@ -25,13 +25,15 @@
       careerId: +careerId,
       name: cvName
     })
-  }
 
-  if (!cvId) {
-    cv.set({
-      ...$cv,
-      cvId: 0
-    })
+    if (+careerId === $cv.careerId && cvName === $cv.name && !cvId) {
+      cv.set({
+        ...$cv,
+        cvId: 0
+      })
+    } else {
+      cv.set(cvInitialState)
+    }
   }
 </script>
 

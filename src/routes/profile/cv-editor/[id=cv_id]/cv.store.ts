@@ -19,7 +19,7 @@ interface CVPayload {
   }
 }
 
-export const cv = writable<CVPayload>({
+export const cvInitialState = {
   cvId: 0,
   careerId: 0,
   name: '',
@@ -35,4 +35,6 @@ export const cv = writable<CVPayload>({
       hard: []
     }
   }
-})
+}
+
+export const cv = writable<CVPayload>(cvInitialState)
