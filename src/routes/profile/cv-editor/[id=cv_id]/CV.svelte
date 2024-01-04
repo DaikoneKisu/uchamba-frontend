@@ -321,11 +321,13 @@
   .cv-section__list--soft-skills {
     grid-column: 1/2;
     grid-row: 2/3;
+    list-style: disc;
   }
 
   .cv-section__list--hard-skills {
     grid-column: 2/3;
     grid-row: 2/3;
+    list-style: disc;
   }
 
   .cv-section__list--languages {
@@ -333,6 +335,7 @@
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
     grid-auto-flow: column;
+    list-style: disc;
   }
 
   /** CV Article */
