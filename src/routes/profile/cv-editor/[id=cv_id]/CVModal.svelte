@@ -14,6 +14,8 @@
     cvName: ''
   }
 
+  let reachedCVNameLimitError = ''
+
   function handleSave() {
     updateCV()
     closeModal()
@@ -48,6 +50,17 @@
       cvName: ''
     }
   }
+
+  $: if (formData.cvName.length > 40) {
+    formData.cvName = formData.cvName.slice(0, 40)
+  }
+
+  $: if (formData.cvName.length > 39) {
+    formData.cvName = formData.cvName.slice(0, 40)
+    reachedCVNameLimitError = 'Has alcanzado el límite de 40 carácteres'
+  } else if (formData.cvName.length < 40) {
+    reachedCVNameLimitError = ''
+  }
 </script>
 
 <Modal bind:isOpen title="Preview CV" subtitle="Edita el área y el nombre de tu CV" icon={cvIcon}>
@@ -62,7 +75,12 @@
       {/each}
     </select>
 
-    <Input type="text" label="Nombre del CV" bind:value={formData.cvName} />
+    <Input
+      type="text"
+      label="Nombre del CV"
+      bind:value={formData.cvName}
+      error={reachedCVNameLimitError}
+    />
   </form>
   <SaveModalFooter slot="footer" {handleSave} disabled={false} />
 </Modal>
