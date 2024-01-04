@@ -54,7 +54,7 @@
 				/>
 			{:else if type === 'email'}
 				<input
-					on:change={() => (isPristine = false)}
+					on:change|once={() => (isPristine = false)}
 					{name}
 					type="email"
 					{placeholder}
