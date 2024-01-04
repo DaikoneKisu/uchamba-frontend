@@ -29,7 +29,7 @@
 		</div>
 		<div class="border h-9 w-[1px] self-center" />
 		<div class="flex-grow flex flex-col justify-center">
-			<span class="text-xs">{label}</span>
+			<span class="text-[0.9375rem]">{label}</span>
 			{#if type === 'text'}
 				<input
 					on:change|once={() => (isPristine = false)}
@@ -37,7 +37,7 @@
 					type="text"
 					{placeholder}
 					bind:value
-					class="text-sm focus:outline-none focus:border-0 focus:shadow-none"
+					class="focus:outline-none focus:border-0 focus:shadow-none"
 					{required}
 					{disabled}
 				/>
@@ -48,7 +48,7 @@
 					type="number"
 					{placeholder}
 					bind:value
-					class="text-sm focus:outline-none focus:border-0 focus:shadow-none"
+					class="focus:outline-none focus:border-0 focus:shadow-none"
 					{required}
 					{disabled}
 				/>
@@ -59,7 +59,7 @@
 					type="email"
 					{placeholder}
 					bind:value
-					class="text-sm focus:outline-none focus:border-0 focus:shadow-none"
+					class="focus:outline-none focus:border-0 focus:shadow-none"
 					{required}
 					{disabled}
 				/>
@@ -70,7 +70,7 @@
 					type="tel"
 					{placeholder}
 					bind:value
-					class="text-sm focus:outline-none focus:border-0 focus:shadow-none"
+					class="focus:outline-none focus:border-0 focus:shadow-none"
 					{required}
 					{disabled}
 				/>
