@@ -39,13 +39,15 @@ function getTasks(profile: ProfileData): Tasks {
   const {
     languages,
     skills: { soft, hard },
-    workExperiences
+    workExperiences,
+    cvs
   } = profile
 
   return {
     language: languages.length === 0,
     softSkill: soft.length === 0,
     hardSkill: hard.length === 0,
-    experience: workExperiences.length === 0
+    experience: workExperiences.length === 0,
+    cv: cvs.length === 0
   }
 }

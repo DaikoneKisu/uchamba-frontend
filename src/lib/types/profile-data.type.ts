@@ -101,4 +101,5 @@ export interface Tasks {
   softSkill: boolean
   hardSkill: boolean
   experience: boolean
+  cv: boolean
 }
