@@ -11,6 +11,7 @@
 
   import pencilIcon from '$lib/icons/pencil.svg'
   import deleteIcon from '$lib/icons/delete.svg'
+  import EmptyListMessage from '$lib/components/profile/empty-list-message/EmptyListMessage.svelte'
 
   export let projects: Project[]
 
@@ -89,6 +90,9 @@
   </header>
 
   <ul class="mt-6 flex flex-col gap-8">
+    {#if projects.length === 0}
+      <EmptyListMessage text="No hay proyectos registrados" />
+    {/if}
     {#each projects as project (project.projectId)}
       <li animate:flip class="flex flex-col gap-2">
         <div class="flex justify-between">

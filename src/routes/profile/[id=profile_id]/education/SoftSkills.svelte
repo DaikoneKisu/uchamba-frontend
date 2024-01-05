@@ -5,6 +5,7 @@
   import Add from '$lib/components/profile/add/Add.svelte'
   import Chip from '$lib/components/profile/chip/Chip.svelte'
   import SoftSkillCreationModal from './SoftSkillCreationModal.svelte'
+  import EmptyListMessage from '$lib/components/profile/empty-list-message/EmptyListMessage.svelte'
 
   export let softSkills: string[]
 
@@ -50,6 +51,9 @@
   </header>
 
   <ul class="mt-6 flex flex-wrap gap-2">
+    {#if softSkills.length === 0}
+      <EmptyListMessage text="No hay habilidades blandas registradas" />
+    {/if}
     {#each softSkills as skill (skill)}
       <div animate:flip in:fade class="flex justify-center">
         <Chip

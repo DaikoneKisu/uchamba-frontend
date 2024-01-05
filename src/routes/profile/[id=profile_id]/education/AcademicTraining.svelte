@@ -8,10 +8,11 @@
   import { slide } from 'svelte/transition'
   import AcademicTrainingEditionModal from './AcademicTrainingEditionModal.svelte'
   import type { Study } from '$lib/types/profile-data.type'
+  import EmptyListMessage from '$lib/components/profile/empty-list-message/EmptyListMessage.svelte'
 
   export let studiesData: Study[]
 
-	export let isEditable: boolean
+  export let isEditable: boolean
 
   let openedModal = false
   let openedDeleteModal = false
@@ -19,56 +20,59 @@
   let studyIdToDelete: number
   let selectedStudyToUpdate: Study
 
-	function openModal() {
-		openedModal = true
-	}
+  function openModal() {
+    openedModal = true
+  }
 
-	function openDeleteModal(id: number) {
-		studyIdToDelete = id
-		openedDeleteModal = true
-	}
+  function openDeleteModal(id: number) {
+    studyIdToDelete = id
+    openedDeleteModal = true
+  }
 
   function openEditionModal(study: Study) {
     selectedStudyToUpdate = { ...study }
     openedEditionModal = true
   }
 
-	async function handleDelete() {
-		try {
-			const res = await fetch('/api/profile/education/academic-training/delete', {
-				method: 'DELETE',
-				body: JSON.stringify({ id: studyIdToDelete })
-			})
+  async function handleDelete() {
+    try {
+      const res = await fetch('/api/profile/education/academic-training/delete', {
+        method: 'DELETE',
+        body: JSON.stringify({ id: studyIdToDelete })
+      })
 
-			const resBody = await res.json()
+      const resBody = await res.json()
 
-			if (!res.ok) throw new Error(resBody?.message)
+      if (!res.ok) throw new Error(resBody?.message)
 
-			invalidateAll()
-			closeDeleteModal()
-		} catch (error) {
-			if (error instanceof Error && error.message) alert(error.message)
-			else alert('Hubo un error en el servidor al intentar eliminar la formación académica')
-		}
-	}
+      invalidateAll()
+      closeDeleteModal()
+    } catch (error) {
+      if (error instanceof Error && error.message) alert(error.message)
+      else alert('Hubo un error en el servidor al intentar eliminar la formación académica')
+    }
+  }
 
-	function closeDeleteModal() {
-		openedDeleteModal = false
-	}
+  function closeDeleteModal() {
+    openedDeleteModal = false
+  }
 </script>
 
 <article class="w-full flex-col bg-brand-white">
-	<header>
-		<div class="flex w-full justify-between">
-			<h2 class="capitalize">Formación Académica</h2>
-			{#if isEditable}
-				<Add clickHandler={openModal} />
-			{/if}
-		</div>
-		<div class="mt-2 h-1 w-full bg-ucab-blue" />
-	</header>
+  <header>
+    <div class="flex w-full justify-between">
+      <h2 class="capitalize">Formación Académica</h2>
+      {#if isEditable}
+        <Add clickHandler={openModal} />
+      {/if}
+    </div>
+    <div class="mt-2 h-1 w-full bg-ucab-blue" />
+  </header>
 
   <ul class="mt-6 flex flex-col gap-8">
+    {#if studiesData.length === 0}
+      <EmptyListMessage text="No hay formación académica registrada" />
+    {/if}
     {#each studiesData as study (study.id + (study.universityName ?? 'XD'))}
       <li in:slide out:slide class="flex flex-col gap-2">
         <div class="flex justify-between">
@@ -107,14 +111,14 @@
 </article>
 
 {#if isEditable}
-	<AcademicTrainingCreationModal bind:openedModal />
-	<AcademicTrainingEditionModal
-		bind:studyData={selectedStudyToUpdate}
-		bind:isOpen={openedEditionModal}
-	/>
-	<DeleteModal
-		title="¿Seguro que desea eliminar esta formación académica?"
-		bind:isOpen={openedDeleteModal}
-		{handleDelete}
-	/>
+  <AcademicTrainingCreationModal bind:openedModal />
+  <AcademicTrainingEditionModal
+    bind:studyData={selectedStudyToUpdate}
+    bind:isOpen={openedEditionModal}
+  />
+  <DeleteModal
+    title="¿Seguro que desea eliminar esta formación académica?"
+    bind:isOpen={openedDeleteModal}
+    {handleDelete}
+  />
 {/if}
