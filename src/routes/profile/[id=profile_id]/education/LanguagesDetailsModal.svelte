@@ -79,7 +79,7 @@
           label="Nivel del idioma"
           placeholder="Ingrese su nivel con el idioma"
           className="text-brand-p-black"
-          bind:value={langData.proficientLevel}
+          value={langData.proficientLevel === 'Native' ? 'Nativo' : langData.proficientLevel}
         />
       </div>
     </form>
