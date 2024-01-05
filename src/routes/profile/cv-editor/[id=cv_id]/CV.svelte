@@ -5,8 +5,13 @@
 
   import type { ProfileData } from '$lib/types/profile-data.type'
   import { cv } from './cv.store'
+  import { getMonthName } from '$lib/utils/get-month-name'
 
   export let profileData: ProfileData
+
+  function formatWorkExperienceEntryData(date: Date) {
+    return `${getMonthName(date)} ${date.getFullYear()}`
+  }
 </script>
 
 <div
@@ -50,11 +55,15 @@
             <h4 class="cv-article__title">{we?.jobTitle}</h4>
             {#if we?.departureDate}
               <strong class="cv-article__important-text"
-                >{we?.organizationName} • Entrada {we?.entryDate} - Salida {we?.departureDate}</strong
+                >{we?.organizationName} • Entrada {formatWorkExperienceEntryData(
+                  new Date(we?.entryDate)
+                )} - Salida {formatWorkExperienceEntryData(new Date(we?.departureDate))}</strong
               >
             {:else}
               <strong class="cv-article__important-text"
-                >{we?.organizationName} • Entrada {we?.entryDate} - Actualidad</strong
+                >{we?.organizationName} • Entrada {formatWorkExperienceEntryData(
+                  new Date(we?.entryDate ?? '')
+                )} - Actualidad</strong
               >
             {/if}
             {#if we?.freelancer}
