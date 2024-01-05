@@ -3,6 +3,8 @@
 
 	import type { HTMLInputTypeAttribute } from '$lib/types/html-input-type-attribute.type'
 
+	import type { ValidAutocompleteValues } from './valid-autocomplete-values.type'
+
 	export let label: string
 	export let name: string | undefined = undefined
 	export let placeholder = ''
@@ -13,6 +15,7 @@
 	export let required = false
 	export let disabled = false
 	export let error = ''
+	export let autocomplete: ValidAutocompleteValues = 'on'
 
 	let isPristine = true
 </script>
@@ -40,6 +43,7 @@
 					class="focus:outline-none focus:border-0 focus:shadow-none"
 					{required}
 					{disabled}
+					{autocomplete}
 				/>
 			{:else if type === 'number'}
 				<input
@@ -51,6 +55,7 @@
 					class="focus:outline-none focus:border-0 focus:shadow-none"
 					{required}
 					{disabled}
+					{autocomplete}
 				/>
 			{:else if type === 'email'}
 				<input
@@ -62,6 +67,7 @@
 					class="focus:outline-none focus:border-0 focus:shadow-none"
 					{required}
 					{disabled}
+					{autocomplete}
 				/>
 			{:else if type === 'tel'}
 				<input
@@ -73,15 +79,14 @@
 					class="focus:outline-none focus:border-0 focus:shadow-none"
 					{required}
 					{disabled}
+					{autocomplete}
 				/>
 			{/if}
 		</div>
 	</label>
 	{#if error && !isPristine}
-		<strong in:fly={{ x: -12 }} class="ml-3 w-[80%] text-left text-[12px] text-red-600"
-			>{error}</strong
-		>
+		<strong in:fly={{ x: -12 }} class="ml-3 w-[80%] text-left text-red-600">{error}</strong>
 	{:else}
-		<div class="invisible h-5" aria-hidden />
+		<div class="invisible h-[22.5px]" aria-hidden />
 	{/if}
 </div>
