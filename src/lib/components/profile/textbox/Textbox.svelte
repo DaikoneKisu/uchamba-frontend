@@ -29,13 +29,13 @@
         {required}
         {disabled}
         bind:value
-        class="h-full resize-none text-sm focus:border-0 focus:shadow-none focus:outline-none"
+        class="h-full min-h-[100px] resize-none text-sm focus:border-0 focus:shadow-none focus:outline-none"
       />
     </div>
   </label>
   {#if error && !isPristine}
     <span in:fly={{ x: -12 }} class="ml-3 text-[12px] text-red-600">{error}</span>
   {:else}
-    <div class="invisible h-5" aria-hidden></div>
+    <div class="invisible h-[18px]" aria-hidden></div>
   {/if}
 </div>
