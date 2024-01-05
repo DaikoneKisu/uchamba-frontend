@@ -103,6 +103,7 @@
   </figure>
   <h2 class="brand-h2-black ml-3 mt-4 text-xl font-medium">{cv.name}</h2>
   <p class="brand-p-black ml-3 text-base font-normal">{cv.careerName}</p>
+  <p class="brand-p-black ml-3 text-sm">Última actualización: {cv.updatedAt}</p>
   <div class="flex w-full gap-2 px-3 pt-6">
     {#if isEditable}
       <button

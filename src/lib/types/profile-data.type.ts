@@ -93,4 +93,5 @@ export interface CV {
       hard: string[]
     }
   }
+  updatedAt: string
 }
