@@ -89,9 +89,11 @@
   transition:slide
   class="m-8 flex h-[319px] w-[316px] flex-col items-start justify-start rounded-[10px] bg-zinc-100"
 >
-  <button on:click={openDeleteModal} class="absolute translate-x-[268px] translate-y-[10px]">
-    <img src={deleteIcon} alt="Eliminar CV" class="h-[33px] w-[39px]" />
-  </button>
+  {#if isEditable}
+    <button on:click={openDeleteModal} class="absolute translate-x-[268px] translate-y-[10px]">
+      <img src={deleteIcon} alt="Eliminar CV" class="h-[33px] w-[39px]" />
+    </button>
+  {/if}
   <figure class="h-[154px] w-full">
     <img
       class="rounded-[10px] border-4 border-gray-300"
