@@ -1,6 +1,5 @@
 import type { Cookies } from '@sveltejs/kit'
 import { fail, redirect } from '@sveltejs/kit'
-import { BACKEND_BASE_URL } from '$env/static/private'
 
 import { StatusCodes } from '$lib/utils/http-status-codes.js'
 import { getSessionData } from '$lib/server/login/get-session-data'
@@ -11,7 +10,7 @@ export const actions = {
     const formData = await request.formData()
 
     try {
-      const session = await fetch(`${BACKEND_BASE_URL}/auth/login`, {
+      const session = await fetch('https://uchamba-backend-staging.1.us-1.fl0.io/auth/login', {
         headers: {
           'Content-Type': 'application/json'
         },
@@ -46,7 +45,7 @@ export const actions = {
 
     if (cookies.get('session')) {
       const redirectTo = url.searchParams.get('redirectTo')
-      if (redirectTo && redirectTo !== '/') throw redirect(StatusCodes.SEE_OTHER, `${redirectTo}`)
+      if (redirectTo && redirectTo !== '/') throw redirect(StatusCodes.SEE_OTHER, `/${redirectTo}`)
       throw redirect(StatusCodes.SEE_OTHER, '/profile/me')
     }
   }
