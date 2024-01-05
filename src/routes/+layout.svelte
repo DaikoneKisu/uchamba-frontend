@@ -11,4 +11,6 @@
   />
 </svelte:head>
 
-<slot />
+<div class="flex min-h-screen flex-col p-5">
+  <slot />
+</div>
