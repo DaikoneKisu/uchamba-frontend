@@ -29,7 +29,9 @@
 
     <PersonalLinks links={data.personalLinks} isEditable={data.isEditable} />
 
-    <ProfileActivation isActive={data.isActive} />
+    {#if data.isEditable}
+      <ProfileActivation isActive={data.isActive} />
+    {/if}
   </div>
 
   <section class="flex w-full flex-col items-center rounded-[10px] bg-brand-white">

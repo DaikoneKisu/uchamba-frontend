@@ -24,7 +24,7 @@
   </header>
   <section class="grid grid-cols-2">
     {#each data.cvs as cv}
-      <EditableCVCard {cv} userId={data.userId} userName={data.name} />
+      <EditableCVCard {cv} userId={data.userId} userName={data.name} isEditable={data.isEditable} />
     {/each}
   </section>
 </article>

@@ -13,6 +13,7 @@
   export let cv: CV
   export let userName: string
   export let userId: number
+  export let isEditable: boolean
 
   let disabledEditButton = false
   let disabledDownloadButton = false
@@ -101,14 +102,16 @@
   <h2 class="brand-h2-black ml-3 mt-4 text-xl font-medium">{cv.name}</h2>
   <p class="brand-p-black ml-3 text-base font-normal">{cv.careerName}</p>
   <div class="flex w-full gap-2 px-3 pt-6">
-    <button
-      disabled={disabledEditButton}
-      on:click={goToCVEditor}
-      class="flex h-[38px] w-full items-center justify-center gap-2 rounded-[10px] bg-ucab-green text-brand-white shadow-xl transition-all duration-200 hover:bg-green-600 hover:shadow-lg hover:shadow-emerald-200 disabled:bg-opacity-50"
-    >
-      <img src={fileEditIcon} alt="Icono de descargar CV" />
-      <span class="text-sm text-white">Editar CV</span>
-    </button>
+    {#if isEditable}
+      <button
+        disabled={disabledEditButton}
+        on:click={goToCVEditor}
+        class="flex h-[38px] w-full items-center justify-center gap-2 rounded-[10px] bg-ucab-green text-brand-white shadow-xl transition-all duration-200 hover:bg-green-600 hover:shadow-lg hover:shadow-emerald-200 disabled:bg-opacity-50"
+      >
+        <img src={fileEditIcon} alt="Icono de descargar CV" />
+        <span class="text-sm text-white">Editar CV</span>
+      </button>
+    {/if}
     <button
       disabled={disabledDownloadButton}
       on:click={downloadCV}
