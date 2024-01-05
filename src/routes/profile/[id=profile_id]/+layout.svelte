@@ -3,12 +3,16 @@
   import PersonalInformation from './PersonalInformation.svelte'
   import PersonalLinks from './PersonalLinks.svelte'
   import ProfileActivation from './ProfileActivationButton.svelte'
+  import Tasks from './Tasks.svelte'
 
   export let data
 </script>
 
 <main class="flex min-h-screen gap-10 bg-[#f0f0f0] p-10 pt-12">
   <div class="flex h-full w-full max-w-[465px] flex-col items-center justify-center gap-6">
+    {#if data.isEditable && !Object.values(data.tasks).every((t) => !t)}
+      <Tasks tasks={data.tasks} />
+    {/if}
     <section
       class={`flex w-full flex-col items-center justify-center gap-7 rounded-[20px] ${
         data.isEditable ? 'bg-brand-white' : 'bg-transparent'
@@ -29,7 +33,7 @@
 
     <PersonalLinks links={data.personalLinks} isEditable={data.isEditable} />
 
-    {#if data.isEditable}
+    {#if data.isEditable && Object.values(data.tasks).every((t) => !t)}
       <ProfileActivation isActive={data.isActive} />
     {/if}
   </div>

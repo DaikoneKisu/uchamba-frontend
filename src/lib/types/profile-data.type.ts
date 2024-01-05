@@ -95,3 +95,10 @@ export interface CV {
   }
   updatedAt: string
 }
+
+export interface Tasks {
+  language: boolean
+  softSkill: boolean
+  hardSkill: boolean
+  experience: boolean
+}

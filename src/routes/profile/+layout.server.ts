@@ -1,6 +1,7 @@
 import type { ProfileData } from '$lib/types/profile-data.type'
 import { BACKEND_BASE_URL } from '$env/static/private'
 import { redirect, type Cookies } from '@sveltejs/kit'
+import type { Tasks } from '$lib/types/profile-data.type'
 
 export async function load({
   fetch,
@@ -20,7 +21,8 @@ export async function load({
   if (isCVEditorPage) {
     const res = await fetch(`${BACKEND_BASE_URL}/users/me`)
     const data = (await res.json()) as ProfileData
-    return { ...data, isEditable: true }
+
+    return { ...data, isEditable: true, tasks: getTasks(data) }
   }
 
   if (isLoggedUser && sessionDoesntExist) {
@@ -30,7 +32,20 @@ export async function load({
   const res = await fetch(`${BACKEND_BASE_URL}/users/${isLoggedUser ? 'me' : id}`)
   const data = (await res.json()) as ProfileData
 
-  console.log(data)
+  return { ...data, isEditable: isLoggedUser, tasks: getTasks(data) }
+}
 
-  return { ...data, isEditable: isLoggedUser }
+function getTasks(profile: ProfileData): Tasks {
+  const {
+    languages,
+    skills: { soft, hard },
+    workExperiences
+  } = profile
+
+  return {
+    language: languages.length === 0,
+    softSkill: soft.length === 0,
+    hardSkill: hard.length === 0,
+    experience: workExperiences.length === 0
+  }
 }
