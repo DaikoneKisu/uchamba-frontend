@@ -1,7 +1,7 @@
 import { object, string } from 'yup'
 
 const schema = object({
-  aboutMe: string().required('Campo requerido'),
+  aboutMe: string().max(442, 'Se superó el límite de caracteres').required('Campo requerido'),
   email: string().required('Campo requerido').email('Email inválido'),
   country: string().required('Campo requerido'),
   state: string().required('Campo requerido'),
