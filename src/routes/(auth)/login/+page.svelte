@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { ValidationError } from 'yup'
-	import { fly } from 'svelte/transition'
+  import { ValidationError } from 'yup'
+  import { fly } from 'svelte/transition'
 
   import Form from './Form.svelte'
 
@@ -15,10 +15,6 @@
   let password: string
   let passwordError: string
   let alert: HTMLDivElement
-
-	function validateUserInput() {
-		emailError = ''
-		passwordError = ''
 
   function validateUserInput() {
     emailError = ''
