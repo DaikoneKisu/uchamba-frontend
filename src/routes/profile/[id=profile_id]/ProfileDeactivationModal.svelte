@@ -29,7 +29,7 @@
       embargo, podrás activarlo posteriormente.
     </p>
   </section>
-  <section slot="footer" class="flex items-center justify-center gap-5 border-t pb-4 pt-8">
+  <section slot="footer" class="flex items-center justify-center gap-16 border-t pb-4 pt-8">
     <button on:click={closeModal} class="h-[46px] w-[181px] rounded-[10px] bg-[#EFEFEF]"
       >Cancelar</button
     >
