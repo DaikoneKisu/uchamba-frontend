@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { slide } from 'svelte/transition'
 	import { enhance } from '$app/forms'
 
 	import InputWithIcon from '$lib/components/input-with-icon/InputWithIcon.svelte'
@@ -16,49 +15,38 @@
 
 <form
 	aria-label="form"
-	class="flex flex-col w-[360px]"
+	class="flex flex-col justify-center gap-3"
 	method="POST"
 	use:enhance
 	novalidate
 	on:submit
-	on:input
+	on:change
 >
 	<InputWithIcon
 		name="email"
 		type="email"
-		placeholder="Ej pflorez.20@est.ucab.edu.ve"
+		placeholder="mpforero.21@est.ucab.edu.ve"
 		label="Correo electrónico"
 		bind:value={email}
 		src={emailIcon}
 		required
+		error={emailError}
+		autocomplete="email"
 	/>
-	<div class="text-red-500 text-sm ml-4 my-1 text-left h-6">
-		{#if emailError}
-			<strong in:slide out:slide>{emailError}</strong>
-		{/if}
-	</div>
+	<!-- \u2022 is this char '•' but encoded -->
 	<PasswordInput
 		name="password"
-		placeholder={'\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022'}
+		placeholder={'\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022'}
 		label="Contraseña"
 		bind:value={password}
+		required
+		error={passwordError}
 	/>
-	<div class="text-red-500 text-sm ml-4 my-1 text-left h-6">
-		{#if passwordError}
-			<strong in:slide out:slide>{passwordError}</strong>
-		{/if}
-	</div>
-	{#if disabled}
-		<button
-			type="submit"
-			class="mt-4 bg-ucab-green/50 text-brand-white/50 rounded-[10px] w-[330px] h-[64px] m-auto shadow-inner"
-			disabled
-		>
-			Continuar
-		</button>
-	{:else}
-		<button type="submit" class="w-[330px] h-16 bg-green-700 text-white rounded-[10px] shadow">
-			Continuar
-		</button>
-	{/if}
+	<button
+		class={'mt-3 rounded-[10px] bg-ucab-green text-brand-white font-normal max-w-[330px] h-16 shadow-md shadow-[rgba(0,0,0,0.5)] transition-all ' +
+			(disabled ? 'opacity-50 hover:cursor-not-allowed' : '')}
+		{disabled}
+	>
+		Continuar
+	</button>
 </form>

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { ValidationError } from 'yup'
-	import { onMount, tick } from 'svelte'
 	import { fly } from 'svelte/transition'
 
 	import Form from './Form.svelte'
@@ -17,15 +16,6 @@
 	let passwordError: string
 	let alert: HTMLDivElement
 
-	$: {
-		if (form?.reason) disabled = false
-	}
-
-	onMount(async () => {
-		await tick()
-		disabled = true
-	})
-  
 	function validateUserInput() {
 		emailError = ''
 		passwordError = ''
@@ -55,7 +45,7 @@
 	on:submit={() => (disabled = true)}
 	{emailError}
 	{passwordError}
-	on:input={validateUserInput}
+	on:change={validateUserInput}
 />
 
 {#if form?.reason}
