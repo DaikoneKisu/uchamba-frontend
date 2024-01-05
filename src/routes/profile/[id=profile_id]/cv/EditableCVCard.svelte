@@ -121,7 +121,7 @@
 </article>
 
 <DeleteModal
-  isOpen={openedDeleteModal}
+  bind:isOpen={openedDeleteModal}
   title="¿Estás seguro de que deseas eliminar este CV?"
   {handleDelete}
 />
