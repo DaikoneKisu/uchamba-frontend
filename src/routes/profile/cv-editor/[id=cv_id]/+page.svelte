@@ -1,8 +1,11 @@
 <script lang="ts">
+  import { cv, cvInitialState } from './cv.store'
   import { page } from '$app/stores'
+
   import CVBuilder from './CVBuilder.svelte'
   import CVPreview from './CVPreview.svelte'
-  import { cv, cvInitialState } from './cv.store'
+
+  import leftIcon from '$lib/icons/left-arrow2.svg'
 
   export let data
 
@@ -29,6 +32,13 @@
 </script>
 
 <main class="flex min-h-screen flex-col bg-[#F0F0F0] py-4">
+  <a href="/profile/me/cv" class="absolute flex translate-x-4 translate-y-8 gap-4">
+    <img src={leftIcon} alt="Botón para volver a tu perfil" />
+    <span
+      class="font-open-sans text-lg underline decoration-ucab-blue decoration-4 underline-offset-8"
+      >Ir a mi perfil</span
+    >
+  </a>
   <div class="flex justify-center gap-10 py-8">
     <CVPreview profileData={data} />
     <CVBuilder profileData={data} />
