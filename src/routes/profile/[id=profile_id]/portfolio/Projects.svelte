@@ -116,7 +116,7 @@
             {project.projectUrl}
           </p>
         {/if}
-        <p class="text-black">
+        <p class="max-w-[85%] text-black">
           {project.description}
         </p>
 
