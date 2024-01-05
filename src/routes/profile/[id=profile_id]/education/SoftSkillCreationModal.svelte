@@ -59,6 +59,8 @@
   }
 
   $: skills = [...new Set(skills)]
+
+  $: disabled = !skills.length
 </script>
 
 <Modal
