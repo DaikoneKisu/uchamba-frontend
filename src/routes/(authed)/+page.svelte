@@ -1,5 +1,4 @@
 <script lang="ts">
-  import '../../app.css'
   import ucabLogo from '$lib/images/logo-ucab.webp'
 </script>
 
