@@ -1,4 +1,4 @@
-<div class="fixed z-20 h-screen w-screen bg-black bg-opacity-75">
+<div role="progressbar" class="fixed z-20 h-screen w-screen bg-black bg-opacity-75">
 	<div class="bright flex h-full w-full items-center justify-center gap-3">
 		<div class="yellow-bright">
 			<div class="hive yellow-hive bright aspect-[65/220] w-[58px] bg-ucab-yellow"></div>
