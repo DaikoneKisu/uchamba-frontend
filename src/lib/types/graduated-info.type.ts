@@ -21,4 +21,8 @@ export interface graduatedInfo {
 			name: string
 		}[]
 	}
+	cvs: {
+		careerName: string
+		name: string
+	}[]
 }
