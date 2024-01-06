@@ -139,15 +139,6 @@
         <p class="capitalize text-brand-p-black">
           Nivel {lang.proficientLevel === 'Native' ? 'Nativo' : lang.proficientLevel}
         </p>
-
-        <button
-          on:click={() => {
-            openDetailsModal(lang)
-          }}
-          class="text-left capitalize text-ucab-green underline underline-offset-2"
-        >
-          Ver Información
-        </button>
       </li>
     {/each}
   </ul>
