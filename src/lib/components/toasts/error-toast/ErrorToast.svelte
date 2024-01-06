@@ -10,7 +10,7 @@
 </script>
 
 <div class="flex gap-2 items-center">
-	<span><b>{reason}</b>{solution ?? ''}</span>
+	<span class="text-justify"><b>{reason}</b>{solution ?? ''}</span>
 	<button
 		on:click={() => {
 			toast_.dismiss(toast.id)
