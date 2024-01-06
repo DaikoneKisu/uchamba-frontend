@@ -8,16 +8,19 @@
   import LanguagesDropdown from './LanguagesDropdown.svelte'
   import SoftSkillsDropdown from './SoftSkillsDropdown.svelte'
   import WorkExperiencesDropdown from './WorkExperiencesDropdown.svelte'
+  import Loading from '$lib/components/loading/Loading.svelte'
   import { cv } from './cv.store'
   import { validateCV } from '$lib/profile/cv/validate-cv'
 
   export let profileData: ProfileData
 
   let disabledButton = false
+  let isLoading = false
 
   async function createCV() {
     try {
       disabledButton = true
+      isLoading = true
       const res = await fetch('/api/profile/cv-editor/create', {
         method: 'POST',
         body: JSON.stringify($cv)
@@ -31,12 +34,14 @@
       alert('Ha ocurrido un error en el servidor al intentar crear tu CV')
     } finally {
       disabledButton = false
+      isLoading = false
     }
   }
 
   async function updateCV() {
     try {
       disabledButton = true
+      isLoading = true
       const res = await fetch('/api/profile/cv-editor/update', {
         method: 'PUT',
         body: JSON.stringify($cv)
@@ -50,6 +55,7 @@
       alert('Ha ocurrido un error en el servidor al intentar editar tu CV')
     } finally {
       disabledButton = false
+      isLoading = false
     }
   }
 
@@ -68,6 +74,9 @@
   }
 </script>
 
+{#if isLoading}
+  <Loading />
+{/if}
 <div class="flex w-full max-w-[500px] flex-col items-end gap-11">
   <header>
     <button
