@@ -3,6 +3,8 @@
 
 	import type { SucessToast } from './success-toast.type'
 
+	import { successToast } from '$lib/stores/success-toast'
+
 	export let toast: SucessToast
 
 	export const text = toast.text
@@ -13,6 +15,7 @@
 	<button
 		on:click={() => {
 			toast_.dismiss(toast.id)
+			successToast.clearStore()
 		}}
 		type="button"
 		class="-m-1.5 -mr-3 ms-auto inline-flex h-8 w-8 items-center justify-center rounded-lg p-1.5 hover:bg-[#f0f0f0] focus:ring-2 focus:ring-[#e9e9e9]"

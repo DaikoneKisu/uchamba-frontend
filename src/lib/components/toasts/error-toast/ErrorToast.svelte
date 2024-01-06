@@ -3,6 +3,8 @@
 
 	import type { ErrorToast } from './error-toast.type'
 
+	import { errorToast } from '$lib/stores/error-toast'
+
 	export let toast: ErrorToast
 
 	export const reason = toast.reason
@@ -14,6 +16,7 @@
 	<button
 		on:click={() => {
 			toast_.dismiss(toast.id)
+			errorToast.clearStore()
 		}}
 		type="button"
 		class="-m-1.5 -mr-3 ms-auto inline-flex h-8 w-8 items-center justify-center rounded-lg p-1.5 hover:bg-[#f0f0f0] focus:ring-2 focus:ring-[#e9e9e9]"
