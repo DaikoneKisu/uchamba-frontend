@@ -6,7 +6,7 @@ settings:
 
 dependencies:
   svelte-french-toast:
-    specifier: ^1.2.0
+    specifier: 1.2.0
     version: 1.2.0(svelte@4.2.3)
 
 devDependencies:
