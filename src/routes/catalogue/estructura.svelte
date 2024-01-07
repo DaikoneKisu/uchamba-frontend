@@ -29,7 +29,7 @@
 			class="flex flex-col gap-12 justify-center items-center flex-grow w-full max-w-[400px] mt-0"
 		>
 			<section
-				class="flex flex-col gap-7 bg-stone-50 w-full p-6 rounded-[10px] flex-grow border border-red-600"
+				class="flex flex-col gap-7 bg-stone-50 w-full p-6 rounded-[10px] flex-grow"
 			>
 				<h2 class="text-2xl font-poppins">Filtrar por</h2>
 				<CareersDropdown />
