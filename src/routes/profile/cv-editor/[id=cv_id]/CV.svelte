@@ -37,7 +37,10 @@
       </div>
       <div class="cv-header__additional-container">
         <p>
-          {profileData.country} - {profileData.state} - {profileData.city} - {profileData.residenceAddress}
+          {profileData.country} - {profileData.state} - {profileData.city}
+        </p>
+        <p>
+          {profileData.residenceAddress}
         </p>
         <a href="mailto:{profileData.email}">{profileData.email}</a>
       </div>
@@ -271,7 +274,12 @@
     opacity: 50%;
   }
 
+  .cv-header__important-container {
+    max-width: 60%;
+  }
+
   .cv-header__additional-container {
+    max-width: 40%;
     margin-left: auto;
     display: flex;
     flex-direction: column;
