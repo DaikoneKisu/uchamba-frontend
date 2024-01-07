@@ -10,6 +10,7 @@
 	import { validateAcademicTraining } from '$lib/profile/education/validate-academic-training'
 
 	import graduationCapIcon from '$lib/icons/graduation-cap.svg'
+  import { errorToast } from '$lib/stores/error-toast'
 
 	export let isOpen: boolean
 
@@ -45,8 +46,8 @@
 			invalidateAll()
 			closeModal()
 		} catch (error) {
-			if (error instanceof Error && error.message) alert(error.message)
-			else alert('Hubo un error en el servidor al intentar actualizar la formación académica')
+			if (error instanceof Error && error.message) errorToast.launch({ reason: error.message })
+			else  errorToast.launch({ reason: 'Hubo un error en el servidor al intentar actualizar la formación académica'})
 		} finally {
 			disabled = false
 		}

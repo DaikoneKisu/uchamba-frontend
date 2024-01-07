@@ -8,16 +8,19 @@ export interface ProfileData {
   city: string
   residenceAddress: string
   role: string
-  isVerified: boolean
+  isActive: boolean
   createdAt: string
   updatedAt: string
   languages: Language[]
   personalLinks: PersonalLink[]
-  hardSkills: HardSkills
-  softSkills: SoftSkills
-  education: Education
+  skills: {
+    hard: string[]
+    soft: string[]
+  }
+  education: Study[]
   workExperiences: WorkExperience[]
   projects: Project[]
+  cvs: CV[]
 }
 
 export interface Language {
@@ -36,40 +39,21 @@ export interface PersonalLink {
   updatedAt: string
 }
 
-export interface HardSkills {
-  featured: Skill[]
-  personal: Skill[]
-}
-
-export interface SoftSkills {
-  featured: Skill[]
-  personal: Skill[]
-}
-
-export interface Skill {
-  skillId: number
-  name: string
-  createdAt: string
-}
-
-export interface Education {
-  featured: FeaturedStudy[]
-  personal: PersonalStudy[]
-}
-
-export interface FeaturedStudy {
-  ucareerId: number
+export interface Study {
+  id: number
   name: string
   degree: string
+  universityName?: string
   graduationYear: string
   createdAt: string
 }
 
 export interface PersonalStudy {
-  studyId: number
+  id?: number
+  studyId?: number
   name: string
-  universityName: string
   degree: string
+  universityName?: string
   graduationYear: string
   createdAt: string
 }
@@ -100,4 +84,32 @@ export interface Project {
     imageCloudId: string
     imageUrl: string
   }[]
+}
+
+export interface CV {
+  cvId: number
+  careerId: number
+  careerName: string
+  name: string
+  entries: {
+    education: {
+      featured: number[]
+      personal: number[]
+    }
+    experiences: number[]
+    languages: number[]
+    skills: {
+      soft: string[]
+      hard: string[]
+    }
+  }
+  updatedAt: string
+}
+
+export interface Tasks {
+  language: boolean
+  softSkill: boolean
+  hardSkill: boolean
+  experience: boolean
+  cv: boolean
 }

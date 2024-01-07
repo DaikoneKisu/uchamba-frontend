@@ -25,7 +25,7 @@
       <header
         class="flex w-full items-center justify-between border-b-2 border-[#f3f3f3] px-8 pb-5 pt-3"
       >
-        <div class="flex w-full justify-start gap-6">
+        <div class={`flex w-full gap-6 ${icon !== '' ? 'justify-start' : 'justify-center'}`}>
           <img src={icon} alt="" />
           <div class="flex flex-col">
             <h2 class="m-0 font-poppins">{title}</h2>
