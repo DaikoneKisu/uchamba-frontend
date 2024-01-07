@@ -4,26 +4,26 @@
 	import Chip from '$lib/components/chip/Chip.svelte'
 	import Dropdown from './Dropdown.svelte'
 
-	let languages: string[] = []
+	let softSkills: string[] = []
 
 	let value = ''
 
 	let input: HTMLInputElement
 
-	function insertLanguage() {
-		if (value && !languages.includes(value)) {
-			languages = [...languages, value]
+	function insertSoftSkill() {
+		if (value && !softSkills.includes(value)) {
+			softSkills = [...softSkills, value]
 			value = ''
 			input.focus()
 		}
 	}
 </script>
 
-<Dropdown title="Idiomas">
+<Dropdown title="Habilidades Blandas">
 	<form
 		on:submit={(e) => {
 			e.preventDefault()
-			insertLanguage()
+			insertSoftSkill()
 		}}
 	>
 		<div class="flex w-full justify-center gap-12">
@@ -33,10 +33,10 @@
 				<div class="flex h-full w-full flex-col justify-center pl-5 text-[15px]">
 					<input
 						bind:this={input}
-						list="soft-skills-list"
+						list="hard-skills-list"
 						type="text"
 						bind:value
-						placeholder="Ingresa un idioma con un nivel mínimo"
+						placeholder="Ingresa una habilidad blanda"
 						class="text-sm placeholder:text-brand-p-black focus:border-0 focus:shadow-none focus:outline-none bg-stone-50"
 					/>
 				</div>
@@ -46,13 +46,13 @@
 
 	<div class="w-full">
 		<ul class="flex flex-wrap items-center justify-center w-full gap-2 pt-3">
-			{#each languages as language (language)}
+			{#each softSkills as softSkill (softSkill)}
 				<div animate:flip in:fade class="flex justify-center">
 					<Chip
-						key={language}
-						text={language}
+						key={softSkill}
+						text={softSkill}
 						deleteHandler={() => {
-							alert('se borró el idioma ')
+							alert('se borró la habilidad blanda')
 						}}
 					/>
 				</div>

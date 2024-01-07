@@ -9,6 +9,8 @@
 	import CareersDropdown from './CareersDropdown.svelte'
   	import LocationDropdown from './LocationDropdown.svelte'
 	import LanguaguesDropdown from './LanguaguesDropdown.svelte'
+	import HardSkillsDropdown from './HardSkillsDropdown.svelte'
+	import SoftSkillsDropdown from './SoftSkillsDropdown.svelte'
 
 	export let business: graduatedInfo[]
 </script>
@@ -33,8 +35,8 @@
 				<CareersDropdown />
 				<LocationDropdown />
 				<LanguaguesDropdown />
-				<Dropdown title="Habilidades Duras" />
-				<Dropdown title="Habilidades Blandas" />
+				<HardSkillsDropdown/>
+				<SoftSkillsDropdown/>
 			</section>
 		</div>
 
