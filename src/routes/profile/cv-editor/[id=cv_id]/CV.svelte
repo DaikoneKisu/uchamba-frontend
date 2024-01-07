@@ -21,7 +21,7 @@
     <div class="cv-header__logo-container">
       <img
         class="cv-header__logo"
-        src="https://res.cloudinary.com/dypukp3t0/image/upload/v1702855845/bz68psr6k3iq9nziwooe.png"
+        src="https://www.ucab.edu.ve/wp-content/uploads/2019/04/Logo_UCAB_3.png"
         alt=""
         loading="eager"
       />
