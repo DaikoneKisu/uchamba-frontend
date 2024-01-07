@@ -6,6 +6,7 @@
   import cvIcon from '$lib/icons/cv.svg'
   import SaveModalFooter from '$lib/components/profile/modal/SaveModalFooter.svelte'
   import { goto } from '$app/navigation'
+  import { errorToast } from '$lib/stores/error-toast'
 
   export let isOpen: boolean
 
@@ -21,7 +22,9 @@
       disabledButton = true
       await goToCVEditor()
     } catch (error) {
-      alert('Ha ocurrido un error en el servidor al intentar navegar al editor de CV')
+      errorToast.launch({
+        reason: 'Ha ocurrido un error en el servidor al intentar navegar al editor de CV'
+      })
     } finally {
       disabledButton = false
     }

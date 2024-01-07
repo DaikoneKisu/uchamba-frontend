@@ -11,6 +11,7 @@
   import Loading from '$lib/components/loading/Loading.svelte'
   import { cv } from './cv.store'
   import { validateCV } from '$lib/profile/cv/validate-cv'
+  import { errorToast } from '$lib/stores/error-toast'
 
   export let profileData: ProfileData
 
@@ -30,8 +31,8 @@
 
       await goto('/profile/me/cv')
     } catch (error) {
-      if (error instanceof Error && error.message) alert(error.message)
-      alert('Ha ocurrido un error en el servidor al intentar crear tu CV')
+      if (error instanceof Error && error.message) errorToast.launch({ reason: error.message })
+      errorToast.launch({ reason: 'Ha ocurrido un error en el servidor al intentar crear tu CV' })
     } finally {
       disabledButton = false
       isLoading = false
@@ -51,8 +52,8 @@
 
       await goto('/profile/me/cv')
     } catch (error) {
-      if (error instanceof Error && error.message) alert(error.message)
-      alert('Ha ocurrido un error en el servidor al intentar editar tu CV')
+      if (error instanceof Error && error.message) errorToast.launch({ reason: error.message })
+      errorToast.launch({ reason: 'Ha ocurrido un error en el servidor al intentar editar tu CV' })
     } finally {
       disabledButton = false
       isLoading = false

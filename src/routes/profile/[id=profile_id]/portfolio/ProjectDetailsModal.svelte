@@ -15,6 +15,7 @@
 
   import languageIcon from '$lib/icons/portfolio.svg'
   import { validateProjectEditionPayload } from '$lib/profile/portfolio/validate-project-edition-payload'
+  import { errorToast } from '$lib/stores/error-toast'
 
   export let openedModal = false
 
@@ -84,8 +85,11 @@
       invalidateAll()
       closeModal()
     } catch (error) {
-      if (error instanceof Error && error.message) alert(error.message)
-      else alert('Hubo un error en el servidor al intentar actualizar el proyecto')
+      if (error instanceof Error && error.message) errorToast.launch({ reason: error.message })
+      else
+        errorToast.launch({
+          reason: 'Hubo un error en el servidor al intentar actualizar el proyecto'
+        })
     } finally {
       disabled = false
     }

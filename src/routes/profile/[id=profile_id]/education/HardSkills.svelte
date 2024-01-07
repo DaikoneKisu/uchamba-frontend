@@ -6,6 +6,7 @@
   import Chip from '$lib/components/profile/chip/Chip.svelte'
   import HardSkillCreationModal from './HardSkillCreationModal.svelte'
   import EmptyListMessage from '$lib/components/profile/empty-list-message/EmptyListMessage.svelte'
+  import { errorToast } from '$lib/stores/error-toast'
 
   export let hardSkills: string[]
 
@@ -28,8 +29,11 @@
 
       if (!res.ok) throw new Error(resBody?.message)
     } catch (error) {
-      if (error instanceof Error && error.message) alert(error.message)
-      else alert('Hubo un error en el servidor al intentar eliminar la habilidad dura')
+      if (error instanceof Error && error.message) errorToast.launch({ reason: error.message })
+      else
+        errorToast.launch({
+          reason: 'Hubo un error en el servidor al intentar eliminar la habilidad dura'
+        })
       hardSkills = [...hardSkills, hardSkillToDelete]
     }
   }

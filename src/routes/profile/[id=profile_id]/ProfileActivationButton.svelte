@@ -1,5 +1,7 @@
 <script lang="ts">
   import { invalidateAll } from '$app/navigation'
+  import { errorToast } from '$lib/stores/error-toast'
+  import { successToast } from '$lib/stores/success-toast'
   import ProfileDeactivationModal from './ProfileDeactivationModal.svelte'
 
   export let isActive: boolean
@@ -21,8 +23,11 @@
 
       await invalidateAll()
     } catch (error) {
-      if (error instanceof Error && error.message) alert(error.message)
-      else alert('Hubo un error en el servidor al intentar cambiar el estado del perfil')
+      if (error instanceof Error && error.message) errorToast.launch({ reason: error.message })
+      else
+        errorToast.launch({
+          reason: 'Hubo un error en el servidor al intentar cambiar el estado del perfil'
+        })
     } finally {
     }
   }
@@ -31,6 +36,7 @@
     try {
       disabledActivationButton = true
       await switchProfileStatus()
+      successToast.launch({ text: 'Tu perfil se ha activado con éxito' })
     } catch (error) {
     } finally {
       disabledActivationButton = false

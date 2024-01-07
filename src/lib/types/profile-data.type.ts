@@ -48,6 +48,16 @@ export interface Study {
   createdAt: string
 }
 
+export interface PersonalStudy {
+  id?: number
+  studyId?: number
+  name: string
+  degree: string
+  universityName?: string
+  graduationYear: string
+  createdAt: string
+}
+
 export interface WorkExperience {
   workExpId: number
   organizationName: string

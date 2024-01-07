@@ -10,6 +10,7 @@
   import { validateAcademicExperience } from '$lib/profile/experience/validate-academic-experience'
 
   import graduationCapIcon from '$lib/icons/business.svg'
+  import { errorToast } from '$lib/stores/error-toast'
 
   export let openedModal = false
 
@@ -59,8 +60,11 @@
       invalidateAll()
       closeModal()
     } catch (error) {
-      if (error instanceof Error && error.message) alert(error.message)
-      else alert('Hubo un error en el servidor al intentar crear la experiencia laboral')
+      if (error instanceof Error && error.message) errorToast.launch({ reason: error.message })
+      else
+        errorToast.launch({
+          reason: 'Hubo un error en el servidor al intentar crear la experiencia laboral'
+        })
     } finally {
       disabledSaveButton = false
     }

@@ -8,6 +8,7 @@
 
   import deleteIcon from '$lib/icons/delete.svg'
   import EmptyListMessage from '$lib/components/profile/empty-list-message/EmptyListMessage.svelte'
+  import { errorToast } from '$lib/stores/error-toast'
 
   export let links: PersonalLink[]
 
@@ -28,8 +29,11 @@
 
       if (!res.ok) throw new Error(resBody?.message)
     } catch (error) {
-      if (error instanceof Error && error.message) alert(error.message)
-      else alert('Hubo un error en el servidor al intentar eliminar el link de interés')
+      if (error instanceof Error && error.message) errorToast.launch({ reason: error.message })
+      else
+        errorToast.launch({
+          reason: 'Hubo un error en el servidor al intentar eliminar el link de interés'
+        })
     }
   }
 

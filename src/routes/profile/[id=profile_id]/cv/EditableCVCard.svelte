@@ -9,6 +9,8 @@
   import fileEditIcon from '$lib/icons/file-edit.svg'
   import deleteIcon from '$lib/icons/delete.svg'
   import DeleteModal from '$lib/components/profile/modal/DeleteModal.svelte'
+  import { errorToast } from '$lib/stores/error-toast'
+  import Loading from '$lib/components/loading/Loading.svelte'
 
   export let cv: CV
   export let userName: string
@@ -17,6 +19,7 @@
 
   let disabledEditButton = false
   let disabledDownloadButton = false
+  let isLoading = false
 
   let openedDeleteModal = false
 
@@ -26,7 +29,10 @@
       goto(`/profile/cv-editor/${cv.cvId}`)
     } catch (error) {
       console.log(error)
-      alert('Ha ocurrido un error en el servidor al intentar editar el CV')
+      errorToast.launch({
+        reason:
+          'Ha ocurrido un error en el servidor al intentar editar el CV, intenta de nuevo más tarde'
+      })
     } finally {
       disabledEditButton = false
     }
@@ -35,6 +41,7 @@
   async function downloadCV() {
     try {
       disabledDownloadButton = true
+      isLoading = true
       const res = await fetch('/api/profile/generate-cv', {
         method: 'POST',
         body: JSON.stringify({ cvId: cv.cvId, userId })
@@ -45,9 +52,13 @@
       const file = await res.blob()
       downloadFile(file)
     } catch (e) {
-      alert('Ha ocurrido un error en el servidor al intentar descargar el CV')
+      errorToast.launch({
+        reason:
+          'Ha ocurrido un error en el servidor al intentar descargar el CV, intente de nuevo más tarde'
+      })
     } finally {
       disabledDownloadButton = false
+      isLoading = false
     }
   }
 
@@ -70,7 +81,10 @@
       invalidateAll()
       closeModal()
     } catch (error) {
-      alert('Ha ocurrido un error en el servidor al intentar eliminar el CV')
+      errorToast.launch({
+        reason:
+          'Ha ocurrido un error en el servidor al intentar eliminar el CV, intente de nuevo más tarde'
+      })
     } finally {
       disabledDownloadButton = false
     }
@@ -85,6 +99,9 @@
   }
 </script>
 
+{#if isLoading}
+  <Loading />
+{/if}
 <article
   transition:slide
   class="m-8 flex h-[319px] w-[316px] flex-col items-start justify-start rounded-[10px] bg-zinc-100"

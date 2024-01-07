@@ -8,6 +8,7 @@
   import Chip from '$lib/components/profile/chip/Chip.svelte'
 
   import staffIcon from '$lib/icons/staff.svg'
+  import { errorToast } from '$lib/stores/error-toast'
 
   export let softSkillsList: string[] = []
 
@@ -36,7 +37,9 @@
       invalidateAll()
       closeModal()
     } catch (e) {
-      alert('Hubo un error en el servidor al intentar crear la habilidad blanda')
+      errorToast.launch({
+        reason: 'Hubo un error en el servidor al intentar crear la habilidad blanda'
+      })
     } finally {
       disabled = false
     }
