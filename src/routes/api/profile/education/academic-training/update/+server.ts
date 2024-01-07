@@ -2,7 +2,7 @@ import { BACKEND_BASE_URL } from '$env/static/private'
 import { json } from '@sveltejs/kit'
 
 export interface AcademicTrainingCreationPayload {
-  studyId: number
+  id: number
   name: string
   universityName: string
   degree: string
@@ -11,7 +11,7 @@ export interface AcademicTrainingCreationPayload {
 
 export async function PUT({ request, fetch }: { request: Request; fetch: typeof window.fetch }) {
   const formData = (await request.json()) as AcademicTrainingCreationPayload
-  const url = `${BACKEND_BASE_URL}/foreign-studies/${formData.studyId}`
+  const url = `${BACKEND_BASE_URL}/foreign-studies/${formData.id}`
   const response = await fetch(url, {
     method: 'PUT',
     headers: {
@@ -21,6 +21,8 @@ export async function PUT({ request, fetch }: { request: Request; fetch: typeof 
   })
 
   const responseData = (await response.json()) as unknown
+
+  console.log(responseData)
 
   if (!response.ok) return json(responseData, { status: response.status })
 
