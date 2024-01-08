@@ -1,6 +1,6 @@
 <script lang="ts">
-	import DownButton from '$lib/icons/DownButton.svg'
-    import { onMount } from 'svelte'
+	import DownButton from '$lib/icons/down-button.svg'
+	import { onMount } from 'svelte'
 
 	let isDropdownVisible = false
 	let isMouseOverCerrarSesion = false
