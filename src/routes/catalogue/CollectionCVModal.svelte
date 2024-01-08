@@ -3,7 +3,7 @@
 	import documentsIcon from '$lib/icons/documents.svg'
 	import DownloadableCVCard from '$lib/components/catalogue/DownloadableCVCard.svelte'
 
-	export let openedModal = true
+	export let openedModal = false
 </script>
 
 <Modal
