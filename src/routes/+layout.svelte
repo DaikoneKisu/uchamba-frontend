@@ -1,22 +1,34 @@
 <script lang="ts">
   import '../app.css'
 
+  import { onMount } from 'svelte'
+
   import { navigating } from '$app/stores'
   import { Toaster } from 'svelte-french-toast'
 
   import type { SuccessToastOptions } from '$lib/types/success-toast-options.type'
   import type { ErrorToastOptions } from '$lib/types/error-toast-options.type'
 
+  import UnderConstruction from '$lib/components/error-pages/UnderConstruction.svelte'
   import SuccessToast from '$lib/components/toasts/success-toast/SuccessToast.svelte'
   import ErrorToast from '$lib/components/toasts/error-toast/ErrorToast.svelte'
+  import Loading from '$lib/components/loading/Loading.svelte'
   import { toast } from '$lib/utils/toast'
   import { successToast } from '$lib/stores/success-toast'
   import { errorToast } from '$lib/stores/error-toast'
-  import Loading from '$lib/components/loading/Loading.svelte'
+
+  let isSmallScreen = false
 
   const position = 'top-end'
   const duration = Number.POSITIVE_INFINITY
   const style = 'max-width: 500px; '
+
+  onMount(() => {
+    isSmallScreen = window.innerWidth <= 1150
+    window.addEventListener('resize', () => {
+      isSmallScreen = window.innerWidth <= 1150
+    })
+  })
 
   $: if ($successToast) {
     successToast._id(
@@ -55,4 +67,11 @@
 {/if}
 <Toaster />
 
-<slot />
+{#if isSmallScreen}
+  <UnderConstruction
+    messagePrincipal="Visítanos desde una computadora"
+    messageSecondary="La versión móvil está bajo construcción"
+  />
+{:else}
+  <slot />
+{/if}
