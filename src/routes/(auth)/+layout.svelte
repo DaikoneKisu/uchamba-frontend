@@ -1,42 +1,33 @@
 <script lang="ts">
-  import { page } from '$app/stores'
-  import ucabLogo from '$lib/images/logo-ucab.webp'
-  import firstLoginImage from '$lib/images/login-image-one.png'
-  import secondLoginImage from '$lib/images/login-image-two.png'
-  import SignUpLogInSwitchButton from '$lib/components/sign-up-log-in-switch-button/SignUpLogInSwitchButton.svelte'
-
-  let chosen: 'Iniciar sesión' | 'Registrarse' = 'Iniciar sesión'
-
-  $: if ($page.url.pathname === '/sign-up') {
-    chosen = 'Registrarse'
-  } else if ($page.url.pathname === '/login') {
-    chosen = 'Iniciar sesión'
-  }
+  import logoUcab from '$lib/images/logo-ucab.webp'
+  import loginOne from '$lib/images/login-one.png'
 </script>
 
-<main class="flex min-h-screen flex-col items-center justify-start gap-10 pb-24 pt-10">
-  <img src={ucabLogo} alt="logo de la ucab" class="aspect-[497/75] max-w-[497px] overflow-hidden" />
+<svelte:head>
+  <link rel="preload" href={logoUcab} />
+  <link rel="preload" href={loginOne} />
+</svelte:head>
 
-  <div class="flex flex-col items-center justify-center">
-    <div class="flex flex-col gap-3">
-      {#if $page.url.pathname === '/sign-up'}
-        <h1 class="text-center">¡Bienvenido!</h1>
-        <h2 class="text-center text-zinc-400">A nuestro catálogo de egresados en línea</h2>
-      {:else if $page.url.pathname === '/login'}
-        <h1 class="text-center">Bienvenido de regreso</h1>
-        <h2 class="text-center text-zinc-400">A nuestro catálogo de egresados en línea</h2>
-      {/if}
+<div class="flex min-h-screen items-center p-5 min-[969px]:max-xl:gap-14">
+  <main
+    class="flex flex-col items-center max-[968px]:mx-auto max-[968px]:h-full max-[968px]:w-full max-[968px]:self-center min-[969px]:my-auto min-[969px]:basis-1/2"
+  >
+    <div class="mb-9 aspect-[498/75] max-w-[498px]">
+      <img src={logoUcab} alt="logo de la ucab" class="h-full w-full object-fill" />
     </div>
-
-    <div class="py-10">
-      <SignUpLogInSwitchButton {chosen} logInUrl="/login" signInUrl="/sign-up" />
+    <div class="mb-12 flex flex-col items-center gap-6">
+      <h1 class="text-center">Bienvenido de regreso</h1>
+      <h2 class="max-w-[445px] text-center">A nuestro catálogo de egresados en línea</h2>
     </div>
-
-    <div class="invisible -z-10 xl:visible">
-      <img src={firstLoginImage} alt="" class="absolute right-72 top-40" />
-      <img src={secondLoginImage} alt="" class="absolute bottom-12 left-64" />
-    </div>
-
     <slot />
+  </main>
+  <div
+    class="flex max-h-[calc(100vh-2.5rem)] flex-grow justify-center max-[968px]:hidden max-[968px]:w-0"
+  >
+    <img
+      class="my-auto h-fit max-h-[calc(100vh-2.5rem)] rounded-[10px] rounded-bl-[190px] object-contain"
+      src={loginOne}
+      alt=""
+    />
   </div>
-</main>
+</div>

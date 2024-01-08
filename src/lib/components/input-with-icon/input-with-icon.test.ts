@@ -18,6 +18,7 @@ describe('Input Component', () => {
     const initialValue = 'test-'
 
     render(InputWithIcon__SvelteComponent_, {
+      label: '',
       type: 'text',
       value: initialValue,
       placeholder: 'test-placeholder',
@@ -31,6 +32,7 @@ describe('Input Component', () => {
 
   test('it should render an icon', () => {
     render(InputWithIcon__SvelteComponent_, {
+      label: '',
       type: 'text',
       src: email
     })
