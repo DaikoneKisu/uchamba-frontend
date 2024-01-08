@@ -4,7 +4,7 @@ type SoftSkill = string
 
 type HardSkill = string
 
-interface Curriculum {
+export interface Curriculum {
 	cvId: number
 	careerName: string
 	name: string
