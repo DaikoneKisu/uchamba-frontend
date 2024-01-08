@@ -3,5 +3,6 @@ import type { CatalogueInfo } from './catalogue-info.type'
 
 export interface CatalogueResponse {
 	paginate: Paginate
+	suggestions: unknown[]
 	items: CatalogueInfo[]
 }

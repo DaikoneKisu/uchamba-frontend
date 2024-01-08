@@ -1,3 +1,20 @@
+type Education = string
+
+type SoftSkill = string
+
+type HardSkill = string
+
+interface Curriculum {
+	cvId: number
+	careerName: string
+	name: string
+	updatedAt: string
+}
+export interface Language {
+	name: string
+	proficientLevel: string
+}
+
 export interface CatalogueInfo {
 	userId: number
 	name: string
@@ -5,13 +22,11 @@ export interface CatalogueInfo {
 	country: string
 	state: string
 	city: string
-	languages: {
-		name: string
-		proficientLevel: string
-	}[]
+	languages: Language[]
 	skills: {
-		hard: string[]
-		soft: string[]
+		hard: HardSkill[]
+		soft: SoftSkill[]
 	}
-	education: string[]
+	education: Education[]
+	cvs: Curriculum[]
 }
