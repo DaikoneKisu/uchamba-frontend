@@ -1,9 +1,20 @@
 <script lang="ts">
-	import Modal from '$lib/components/catalogue/Modal.svelte'
-	import documentsIcon from '$lib/icons/documents.svg'
-	import DownloadableCVCard from '$lib/components/catalogue/DownloadableCVCard.svelte'
+	import type { Curriculum } from '$lib/types/catalogue-info.type'
 
+	import Modal from '$lib/components/catalogue/modal/Modal.svelte'
+	import DownloadableCVCard from '$lib/components/catalogue/modal/DownloadableCVCard.svelte'
+
+	import documentsIcon from '$lib/icons/documents.svg'
+
+	export let cvs: Curriculum[]
+	export let userName: string
+	export let userId: number
 	export let openedModal = false
+
+	$: user = {
+		userId,
+		userName
+	}
 </script>
 
 <Modal
@@ -13,7 +24,9 @@
 	bind:isOpen={openedModal}
 >
 	<section slot="body" class="flex flex-wrap items-center justify-start">
-		<DownloadableCVCard />
+		{#each cvs as cv}
+			<DownloadableCVCard {cv} {...user} />
+		{/each}
 	</section>
 	<footer
 		slot="footer"
