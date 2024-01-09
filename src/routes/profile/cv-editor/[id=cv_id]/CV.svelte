@@ -101,7 +101,7 @@
               {s?.universityName ?? 'Universidad Católica Andrés Bello'}
             </p>
             <p>
-              Año de graduación {s?.graduationYear}
+              {s?.graduationYear}
             </p>
           </article>
         {/each}
