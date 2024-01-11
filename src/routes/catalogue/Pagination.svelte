@@ -1,17 +1,34 @@
-<script lang=ts>
-  import PageForward from '$lib/components/catalogue/pagination/page-forward/PageForward.svelte'
+<script lang="ts">
+	import { page } from '$app/stores'
+	import { browser } from '$app/environment'
+
 	import PageBackward from '$lib/components/catalogue/pagination/page-backward/PageBackward.svelte'
 	import PageNumber from '$lib/components/catalogue/pagination/page-number/PageNumber.svelte'
-  import { pagination } from '$lib/stores/pagination'
+	import PageForward from '$lib/components/catalogue/pagination/page-forward/PageForward.svelte'
 
-  export let className = ''
+	export let className = ''
+	export let pages: number
 
-  $: ({ route, pages, size, currentPage } = $pagination)
+	$: currentPage =
+		Number($page.url.searchParams.get('page')) > 0 ? Number($page.url.searchParams.get('page')) : 1
+
+	function getRouteUpdatingPageParam(page: number) {
+		if (browser) {
+			let currentURL = new URL(window.location.href)
+			return currentURL.searchParams.has('page')
+				? (() => {
+						currentURL.searchParams.set('page', page.toString())
+						return `${currentURL.pathname}${currentURL.search}`
+				  })()
+				: `${currentURL.pathname}${currentURL.search}&page=${page}`
+		}
+		return '/'
+	}
 </script>
 
 <nav class={`flex flex-wrap gap-4 ${className}`}>
 	<PageBackward
-		href={`${route}?size=${size}&page=${currentPage - 1}`}
+		href={(() => getRouteUpdatingPageParam(currentPage - 1))()}
 		disabled={currentPage <= 1}
 	/>
 	<!-- 
@@ -23,13 +40,13 @@
 	<!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
 	{#each Array(pages) as _, idx}
 		<PageNumber
+			href={(() => getRouteUpdatingPageParam(idx + 1))()}
 			pageNumber={idx + 1}
 			highlight={currentPage === idx + 1}
-			href={`${route}?size=${size}&page=${idx + 1}`}
 		/>
 	{/each}
 	<PageForward
-		href={`${route}?size=${size}&page=${currentPage + 1}`}
+		href={(() => getRouteUpdatingPageParam(currentPage + 1))()}
 		disabled={currentPage >= pages}
 	/>
 </nav>
