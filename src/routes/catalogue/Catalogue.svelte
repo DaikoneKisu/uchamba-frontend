@@ -1,7 +1,8 @@
 <script lang="ts">
+	import type { CatalogueInfo } from '$lib/types/catalogue-info.type'
+
 	import Pagination from './Pagination.svelte'
 	import GraduateCard from './GraduateCard.svelte'
-	import type { CatalogueInfo } from '$lib/types/catalogue-info.type'
 	import { searches } from '$lib/stores/catalogue-searches'
 
 	import searchIcon from '$lib/icons/search.svg'
