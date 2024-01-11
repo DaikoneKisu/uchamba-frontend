@@ -7,12 +7,11 @@
   import ucab2 from '$lib/images/ucab2.png'
   import ucab3 from '$lib/images/ucab3.png'
   import ucab4 from '$lib/images/ucab4.png'
-  import star2 from '$lib/icons/star2.svg'
-  import star1 from '$lib/icons/star1.svg'
-  import star3 from '$lib/icons/star3.svg'
   import instagramIcon from '$lib/icons/instagram.svg'
   import twitterIcon from '$lib/icons/twitter.svg'
   import facebookIcon from '$lib/icons/facebook.svg'
+  import MagicText from '$lib/components/text/magic-text/MagicText.svelte'
+  import MagicStars from '$lib/components/decoration/magic-stars/MagicStars.svelte'
 </script>
 
 <LandingNavbar />
@@ -20,24 +19,27 @@
 <main class="mx-auto mt-12 flex flex-col items-center gap-24">
   <section class="flex w-full max-w-[1250px] justify-between px-5">
     <div class="items-left flex w-full max-w-[700px] flex-col">
-      <h1 class="font-['Poppins'] text-[40px] font-bold uppercase leading-[59.80px] text-black">
-        BIENVENIDO A LA <br /> PLATAFORMA <br /> ULINK <br /><span
-          class="mt-1 font-['Poppins'] text-[40px] font-normal leading-[59.80px] text-black"
-          >CONECTANDO <br /> EGRESADOS Y
-          <br />EMPRESAS<br />
-        </span>
-      </h1>
-      <p class="mt-2 h-[200px] w-[420px] font-['Poppins'] text-base font-normal leading-normal">
-        Un espacio donde los egresados pueden encontrar <span class="font-bold"
-          >oportunidades emocionantes</span
-        >
-        y donde las empresas puedan descubrir talento excepcional. Con nuestra red de conexiones facilitamos
-        la
-        <span class="font-bold"> interacción entre profesionales calificados y reclutadores</span>
-        en busca de habilidades sobresalientes. Únete a ULINK y descubre un
-        <span class="font-bold"> mundo de posibilidades profesionales.</span>
-      </p>
-      <p>Puedes empezar a buscar un egresado utilizando nuestro catálogo.</p>
+      <MagicStars color="#FFD200">
+        <h1 class="font-['Poppins'] text-[40px] font-bold uppercase leading-[59.80px] text-black">
+          BIENVENIDO A LA <br /> PLATAFORMA <br />
+          <MagicText>ULINK</MagicText> <br /><span
+            class="mt-1 font-['Poppins'] text-[40px] font-normal leading-[59.80px] text-black"
+            >CONECTANDO <br /> EGRESADOS Y
+            <br />EMPRESAS<br />
+          </span>
+        </h1>
+        <p class="mt-2 h-[200px] w-[420px] font-['Poppins'] text-base font-normal leading-normal">
+          Un espacio donde los egresados pueden encontrar <span class="font-bold"
+            >oportunidades emocionantes</span
+          >
+          y donde las empresas puedan descubrir talento excepcional. Con nuestra red de conexiones facilitamos
+          la
+          <span class="font-bold"> interacción entre profesionales calificados y reclutadores</span>
+          en busca de habilidades sobresalientes. Únete a ULINK y descubre un
+          <span class="font-bold"> mundo de posibilidades profesionales.</span>
+        </p>
+        <p>Puedes empezar a buscar un egresado utilizando nuestro catálogo.</p>
+      </MagicStars>
 
       <div class="mt-10 flex justify-start gap-3">
         <a
@@ -60,12 +62,14 @@
   </section>
 
   <section class="flex w-full flex-col items-center gap-16 px-8">
-    <h2
-      id="benefits"
-      class="text-center font-['Poppins'] text-[40px] font-bold leading-[59.80px] text-black"
-    >
-      Nuestros beneficios a reclutadores y egresados
-    </h2>
+    <MagicStars color="#41B4E5">
+      <h2
+        id="benefits"
+        class="text-center font-['Poppins'] text-[40px] font-bold leading-[59.80px] text-black"
+      >
+        Nuestros beneficios a reclutadores y egresados
+      </h2>
+    </MagicStars>
     <div class="flex w-full max-w-[1400px] items-center justify-evenly gap-6">
       <img
         class="mb-20 max-h-[419px] w-full max-w-[683px] flex-grow rounded-[10px] object-cover object-center"
@@ -148,12 +152,14 @@
   </section>
 
   <section class="flex w-full flex-col items-center gap-16 px-8">
-    <h2
-      id="goals"
-      class="text-center font-['Poppins'] text-[40px] font-bold leading-[59.80px] text-black"
-    >
-      Nuestro objetivo como producto
-    </h2>
+    <MagicStars color="#007934">
+      <h2
+        id="goals"
+        class="text-center font-['Poppins'] text-[40px] font-bold leading-[59.80px] text-black"
+      >
+        Nuestro objetivo como producto
+      </h2>
+    </MagicStars>
     <p
       class="w-full max-w-[1183px] text-center font-['Poppins'] text-[25px] font-medium leading-[37.50px] text-black"
     >
