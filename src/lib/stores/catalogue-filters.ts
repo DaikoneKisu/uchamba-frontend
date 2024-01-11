@@ -10,9 +10,9 @@ import {
 
 export const filters = derived([c, lo, la, h, s], ([$c, $lo, $la, $h, $s]) => ({
 	careers: $c,
-	country: $lo.country,
-	state: $lo.state,
-	city: $lo.city,
+	country: $lo?.country,
+	state: $lo?.state,
+	city: $lo?.city,
 	languages: $la,
 	hSkills: $h,
 	sSkills: $s
