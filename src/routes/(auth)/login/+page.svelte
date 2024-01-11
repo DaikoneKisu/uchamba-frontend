@@ -42,10 +42,9 @@
   bind:email
   bind:password
   bind:disabled
-  on:submit={() => (disabled = true)}
   {emailError}
   {passwordError}
-  on:change={validateUserInput}
+  handleInput={validateUserInput}
 />
 
 {#if form?.reason}

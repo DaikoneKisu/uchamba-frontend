@@ -85,8 +85,10 @@
     </div>
   </label>
   {#if error && !isPristine}
-    <strong in:fly={{ x: -12 }} class="ml-3 w-[80%] text-left text-red-600">{error}</strong>
+    <strong in:fly={{ x: -12 }} class="ml-3 w-[80%] text-left text-[12px] text-red-600"
+      >{error}</strong
+    >
   {:else}
-    <div class="invisible h-[22.5px]" aria-hidden />
+    <div class="invisible h-[18px]" aria-hidden />
   {/if}
 </div>

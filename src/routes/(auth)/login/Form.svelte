@@ -11,16 +11,18 @@
   export let password: string
   export let emailError = ''
   export let passwordError = ''
+
+  export let handleInput: () => void
 </script>
 
 <form
   aria-label="form"
   class="flex flex-col justify-center gap-3"
   method="POST"
+  on:submit={() => (disabled = true)}
   use:enhance
   novalidate
-  on:submit
-  on:change
+  on:input={handleInput}
 >
   <InputWithIcon
     name="email"

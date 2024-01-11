@@ -16,8 +16,8 @@
       <img src={logoUcab} alt="logo de la ucab" class="h-full w-full object-fill" />
     </div>
     <div class="mb-12 flex flex-col items-center gap-6">
-      <h1 class="text-center">Bienvenido de regreso</h1>
-      <h2 class="max-w-[445px] text-center">A nuestro catálogo de egresados en línea</h2>
+      <h1 class="text-center">Bienvenido</h1>
+      <h2 class="max-w-[445px] text-center">A tu perfil profesional de egresado</h2>
     </div>
     <slot />
   </main>
