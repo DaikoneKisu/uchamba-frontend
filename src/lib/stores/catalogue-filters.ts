@@ -1,4 +1,4 @@
-import { readonly, derived } from 'svelte/store'
+import { derived } from 'svelte/store'
 
 import {
 	careersFilter as c,
@@ -8,7 +8,7 @@ import {
 	softSkillsFilter as s
 } from './filters'
 
-const f = derived([c, lo, la, h, s], ([$c, $lo, $la, $h, $s]) => ({
+export const filters = derived([c, lo, la, h, s], ([$c, $lo, $la, $h, $s]) => ({
 	careers: $c,
 	country: $lo.country,
 	state: $lo.state,
@@ -17,5 +17,3 @@ const f = derived([c, lo, la, h, s], ([$c, $lo, $la, $h, $s]) => ({
 	hSkills: $h,
 	sSkills: $s
 }))
-
-export const filters = readonly(f)
