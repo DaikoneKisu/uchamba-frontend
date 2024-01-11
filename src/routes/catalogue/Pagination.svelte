@@ -36,11 +36,11 @@
 			disabled={currentPage <= 1}
 		/>
 		<!-- 
-    Well, typescript-eslint's @typescript-eslint/no-unused-vars rule is disabled next line 
-    because it says _ is a variable that's not being used, and while that's true, it has to 
-    be there for destructuring and that's why it's named _ (common variable name for 
-    variables that are not being used on purpose) 
-  -->
+      Well, typescript-eslint's @typescript-eslint/no-unused-vars rule is disabled next line 
+      because it says _ is a variable that's not being used, and while that's true, it has to 
+      be there for destructuring and that's why it's named _ (common variable name for 
+      variables that are not being used on purpose) 
+    -->
 		<!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
 		{#each Array(pages) as _, idx}
 			<PageNumber
