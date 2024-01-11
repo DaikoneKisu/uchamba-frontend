@@ -138,7 +138,7 @@
           previamente cargada!
         </p>
         <a
-          href="/catalogue"
+          href="/profile/me/cv"
           class="font-['Open Sans'] h-[61px] w-[229px] items-center justify-center rounded-[10px] border-2 bg-ucab-green px-[16px] py-[19px] text-center text-[15px] font-bold uppercase leading-snug text-brand-white shadow focus:outline-none"
         >
           COLECCIÓN DE CV
