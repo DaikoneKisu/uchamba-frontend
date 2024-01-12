@@ -4,7 +4,7 @@
 
 	import Chip from '$lib/components/chip/Chip.svelte'
 	import Dropdown from './Dropdown.svelte'
-	import Checkbox from '$lib/components/checkbox/Checkbox.svelte'
+	import Checkbox from '$lib/components/catalogue/checkbox/Checkbox.svelte'
 	import { suggestions } from '$lib/stores/suggestions'
 	import { languageFilter } from '$lib/stores/filters'
 

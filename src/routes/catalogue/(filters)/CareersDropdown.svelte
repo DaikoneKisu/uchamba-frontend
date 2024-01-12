@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Checkbox from '$lib/components/checkbox/Checkbox.svelte'
+	import Checkbox from '$lib/components/catalogue/checkbox/Checkbox.svelte'
 	import Dropdown from './Dropdown.svelte'
 	import { suggestions } from '$lib/stores/suggestions'
 	import { careersFilter } from '$lib/stores/filters'
