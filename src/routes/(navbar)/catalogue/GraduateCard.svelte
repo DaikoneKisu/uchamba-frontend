@@ -10,7 +10,10 @@
 
   let openedModal = false
 
-  function formatEducations(acc: string, current: string): string {
+  function formatEducations(acc: string, current: string, index: number): string {
+    if (index === 0) {
+      return current
+    }
     return `${acc} · ${current}`
   }
 
@@ -32,7 +35,7 @@
     {graduate.country} - {graduate.state} - {graduate.city}
   </p>
   <p>
-    {graduate.education.reduce(formatEducations)} /
+    {graduate.education.reduce(formatEducations, '')} /
     {graduate.languages.reduce(formatLanguages, '')}
   </p>
   <p class="line-clamp-3 w-full whitespace-normal font-semibold">

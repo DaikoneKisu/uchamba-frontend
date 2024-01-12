@@ -4,8 +4,6 @@
 
   import MyProfileDropdown from '../MyProfileDropdown.svelte'
 
-  export let isLoggedIn = false
-
   let currentPath = 'catalogue'
 
   $: currentPath = $page.url.pathname
@@ -15,7 +13,7 @@
   })
 </script>
 
-<header class="w-full">
+<header class="flex flex-col gap-5">
   <nav class="rounded-[0.3125rem] bg-brand-white pb-3 pt-4">
     <ul
       class="flex w-full justify-around text-center [&>li>a]:text-center [&>li]:h-[28px] [&>li]:min-w-[150px]"
@@ -44,9 +42,9 @@
           {/if}
         </a>
       </li>
-      {#if isLoggedIn}
-        <li class="flex items-start justify-center gap-1">
-          <a href="/profile">
+      {#if $page.data.isLoggedIn}
+        <li>
+          <label class="flex cursor-pointer items-start justify-center gap-1">
             Perfil
             {#if currentPath.startsWith('/profile')}
               <div
@@ -55,8 +53,8 @@
                 class="mx-auto h-[2px] w-10 bg-yellow-400"
               />
             {/if}
-          </a>
-          <MyProfileDropdown className="-mt-0.5" />
+            <MyProfileDropdown className="-mt-0.5" />
+          </label>
         </li>
       {:else}
         <li>
