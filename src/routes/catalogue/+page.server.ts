@@ -12,10 +12,11 @@ export async function load({ url, fetch }: { url: URL; fetch: typeof window.fetc
 	const careers = url.searchParams.get('careers') || ''
 	const searchInCV = url.searchParams.get('searchInCV') || ''
 	const languages = url.searchParams.get('languages') || ''
+	const inclusiveLang = url.searchParams.get('inclusiveLang') || ''
 
 	async function getCatalogue(size: number = 10, page: number = 1) {
 		const catalogue = await fetch(
-			`${BACKEND_BASE_URL}/users?page=${page}&size=${size}&name=${name}&country=${country}&state=${state}&city=${city}&careers=${careers}&searchInCV=${searchInCV}&languages=${languages}`
+			`${BACKEND_BASE_URL}/users?page=${page}&size=${size}&name=${name}&country=${country}&state=${state}&city=${city}&careers=${careers}&searchInCV=${searchInCV}&languages=${languages}&inclusiveLang=${inclusiveLang}`
 		)
 		const catalogueJson = (await catalogue.json()) as CatalogueResponse
 		return catalogueJson
