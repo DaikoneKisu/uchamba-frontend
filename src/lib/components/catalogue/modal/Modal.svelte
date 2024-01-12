@@ -29,7 +29,7 @@
           <img src={icon} alt="" />
           <div class="flex flex-col">
             <h2 class="m-0 font-poppins">{title}</h2>
-            <h3 class="text-brand-p-black">{subtitle}</h3>
+            <p class="text-brand-p-black">{subtitle}</p>
           </div>
         </div>
         <button class="text-red-500" on:click={closeModal}

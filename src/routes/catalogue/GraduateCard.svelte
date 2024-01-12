@@ -36,7 +36,7 @@
     {graduate.languages.reduce(formatLanguages, '')}
   </p>
   <p class="line-clamp-3 w-full whitespace-normal font-semibold">
-    {graduate.aboutMe}
+    {graduate.aboutMe ?? ''}
   </p>
 
   <div class="mt-4 flex flex-wrap gap-3">
