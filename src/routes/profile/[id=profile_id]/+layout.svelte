@@ -8,7 +8,7 @@
   export let data
 </script>
 
-<main class="flex min-h-screen gap-10 bg-[#f0f0f0] p-10 pt-12">
+<main class="flex min-h-screen gap-10 bg-[#f0f0f0] px-8 pt-6">
   <div class="flex h-full w-full max-w-[465px] flex-col items-center justify-center gap-6">
     {#if data.isEditable && !Object.values(data.tasks).every((t) => !t)}
       <Tasks tasks={data.tasks} />
