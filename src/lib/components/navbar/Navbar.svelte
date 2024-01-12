@@ -43,8 +43,8 @@
 				</a>
 			</li>
 			{#if $page.data.isLoggedIn}
-				<li class="flex justify-center items-start gap-1">
-					<a href="/profile">
+				<li>
+					<label class="flex justify-center items-start gap-1 cursor-pointer">
 						Perfil
 						{#if currentPath.startsWith('/profile')}
 							<div
@@ -53,8 +53,8 @@
 								class="h-[2px] w-10 bg-yellow-400 mx-auto"
 							/>
 						{/if}
-					</a>
-					<MyProfileDropdown className="-mt-0.5" />
+						<MyProfileDropdown className="-mt-0.5" />
+					</label>
 				</li>
 			{:else}
 				<li>

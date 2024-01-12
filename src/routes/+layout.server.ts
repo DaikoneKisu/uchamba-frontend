@@ -4,6 +4,6 @@ export const load = ({ cookies }: { cookies: Cookies }) => {
 	const session = cookies.get('session')
 
 	return {
-		isLoggedIn: Boolean(session)
+		isLoggedIn: !(session == null) && session !== ''
 	}
 }

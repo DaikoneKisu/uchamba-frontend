@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { enhance } from '$app/forms'
+	import { goto, invalidateAll } from '$app/navigation'
 	import { slide } from 'svelte/transition'
 
 	import downIcon from '$lib/icons/down-button.svg'
@@ -26,14 +26,15 @@
 				class="flex h-[30px] w-full max-w-[150px] items-center justify-center rounded-[10px] bg-green-700 px-1 text-white"
 				><b class="font-normal">Mi perfil</b></a
 			>
-			<form use:enhance method="POST" action="/">
-				<b class="font-normal"
-					><button
-						class="flex h-[30px] w-full max-w-[150px] items-center justify-center rounded-[10px] bg-green-700 px-1 text-white"
-						type="submit">Cerrar sesión</button
-					></b
-				>
-			</form>
+			<button
+				on:click={async () => {
+					await fetch('/api/delete-session', { method: 'DELETE' })
+					await invalidateAll()
+					await goto('/')
+				}}
+				class="flex h-[30px] w-full max-w-[150px] items-center justify-center rounded-[10px] bg-green-700 px-1 text-white"
+				type="button"><b class="font-normal">Cerrar sesión</b></button
+			>
 		</div>
 	{/if}
 </button>
