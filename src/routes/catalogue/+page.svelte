@@ -18,9 +18,9 @@
   $: if (browser) {
     let currentURL = new URL(window.location.href)
 
-    if (($filters || $searches) && currentURL.searchParams.has('page')) {
-      currentURL.searchParams.delete('page')
-    }
+    // if (($filters || $searches) && currentURL.searchParams.has('page')) {
+    //   currentURL.searchParams.delete('page')
+    // }
 
     if ($filters) {
       for (const [filter, filterValue] of Object.entries($filters)) {

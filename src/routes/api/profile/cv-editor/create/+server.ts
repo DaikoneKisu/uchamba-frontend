@@ -32,6 +32,6 @@ export async function POST({ request, fetch }: { request: Request; fetch: typeof
   const responseData = (await response.json()) as unknown
 
   if (!response.ok) return json(responseData, { status: response.status })
-  
+
   return json(responseData)
 }

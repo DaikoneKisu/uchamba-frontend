@@ -18,16 +18,16 @@
   {#if isOpen}
     <div
       transition:slide
-      class="absolute flex -translate-x-14 translate-y-8 flex-col gap-2 rounded-[0.3125rem] border-4 border-[#f0f0f0] bg-brand-white px-4 py-2 shadow-lg shadow-[rgba(0,0,0,0.5)]"
+      class="absolute flex -translate-x-16 translate-y-8 flex-col gap-2 rounded-[0.3125rem] border-4 border-[#f0f0f0] bg-brand-white px-4 py-2 shadow-lg shadow-[rgba(0,0,0,0.5)]"
     >
       <a
         href="/profile/me"
-        class="flex h-[30px] w-full max-w-[120px] items-center justify-center rounded-[10px] bg-green-700 px-1 text-white"
+        class="flex h-[30px] w-full max-w-[150px] items-center justify-center rounded-[10px] bg-green-700 px-1 text-white"
         ><b class="font-normal">Mi perfil</b></a
       >
       <a
         href="/"
-        class="flex h-[30px] w-full max-w-[120px] items-center justify-center rounded-[10px] bg-green-700 px-1 text-white"
+        class="flex h-[30px] w-full max-w-[150px] items-center justify-center rounded-[10px] bg-green-700 px-1 text-white"
         ><b class="font-normal">Cerrar sesión</b></a
       >
     </div>

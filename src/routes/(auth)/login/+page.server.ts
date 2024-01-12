@@ -45,8 +45,9 @@ export const actions = {
 
     if (cookies.get('session')) {
       const redirectTo = url.searchParams.get('redirectTo')
-      if (redirectTo && redirectTo !== '/') throw redirect(StatusCodes.SEE_OTHER, `/${redirectTo}`)
-      throw redirect(StatusCodes.SEE_OTHER, '/profile/me')
+      if (redirectTo && redirectTo !== '/login')
+        throw redirect(StatusCodes.SEE_OTHER, `${redirectTo}`)
+      throw redirect(StatusCodes.SEE_OTHER, 'profile/me')
     }
   }
 }

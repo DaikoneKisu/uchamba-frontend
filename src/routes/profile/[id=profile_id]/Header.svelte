@@ -25,7 +25,7 @@
       <li>
         <a
           href={`/profile/${profileId}/cv`}
-          class="flex text-right h-full w-full flex-col items-center justify-center gap-2"
+          class="flex h-full w-full flex-col items-center justify-center gap-2 text-right"
           >CV
           {#if currentRoute === 'cv'}
             <div

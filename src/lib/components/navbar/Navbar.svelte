@@ -4,7 +4,7 @@
 
   import MyProfileDropdown from '../MyProfileDropdown.svelte'
 
-  export let isLoggedIn = true
+  export let isLoggedIn = false
 
   let currentPath = 'catalogue'
 
