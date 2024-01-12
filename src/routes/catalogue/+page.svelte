@@ -1,22 +1,15 @@
 <script lang="ts">
-	// import { onDestroy, onMount } from 'svelte'
-	// import { page } from '$app/stores'
+	import { goto } from '$app/navigation'
+	import { browser } from '$app/environment'
 
 	import type { CatalogueResponse } from '$lib/types/catalogue-response.type'
 
-	import Navegation from '$lib/components/navegation.svelte'
+	import Navbar from '$lib/components/navbar/Navbar.svelte'
 	import Filters from './Filters.svelte'
 	import Catalogue from './Catalogue.svelte'
-	import { browser } from '$app/environment'
 	import { filters } from '$lib/stores/catalogue-filters'
 	import { searches } from '$lib/stores/catalogue-searches'
-	import { goto } from '$app/navigation'
 	import { suggestions } from '$lib/stores/suggestions'
-	// import { filtersForm } from '$lib/stores/filters-form'
-	// import { goto } from '$app/navigation'
-	// import { browser } from '$app/environment'
-	// import { successToast } from '$lib/stores/success-toast'
-	// import { toast } from 'svelte-french-toast'
 
 	export let data: CatalogueResponse
 
@@ -24,14 +17,12 @@
 
 	$: if (browser) {
 		let currentURL = new URL(window.location.href)
-		console.log(currentURL.href + '\n')
 
-		// if ($filters || $searches) {
-		// 	currentURL.searchParams.delete('page')
-		// }
+		if (($filters || $searches) && currentURL.searchParams.has('page')) {
+			currentURL.searchParams.delete('page')
+		}
 
 		if ($filters) {
-			console.log('entered filters')
 			for (const [filter, filterValue] of Object.entries($filters)) {
 				if (filterValue == null) continue
 
@@ -85,7 +76,6 @@
 		}
 
 		if ($searches) {
-			console.log('entered searches')
 			for (const [search, searchValue] of Object.entries($searches)) {
 				if (typeof searchValue === 'string') {
 					searchValue !== ''
@@ -96,20 +86,12 @@
 			}
 		}
 
-		console.log(currentURL.href + '\n')
-
 		void goto(`${currentURL.pathname}${currentURL.search}`)
 	}
-	// return currentURL.searchParams.has('page')
-	// 	? (() => {
-	// 			currentURL.searchParams.set('page', page.toString())
-	// 			return `${currentURL.pathname}${currentURL.search}`
-	// 	  })()
-	// 	: `${currentURL.pathname}${currentURL.search}&page=${page}`
 </script>
 
 <div class="flex flex-col gap-5 min-h-screen p-5 bg-[#f0f0f0]">
-	<Navegation />
+	<Navbar />
 	<div class="flex flex-col-reverse gap-5 md:flex-row">
 		<Filters />
 		<Catalogue graduates={data.items} pages={data.paginate.pages} total={data.paginate.total} />
