@@ -4,7 +4,6 @@
 
 	import type { CatalogueResponse } from '$lib/types/catalogue-response.type'
 
-	import Navbar from '$lib/components/navbar/Navbar.svelte'
 	import Filters from './Filters.svelte'
 	import Catalogue from './Catalogue.svelte'
 	import { filters } from '$lib/stores/catalogue-filters'
@@ -90,10 +89,7 @@
 	}
 </script>
 
-<div class="flex flex-col gap-5 min-h-screen p-5 bg-[#f0f0f0]">
-	<Navbar />
-	<div class="flex flex-col-reverse gap-5 md:flex-row">
-		<Filters />
-		<Catalogue graduates={data.items} pages={data.paginate.pages} total={data.paginate.total} />
-	</div>
+<div class="flex flex-col-reverse gap-5 md:flex-row">
+	<Filters />
+	<Catalogue graduates={data.items} pages={data.paginate.pages} total={data.paginate.total} />
 </div>

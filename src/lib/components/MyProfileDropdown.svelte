@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { enhance } from '$app/forms'
 	import { slide } from 'svelte/transition'
 
 	import downIcon from '$lib/icons/down-button.svg'
@@ -25,13 +26,12 @@
 				class="flex h-[30px] w-full max-w-[150px] items-center justify-center rounded-[10px] bg-green-700 px-1 text-white"
 				><b class="font-normal">Mi perfil</b></a
 			>
-			<form method="POST" action="?/deleteSession">
+			<form use:enhance method="POST" action="/">
 				<b class="font-normal"
-					><input
+					><button
 						class="flex h-[30px] w-full max-w-[150px] items-center justify-center rounded-[10px] bg-green-700 px-1 text-white"
-						type="submit"
-						value="Cerrar sesión"
-					/></b
+						type="submit">Cerrar sesión</button
+					></b
 				>
 			</form>
 		</div>
