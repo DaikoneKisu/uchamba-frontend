@@ -59,7 +59,7 @@
       <Checkbox
         form="filters"
         disabled={false}
-        text="Buscar solo en CVs"
+        text="Buscar solo en CV"
         checked={careersFilter.has(true)}
         handleChange={(e) => {
           /*

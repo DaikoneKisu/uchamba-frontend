@@ -18,7 +18,7 @@
 </script>
 
 <Modal
-  title="Coleción de CV'S"
+  title="Colección de CV"
   subtitle="Descarga el CV que mejor se adapte a sus necesidades"
   icon={documentsIcon}
   bind:isOpen={openedModal}

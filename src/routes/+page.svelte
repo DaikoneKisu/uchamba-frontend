@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { goto } from '$app/navigation'
-
   import LandingNavbar from './LandingNavbar.svelte'
 
   import ucab1 from '$lib/images/ucab1.png'
@@ -48,14 +46,14 @@
           href="/catalogue"
           class="font-['Open Sans'] inline-flex h-[61px] w-[229px] items-center justify-center gap-2.5 rounded-[10px] bg-ucab-green px-[16px] py-[19px] text-[15px] font-bold uppercase leading-snug text-brand-white shadow focus:outline-none"
         >
-          IR A CATALOGO
+          IR A CATÁLOGO
         </a>
 
         <a
           href="/login"
           class="font-['Open Sans'] mr-6 inline-flex h-[61px] w-[229px] items-center justify-center gap-2.5 rounded-[10px] border-2 bg-brand-white px-[16px] py-[19px] text-[15px] font-bold uppercase leading-snug text-ucab-black shadow transition focus:outline-none"
         >
-          INICIAR SESION
+          INICIAR SESIÓN
         </a>
       </div>
     </div>
@@ -137,11 +135,11 @@
         <p
           class="max-w-[551px] font-['Poppins'] text-[20px] font-medium leading-[37.50px] text-black"
         >
-          Como egresado, podrás crear tu perfil profesional personalizado que muestre tus
-          habilidades, formación y experiencia de manera atractiva para los reclutadores; cargando
-          toda la información relevante que te ayude a crear tu CV. Para mayor comodidad, nuestra
-          plataforma se integra con Ellucian y Banner, por lo tanto ¡Ya tendrás información
-          previamente cargada!
+          Entendemos que nuestros egresados se especializan en diversas áreas y han cursado
+          distintas carreras. Es por esta diversidad que se hace necesario crear CV específicos para
+          diferentes campos laborales. Es aquí donde ULink se destaca, ofreciéndote la posibilidad
+          de gestionar una amplia colección de CV, cada uno adaptado al área que buscas y resaltando
+          tus habilidades específicas.
         </p>
         <a
           href="/profile/me/cv"

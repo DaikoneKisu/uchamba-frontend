@@ -50,7 +50,7 @@
     </div>
 
     <p>
-      Al crear tu cv se activará tu perfil, el cual permite que los reclutadores te encuentren en el
+      Al crear tu CV se activará tu perfil, el cual permite que los reclutadores te encuentren en el
       catálogo de egresados. Puedes activarlo y desactivarlo cuando quieras.
     </p>
   {/if}
