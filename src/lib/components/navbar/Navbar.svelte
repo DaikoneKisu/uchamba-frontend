@@ -1,11 +1,14 @@
 <script lang="ts">
 	import { page } from '$app/stores'
 	import { crossfade } from 'svelte/transition'
-	import ExitButton from '../ExitButton.svelte'
 
-	let currentRoute: 'prueba1' | 'catalogue' | 'prueba2' = 'prueba1'
+	import MyProfileDropdown from '../MyProfileDropdown.svelte'
 
-	$: currentRoute = $page.url.pathname.split('/').pop() as 'prueba1' | 'catalogue' | 'prueba2'
+	export let isLoggedIn = true
+
+	let currentPath = 'catalogue'
+
+	$: currentPath = $page.url.pathname
 
 	const [send, receive] = crossfade({
 		duration: (d) => Math.sqrt(d * 200)
@@ -13,56 +16,62 @@
 </script>
 
 <header class="w-full">
-	<nav class="flex justify-between items-center bg-white p-3 rounded-[5px] mb-0">
-		<ExitButton />
+	<nav class="bg-brand-white pt-4 pb-3 rounded-[0.3125rem]">
 		<ul
-			class="w-full text-lg text-center max-w-xl flex justify-between [&>li]:min-w-[150px] [&>li>a]:py-5 [&>li>a]:text-center"
+			class="flex w-full text-center justify-around [&>li]:min-w-[150px] [&>li]:h-[28px] [&>li>a]:text-center"
 		>
-			<li class="min-w-[150px] ml-32">
-				<a
-					href="/prueba1"
-					class="relative w-[275px] h-[37px] text-center text-black text-[15px] font-bold font-['Source Sans Pro'] leading-[37s.50px]"
-				>
+			<li>
+				<a href="/" class="flex flex-col">
 					Página Principal
-					{#if currentRoute === 'prueba1'}
+					{#if currentPath === '/'}
 						<div
 							in:receive={{ key: 'line' }}
 							out:send={{ key: 'line' }}
-							class="h-[2px] w-10 bg-yellow-400 absolute translate-y-0 ml-12"
+							class="h-[2px] w-10 bg-yellow-400 mx-auto"
 						/>
 					{/if}
 				</a>
 			</li>
-			<li class="min-w-[150px] ml-72">
-				<a
-					href="/catalogue"
-					class="relative w-[275px] h-[37px] text-center text-black text-[15px] font-bold font-['Source Sans Pro'] leading-[37s.50px]"
-				>
+			<li>
+				<a href="/catalogue" class="flex flex-col">
 					Catálogo
-					{#if currentRoute === 'catalogue'}
+					{#if currentPath === '/catalogue'}
 						<div
 							in:receive={{ key: 'line' }}
 							out:send={{ key: 'line' }}
-							class="h-[2px] w-10 bg-yellow-400 absolute translate-y-0 ml-12"
+							class="h-[2px] w-10 bg-yellow-400 mx-auto"
 						/>
 					{/if}
 				</a>
 			</li>
-			<li class="min-w-[150px] ml-48">
-				<a
-					href="/prueba2"
-					class="relative w-[275px] h-[37px] text-center text-black text-[15px] font-bold font-['Source Sans Pro'] leading-[37s.50px]"
-				>
-					Iniciar Sesión
-					{#if currentRoute === 'prueba2'}
-						<div
-							in:receive={{ key: 'line' }}
-							out:send={{ key: 'line' }}
-							class="h-[2px] w-10 bg-yellow-400 absolute translate-y-0 ml-12"
-						/>
-					{/if}
-				</a>
-			</li>
+			{#if isLoggedIn}
+				<li class="flex justify-center items-start gap-1">
+					<a href="/profile">
+						Perfil
+						{#if currentPath.startsWith('/profile')}
+							<div
+								in:receive={{ key: 'line' }}
+								out:send={{ key: 'line' }}
+								class="h-[2px] w-10 bg-yellow-400 mx-auto"
+							/>
+						{/if}
+					</a>
+					<MyProfileDropdown className="-mt-0.5" />
+				</li>
+			{:else}
+				<li>
+					<a href="/login" class="flex flex-col">
+						Iniciar Sesión
+						{#if currentPath === '/login'}
+							<div
+								in:receive={{ key: 'line' }}
+								out:send={{ key: 'line' }}
+								class="h-[2px] w-10 bg-yellow-400 mx-auto"
+							/>
+						{/if}
+					</a>
+				</li>
+			{/if}
 		</ul>
 	</nav>
 </header>
