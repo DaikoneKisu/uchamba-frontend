@@ -55,7 +55,7 @@
         />
       </li>
     {/each}
-    <div class="max-w-[220px] self-center rounded-xl border-4 border-[#f0f0f0] p-4">
+    <div class="max-w-[250px] self-center rounded-xl border-4 border-[#f0f0f0] p-4">
       <Checkbox
         form="filters"
         disabled={false}
