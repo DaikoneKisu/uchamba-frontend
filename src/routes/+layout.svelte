@@ -1,6 +1,7 @@
 <script lang="ts">
 	import '../app.css'
 
+	import { navigating } from '$app/stores'
 	import { Toaster } from 'svelte-french-toast'
 
 	import type { SuccessToastOptions } from '$lib/types/success-toast-options.type'
@@ -8,6 +9,7 @@
 
 	import SuccessToast from '$lib/components/toasts/success-toast/SuccessToast.svelte'
 	import ErrorToast from '$lib/components/toasts/error-toast/ErrorToast.svelte'
+	import Loading from '$lib/components/loading/Loading.svelte'
 	import { toast } from '$lib/utils/toast'
 	import { successToast } from '$lib/stores/success-toast'
 	import { errorToast } from '$lib/stores/error-toast'
@@ -39,5 +41,9 @@
 	}
 </script>
 
+{#if $navigating}
+	<Loading />
+{/if}
 <Toaster />
+
 <slot />
