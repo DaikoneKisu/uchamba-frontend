@@ -28,7 +28,7 @@
         <div class={`flex w-full gap-6 ${icon !== '' ? 'justify-start' : 'justify-center'}`}>
           <img src={icon} alt="" />
           <div class="flex flex-col">
-            <h2 class="m-0 font-poppins">{title}</h2>
+            <h2 class={`m-0 ${icon !== '' ? 'font-poppins' : 'font-open-sans'}`}>{title}</h2>
             <p class="text-brand-p-black">{subtitle}</p>
           </div>
         </div>
