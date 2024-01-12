@@ -1,5 +1,6 @@
 <script lang="ts">
   import Header from './Header.svelte'
+  import Navbar from '$lib/components/navbar/Navbar.svelte'
   import PersonalInformation from './PersonalInformation.svelte'
   import PersonalLinks from './PersonalLinks.svelte'
   import ProfileActivation from './ProfileActivationButton.svelte'
@@ -8,7 +9,10 @@
   export let data
 </script>
 
-<main class="flex min-h-screen gap-10 bg-[#f0f0f0] px-8 pt-6">
+<div class="flex flex-col gap-5 bg-[#f0f0f0] px-8 pt-6">
+  <Navbar />
+</div>
+<main class="flex min-h-screen gap-10 bg-[#f0f0f0] px-8 py-6">
   <div class="flex h-full w-full max-w-[465px] flex-col items-center justify-center gap-6">
     {#if data.isEditable && !Object.values(data.tasks).every((t) => !t)}
       <Tasks tasks={data.tasks} />

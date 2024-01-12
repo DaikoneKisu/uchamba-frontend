@@ -33,7 +33,10 @@
           await goto('/')
         }}
         class="flex h-[30px] w-full max-w-[150px] items-center justify-center rounded-[10px] bg-green-700 px-1 text-white"
-        type="button"><b class="font-normal">Cerrar sesión</b></button
+        type="button"
+        ><b class="font-poppins text-[1.125rem] font-normal leading-[150%] tracking-[-1.1%]"
+          >Cerrar sesión</b
+        ></button
       >
     </div>
   {/if}

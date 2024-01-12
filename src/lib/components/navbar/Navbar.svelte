@@ -44,17 +44,21 @@
       </li>
       {#if $page.data.isLoggedIn}
         <li>
-          <label class="flex cursor-pointer items-start justify-center gap-1">
-            Perfil
-            {#if currentPath.startsWith('/profile')}
-              <div
-                in:receive={{ key: 'line' }}
-                out:send={{ key: 'line' }}
-                class="mx-auto h-[2px] w-10 bg-yellow-400"
-              />
-            {/if}
+          <label class="flex cursor-pointer items-start gap-1">
+            <p
+              class="ml-auto mr-4 font-poppins text-[1.125rem] font-semibold leading-[150%] tracking-[-1.1%]"
+            >
+              Perfil
+            </p>
             <MyProfileDropdown className="-mt-0.5" />
           </label>
+          {#if currentPath.startsWith('/profile')}
+            <div
+              in:receive={{ key: 'line' }}
+              out:send={{ key: 'line' }}
+              class="mx-auto h-[2px] w-10 bg-yellow-400"
+            />
+          {/if}
         </li>
       {:else}
         <li>
