@@ -5,7 +5,7 @@
 	import { filtersForm } from '$lib/stores/filters-form'
 </script>
 
-<section class="flex flex-col gap-5 w-full max-w-[378px] bg-brand-white p-4">
+<section class="flex flex-col gap-5 w-full max-w-[378px] bg-brand-white p-4 rounded-[0.3125rem]">
 	<header class="border-b pl-2 pb-2">
 		<h2>Filtrar por</h2>
 	</header>
