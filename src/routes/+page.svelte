@@ -20,26 +20,28 @@
   <section class="flex w-full max-w-[1250px] justify-between px-5">
     <div class="items-left flex w-full max-w-[700px] flex-col">
       <MagicStars color="#FFD200">
-        <h1 class="font-['Poppins'] text-[40px] font-bold uppercase leading-[59.80px] text-black">
+        <h1 class="font-['Poppins'] text-[40px] font-bold uppercase leading-[2.7rem] text-black">
           BIENVENIDO A LA <br /> PLATAFORMA <br />
           <MagicText>ULINK</MagicText> <br /><span
-            class="mt-1 font-['Poppins'] text-[40px] font-normal leading-[59.80px] text-black"
+            class="mt-1 font-['Poppins'] text-[40px] font-normal leading-3 text-black"
             >CONECTANDO <br /> EGRESADOS Y
             <br />EMPRESAS<br />
           </span>
         </h1>
-        <p class="mt-2 h-[200px] w-[420px] font-['Poppins'] text-base font-normal leading-normal">
-          Un espacio donde los egresados pueden encontrar <span class="font-bold"
-            >oportunidades emocionantes</span
-          >
-          y donde las empresas puedan descubrir talento excepcional. Con nuestra red de conexiones facilitamos
-          la
-          <span class="font-bold"> interacción entre profesionales calificados y reclutadores</span>
-          en busca de habilidades sobresalientes. Únete a ULINK y descubre un
-          <span class="font-bold"> mundo de posibilidades profesionales.</span>
-        </p>
-        <p>Puedes empezar a buscar un egresado utilizando nuestro catálogo.</p>
       </MagicStars>
+      <p class="mt-5 w-[420px] font-['Poppins'] text-lg font-normal leading-normal">
+        Un espacio donde los egresados pueden encontrar <span class="font-bold"
+          >oportunidades emocionantes</span
+        >
+        y donde las empresas puedan descubrir talento excepcional.
+      </p>
+      <p class="mt-4 w-[420px] font-['Poppins'] text-lg">
+        Únete a ULINK y descubre un
+        <span class="font-bold"> mundo de posibilidades profesionales.</span>
+      </p>
+      <p class="mt-5 w-[420px] font-bold">
+        Puedes empezar a buscar un egresado utilizando nuestro catálogo.
+      </p>
 
       <div class="mt-10 flex justify-start gap-3">
         <a

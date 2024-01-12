@@ -8,12 +8,12 @@
   >
     <img class="h-[65px] w-[167px]" alt="" src={Logo} />
     <ul
-      class="flex-grow-1 flex w-full justify-around text-center text-lg [&>li>a]:py-5 [&>li>a]:text-center [&>li]:min-w-[150px]"
+      class="flex-grow-1 flex w-full justify-around text-center [&>li>a]:py-5 [&>li>a]:text-center [&>li]:min-w-[150px]"
     >
       <li class="min-w-[150px]">
         <a
           href="#benefits"
-          class="font-['Source Sans Pro'] relative h-[37px] w-[275px] text-center text-[15px] font-bold leading-[37s.50px] text-black"
+          class="relative h-[37px] w-[275px] text-center font-poppins text-xl font-bold leading-[37s.50px] text-black"
         >
           Beneficios
         </a>
@@ -21,7 +21,7 @@
       <li class="min-w-[150px]">
         <a
           href="#goals"
-          class="font-['Source Sans Pro'] relative h-[37px] w-[275px] text-center text-[15px] font-bold leading-[37s.50px] text-black"
+          class="relative h-[37px] w-[275px] text-center font-poppins text-xl font-bold leading-[37s.50px] text-black"
         >
           Objetivos
         </a>
@@ -29,7 +29,7 @@
       <li class=" min-w-[150px]">
         <a
           href="/login"
-          class="font-['Source Sans Pro'] relative h-[37px] w-[275px] text-center text-[15px] font-bold leading-[37s.50px] text-black"
+          class="relative h-[37px] w-[275px] text-center font-poppins text-xl font-bold leading-[37s.50px] text-black"
         >
           Iniciar sesion
         </a>
