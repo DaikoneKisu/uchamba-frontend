@@ -45,7 +45,7 @@
 				handleChange={(e) => {
 					/*
 					 * Here I have to disable typescript-eslint's no-unsafe-argument rule
-					 * because it keeps saying that e is of type any, and it's easy to go
+					 * because it keeps saying that 'e' is of type any, and it's easy to go
 					 * to Checkbox.svelte component in lib and see that e is being exported
 					 * with the expected type and that it's in fact of that type, even
 					 * VSCode's intellisense infers it, so yeah, minus points to typescript-eslint
