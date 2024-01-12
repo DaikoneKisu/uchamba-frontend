@@ -13,7 +13,7 @@
       <li class="min-w-[150px]">
         <a
           href="#benefits"
-          class="relative h-[37px] w-[275px] text-center font-poppins text-xl font-bold leading-[37s.50px] text-black"
+          class="relative h-[37px] w-[275px] text-center font-poppins text-lg font-bold leading-[37s.50px] text-black"
         >
           Beneficios
         </a>
@@ -21,15 +21,23 @@
       <li class="min-w-[150px]">
         <a
           href="#goals"
-          class="relative h-[37px] w-[275px] text-center font-poppins text-xl font-bold leading-[37s.50px] text-black"
+          class="relative h-[37px] w-[275px] text-center font-poppins text-lg font-bold leading-[37s.50px] text-black"
         >
           Objetivos
         </a>
       </li>
-      <li class=" min-w-[150px]">
+      <li class="min-w-[150px]">
+        <a
+          href="/catalogue"
+          class="relative h-[37px] w-[275px] text-center font-poppins text-lg font-bold leading-[37s.50px] text-black"
+        >
+          Catálogo
+        </a>
+      </li>
+      <li class="min-w-[150px]">
         <a
           href="/login"
-          class="relative h-[37px] w-[275px] text-center font-poppins text-xl font-bold leading-[37s.50px] text-black"
+          class="relative h-[37px] w-[275px] text-center font-poppins text-lg font-bold leading-[37s.50px] text-black"
         >
           Iniciar sesion
         </a>
