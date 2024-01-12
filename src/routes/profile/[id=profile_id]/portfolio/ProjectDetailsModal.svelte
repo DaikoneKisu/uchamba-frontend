@@ -198,8 +198,6 @@
         <Carousel images={[project.coverImageUrl, ...project.images.map((img) => img.imageUrl)]} />
       </div>
     </div>
-
-    <EditModalFooter slot="footer" handlePressEdit={goToEditMode} />
   </Modal>
 {:else if mode === 'edit'}
   <Modal
