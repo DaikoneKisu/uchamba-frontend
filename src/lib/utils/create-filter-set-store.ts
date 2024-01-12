@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store'
 
-export function createFilterSetStore<T extends string | number | boolean>() {
-	const { subscribe, set, update } = writable<Set<T>>()
+export function createFilterSetStore<T extends string | number | boolean>(initialValue?: Set<T>) {
+	const { subscribe, set, update } = writable<Set<T>>(initialValue ?? new Set<T>())
 
 	return {
 		subscribe,

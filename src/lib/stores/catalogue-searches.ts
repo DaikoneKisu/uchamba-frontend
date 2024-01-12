@@ -5,7 +5,7 @@ interface CatalogueSearches {
 }
 
 function createSearches() {
-	const { subscribe, set } = writable<CatalogueSearches>()
+	const { subscribe, set } = writable<CatalogueSearches>({ name: '' })
 
 	return {
 		subscribe,
