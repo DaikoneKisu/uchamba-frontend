@@ -10,7 +10,7 @@
 
 <section class="border-b pb-2">
 	<header class="pl-2 pr-2">
-		<button on:click={() => (isOpen = !isOpen)} class="flex w-full items-center justify-between">
+		<button on:click={() => (isOpen = !isOpen)} type="button" class="flex w-full items-center justify-between">
 			<h3>{title}</h3>
 			<img
 				src={downIcon}
