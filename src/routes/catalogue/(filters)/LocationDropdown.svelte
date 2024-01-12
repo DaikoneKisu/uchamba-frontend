@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { slide } from 'svelte/transition'
 
-	import Checkbox from '$lib/components/Checkbox/Checkbox.svelte'
+	import Checkbox from '$lib/components/checkbox/Checkbox.svelte'
 	import Dropdown from './Dropdown.svelte'
 	import { locationFilter } from '$lib/stores/filters'
 
