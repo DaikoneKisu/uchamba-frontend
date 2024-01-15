@@ -1,10 +1,11 @@
 <script lang="ts">
   import LandingNavbar from './LandingNavbar.svelte'
 
-  import ucab1 from '$lib/images/ucab1.png'
+  import ucab1 from '$lib/images/ucab1.jpeg'
   import ucab2 from '$lib/images/ucab2.png'
-  import ucab3 from '$lib/images/ucab3.png'
-  import ucab4 from '$lib/images/ucab4.png'
+  import ucab3 from '$lib/images/ucab3.jpeg'
+  import ucab4 from '$lib/images/ucab4.jpeg'
+  import ucab5 from '$lib/images/ucab5.png'
   import instagramIcon from '$lib/icons/instagram.svg'
   import twitterIcon from '$lib/icons/twitter.svg'
   import facebookIcon from '$lib/icons/facebook.svg'
@@ -58,7 +59,7 @@
       </div>
     </div>
 
-    <img src={ucab1} alt="Imágen de la UCAB" class="h-[671px] w-[601px]" />
+    <img src={ucab1} alt="Imágen de la UCAB" class="h-[671px] w-[601px] rounded-[10px]" />
   </section>
 
   <section class="flex w-full flex-col items-center gap-16 px-8">
@@ -170,20 +171,31 @@
     </p>
   </section>
 
-  <footer class="flex w-full flex-col items-center bg-ucab-green pb-12 pt-10 text-brand-white">
+  <img src={ucab5} alt="Imágen de la UCAB" class="max-w-[884px] rounded-[10px]" />
+
+  <footer
+    class="flex w-full flex-col items-center overflow-hidden bg-ucab-green pb-6 pt-10 text-brand-white"
+  >
     <h3 class="text-[40px] uppercase">GRACIAS POR SU VISITA</h3>
     <h3 class="text-[40px] uppercase">¡HASTA PRONTO!</h3>
     <p class="mt-3 text-[20px]">Todos los derechos reservado 2024</p>
     <div class="mt-3 flex gap-5">
-      <a href="https://www.instagram.com/enlaucab" target="_blank"
+      <a href="https://www.instagram.com/ucabguayana/" target="_blank"
         ><img src={instagramIcon} alt="Ir a el instagram de la UCAB" /></a
       >
-      <a href="https://twitter.com/enlaucab" target="_blank"
+      <a href="https://twitter.com/UcabGuayana/" target="_blank"
         ><img src={twitterIcon} alt="Ir a el twitter de la UCAB" /></a
       >
-      <a href="https://www.facebook.com/enlaUCAB" target="_blank"
+      <a href="https://www.facebook.com/UCABExtensionGuayana/" target="_blank"
         ><img src={facebookIcon} alt="Ir a el facebook de la UCAB" /></a
       >
     </div>
+
+    <p class="mt-8 overflow-hidden whitespace-nowrap font-poppins text-xl font-bold">
+      · Ucab Guayana · Ucab Guayana · Ucab Guayana · Ucab Guayana · Ucab Guayana · Ucab Guayana ·
+      Ucab Guayana · Ucab Guayana · Ucab Guayana · Ucab Guayana · Ucab Guayana · Ucab Guayana · Ucab
+      Guayana · Ucab Guayana · Ucab Guayana · Ucab Guayana · Ucab Guayana · Ucab Guayana · Ucab
+      Guayana · Ucab Guayana · Ucab Guayana · Ucab Guayana · Ucab Guayana · Ucab Guayana
+    </p>
   </footer>
 </main>
