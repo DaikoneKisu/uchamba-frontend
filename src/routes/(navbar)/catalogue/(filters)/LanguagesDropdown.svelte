@@ -74,7 +74,7 @@
         )
       ) {
         error =
-          'Ya especificaste ese idioma con otro nivel mínimo, elíminalo primero si quieres cambiarlo'
+          'Ya especificaste ese idioma con otro nivel mínimo, elimínalo primero si quieres cambiarlo'
       } else {
         error =
           'El formato del idioma es "Idioma-Nivel", respetando signos ortográficos y siendo nivel "A1", "A2", "B1", "B2", "C1", "C2" o "Native"'
