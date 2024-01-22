@@ -65,7 +65,6 @@
       if (languageFormatted) {
         error = ''
         languageFilter.add(languageFormatted)
-        languages = [...languages, language]
       } else if (
         $suggestions.languages.some(
           (lang) =>
