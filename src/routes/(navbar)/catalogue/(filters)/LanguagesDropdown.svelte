@@ -13,15 +13,15 @@
   let isPristine = true
   let value = ''
 
-  $: if (languages.length < 2 && languageFilter.has(true)) {
-    languageFilter.delete(true)
-  }
-
   $: choosableLanguages = $suggestions.languages.filter(
     (suggestedLang) =>
       suggestedLang.total > 0 &&
       !languages.some((choosenLang) => choosenLang.startsWith(suggestedLang.name + '-'))
   )
+
+  $: if (languages.length < 2 && languageFilter.has(true)) {
+    languageFilter.delete(true)
+  }
 
   $: {
     languages = [...$languageFilter].filter((l): l is string => typeof l === 'string')
