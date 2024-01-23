@@ -85,8 +85,8 @@
           usar que simplifican el proceso de búsqueda y reclutamiento a través de un catálogo de
           egresados de la Universidad Católica Andrés Bello (UCAB) altamente cualificados que se
           ajusten a tus requisitos como habilidades, experiencia y ubicación. ¡Visita sus perfiles y
-          descarga sus CV! Cabe destacar que la UCAB ocupa el puesto #3 como la mejor institución
-          del país, según la prestigiosa clasificación de Quacquarelli Symonds.
+          descarga sus CV! Cabe destacar que la UCAB ocupa el puesto #1 como la mejor institución
+          del país, según el QS World University Ranking 2024.
         </p>
         <a
           href="/catalogue"
