@@ -1,6 +1,7 @@
 <script lang="ts">
   import { flip } from 'svelte/animate'
   import { fade, fly } from 'svelte/transition'
+
   import Chip from '$lib/components/chip/Chip.svelte'
   import Dropdown from './Dropdown.svelte'
   import Checkbox from '$lib/components/catalogue/checkbox/Checkbox.svelte'
@@ -15,10 +16,6 @@
     (suggestedHardSkill) =>
       !hardSkills.some((choosenHardSkill) => choosenHardSkill === suggestedHardSkill.name)
   )
-
-  $: if (hardSkills.length < 2 && hardSkillsFilter.has(true)) {
-    hardSkillsFilter.delete(true)
-  }
 
   $: hardSkills = [...$hardSkillsFilter].reduce((acc, curr) => {
     if (typeof curr === 'number') {
@@ -40,6 +37,10 @@
     }
     return acc
   }, [] as string[])
+
+  $: if (hardSkills.length < 2 && hardSkillsFilter.has(true)) {
+    hardSkillsFilter.delete(true)
+  }
 
   function addInclusiveHardSkills(
     e: Event & {
