@@ -3,6 +3,7 @@
   import LocationDropdown from './(filters)/LocationDropdown.svelte'
   import LanguagesDropdown from './(filters)/LanguagesDropdown.svelte'
   import HardSkillsDropdown from './(filters)/HardSkillsDropdown.svelte'
+  import SoftSkillsDropdown from './(filters)/SoftSkillsDropdown.svelte'
   import { filtersForm } from '$lib/stores/filters-form'
 </script>
 
@@ -23,5 +24,6 @@
     <LocationDropdown />
     <LanguagesDropdown />
     <HardSkillsDropdown />
+    <SoftSkillsDropdown />
   </form>
 </section>
