@@ -191,11 +191,37 @@
       >
     </div>
 
-    <p class="mt-8 overflow-hidden whitespace-nowrap font-poppins text-xl font-bold">
-      · Ucab Guayana · Ucab Guayana · Ucab Guayana · Ucab Guayana · Ucab Guayana · Ucab Guayana ·
-      Ucab Guayana · Ucab Guayana · Ucab Guayana · Ucab Guayana · Ucab Guayana · Ucab Guayana · Ucab
-      Guayana · Ucab Guayana · Ucab Guayana · Ucab Guayana · Ucab Guayana · Ucab Guayana · Ucab
-      Guayana · Ucab Guayana · Ucab Guayana · Ucab Guayana · Ucab Guayana · Ucab Guayana
-    </p>
+    <div
+      class="group relative mt-8 w-full overflow-hidden whitespace-nowrap before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-20 before:bg-gradient-to-r before:from-ucab-green before:to-transparent after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-20 after:bg-gradient-to-l after:from-ucab-green after:to-transparent"
+    >
+      <div
+        class="inline-flex w-full animate-[scrolling_3s_linear_infinite] justify-around group-hover:[animation-play-state:paused] md:[animation-duration:5s] lg:[animation-duration:8s] xl:[animation-duration:12s] [&>span]:inline-block [&>span]:font-poppins [&>span]:text-xl [&>span]:font-bold"
+      >
+        <span>UCAB Guayana</span>
+        <span>·</span>
+        <span>UCAB Guayana</span>
+        <span>·</span>
+        <span>UCAB Guayana</span>
+        <span>·</span>
+        <span>UCAB Guayana</span>
+        <span>·</span>
+        <span>UCAB Guayana</span>
+        <span>·</span>
+      </div>
+      <div
+        class="inline-flex w-full animate-[scrolling_3s_linear_infinite] justify-around group-hover:[animation-play-state:paused] md:[animation-duration:5s] lg:[animation-duration:8s] xl:[animation-duration:12s] [&>span]:inline-block [&>span]:font-poppins [&>span]:text-xl [&>span]:font-bold"
+      >
+        <span>UCAB Guayana</span>
+        <span>·</span>
+        <span>UCAB Guayana</span>
+        <span>·</span>
+        <span>UCAB Guayana</span>
+        <span>·</span>
+        <span>UCAB Guayana</span>
+        <span>·</span>
+        <span>UCAB Guayana</span>
+        <span>·</span>
+      </div>
+    </div>
   </footer>
 </main>
