@@ -13,10 +13,10 @@
     class="max-h-[200px] w-full rounded-t-[10px] object-cover"
   />
 
-  <div class="mt-3 px-3">
+  <div class="mt-3 px-3 overflow-x-clip">
     <h3 class="font-poppins text-[20px] font-semibold">{project.name}</h3>
     {#if project.projectUrl}
-      <a href={project.projectUrl} class="font-poppins font-semibold">{project.projectUrl}</a>
+      <a href={project.projectUrl} class="font-poppins font-semibold" target="_blank">{project.projectUrl}</a>
     {/if}
     <p>{project.description}</p>
     <button on:click={handleShowMore} class="text-ucab-green underline">Ver Información</button>
