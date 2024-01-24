@@ -28,7 +28,6 @@
       disabledEditButton = true
       goto(`/profile/cv-editor/${cv.cvId}`)
     } catch (error) {
-      console.log(error)
       errorToast.launch({
         reason:
           'Ha ocurrido un error en el servidor al intentar editar el CV, intenta de nuevo más tarde'
