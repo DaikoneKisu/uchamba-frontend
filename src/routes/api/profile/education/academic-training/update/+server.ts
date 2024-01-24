@@ -22,8 +22,6 @@ export async function PUT({ request, fetch }: { request: Request; fetch: typeof 
 
   const responseData = (await response.json()) as unknown
 
-  console.log(responseData)
-
   if (!response.ok) return json(responseData, { status: response.status })
 
   return json(responseData)

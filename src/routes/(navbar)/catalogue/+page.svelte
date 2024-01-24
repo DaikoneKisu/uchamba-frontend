@@ -33,7 +33,7 @@
             values += `${value},`
           }
           values
-            ? currentURL.searchParams.set(filter.toLowerCase(), values.slice(0, values.length - 1))
+            ? currentURL.searchParams.set(filter, values.slice(0, values.length - 1))
             : currentURL.searchParams.delete(filter)
 
           if (filter === 'careers') {
