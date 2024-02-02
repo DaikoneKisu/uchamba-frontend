@@ -13,10 +13,14 @@ export async function load({ url, fetch }: { url: URL; fetch: typeof window.fetc
   const searchInCV = url.searchParams.get('searchInCV') || ''
   const languages = url.searchParams.get('languages') || ''
   const inclusiveLang = url.searchParams.get('inclusiveLang') || ''
+  const hSkills = url.searchParams.get('hSkills') || ''
+  const inclusiveH = url.searchParams.get('inclusiveH') || ''
+  const sSkills = url.searchParams.get('sSkills') || ''
+  const inclusiveS = url.searchParams.get('inclusiveS') || ''
 
   async function getCatalogue(size: number = 10, page: number = 1) {
     const catalogue = await fetch(
-      `${BACKEND_BASE_URL}/users?page=${page}&size=${size}&name=${name}&country=${country}&state=${state}&city=${city}&careers=${careers}&searchInCV=${searchInCV}&languages=${languages}&inclusiveLang=${inclusiveLang}`
+      `${BACKEND_BASE_URL}/users?page=${page}&size=${size}&name=${name}&country=${country}&state=${state}&city=${city}&careers=${careers}&searchInCV=${searchInCV}&languages=${languages}&inclusiveLang=${inclusiveLang}&hskills=${hSkills}&inclusiveH=${inclusiveH}&sskills=${sSkills}&inclusiveS=${inclusiveS}`
     )
     const catalogueJson = (await catalogue.json()) as CatalogueResponse
     return catalogueJson

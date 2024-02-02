@@ -1,10 +1,11 @@
 <script lang="ts">
   import LandingNavbar from './LandingNavbar.svelte'
 
-  import ucab1 from '$lib/images/ucab1.png'
+  import ucab1 from '$lib/images/ucab1.jpeg'
   import ucab2 from '$lib/images/ucab2.png'
-  import ucab3 from '$lib/images/ucab3.png'
-  import ucab4 from '$lib/images/ucab4.png'
+  import ucab3 from '$lib/images/ucab3.jpeg'
+  import ucab4 from '$lib/images/ucab4.jpeg'
+  import ucab5 from '$lib/images/ucab5.png'
   import instagramIcon from '$lib/icons/instagram.svg'
   import twitterIcon from '$lib/icons/twitter.svg'
   import facebookIcon from '$lib/icons/facebook.svg'
@@ -58,7 +59,7 @@
       </div>
     </div>
 
-    <img src={ucab1} alt="Imágen de la UCAB" class="h-[671px] w-[601px]" />
+    <img src={ucab1} alt="Imágen de la UCAB" class="h-[671px] w-[601px] rounded-[10px]" />
   </section>
 
   <section class="flex w-full flex-col items-center gap-16 px-8">
@@ -84,8 +85,8 @@
           usar que simplifican el proceso de búsqueda y reclutamiento a través de un catálogo de
           egresados de la Universidad Católica Andrés Bello (UCAB) altamente cualificados que se
           ajusten a tus requisitos como habilidades, experiencia y ubicación. ¡Visita sus perfiles y
-          descarga sus CV! Cabe destacar que la UCAB ocupa el puesto #3 como la mejor institución
-          del país, según la prestigiosa clasificación de Quacquarelli Symonds.
+          descarga sus CV! Cabe destacar que la UCAB ocupa el puesto #1 como la mejor institución
+          del país, según el QS World University Ranking 2024.
         </p>
         <a
           href="/catalogue"
@@ -170,20 +171,57 @@
     </p>
   </section>
 
-  <footer class="flex w-full flex-col items-center bg-ucab-green pb-12 pt-10 text-brand-white">
+  <img src={ucab5} alt="Imágen de la UCAB" class="max-w-[884px] rounded-[10px]" />
+
+  <footer
+    class="flex w-full flex-col items-center overflow-hidden bg-ucab-green pb-6 pt-10 text-brand-white"
+  >
     <h3 class="text-[40px] uppercase">GRACIAS POR SU VISITA</h3>
     <h3 class="text-[40px] uppercase">¡HASTA PRONTO!</h3>
     <p class="mt-3 text-[20px]">Todos los derechos reservado 2024</p>
     <div class="mt-3 flex gap-5">
-      <a href="https://www.instagram.com/enlaucab" target="_blank"
+      <a href="https://www.instagram.com/ucabguayana/" target="_blank"
         ><img src={instagramIcon} alt="Ir a el instagram de la UCAB" /></a
       >
-      <a href="https://twitter.com/enlaucab" target="_blank"
+      <a href="https://twitter.com/UcabGuayana/" target="_blank"
         ><img src={twitterIcon} alt="Ir a el twitter de la UCAB" /></a
       >
-      <a href="https://www.facebook.com/enlaUCAB" target="_blank"
+      <a href="https://www.facebook.com/UCABExtensionGuayana/" target="_blank"
         ><img src={facebookIcon} alt="Ir a el facebook de la UCAB" /></a
       >
+    </div>
+
+    <div
+      class="group relative mt-8 w-full overflow-hidden whitespace-nowrap before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-20 before:bg-gradient-to-r before:from-ucab-green before:to-transparent after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-20 after:bg-gradient-to-l after:from-ucab-green after:to-transparent"
+    >
+      <div
+        class="inline-flex w-full animate-[scrolling_3s_linear_infinite] justify-around group-hover:[animation-play-state:paused] md:[animation-duration:5s] lg:[animation-duration:8s] xl:[animation-duration:12s] [&>span]:inline-block [&>span]:select-none [&>span]:font-poppins [&>span]:text-xl [&>span]:font-bold"
+      >
+        <span>UCAB Guayana</span>
+        <span>·</span>
+        <span>UCAB Guayana</span>
+        <span>·</span>
+        <span>UCAB Guayana</span>
+        <span>·</span>
+        <span>UCAB Guayana</span>
+        <span>·</span>
+        <span>UCAB Guayana</span>
+        <span>·</span>
+      </div>
+      <div
+        class="inline-flex w-full animate-[scrolling_3s_linear_infinite] justify-around group-hover:[animation-play-state:paused] md:[animation-duration:5s] lg:[animation-duration:8s] xl:[animation-duration:12s] [&>span]:inline-block [&>span]:select-none [&>span]:font-poppins [&>span]:text-xl [&>span]:font-bold"
+      >
+        <span>UCAB Guayana</span>
+        <span>·</span>
+        <span>UCAB Guayana</span>
+        <span>·</span>
+        <span>UCAB Guayana</span>
+        <span>·</span>
+        <span>UCAB Guayana</span>
+        <span>·</span>
+        <span>UCAB Guayana</span>
+        <span>·</span>
+      </div>
     </div>
   </footer>
 </main>

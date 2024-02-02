@@ -58,13 +58,13 @@
             <h4 class="cv-article__title">{we?.jobTitle}</h4>
             {#if we?.departureDate}
               <strong class="cv-article__important-text"
-                >{we?.organizationName} • Entrada {formatWorkExperienceEntryData(
+                >{we?.organizationName} • {formatWorkExperienceEntryData(
                   new Date(we?.entryDate)
-                )} - Salida {formatWorkExperienceEntryData(new Date(we?.departureDate))}</strong
+                )} - {formatWorkExperienceEntryData(new Date(we?.departureDate))}</strong
               >
             {:else}
               <strong class="cv-article__important-text"
-                >{we?.organizationName} • Entrada {formatWorkExperienceEntryData(
+                >{we?.organizationName} • {formatWorkExperienceEntryData(
                   new Date(we?.entryDate ?? '')
                 )} - Actualidad</strong
               >

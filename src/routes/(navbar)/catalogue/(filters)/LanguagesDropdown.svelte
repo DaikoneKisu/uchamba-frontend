@@ -13,15 +13,15 @@
   let isPristine = true
   let value = ''
 
-  $: if (languages.length < 2 && languageFilter.has(true)) {
-    languageFilter.delete(true)
-  }
-
   $: choosableLanguages = $suggestions.languages.filter(
     (suggestedLang) =>
       suggestedLang.total > 0 &&
       !languages.some((choosenLang) => choosenLang.startsWith(suggestedLang.name + '-'))
   )
+
+  $: if (languages.length < 2 && languageFilter.has(true)) {
+    languageFilter.delete(true)
+  }
 
   $: {
     languages = [...$languageFilter].filter((l): l is string => typeof l === 'string')
@@ -65,7 +65,6 @@
       if (languageFormatted) {
         error = ''
         languageFilter.add(languageFormatted)
-        languages = [...languages, language]
       } else if (
         $suggestions.languages.some(
           (lang) =>
@@ -74,7 +73,7 @@
         )
       ) {
         error =
-          'Ya especificaste ese idioma con otro nivel mínimo, elíminalo primero si quieres cambiarlo'
+          'Ya especificaste ese idioma con otro nivel mínimo, elimínalo primero si quieres cambiarlo'
       } else {
         error =
           'El formato del idioma es "Idioma-Nivel", respetando signos ortográficos y siendo nivel "A1", "A2", "B1", "B2", "C1", "C2" o "Native"'
